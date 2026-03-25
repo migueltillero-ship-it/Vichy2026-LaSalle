@@ -16,36 +16,38 @@
     <style>
         :root { --gold: #C9A84C; --blue: #002395; }
         body { background-color: #050505; color: #fff; scroll-behavior: smooth; font-family: 'Montserrat', sans-serif; }
-        
         .logo-clean { mix-blend-mode: screen; filter: brightness(1.1) contrast(1.1); }
         #site-nav { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); border-bottom: 1px solid rgba(201,168,76,0); }
-        #site-nav.scrolled { background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.2); padding-top: 0.5rem; padding-bottom: 0.5rem; }
-
+        #site-nav.scrolled { background: rgba(5,5,5,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.2); padding-top: 0.5rem; padding-bottom: 0.5rem; }
         .luxury-title { font-family: 'Playfair Display', serif; line-height: 1.1; letter-spacing: -0.02em; }
         .accent-line { width: 40px; height: 1px; background: var(--gold); display: inline-block; vertical-align: middle; margin-right: 15px; }
-
-        .video-wrapper { position: relative; border-radius: 20px; overflow: hidden; transform: translateZ(0); border: 1px solid rgba(255,255,255,0.1); }
-        .video-wrapper video { width: 100%; transition: transform 0.8s ease; }
-        .video-wrapper:hover video { transform: scale(1.05); }
-
-        .itab { border: none; border-bottom: 2px solid transparent; padding: 12px 24px; transition: 0.3s; color: #999; font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; }
+        .hero-video-wrapper { position: absolute; inset: 0; overflow: hidden; }
+        .hero-video-wrapper video { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+        .dossier-video-container { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #000; }
+        .dossier-video-container video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+        .itab { border: none; border-bottom: 2px solid transparent; padding: 12px 24px; transition: 0.3s; color: #999; font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; background: transparent; }
         .itab.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
-
         .sr { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .hero-anim { opacity: 0; transform: translateY(20px); }
+        .qr-box { width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; flex-shrink: 0; }
+        .qr-box img { width: 110px; height: 110px; object-fit: contain; }
+        .qr-box .qr-fallback { display: none; flex-direction: column; align-items: center; gap: 4px; }
+        .qr-box img.broken + .qr-fallback, .qr-box img[data-broken] + .qr-fallback { display: flex; }
     </style>
 </head>
 <body>
 
-<div id="intro-overlay" class="fixed inset-0 bg-[#050505] z-[9999] flex flex-col items-center justify-center p-6">
+<audio id="bg-music" src="musica_clasica.mp3" loop preload="auto"></audio>
+
+<div id="intro-overlay" class="fixed inset-0 bg-[#050505] z-[9999] flex flex-col items-center justify-center p-6 text-center">
     <div class="flex flex-col items-center gap-12" id="logos-init">
         <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
-            <img src="logo_af_sc.jpg" alt="AFSC" class="h-16 md:h-20 logo-clean" onerror="this.style.display='none'">
-            <img src="logo-lasalle.png" alt="La Salle" class="h-20 md:h-24 logo-clean" onerror="this.style.display='none'">
-            <img src="logo-cavilam.png" alt="CAVILAM" class="h-12 md:h-16 logo-clean" onerror="this.style.display='none'">
+            <img src="logo_af_sc.jpg" alt="AFSC" class="h-16 md:h-20 logo-clean">
+            <img src="logo-lasalle.png" alt="La Salle" class="h-20 md:h-24 logo-clean">
+            <img src="logo-cavilam.png" alt="CAVILAM" class="h-12 md:h-16 logo-clean">
         </div>
         <div class="h-px w-24 bg-gradient-to-r from-transparent via-af-gold to-transparent opacity-50"></div>
-        <button id="start-btn" class="font-serif italic text-xl md:text-2xl text-af-gold hover:text-white transition-all duration-700 tracking-widest opacity-0 border border-af-gold/30 rounded-full px-8 py-3 hover:bg-white/5">
+        <button id="start-btn" class="font-serif italic text-xl md:text-2xl text-af-gold hover:text-white transition-all duration-700 tracking-widest opacity-0 border border-af-gold/30 rounded-full px-8 py-3 hover:bg-white/5 uppercase">
             Descubrir el Programa
         </button>
     </div>
@@ -56,30 +58,29 @@
         <span class="text-af-gold font-serif text-lg tracking-wider">Vichy 2026</span>
         <span class="text-[8px] uppercase tracking-[0.4em] text-white/40">La Salle Chiapas</span>
     </div>
-    <div class="hidden md:flex gap-10">
+    <div class="hidden md:flex gap-8 items-center">
         <a href="#convenio" class="text-[10px] uppercase tracking-widest hover:text-af-gold transition">Institución</a>
+        <a href="#familias" class="text-[10px] uppercase tracking-widest hover:text-af-gold transition">Familias</a>
         <a href="#itinerario" class="text-[10px] uppercase tracking-widest hover:text-af-gold transition">Itinerario</a>
         <a href="#dossier" class="text-[10px] uppercase tracking-widest hover:text-af-gold transition">Dossier</a>
-        <a href="#inversion" class="text-[10px] uppercase tracking-widest hover:text-af-gold transition">Inversión</a>
         <a href="#registro" class="px-6 py-2 border border-af-gold/30 rounded-full text-[10px] uppercase tracking-widest hover:bg-af-gold hover:text-black transition">Registro</a>
     </div>
 </nav>
 
 <main id="main-content" class="opacity-0">
+
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <video id="vichy-video" class="absolute inset-0 w-full h-full object-cover opacity-40" playsinline muted loop>
-            <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
-        </video>
+        <div class="hero-video-wrapper">
+            <video id="vichy-video" playsinline muted loop preload="metadata">
+                <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto">
             <h2 class="hero-anim text-af-gold font-serif italic text-2xl md:text-3xl mb-4">Vichy & París 2026</h2>
-            <h1 class="hero-anim luxury-title text-5xl md:text-7xl lg:text-[90px] font-bold mb-6 text-white leading-tight">Inmersión Lingüística</h1>
+            <h1 class="hero-anim luxury-title text-5xl md:text-7xl lg:text-[90px] font-bold mb-6 text-white leading-tight uppercase">Inmersión Lingüística</h1>
             <p class="hero-anim max-w-2xl mx-auto text-white/80 font-light tracking-[0.2em] uppercase text-xs md:text-sm">
                 Un viaje cultural exclusivo para estudiantes del Colegio La Salle
             </p>
-        </div>
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
-            <span class="text-[9px] uppercase tracking-[0.5em] text-white/40">Deslice hacia abajo</span>
-            <div class="w-px h-12 bg-gradient-to-b from-af-gold to-transparent"></div>
         </div>
     </section>
 
@@ -92,247 +93,114 @@
                 </div>
                 <h2 class="luxury-title text-5xl md:text-6xl mb-8">Un compromiso <em>sin intermediarios</em></h2>
                 <p class="text-lg leading-relaxed text-slate-600 font-light mb-8">
-                    Este programa es una inmersión diseñada bajo los más altos estándares de la <strong>Alliance Française</strong>, conectando directamente al Colegio La Salle con la excelencia pedagógica de <strong>CAVILAM en Vichy</strong>.
+                    Gestión directa entre la <strong>Alliance Française</strong>, el Colegio La Salle y <strong>CAVILAM</strong>. Calidad, transparencia y excelencia pedagógica.
                 </p>
                 <div class="bg-white p-8 rounded-2xl border-l-4 border-af-gold shadow-sm">
-                    <p class="font-serif italic text-xl text-af-blue">"Garantizamos una gestión directa, transparente y de alto nivel para la seguridad de sus hijos."</p>
-                    <p class="mt-4 text-xs uppercase tracking-widest font-bold">— Miguel Tillero Álvarez, Director General</p>
+                    <p class="font-serif italic text-xl text-af-blue">"Garantizamos una gestión transparente para la seguridad de sus hijos."</p>
+                    <p class="mt-4 text-[10px] uppercase tracking-widest font-bold text-slate-500">— Miguel Tillero Álvarez, Director General</p>
                 </div>
             </div>
             <div class="relative sr">
-                <div class="absolute -inset-4 border border-af-gold/20 rounded-2xl"></div>
-                <img src="IMG-20260224-WA0062.jpg" class="rounded-xl shadow-2xl relative z-10 w-full grayscale-[30%] hover:grayscale-0 transition duration-700" alt="Firma de Convenio" onerror="this.style.display='none'">
+                <img src="IMG-20260224-WA0062.jpg" class="rounded-xl shadow-2xl w-full" alt="Firma de Convenio" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <section id="familias" class="py-32 bg-[#050505] text-white">
+        <div class="max-w-6xl mx-auto px-8 text-center mb-16 sr">
+            <h2 class="luxury-title text-4xl md:text-5xl text-white mb-6">Familias de <em>Acogida</em></h2>
+            <p class="text-white/60 font-light max-w-2xl mx-auto text-sm italic">Hogares certificados por CAVILAM bajo criterios rigurosos de seguridad y hospitalidad.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto px-8 sr">
+            <div class="bg-white/5 rounded-3xl overflow-hidden border border-white/10">
+                <video controls playsinline class="w-full aspect-video bg-black"><source src="video_sylvie.mp4" type="video/mp4"></video>
+                <div class="p-6 text-center"><h3 class="font-serif text-xl font-bold">Sylvie Bertrand</h3><p class="text-xs text-af-gold uppercase tracking-widest mt-2">Familia Certificada</p></div>
+            </div>
+            <div class="bg-white/5 rounded-3xl overflow-hidden border border-white/10">
+                <video controls playsinline class="w-full aspect-video bg-black"><source src="video_nadine_philippe.mp4" type="video/mp4"></video>
+                <div class="p-6 text-center"><h3 class="font-serif text-xl font-bold">Nadine et Philippe</h3><p class="text-xs text-af-gold uppercase tracking-widest mt-2">Seguridad Integral</p></div>
             </div>
         </div>
     </section>
 
     <section id="itinerario" class="py-32 bg-white text-deep-slate">
-        <div class="max-w-4xl mx-auto px-8 text-center mb-16">
-            <h2 class="luxury-title text-5xl mb-6 sr">El Recorrido Cultural</h2>
-            <p class="text-slate-500 font-light mb-8 sr">18 días totales de inmersión en Francia.</p>
-            <div class="flex flex-wrap justify-center gap-2 md:gap-8 sr">
-                <button class="itab active" onclick="showTab('s1',this)">Vichy · Semana 1</button>
-                <button class="itab" onclick="showTab('s2',this)">Vichy · Semana 2</button>
-                <button class="itab font-bold" onclick="showTab('s3',this)">París · 4 Días</button>
+        <div class="max-w-4xl mx-auto px-8 text-center mb-16 sr">
+            <h2 class="luxury-title text-5xl mb-6">El Recorrido Cultural</h2>
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <button class="itab active" onclick="showTab('s1',this)">Semana 1</button>
+                <button class="itab" onclick="showTab('s2',this)">Semana 2</button>
+                <button class="itab font-bold" onclick="showTab('s3',this)">París</button>
             </div>
         </div>
-        
-        <div class="max-w-5xl mx-auto px-8">
-            <div id="s1" class="itab-c active grid gap-4 sr">
-                <div class="group flex items-center p-6 bg-luxury-cream rounded-2xl hover:bg-af-blue hover:text-white transition-all duration-500">
-                    <div class="w-20 text-center border-r border-black/5 group-hover:border-white/10 shrink-0">
-                        <span class="block font-serif text-2xl font-bold">07</span>
-                        <span class="text-[9px] uppercase font-bold opacity-60">Sept</span>
-                    </div>
-                    <div class="pl-8">
-                        <h4 class="font-bold text-sm uppercase tracking-widest mb-1">Visita de Vichy & Petanca</h4>
-                        <p class="text-xs opacity-80 font-light">Exploración histórica de la ciudad y tarde de deporte tradicional francés.</p>
-                    </div>
-                </div>
-                <div class="group flex items-center p-6 bg-luxury-cream rounded-2xl hover:bg-af-blue hover:text-white transition-all duration-500">
-                    <div class="w-20 text-center border-r border-black/5 group-hover:border-white/10 shrink-0">
-                        <span class="block font-serif text-2xl font-bold">08</span>
-                        <span class="text-[9px] uppercase font-bold opacity-60">Sept</span>
-                    </div>
-                    <div class="pl-8">
-                        <h4 class="font-bold text-sm uppercase tracking-widest mb-1">Taller de repostería</h4>
-                        <p class="text-xs opacity-80 font-light">Taller gastronómico con el Chef Cyrille Moutarde.</p>
-                    </div>
-                </div>
-                 <div class="group flex items-center p-6 bg-luxury-cream rounded-2xl hover:bg-af-blue hover:text-white transition-all duration-500">
-                    <div class="w-20 text-center border-r border-black/5 group-hover:border-white/10 shrink-0">
-                        <span class="block font-serif text-2xl font-bold">09</span>
-                        <span class="text-[9px] uppercase font-bold opacity-60">Sept</span>
-                    </div>
-                    <div class="pl-8">
-                        <h4 class="font-bold text-sm uppercase tracking-widest mb-1">Puy de Dôme</h4>
-                        <p class="text-xs opacity-80 font-light">Excursión al majestuoso volcán, patrimonio natural de la UNESCO.</p>
-                    </div>
+        <div class="max-w-4xl mx-auto px-8">
+            <div id="s1" class="itab-c grid gap-4 sr">
+                <div class="p-6 bg-luxury-cream rounded-2xl flex items-center">
+                    <div class="w-16 border-r border-slate-200 shrink-0 font-serif text-2xl font-bold text-af-blue">01</div>
+                    <div class="pl-6"><h4 class="font-bold uppercase text-xs tracking-widest">Inmersión en Vichy</h4><p class="text-xs text-slate-500 mt-1">Visita histórica y cultura local.</p></div>
                 </div>
             </div>
-
-            <div id="s2" class="itab-c hidden grid gap-4">
-                <div class="group flex items-center p-6 bg-luxury-cream rounded-2xl hover:bg-af-blue hover:text-white transition-all duration-500">
-                    <div class="w-24 text-center border-r border-black/5 group-hover:border-white/10 shrink-0">
-                        <span class="block text-[10px] uppercase font-bold text-af-gold mb-1">Semana 2</span>
-                        <span class="block font-serif text-sm font-bold opacity-80">Continuación</span>
-                    </div>
-                    <div class="pl-8">
-                        <h4 class="font-bold text-sm uppercase tracking-widest mb-1">Inmersión Académica y Cultural</h4>
-                        <p class="text-xs opacity-80 font-light">Clases intensivas matutinas y actividades exclusivas en Vichy y la región de Auvernia.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="s3" class="itab-c hidden grid gap-4">
-                <div class="group flex items-center p-6 bg-luxury-cream rounded-2xl hover:bg-af-blue hover:text-white transition-all duration-500 border-l-4 border-af-gold">
-                    <div class="w-24 text-center border-r border-black/5 group-hover:border-white/10 shrink-0">
-                        <span class="block font-serif text-2xl font-bold">19-23</span>
-                        <span class="text-[9px] uppercase font-bold opacity-60">Sept</span>
-                    </div>
-                    <div class="pl-8">
-                        <h4 class="font-bold text-sm uppercase tracking-widest mb-1">El Gran Cierre en París</h4>
-                        <p class="text-xs opacity-80 font-light leading-relaxed">
-                            <strong>4 Días / 4 Noches:</strong> Traslado en tren bala (TGV) hacia la capital. <br>
-                            • Visita a la Torre Eiffel y Arco del Triunfo.<br>
-                            • Día completo en Disneyland París.<br>
-                            • Museos, Montmartre y Crucero por el Río Sena.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <div id="s2" class="itab-c hidden gap-4"><div class="p-6 bg-luxury-cream rounded-2xl text-center">Inmersión académica continua en CAVILAM.</div></div>
+            <div id="s3" class="itab-c hidden gap-4"><div class="p-6 bg-af-blue text-white rounded-2xl text-center font-bold">4 Días en París: Disneyland, Sena y Torre Eiffel.</div></div>
         </div>
     </section>
 
-    <section id="dossier" class="py-32 bg-[#050505] text-white px-8 border-t border-white/10">
+    <section id="dossier" class="py-32 bg-[#050505] text-white border-t border-white/10">
         <div class="max-w-4xl mx-auto text-center sr">
-            <div class="flex items-center justify-center mb-6">
-                <span class="accent-line"></span>
-                <span class="text-xs uppercase tracking-[0.3em] font-bold text-af-gold">Dossier Audiovisuel</span>
-                <span class="accent-line ml-[15px] mr-0"></span>
+            <h2 class="luxury-title text-4xl md:text-5xl mb-12 uppercase">Dossier <em>Audiovisual</em></h2>
+            <div class="dossier-video-container shadow-2xl mx-auto">
+                <video id="dossier-video" controls playsinline><source src="Vichy_2026_La_Salle.mp4" type="video/mp4"></video>
             </div>
-            <h2 class="luxury-title text-4xl md:text-5xl text-white mb-12">Presentación <em>Institucional</em></h2>
-            
-            <div class="rounded-2xl overflow-hidden shadow-2xl border border-white/10 relative">
-                <video controls playsinline preload="metadata" class="w-full aspect-video bg-black">
-                    <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div class="mt-10 flex flex-col items-center justify-center">
-                <p class="text-[11px] uppercase tracking-widest text-white/50 mb-4 font-light">¿Dificultades con la reproducción del video?</p>
-                <a href="Vichy_2026_La_Salle.pptx" download class="inline-flex items-center gap-3 px-8 py-3 border border-af-gold/50 text-af-gold rounded-full hover:bg-af-gold hover:text-black transition-all duration-300 text-xs uppercase tracking-widest font-semibold">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Descargar Dossier (PowerPoint)
-                </a>
+            <div class="mt-10 flex flex-col items-center">
+                <a href="Vichy_2026_La_Salle.pptx" download class="px-8 py-3 border border-af-gold/50 text-af-gold rounded-full hover:bg-af-gold hover:text-black transition uppercase text-xs tracking-widest font-bold">Descargar Dossier (PPTX)</a>
             </div>
         </div>
     </section>
 
     <section id="inversion" class="py-32 bg-luxury-cream text-deep-slate border-t border-af-gold/10">
-        <div class="max-w-6xl mx-auto px-8">
-            <div class="text-center mb-20 sr">
-                <div class="flex justify-center items-center mb-4">
-                    <span class="h-px w-10 bg-af-gold opacity-50"></span>
-                    <span class="mx-4 text-[10px] uppercase tracking-[0.4em] font-bold text-af-blue">Inversión Institucional</span>
-                    <span class="h-px w-10 bg-af-gold opacity-50"></span>
-                </div>
-                <h2 class="luxury-title text-5xl md:text-7xl text-af-blue">Todo Incluido, <em>Sin Excepciones</em></h2>
-                <p class="mt-6 text-slate-500 font-light max-w-2xl mx-auto italic">
-                    Una gestión transparente que garantiza la máxima calidad en cada detalle del viaje.
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-0 rounded-3xl overflow-hidden shadow-2xl border border-af-gold/20 bg-white sr">
-                <div class="p-12 lg:border-r border-slate-100 flex flex-col justify-center bg-slate-50/50">
-                    <span class="text-[10px] uppercase tracking-widest text-af-gold font-bold mb-2">Costo por Estudiante</span>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-5xl md:text-6xl font-serif font-bold text-af-blue">€3,500</span>
-                        <span class="text-sm text-slate-400 uppercase tracking-tighter">Euros</span>
-                    </div>
-                    <p class="mt-6 text-xs text-slate-400 leading-relaxed">
-                        * No incluye vuelo internacional.<br>
-                        * Se requiere un depósito inicial para asegurar la plaza en el contingente oficial de La Salle.
-                    </p>
-                </div>
-                <div class="p-12 lg:col-span-2 bg-white">
-                    <h4 class="font-serif italic text-2xl text-af-blue mb-8">El Programa Incluye:</h4>
-                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
-                        <div class="flex items-start gap-4">
-                            <span class="text-af-gold text-lg">✦</span>
-                            <div>
-                                <p class="font-bold text-[11px] uppercase tracking-wider mb-1">Academia de Élite</p>
-                                <p class="text-xs text-slate-500 font-light leading-snug">2 semanas de clases intensivas en CAVILAM con materiales oficiales incluidos.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <span class="text-af-gold text-lg">✦</span>
-                            <div>
-                                <p class="font-bold text-[11px] uppercase tracking-wider mb-1">Inmersión Residencial</p>
-                                <p class="text-xs text-slate-500 font-light leading-snug">13 noches en familia anfitriona certificada (Media Pensión) + Almuerzos en campus.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <span class="text-af-gold text-lg">✦</span>
-                            <div>
-                                <p class="font-bold text-[11px] uppercase tracking-wider mb-1">Estancia en París</p>
-                                <p class="text-xs text-slate-500 font-light leading-snug">4 noches en París (Pensión Completa), Disneyland, Crucero por el Sena y monumentos.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <span class="text-af-gold text-lg">✦</span>
-                            <div>
-                                <p class="font-bold text-[11px] uppercase tracking-wider mb-1">Logística Privada</p>
-                                <p class="text-xs text-slate-500 font-light leading-snug">Traslados privados dentro de Francia y acompañamiento permanente de la Dirección.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-12 p-4 bg-af-blue/5 rounded-xl border border-af-blue/10 flex items-center gap-4">
-                        <div class="h-10 w-10 rounded-full bg-af-blue text-white flex items-center justify-center text-xs font-bold shrink-0">!</div>
-                        <p class="text-[10px] text-af-blue/80 font-medium leading-relaxed uppercase tracking-wider">
-                            Asesoría consular exhaustiva incluida para el trámite de Visa Schengen. <br>El vuelo se cotizará en bloque para garantizar la unidad del grupo.
-                        </p>
-                    </div>
-                </div>
+        <div class="max-w-6xl mx-auto px-8 text-center sr">
+            <h2 class="luxury-title text-5xl md:text-7xl text-af-blue">Inversión <em>Total</em></h2>
+            <div class="mt-12 p-12 bg-white rounded-3xl shadow-xl border border-af-gold/20 inline-block">
+                <span class="text-6xl font-serif font-bold text-af-blue">€3,500</span>
+                <p class="text-xs text-slate-400 mt-4 uppercase tracking-widest">* No incluye vuelo internacional</p>
             </div>
         </div>
     </section>
 
-    <section id="registro" class="py-32 bg-white text-deep-slate border-t border-af-gold/10">
+    <section id="registro" class="py-32 bg-white text-deep-slate">
         <div class="max-w-4xl mx-auto px-8">
             <div class="text-center mb-16 sr">
-                <div class="flex justify-center items-center mb-4">
-                    <span class="h-px w-10 bg-af-gold opacity-50"></span>
-                    <span class="mx-4 text-[10px] uppercase tracking-[0.4em] font-bold text-af-blue">Viaje Lingüístico La Salle</span>
-                    <span class="h-px w-10 bg-af-gold opacity-50"></span>
-                </div>
-                <h2 class="luxury-title text-4xl md:text-5xl text-af-blue mb-6">Formulario de Registro para <em>Padres de Familia</em></h2>
-                <p class="text-slate-500 font-light max-w-xl mx-auto italic text-sm md:text-base">
-                    Por favor, complete el siguiente registro oficial. Toda la información será tratada con estricta confidencialidad por la Dirección de la Alliance Française y el Colegio La Salle.
-                </p>
+                <h2 class="luxury-title text-4xl text-af-blue">Cuestionario de <em>Registro</em></h2>
+                <p class="text-slate-500 italic mt-4">Complete los datos institucionales para el perfilamiento del estudiante.</p>
+            </div>
+            <div class="sr bg-luxury-cream p-8 md:p-12 rounded-3xl border border-af-gold/20 shadow-xl max-w-3xl mx-auto">
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                    <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" name="Estudiante" placeholder="Nombre Estudiante" required class="w-full p-4 rounded-xl border border-slate-200 text-sm">
+                        <select name="Pasaporte" required class="w-full p-4 rounded-xl border border-slate-200 text-sm">
+                            <option value="">¿Pasaporte Vigente?</option>
+                            <option value="Si">Sí</option>
+                            <option value="En tramite">En trámite</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <textarea name="Salud" placeholder="Restricciones alimenticias o alergias..." class="w-full p-4 rounded-xl border border-slate-200 text-sm"></textarea>
+                    <textarea name="Motivo" placeholder="¿Por qué desea realizar el viaje?..." required class="w-full p-4 rounded-xl border border-slate-200 text-sm"></textarea>
+                    <input type="tel" name="WhatsApp" placeholder="WhatsApp Tutor" required class="w-full p-4 rounded-xl border border-slate-200 text-sm">
+                    <button type="submit" class="w-full bg-af-blue text-white py-4 rounded-xl font-serif italic text-xl hover:bg-af-gold hover:text-black transition shadow-lg uppercase">Enviar Cuestionario</button>
+                </form>
             </div>
 
-            <div class="sr bg-luxury-cream rounded-3xl shadow-2xl border border-af-gold/20 overflow-hidden relative w-full p-2 md:p-6 mb-24">
-                <iframe 
-                    data-tally-src="https://tally.so/embed/w7L1Pj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                    loading="lazy" 
-                    width="100%" 
-                    height="300" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0" 
-                    title="Cuestionario Padres - Viaje La Salle">
-                </iframe>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto sr">
-                
-                <div class="text-center flex flex-col items-center p-8 bg-luxury-cream rounded-3xl border border-af-gold/20 shadow-sm hover:shadow-xl transition-shadow duration-500">
-                    <div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100 mb-6">
-                        <img src="imagen.png" alt="QR Miguel Tillero" class="h-28 md:h-32 object-contain" onerror="this.style.display='none'">
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-af-blue">Miguel David Tillero A.</h3>
-                    <p class="text-[9px] uppercase tracking-[0.2em] mt-2 text-slate-500 font-semibold leading-relaxed">
-                        Director General<br>Alliance Française SC
-                    </p>
-                    <div class="mt-5 pt-5 border-t border-slate-200/80 w-full">
-                        <a href="tel:+524731219337" class="block font-sans text-sm font-bold text-af-blue hover:text-af-gold transition-colors">+52 473 121 9337</a>
-                        <a href="mailto:direccion@afchiapas.com" class="block font-sans text-xs mt-1 text-slate-500 hover:text-af-gold transition-colors">direccion@afchiapas.com</a>
-                    </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-24 sr text-center">
+                <div class="p-8 bg-luxury-cream rounded-3xl border border-af-gold/20">
+                    <div class="qr-box mx-auto mb-6"><img src="imagen.png" alt="QR Miguel"></div>
+                    <h3 class="font-serif font-bold text-af-blue">Miguel Tillero</h3>
+                    <a href="tel:+5219671721870" class="block mt-4 text-sm font-bold">+52 1 967 172 1870</a>
                 </div>
-                
-                <div class="text-center flex flex-col items-center p-8 bg-luxury-cream rounded-3xl border border-af-gold/20 shadow-sm hover:shadow-xl transition-shadow duration-500">
-                    <div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100 mb-6">
-                        <img src="qr_roman.png" alt="QR Román Fuentes" class="h-28 md:h-32 object-contain" onerror="this.style.display='none'">
-                    </div>
-                    <h3 class="font-serif text-xl font-bold text-af-blue">Román Fuentes</h3>
-                    <p class="text-[9px] uppercase tracking-[0.2em] mt-2 text-slate-500 font-semibold leading-relaxed">
-                        Responsable de Proyecto<br>Colegio La Salle
-                    </p>
-                    <div class="mt-5 pt-5 border-t border-slate-200/80 w-full">
-                        <a href="tel:+52" class="block font-sans text-sm font-bold text-af-blue hover:text-af-gold transition-colors">+52 [NÚMERO DE ROMÁN AQUÍ]</a>
-                        <a href="mailto:roman@lasalle.com" class="block font-sans text-xs mt-1 text-slate-500 hover:text-af-gold transition-colors">roman@lasalle.com</a>
-                    </div>
+                <div class="p-8 bg-luxury-cream rounded-3xl border border-af-gold/20">
+                    <div class="qr-box mx-auto mb-6"><img src="qr_roman.png" alt="QR Roman"></div>
+                    <h3 class="font-serif font-bold text-af-blue">Román Fuentes</h3>
+                    <a href="tel:+5214731219337" class="block mt-4 text-sm font-bold">+52 1 473 121 9337</a>
                 </div>
             </div>
         </div>
@@ -340,48 +208,34 @@
 
 </main>
 
-<script async src="https://tally.so/widgets/embed.js"></script>
-
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        gsap.to("#logos-init", { opacity: 1, y: 0, duration: 1.5, ease: "expo.out" });
-        gsap.to("#start-btn", { opacity: 1, duration: 1, ease: "power2.out", delay: 0.5 });
-
-        document.getElementById('start-btn').addEventListener('click', () => {
-            gsap.to("#intro-overlay", { opacity: 0, duration: 1.2, ease: "expo.inOut", onComplete: () => {
-                document.getElementById('intro-overlay').style.display = 'none';
-                document.getElementById('main-content').style.opacity = '1';
-                document.getElementById('vichy-video').play();
-                
-                gsap.to(".hero-anim", { opacity: 1, y: 0, duration: 1.2, stagger: 0.2, ease: "power3.out" });
-                initScrollAnimations();
-            }});
-        });
+document.addEventListener("DOMContentLoaded", () => {
+    gsap.to("#logos-init", { opacity: 1, y: 0, duration: 1.5 });
+    gsap.to("#start-btn", { opacity: 1, duration: 1, delay: 0.5 });
+    document.getElementById('start-btn').addEventListener('click', () => {
+        gsap.to("#intro-overlay", { opacity: 0, duration: 1.2, onComplete: () => {
+            document.getElementById('intro-overlay').style.display = 'none';
+            document.getElementById('main-content').style.opacity = '1';
+            document.getElementById('vichy-video').play();
+            const music = document.getElementById('bg-music');
+            music.volume = 0.3; music.play();
+            gsap.to(".hero-anim", { opacity: 1, y: 0, duration: 1, stagger: 0.2 });
+            initScrollAnimations();
+        }});
     });
-
-    function initScrollAnimations() {
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.sr').forEach(el => {
-            gsap.to(el, { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: el, start: "top 90%" } });
-        });
-    }
-
-    window.addEventListener('scroll', () => {
-        document.getElementById('site-nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+function initScrollAnimations() {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.sr').forEach(el => {
+        gsap.to(el, { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: el, start: "top 90%" } });
     });
-
-    function showTab(id, btn) {
-        document.querySelectorAll('.itab-c').forEach(t => {
-            t.classList.add('hidden');
-            t.classList.remove('grid');
-        });
-        document.querySelectorAll('.itab').forEach(b => b.classList.remove('active'));
-        
-        const activeTab = document.getElementById(id);
-        activeTab.classList.remove('hidden');
-        activeTab.classList.add('grid');
-        btn.classList.add('active');
-    }
+}
+function showTab(id, btn) {
+    document.querySelectorAll('.itab-c').forEach(t => t.classList.add('hidden'));
+    document.querySelectorAll('.itab').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.remove('hidden');
+    btn.classList.add('active');
+}
 </script>
 </body>
 </html>
