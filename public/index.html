@@ -1,326 +1,133 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#07070A">
-    
-    <title>Inmersión Lingüística Vichy 2026 | La Salle & Alliance Française</title>
-    <meta name="description" content="Programa exclusivo de inmersión lingüística en Francia para estudiantes La Salle. Excelencia académica con CAVILAM Alliance Française.">
-    <meta property="og:title" content="Vichy 2026 | Un Voyage d'Excellence">
-    <meta property="og:description" content="Inmersión total en Francia. 18 días, 5 ciudades y excelencia académica. Exclusivo para Colegio La Salle.">
-    <meta property="og:image" content="logo_af_sc.jpg">
-    <meta property="og:type" content="website">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vichy 2026 | Inmersión Lingüística</title>
 
-    <script>
-        tailwind.config = {
-            theme: { extend: { colors: { 'af-blue': '#002395', 'af-red': '#ED2939', 'af-gold': '#C9A84C', 'cream': '#FDFBF7', 'slate-dark': '#07070A', 'slate-mid': '#111116' }, fontFamily: { 'display': ['"Playfair Display"', 'serif'], 'body': ['"DM Sans"', 'sans-serif'] } } }
-        }
-    </script>
-    <style>
-        :root { --gold: #C9A84C; --blue: #002395; --red: #ED2939; --bg: #07070A; }
-        * { box-sizing: border-box; }
-        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: #ffffff; overflow-x: hidden; }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.6); border-radius: 10px; }
-        
-        .luxury-title { font-family: 'Playfair Display', serif; line-height: 1.05; letter-spacing: -0.02em; }
-        .gold-rule { width: 60px; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
-        .tricolor { height: 4px; background: linear-gradient(90deg, var(--blue) 33%, #fff 33% 66%, var(--red) 66%); border-radius: 2px; }
-        
-        .sr { opacity: 0; transform: translateY(40px); }
-        .hero-elem { opacity: 0; transform: translateY(20px); }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        #site-nav { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        #site-nav.scrolled { background: rgba(7, 7, 10, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.15); padding-top: 1rem; padding-bottom: 1rem; }
-
-        /* Destrucción de fondo cuadriculado en logos */
-        .logo-container { background: #ffffff; border-radius: 24px; padding: 1.5rem 3rem; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 3rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .logo-fix { object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.15) brightness(1.05); }
-
-        .video-box { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; background: #111116; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.05); }
-        .video-box video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-
-        /* Validación visual de formulario */
-        .form-field { background: #ffffff !important; color: #1a1a1a !important; border: 1.5px solid #e2e8f0 !important; border-radius: 12px; padding: 1.2rem; font-size: 0.95rem; width: 100%; transition: all 0.3s; font-family: 'DM Sans', sans-serif; }
-        .form-field:focus { outline: none; border-color: var(--gold) !important; box-shadow: 0 0 0 4px rgba(201,168,76,0.15); }
-        .form-field:invalid:focus { border-color: var(--red) !important; box-shadow: 0 0 0 4px rgba(237,41,57,0.15); }
-
-        #audio-control { position: fixed; bottom: 30px; left: 30px; z-index: 90; width: 55px; height: 55px; border-radius: 50%; background: rgba(7,7,10,0.85); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; pointer-events: none; color: var(--gold); }
-        #audio-control.visible { opacity: 1; pointer-events: auto; }
-        #audio-control:hover { background: var(--gold); color: #000; transform: scale(1.15); }
-
-        .qr-box { width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 10px 25px rgba(0,0,0,0.08); overflow: hidden; margin: 0 auto; }
-        .qr-box img { width: 120px; height: 120px; object-fit: contain; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(10px); }
-        
-        html { scroll-behavior: smooth; }
-
-        /* ANIMACIÓN SEGURA NATIVA */
-        @keyframes safeEntrance { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-        .safe-entrance { animation: safeEntrance 1.2s ease-out forwards; }
-    </style>
-
-    <noscript>
-        <style>
-            #intro-overlay { display: none !important; }
-            #main-content { opacity: 1 !important; display: block !important; }
-            .sr, .hero-elem { opacity: 1 !important; transform: none !important; }
-            #audio-control { display: none !important; }
-        </style>
-    </noscript>
+<style>
+body { margin:0; font-family:Montserrat, sans-serif; background:#0A0A0F; color:white; }
+.section { padding:80px 20px; text-align:center; }
+.lux { font-family:"Playfair Display", serif; }
+input, select, textarea { width:100%; padding:12px; margin-top:10px; }
+button { padding:14px; width:100%; margin-top:15px; background:#002395; color:white; border:none; }
+.hero { position:relative; height:100vh; display:flex; align-items:center; justify-content:center; }
+video { position:absolute; width:100%; height:100%; object-fit:cover; opacity:.4; }
+.overlay { position:absolute; inset:0; background:rgba(0,0,0,.6); }
+</style>
 </head>
+
 <body>
 
-<audio id="bg-music" src="musica_clasica.mp3" loop preload="auto"></audio>
+<!-- HERO -->
+<section class="hero">
+<video autoplay muted loop playsinline preload="none">
+<source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
 
-<button id="audio-control" aria-label="Control de Audio">
-    <svg id="icon-play" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-    <svg id="icon-pause" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-</button>
+<div style="position:relative; z-index:2; max-width:700px;">
+<h1 class="lux" style="font-size:60px;">
+Vichy <span style="color:#C9A84C;">2026</span>
+</h1>
 
-<div id="intro-overlay" class="fixed inset-0 bg-slate-dark z-[9999] flex flex-col items-center justify-center p-6 text-center">
-    <div id="intro-content" class="flex flex-col items-center gap-12 w-full max-w-4xl safe-entrance">
-        <div class="logo-container">
-            <img src="logo_af_sc.jpg" alt="Alliance Française" class="h-16 md:h-20 logo-fix" onerror="this.style.display='none'">
-            <div class="w-px h-16 bg-slate-300 hidden md:block"></div>
-            <img src="logo-lasalle.png" alt="Colegio La Salle" class="h-20 md:h-28 logo-fix" onerror="this.style.display='none'">
-            <div class="w-px h-16 bg-slate-300 hidden md:block"></div>
-            <img src="logo-cavilam.png" alt="CAVILAM" class="h-12 md:h-16 logo-fix" onerror="this.style.display='none'">
-        </div>
-        <div class="tricolor w-40 opacity-90"></div>
-        <div class="space-y-4">
-            <h1 class="luxury-title text-4xl md:text-6xl text-white">Vichy 2026</h1>
-            <p class="text-af-gold text-xs md:text-sm uppercase tracking-[0.4em] font-bold">Un Voyage d'Excellence</p>
-        </div>
-        <button id="start-btn" aria-label="Ingresar al portal" class="mt-8 px-14 py-5 bg-transparent border-2 border-af-gold text-af-gold rounded-full font-display italic text-2xl hover:bg-af-gold hover:text-slate-dark transition-all duration-700 tracking-wider shadow-[0_0_40px_rgba(201,168,76,0.15)] focus:outline-none">
-            Ingresar al Portal
-        </button>
-    </div>
+<p>Programa oficial de inmersión lingüística en Francia</p>
+
+<p style="opacity:.8;">
+Alliance Française San Cristóbal · La Salle · CAVILAM
+</p>
+
+<a href="#registro" style="display:inline-block; margin-top:20px; padding:12px 20px; background:#C9A84C; color:black;">
+Solicitar información
+</a>
+</div>
+</section>
+
+<!-- CONTENIDO -->
+<section class="section">
+<h2 class="lux">Formación internacional de alto nivel</h2>
+<p style="opacity:.7; max-width:600px; margin:auto;">
+Programa académico estructurado con acompañamiento institucional completo.
+</p>
+</section>
+
+<!-- FORMULARIO -->
+<section id="registro" class="section" style="background:#FAF8F3; color:black;">
+
+<div style="max-width:500px; margin:auto;">
+
+<h2 class="lux" style="color:#002395;">Proceso de Postulación</h2>
+<p>Cupo limitado a 20 estudiantes</p>
+
+<form id="formulario" action="https://api.web3forms.com/submit" method="POST">
+
+<input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
+<input type="hidden" name="subject" value="Nuevo registro Vichy 2026">
+<input type="hidden" name="from_name" value="Alliance Française San Cristóbal">
+
+<!-- REDIRECT SEGURO -->
+<input type="hidden" name="redirect" value="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/#gracias">
+
+<input type="text" name="Estudiante" placeholder="Nombre del estudiante" required>
+<input type="text" name="Tutor" placeholder="Nombre del tutor" required>
+<input type="email" name="email" placeholder="Correo electrónico" required>
+<input type="tel" name="WhatsApp" placeholder="WhatsApp" required>
+
+<select name="Interes" required>
+<option value="">Nivel de interés</option>
+<option>Listo para iniciar</option>
+<option>Evaluando</option>
+<option>Solo información</option>
+</select>
+
+<button type="submit">Enviar solicitud</button>
+
+</form>
+
+<!-- MENSAJE -->
+<div id="gracias" style="display:none; margin-top:30px;">
+<h3 style="color:#002395;">Solicitud recibida</h3>
+<p>Nos pondremos en contacto en breve.</p>
+
+<a href="dossier_vichy2026.pdf" target="_blank"
+style="display:inline-block; margin-top:10px; padding:10px 20px; background:#C9A84C;">
+Descargar dossier
+</a>
 </div>
 
-<nav id="site-nav" class="fixed top-0 w-full z-50 px-6 md:px-12 py-5 flex justify-between items-center" aria-label="Navegación Principal">
-    <a href="#" class="flex flex-col" aria-label="Volver al inicio">
-        <span class="text-af-gold font-display text-2xl tracking-wider">Vichy 2026</span>
-        <span class="text-[9px] uppercase tracking-[0.4em] text-white/60 font-bold mt-1">La Salle & Alliance Française</span>
-    </a>
-    
-    <div class="hidden lg:flex gap-10 items-center">
-        <a href="#programa" class="text-xs uppercase tracking-[0.2em] text-white hover:text-af-gold transition-colors font-medium">Programa</a>
-        <a href="#bienestar" class="text-xs uppercase tracking-[0.2em] text-white hover:text-af-gold transition-colors font-medium">Bienestar</a>
-        <a href="#dossier" class="text-xs uppercase tracking-[0.2em] text-white hover:text-af-gold transition-colors font-medium">Dossier</a>
-        <a href="#registro" class="px-8 py-3 bg-af-gold text-slate-dark rounded-full text-xs uppercase tracking-[0.2em] font-bold hover:bg-white transition-colors shadow-lg">Inscripción</a>
-    </div>
-
-    <button id="mobile-menu-btn" class="lg:hidden text-af-gold focus:outline-none" aria-label="Abrir Menú">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-    </button>
-</nav>
-
-<div id="mobile-menu" class="fixed inset-0 bg-slate-dark/98 z-[60] flex flex-col items-center justify-center gap-10 translate-x-full transition-transform duration-500" aria-hidden="true">
-    <button id="close-menu-btn" class="absolute top-6 right-6 text-white/50 hover:text-af-gold text-5xl" aria-label="Cerrar Menú">&times;</button>
-    <a href="#programa" class="mob-link luxury-title text-4xl text-white">Programa</a>
-    <a href="#bienestar" class="mob-link luxury-title text-4xl text-white">Bienestar</a>
-    <a href="#dossier" class="mob-link luxury-title text-4xl text-white">Dossier</a>
-    <div class="tricolor w-20 my-4"></div>
-    <a href="#registro" class="mob-link px-12 py-4 bg-af-gold text-slate-dark rounded-full text-sm uppercase tracking-widest font-bold">Inscripción</a>
 </div>
+</section>
 
-<main id="main-content" style="opacity: 0; display: none;">
+<!-- SCRIPT ROBUSTO -->
+<script>
+(function() {
 
-    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-        <div class="absolute inset-0 z-0">
-            <video id="hero-video" class="w-full h-full object-cover opacity-80 mix-blend-screen" playsinline autoplay muted loop preload="auto" style="background-color: #07070A;">
-                <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-dark/90 via-transparent to-slate-dark/90 pointer-events-none"></div>
-        </div>
+function mostrarMensaje() {
+    var msg = document.getElementById("gracias");
+    if (msg) {
+        msg.style.display = "block";
+        window.scrollTo({ top: msg.offsetTop - 100, behavior: "smooth" });
+    }
+}
 
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 hero-elem">
-            <span class="text-[10px] uppercase tracking-[0.4em] text-white/80 font-bold shadow-black drop-shadow-md">Explorar Inmersión</span>
-            <div class="w-px h-16 bg-gradient-to-b from-af-gold to-transparent"></div>
-        </div>
-    </section>
+// CASO 1: Redirect desde Web3Forms
+if (window.location.hash === "#gracias") {
+    mostrarMensaje();
+}
 
-    <section class="py-20 bg-slate-mid border-y border-white/5 relative z-20">
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-            <div class="sr"><div class="font-display text-6xl md:text-7xl text-af-gold font-bold mb-2">18</div><p class="text-white/60 text-xs uppercase tracking-[0.2em] font-bold">Días en Francia</p></div>
-            <div class="sr"><div class="font-display text-6xl md:text-7xl text-af-gold font-bold mb-2">60</div><p class="text-white/60 text-xs uppercase tracking-[0.2em] font-bold">Horas de Academia</p></div>
-            <div class="sr"><div class="font-display text-6xl md:text-7xl text-af-gold font-bold mb-2">5</div><p class="text-white/60 text-xs uppercase tracking-[0.2em] font-bold">Ciudades Visitadas</p></div>
-            <div class="sr"><div class="font-display text-6xl md:text-7xl text-af-gold font-bold mb-2">100%</div><p class="text-white/60 text-xs uppercase tracking-[0.2em] font-bold">Inmersión Cultural</p></div>
-        </div>
-    </section>
+// CASO 2: JS activo (sin recarga)
+var form = document.getElementById("formulario");
 
-    <section id="programa" class="py-32 bg-slate-dark relative z-20">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="sr mb-20 text-center">
-                <p class="text-af-gold text-sm uppercase tracking-[0.4em] font-bold mb-4">El Itinerario Oficial</p>
-                <h2 class="luxury-title text-5xl md:text-7xl font-bold">Un abanico de <br><span class="text-white/50">Experiencias Únicas</span></h2>
-                <p class="mt-8 text-lg text-white/60 font-light max-w-3xl mx-auto">Mucho más que un curso de idiomas. El programa ha sido meticulosamente diseñado para abarcar el arte, la historia, la gastronomía y la aventura europea.</p>
-                <div class="gold-rule mt-10 mx-auto"></div>
-            </div>
+if (form) {
+    form.addEventListener("submit", function() {
+        setTimeout(mostrarMensaje, 1500);
+    });
+}
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="sr glass-card p-12 rounded-[32px] hover:border-af-gold/40 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-af-blue/20 rounded-full blur-[50px] group-hover:bg-af-blue/40 transition-all"></div>
-                    <span class="text-af-gold font-display italic text-2xl mb-4 block">01. Excelencia Académica</span>
-                    <h3 class="luxury-title text-3xl mb-4 text-white">CAVILAM Alliance Française</h3>
-                    <ul class="text-white/70 leading-relaxed text-sm space-y-3">
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Inmersión lingüística matutina (8:45 - 12:00 hrs).</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Talleres de expresión oral, teatro en francés y civilización.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Certificación oficial avalada internacionalmente.</li>
-                    </ul>
-                </div>
+})();
+</script>
 
-                <div class="sr glass-card p-12 rounded-[32px] hover:border-af-gold/40 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-af-gold/10 rounded-full blur-[50px] group-hover:bg-af-gold/30 transition-all"></div>
-                    <span class="text-af-gold font-display italic text-2xl mb-4 block">02. Cultura y Gastronomía</span>
-                    <h3 class="luxury-title text-3xl mb-4 text-white">El Arte de Vivir a la Francesa</h3>
-                    <ul class="text-white/70 leading-relaxed text-sm space-y-3">
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Taller interactivo de repostería y gastronomía local.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Tardes de deporte tradicional: Torneos de Petanca.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Exploración de la capital gastronómica mundial: <strong>Lyon</strong>.</li>
-                    </ul>
-                </div>
-
-                <div class="sr glass-card p-12 rounded-[32px] hover:border-af-gold/40 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-[50px] group-hover:bg-green-500/20 transition-all"></div>
-                    <span class="text-af-gold font-display italic text-2xl mb-4 block">03. Patrimonio y Naturaleza</span>
-                    <h3 class="luxury-title text-3xl mb-4 text-white">Exploración en Auvernia</h3>
-                    <ul class="text-white/70 leading-relaxed text-sm space-y-3">
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Senderismo en la cadena de volcanes: <strong>Puy de Dôme</strong>.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Viaje en el tiempo por el pueblo medieval de <strong>Charroux</strong>.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Visita al imponente casco histórico de <strong>Clermont-Ferrand</strong>.</li>
-                    </ul>
-                </div>
-
-                <div class="sr glass-card p-12 rounded-[32px] border border-af-gold/30 shadow-[0_0_30px_rgba(201,168,76,0.15)] hover:border-af-gold/60 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-af-red/20 rounded-full blur-[50px] group-hover:bg-af-red/40 transition-all"></div>
-                    <span class="text-af-gold font-display italic text-2xl mb-4 block">04. El Gran Cierre</span>
-                    <h3 class="luxury-title text-3xl mb-4 text-white">La Magia de París</h3>
-                    <ul class="text-white/80 leading-relaxed text-sm space-y-3">
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Traslado en tren bala (TGV) y 4 noches de hotel céntrico.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Visita a la <strong>Torre Eiffel</strong>, <strong>Museo del Louvre</strong> y crucero por el Río Sena.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Día completo de diversión en <strong>Disneyland París</strong>.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="bienestar" class="py-32 bg-slate-mid border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="sr mb-20 text-center">
-                <h2 class="luxury-title text-5xl md:text-6xl text-white mb-6">El calor de un <span class="text-af-gold italic">hogar francés</span></h2>
-                <p class="text-white/60 font-light max-w-2xl mx-auto text-lg">Inmersión total conviviendo 13 noches con familias de acogida rigurosamente certificadas. Acompañamiento permanente de la Dirección.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-10 sr">
-                <div class="bg-slate-dark rounded-3xl overflow-hidden border border-white/5 hover:border-af-gold/50 transition-all">
-                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy" aria-label="Testimonio Sylvie Bertrand"><source src="video_famille_1.mp4" type="video/mp4"></video></div>
-                    <div class="p-8 text-center"><h3 class="font-display text-2xl font-bold">Sylvie Bertrand</h3><p class="text-xs text-af-gold uppercase tracking-widest mt-3 font-bold">Familia Certificada</p></div>
-                </div>
-                <div class="bg-slate-dark rounded-3xl overflow-hidden border border-white/5 hover:border-af-gold/50 transition-all">
-                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy" aria-label="Testimonio Nadine et Philippe"><source src="video_famille_2.mp4" type="video/mp4"></video></div>
-                    <div class="p-8 text-center"><h3 class="font-display text-2xl font-bold">Nadine et Philippe</h3><p class="text-xs text-af-gold uppercase tracking-widest mt-3 font-bold">Entorno Seguro</p></div>
-                </div>
-                <div class="bg-slate-dark rounded-3xl overflow-hidden border border-white/5 hover:border-af-gold/50 transition-all">
-                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy" aria-label="Testimonio Gwendoline Laurent"><source src="video_famille_3.mp4" type="video/mp4"></video></div>
-                    <div class="p-8 text-center"><h3 class="font-display text-2xl font-bold">Gwendoline Laurent</h3><p class="text-xs text-af-gold uppercase tracking-widest mt-3 font-bold">Hospitalidad Total</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-32 bg-slate-dark">
-        <div class="max-w-6xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
-            <div class="sr">
-                <div class="video-box shadow-2xl border border-af-gold/20">
-                    <video controls playsinline preload="metadata" loading="lazy" aria-label="Testimonio de la estudiante Regina"><source src="video_regina.mp4" type="video/mp4"></video>
-                </div>
-            </div>
-            <div class="sr">
-                <div class="flex items-center gap-4 mb-8"><div class="w-12 h-px bg-af-gold"></div><span class="text-af-gold text-xs uppercase tracking-widest font-bold">Voz de un Estudiante</span></div>
-                <h2 class="luxury-title text-4xl md:text-5xl mb-8 text-white">"Una experiencia que <br><span class="text-af-gold italic">transformó mi vida"</span></h2>
-                <p class="text-xl text-white/70 font-light leading-relaxed mb-10 border-l-2 border-af-gold pl-6">
-                    No solo logré perfeccionar mi dominio del idioma; regresé siendo otra persona, con una visión del mundo más amplia, independencia y amigos internacionales.
-                </p>
-                <p class="text-xs uppercase tracking-[0.2em] font-bold text-white/50">— Regina, Alumna del Programa CAVILAM</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="dossier" class="py-32 bg-slate-mid border-y border-white/5">
-        <div class="max-w-6xl mx-auto px-8 text-center sr">
-            <h2 class="luxury-title text-5xl mb-12">Dossier <span class="text-af-gold italic">Interactivo</span></h2>
-            <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%; padding-bottom: 0; box-shadow: 0 20px 60px rgba(0,0,0,0.6); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);">
-                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen" title="Dossier Interactivo Vichy 2026"></iframe>
-            </div>
-            <div class="mt-16 flex justify-center">
-                <a href="Vichy_2026_La_Salle.pptx" download class="px-12 py-5 border-2 border-af-gold text-af-gold rounded-full hover:bg-af-gold hover:text-black transition-all duration-500 font-bold uppercase text-xs tracking-[0.2em] shadow-[0_0_20px_rgba(201,168,76,0.2)]">
-                    Descargar Dossier Institucional (PPTX)
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-32 bg-slate-dark text-center relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-8 relative z-10">
-            <div class="sr mb-12"><h2 class="luxury-title text-5xl md:text-6xl font-bold">Inversión <span class="text-af-gold italic">Total</span></h2></div>
-            <div class="sr bg-white/5 backdrop-blur-md border border-af-gold/30 rounded-[40px] p-12 md:p-20 shadow-2xl">
-                <div class="flex items-baseline justify-center gap-3">
-                    <p class="font-display text-7xl md:text-8xl font-bold text-af-gold">€3,500</p>
-                    <span class="text-2xl text-white/40 font-light">Euros</span>
-                </div>
-                <div class="gold-rule mx-auto my-10"></div>
-                <p class="text-white text-lg font-bold tracking-widest uppercase mb-4">Programa Todo Incluido en Francia</p>
-                <p class="text-white/50 text-sm leading-relaxed max-w-xl mx-auto">
-                    Academia y alojamiento en Vichy, traslados privados, excursiones a 4 ciudades, fin de semana completo en París (Hotel + Disneyland) y seguro médico internacional.
-                </p>
-                <p class="text-af-gold text-xs mt-8 uppercase tracking-widest font-bold">* No incluye vuelo internacional México–Francia.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="registro" class="py-32 bg-cream text-slate-dark">
-        <div class="max-w-5xl mx-auto px-8">
-            <div class="text-center mb-16 sr">
-                <h2 class="luxury-title text-5xl md:text-6xl font-bold text-af-blue mb-6">Registro de <span class="text-af-gold italic">Interés</span></h2>
-                <p class="text-slate-dark/60 text-lg max-w-2xl mx-auto leading-relaxed">Complete el formulario oficial para que la Dirección gestione su perfilamiento y asegure su plaza.</p>
-            </div>
-
-            <div class="sr bg-white p-10 md:p-16 rounded-[40px] border border-slate-200 shadow-2xl max-w-4xl mx-auto">
-                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-8">
-                    <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
-                    <input type="hidden" name="subject" value="NUEVO REGISTRO: Vichy 2026 La Salle">
-                    <input type="hidden" name="from_name" value="Portal Institucional Vichy 2026">
-                    <input type="hidden" name="redirect" value="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
-                    <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
-                    
-                    <fieldset><legend class="text-sm uppercase tracking-[0.2em] text-af-blue font-bold mb-6 border-b border-slate-200 w-full pb-2">Perfil del Estudiante</legend>
-                        <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <input type="text" name="Nombre_Estudiante" placeholder="Nombre Completo del Estudiante" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}" title="Solo se permiten letras y espacios" autocomplete="name" required class="form-field">
-                            <select name="Grado_Estudio" required class="form-field"><option value="">Grado de Estudio en La Salle</option><option value="Secundaria">Secundaria</option><option value="Preparatoria">Preparatoria</option></select>
-                        </div>
-                        <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <select name="Nivel_Frances" required class="form-field"><option value="">Nivel actual de Francés</option><option value="A1">A1 – Principiante</option><option value="A2">A2 – Elemental</option><option value="B1/B2">Intermedio / Avanzado</option></select>
-                            <select name="Estatus_Pasaporte" required class="form-field"><option value="">¿Cuenta con Pasaporte Vigente?</option><option value="Si">Sí, vigente</option><option value="Tramite">En trámite</option><option value="No">No / Requiere renovación</option></select>
-                        </div>
-                        <textarea name="Restricciones_Salud" placeholder="Especifique restricciones médicas o alergias importantes..." rows="2" class="form-field mb-6"></textarea>
-                        <textarea name="Motivacion_Viaje" placeholder="¿Cuál es el motivo principal por el que desea realizar este viaje?..." required rows="3" class="form-field"></textarea>
-                    </fieldset>
-
-                    <fieldset class="mt-10"><legend class="text-sm uppercase tracking-[0.2em] text-af-blue font-bold mb-6 border-b border-slate-200 w-full pb-2">Datos del Responsable</legend>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <input type="text" name="Nombre_Tutor" placeholder="Nombre del Padre o Tutor" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}" title="Solo se permiten letras" autocomplete="name" required class="form-field">
-                            <input type="tel" name="WhatsApp_Contacto" placeholder="Número de WhatsApp" pattern="[0-9\+\-\
+</body>
+</html>
