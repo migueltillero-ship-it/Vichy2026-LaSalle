@@ -17,41 +17,6 @@
     <meta property="og:url" content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_MX">
-    <meta name="twitter:card" content="summary_large_image">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalEvent",
-      "name": "Inmersión Lingüística Vichy 2026",
-      "description": "Programa de 18 días de inmersión total en Francia para estudiantes de La Salle.",
-      "startDate": "2026-07-01",
-      "endDate": "2026-07-18",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "location": {
-        "@type": "Place",
-        "name": "CAVILAM - Alliance Française",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Vichy",
-          "addressCountry": "FR"
-        }
-      },
-      "organizer": {
-        "@type": "EducationalOrganization",
-        "name": "Alliance Française de San Cristóbal de Las Casas",
-        "url": "https://alianzafrancesa.org.mx/san-cristobal-de-las-casas/"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "3500",
-        "priceCurrency": "EUR",
-        "availability": "https://schema.org/LimitedAvailability",
-        "validFrom": "2024-01-01"
-      }
-    }
-    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,7 +33,6 @@
                     colors: {
                         'gold':     '#C9A84C',
                         'gold-lt':  '#E8C96A',
-                        'gold-dk':  '#A68A3D',
                         'blue':     '#002395',
                         'blue-dk':  '#00186B',
                         'red':      '#ED2939',
@@ -91,7 +55,6 @@
     </script>
 
     <style>
-        /* Variables y Reseteo Base */
         :root {
             --gold: #C9A84C; --gold-lt: #E8C96A; --blue: #002395; --red: #ED2939; 
             --ink: #07070A; --ink-mid: #0F0F14; --cream: #FAF8F3;
@@ -108,25 +71,21 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Scrollbar de Lujo */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--ink); }
         ::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-        /* Utilidades Tipográficas */
         .lux { font-family: 'Cormorant Garamond', serif; line-height: 1.05; letter-spacing: -0.01em; }
         .tricolor { height: 3px; background: linear-gradient(90deg, var(--blue) 33.33%, #fff 33.33% 66.66%, var(--red) 66.66%); border-radius: 2px; }
         .gold-line { width: 60px; height: 1.5px; background: linear-gradient(90deg, var(--gold), transparent); }
 
-        /* Efecto Grano Cinematográfico Global */
         body::after {
             content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9990;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
             opacity: 0.02;
         }
 
-        /* ── SECCIÓN DE INTRODUCCIÓN (OVERLAY) ── */
         #intro { 
             position: fixed; inset: 0; background: var(--ink); z-index: 9999; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -137,7 +96,6 @@
             gap: 2rem; max-width: 60rem; width: 100%; opacity: 0; transform: translateY(30px); 
         }
         
-        /* Logos Intro: Cero bordes, blanco puro con resplandor dorado */
         #intro .logo-wrap {
             background: transparent; border-radius: 0; padding: 1rem;
             display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center;
@@ -150,7 +108,6 @@
         }
         #intro .logo-fix:hover { transform: scale(1.05); filter: brightness(0) invert(1) drop-shadow(0 0 25px rgba(201,168,76,1)); }
 
-        /* Partículas Doradas Flotantes */
         #ptcl { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
         .ptcl { 
             position: absolute; border-radius: 50%; background: var(--gold); opacity: 0; 
@@ -163,14 +120,12 @@
             100% { opacity: 0; transform: translateY(calc(-1.2 * var(--t, 250px))) scale(0); } 
         }
         
-        /* Líneas decorativas horizontales */
         .h-deco { 
             position: absolute; height: 1px; width: 100%; 
             background: linear-gradient(90deg, transparent, rgba(201,168,76,.2), transparent); 
             opacity: 0; transform: scaleX(.2); 
         }
         
-        /* Título Principal Cinemático */
         .intro-big { 
             font-family: 'Cormorant Garamond', serif; font-size: clamp(4.5rem, 14vw, 10rem); 
             font-weight: 300; line-height: 0.9; letter-spacing: -0.04em; color: #fff; 
@@ -178,7 +133,6 @@
         }
         .intro-big em { color: var(--gold); font-style: italic; font-weight: 400; text-shadow: 0 0 30px rgba(201,168,76,0.3); }
 
-        /* ── NAVEGACIÓN Y MENÚ MÓVIL ── */
         #nav { 
             position: fixed; top: 0; width: 100%; z-index: 50; padding: 1.5rem 4rem; 
             display: flex; justify-content: space-between; align-items: center; 
@@ -198,11 +152,9 @@
         }
         #mmenu.open { transform: translateX(0); }
 
-        /* ── ESTRUCTURA PRINCIPAL ── */
         #main { opacity: 0; pointer-events: none; transition: opacity 1.5s ease; }
         #main.visible { opacity: 1; pointer-events: auto; }
 
-        /* ── HERO SECTION ── */
         #hero-vid { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
         .hero-tag { 
             display: inline-flex; align-items: center; gap: 12px; padding: 8px 22px; border-radius: 100px; 
@@ -211,12 +163,10 @@
         }
         .hero-a { opacity: 0; transform: translateY(30px); }
 
-        /* ── ANIMACIONES SCROLL (GSAP) ── */
         .sr { opacity: 0; transform: translateY(50px); }
         .sr-l { opacity: 0; transform: translateX(-50px); }
         .sr-r { opacity: 0; transform: translateX(50px); }
 
-        /* ── COMPONENTES GLOBALES ── */
         .stat-n { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 8vw, 5.5rem); font-weight: 600; color: var(--gold); line-height: 1; }
         
         .prog-card { 
@@ -255,7 +205,6 @@
             border-radius: 48px; box-shadow: 0 0 120px rgba(201,168,76,.05), 0 40px 80px rgba(0,0,0,.6); 
         }
 
-        /* ── FORMULARIO Y CAMPOS ── */
         .ff { 
             background: #fff !important; color: #1a1a1a !important; border: 2px solid #e2e8f0 !important; 
             border-radius: 16px; padding: 1.25rem 1.5rem; font-size: 0.95rem; width: 100%; 
@@ -268,7 +217,6 @@
         #gracias { display: none; animation: fadeIn 0.8s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ── TARJETAS QR CONTACTOS (Logos Footer Institucionales) ── */
         .qr-card { 
             background: white; border-radius: 32px; padding: 3rem; text-align: center; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid #f1f5f9; 
@@ -289,7 +237,6 @@
         }
         .logo-fix-footer { object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.1); }
 
-        /* ── BOTÓN AUDIO ── */
         #audio-btn { 
             position: fixed; bottom: 40px; left: 40px; z-index: 90; width: 60px; height: 60px; border-radius: 50%; 
             background: rgba(7,7,10,.85); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; 
@@ -299,7 +246,6 @@
         #audio-btn.show { opacity: 1; pointer-events: auto; }
         #audio-btn:hover { background: var(--gold); color: #000; transform: scale(1.15) rotate(5deg); }
 
-        /* ── ESPACIADORES Y URGENCIA ── */
         .sp { padding: 8rem 0; }
         @media(max-width:768px){ .sp { padding: 5rem 0; } }
 
@@ -319,7 +265,7 @@
 </head>
 <body>
 
-<audio id="bg-music" src="Arrival_at_the_Terminal%20(1).mp3" loop preload="auto"></audio>
+<audio id="bg-music" src="musica-fondo.mp3" loop preload="auto"></audio>
 
 <button id="audio-btn" aria-label="Control de música de fondo" title="Reproducir/Pausar Música">
     <svg id="ico-play" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
@@ -398,7 +344,7 @@
 
     <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-ink" aria-label="Sección Principal">
         <div class="absolute inset-0 z-0">
-            <video id="hero-vid" class="w-full h-full object-cover opacity-60 mix-blend-screen" playsinline autoplay muted loop preload="auto" poster="logo_af_sc.jpg">
+            <video id="hero-vid" class="w-full h-full object-cover opacity-60" playsinline autoplay muted loop preload="auto" poster="logo_af_sc.jpg">
                 <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/20 to-ink/90" aria-hidden="true"></div>
@@ -449,7 +395,12 @@
                 <p class="text-white/50 text-base max-w-2xl mx-auto mt-6 font-light leading-relaxed">Navegue por el documento oficial para conocer en detalle la propuesta de valor, metodología y respaldos institucionales del viaje.</p>
             </div>
             <div class="sr dossier-frame mb-16 bg-ink-mid">
-                <iframe loading="lazy" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" allowfullscreen allow="fullscreen" title="Presentación Interactiva del Dossier Institucional Vichy 2026"></iframe>
+                <iframe src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed"
+                    allowfullscreen
+                    allow="autoplay; fullscreen; clipboard-write; picture-in-picture"
+                    title="Presentación Interactiva del Dossier Institucional Vichy 2026"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
             <div class="sr flex justify-center">
                 <a href="Vichy_2026_La_Salle.pptx" download class="inline-flex items-center gap-3 px-14 py-5 border-[1.5px] border-gold text-gold rounded-full font-bold text-[13px] uppercase tracking-[.25em] hover:bg-gold hover:text-ink transition-all duration-500 shadow-[0_0_30px_rgba(201,168,76,.15)] hover:shadow-[0_0_40px_rgba(201,168,76,.3)] hover:-translate-y-1 bg-gold/5 backdrop-blur-sm">
@@ -565,7 +516,7 @@
             <div class="grid md:grid-cols-3 gap-8 mb-20">
                 <article class="sr bg-ink-mid rounded-[32px] overflow-hidden border border-white/10 hover:border-gold/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(201,168,76,.15)] group">
                     <div class="vbox rounded-none border-none shadow-none">
-                        <video controls playsinline preload="auto" poster="logo_af_sc.jpg" aria-label="Testimonio en video de la Familia Sylvie Bertrand">
+                        <video controls playsinline preload="metadata" poster="logo_af_sc.jpg" aria-label="Testimonio en video de la Familia Sylvie Bertrand">
                             <source src="video_famille_1.mp4" type="video/mp4">
                             Tu navegador no soporta el formato de video.
                         </video>
@@ -577,7 +528,7 @@
                 </article>
                 <article class="sr bg-ink-mid rounded-[32px] overflow-hidden border border-white/10 hover:border-gold/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(201,168,76,.15)] group">
                     <div class="vbox rounded-none border-none shadow-none">
-                        <video controls playsinline preload="auto" poster="logo_af_sc.jpg" aria-label="Testimonio en video de la Familia Nadine et Philippe">
+                        <video controls playsinline preload="metadata" poster="logo_af_sc.jpg" aria-label="Testimonio en video de la Familia Nadine et Philippe">
                             <source src="video_famille_2.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -588,7 +539,7 @@
                 </article>
                 <article class="sr bg-ink-mid rounded-[32px] overflow-hidden border border-white/10 hover:border-gold/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(201,168,76,.15)] group">
                     <div class="vbox rounded-none border-none shadow-none">
-                        <video controls playsinline preload="auto" poster="logo_af_sc.jpg" aria-label="Testimonio en video de la Familia Gwendoline Laurent">
+                        <video controls playsinline preload="metadata" poster="logo_af_sc.jpg" aria-label="Testimonio en video de la Familia Gwendoline Laurent">
                             <source src="video_famille_3.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -630,7 +581,7 @@
             <div class="sr-l relative">
                 <div class="absolute -inset-4 bg-gold/20 blur-[100px] rounded-full z-0" aria-hidden="true"></div>
                 <div class="vbox shadow-[0_30px_80px_rgba(0,0,0,0.8)] border border-gold/30 rounded-[32px] relative z-10">
-                    <video controls playsinline preload="auto" poster="logo_af_sc.jpg" aria-label="Reproducir testimonio en video de Regina, alumna de CAVILAM">
+                    <video controls playsinline preload="metadata" poster="logo_af_sc.jpg" aria-label="Reproducir testimonio en video de Regina, alumna de CAVILAM">
                         <source src="video_regina.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -662,16 +613,16 @@
     <section id="precio" class="sp bg-ink-mid text-center" aria-labelledby="precio-heading">
         <div class="max-w-5xl mx-auto px-6">
             <div class="sr mb-16">
-                <p class="text-gold text-[12px] uppercase tracking-[.45em] font-bold mb-5">El Valor de la Experiencia</p>
-                <h2 id="precio-heading" class="lux font-light text-white" style="font-size:clamp(3rem,6vw,5.5rem)">Inversión <em class="text-gold italic">Total</em></h2>
+                <p class="text-gold text-[12px] uppercase tracking-[.45em] font-bold mb-5">Referencia de Costo</p>
+                <h2 id="precio-heading" class="lux font-light text-white" style="font-size:clamp(3rem,6vw,5.5rem)">Inversión <em class="text-gold italic">Estimada</em></h2>
             </div>
             <div class="sr price-box p-12 md:p-24 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
                 
-                <p class="text-white/40 text-[11px] md:text-[13px] uppercase tracking-[.5em] font-bold mb-8 relative z-10">Programa Premium Todo Incluido en Francia</p>
+                <p class="text-white/40 text-[11px] md:text-[13px] uppercase tracking-[.5em] font-bold mb-8 relative z-10">Costo de Referencia · Sujeto a Confirmación</p>
                 
                 <div class="flex items-baseline justify-center gap-4 mb-4 relative z-10">
-                    <p class="lux font-semibold text-gold drop-shadow-lg" style="font-size:clamp(5rem,12vw,8.5rem);line-height:0.9">€3,500*</p>
+                    <p class="lux font-semibold text-gold drop-shadow-lg" style="font-size:clamp(5rem,12vw,8.5rem);line-height:0.9">~€3,500</p>
                     <span class="lux text-3xl text-white/40 font-light">Euros</span>
                 </div>
                 
@@ -688,7 +639,7 @@
                 
                 <div class="bg-black/40 border border-white/10 rounded-2xl p-6 inline-block max-w-2xl mx-auto relative z-10 mb-8">
                     <p class="text-white/40 text-[12px] uppercase tracking-[.15em] font-semibold leading-relaxed">
-                        <span class="text-red font-bold">* IMPORTANTE:</span> Precio aproximado sujeto al tipo de cambio en el momento de liquidación. <strong class="text-white/70">NO incluye vuelo internacional México – Francia – México.</strong>
+                        <span class="text-red font-bold">⚠ MONTO ESTIMADO:</span> El costo aproximado de <strong class="text-white/70">~€3,500 EUR</strong> está sujeto a confirmación final por CAVILAM y al tipo de cambio vigente en el momento de pago. <strong class="text-white/70">NO incluye vuelo internacional México – Francia – México.</strong>
                     </p>
                 </div>
                 <br>
@@ -786,7 +737,7 @@
                         <div class="space-y-6">
                             <div class="space-y-2">
                                 <label for="salud" class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-2">Condiciones Médicas (Confidencial)</label>
-                                <textarea id="salud" name="Restricciones_Salud" placeholder="Especifique cualquier tipo de alergia alimentaria (gluten, nueces, lactosa), medicamentos o condiciones físicas de importancia. Escriba 'Ninguna' si no aplica." rows="2" class="ff resize-y"></textarea>
+                                <textarea id="salud" name="Restricciones_Salud" autocomplete="off" placeholder="Especifique cualquier tipo de alergia alimentaria (gluten, nueces, lactosa), medicamentos o condiciones físicas de importancia. Escriba 'Ninguna' si no aplica." rows="2" class="ff resize-y"></textarea>
                             </div>
                             <div class="space-y-2">
                                 <label for="motivo" class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-2">Carta de Motivación Breve</label>
@@ -832,32 +783,46 @@
 
             <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
                 <article class="sr qr-card group hover:-translate-y-3 transition-transform duration-500">
-                    <div class="qr-box">
-                        <img src="imagen.png" alt="Código QR de Contacto: Miguel Tillero A." loading="lazy" onerror="this.outerHTML='<div style=&quot;width:140px;height:140px;border-radius:20px;background:linear-gradient(135deg,#002395,#1a49c8);border:2px solid #C9A84C;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:serif;font-size:2.5rem;color:#fff;&quot;>MT</div>'">
+                    <div class="qr-box" id="qr-miguel">
+                        <img src="imagen.png" alt="Código QR de Contacto: Miguel Tillero A." loading="lazy"
+                            onerror="
+                                this.style.display='none';
+                                const d=document.createElement('div');
+                                d.style.cssText='width:140px;height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px;';
+                                d.innerHTML='<img src=\'https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https://wa.me/5219671721870&margin=2&color=002395\' style=\'width:130px;height:130px;border-radius:8px;\' alt=\'QR WhatsApp Miguel\'>';
+                                this.parentElement.appendChild(d);
+                            ">
                     </div>
                     <h4 class="lux text-3xl font-semibold text-blue group-hover:text-gold transition-colors">Miguel Tillero A.</h4>
                     <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Director General · AFSC</p>
                     <a href="tel:+5219671721870" class="mt-6 text-xl font-bold text-ink hover:text-blue transition-colors block">
                         +52 1 967 172 1870
                     </a>
-                    <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-xs font-bold hover:bg-[#128C7E] transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    <a href="https://wa.me/5219671721870" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-xs font-bold hover:bg-[#128C7E] transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.395 0-4.636-.85-6.438-2.287l-.45-.355-2.632.882.882-2.632-.355-.45A9.948 9.948 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
                         Mensaje Oficial AFSC
                     </a>
                 </article>
 
                 <article class="sr qr-card group hover:-translate-y-3 transition-transform duration-500">
-                    <div class="qr-box">
-                        <img src="qr_roman.png" alt="Código QR de Contacto: Román Fuentes" loading="lazy" onerror="this.outerHTML='<div style=&quot;width:140px;height:140px;border-radius:20px;background:linear-gradient(135deg,#002395,#1a49c8);border:2px solid #C9A84C;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:serif;font-size:2.5rem;color:#fff;&quot;>RF</div>'">
+                    <div class="qr-box" id="qr-roman">
+                        <img src="qr_roman.png" alt="Código QR de Contacto: Román Fuentes" loading="lazy"
+                            onerror="
+                                this.style.display='none';
+                                const d=document.createElement('div');
+                                d.style.cssText='width:140px;height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px;';
+                                d.innerHTML='<img src=\'https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https://wa.me/5214731219337&margin=2&color=002395\' style=\'width:130px;height:130px;border-radius:8px;\' alt=\'QR WhatsApp Román\'>';
+                                this.parentElement.appendChild(d);
+                            ">
                     </div>
                     <h4 class="lux text-3xl font-semibold text-blue group-hover:text-gold transition-colors">Román Fuentes</h4>
-                    <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Responsable · Colegio La Salle</p>
+                    <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Responsable · La Salle</p>
                     <a href="tel:+5214731219337" class="mt-6 text-xl font-bold text-ink hover:text-blue transition-colors block">
                         +52 1 473 121 9337
                     </a>
-                    <a href="https://wa.me/5214731219337" target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-xs font-bold hover:bg-[#128C7E] transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    <a href="https://wa.me/5214731219337" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-xs font-bold hover:bg-[#128C7E] transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.395 0-4.636-.85-6.438-2.287l-.45-.355-2.632.882.882-2.632-.355-.45A9.948 9.948 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
-                        Mensaje Oficial La Salle
+                        Mensaje a La Salle
                     </a>
                 </article>
             </div>
@@ -890,7 +855,7 @@
                     <p class="text-white/30 text-[10px] uppercase tracking-[.25em]">
                         Av. La Almolonga 80, Barrio Santa Lucía · San Cristóbal de Las Casas, Chiapas
                     </p>
-                    <a href="https://alianzafrancesa.org.mx/san-cristobal-de-las-casas/" target="_blank" rel="noopener" class="text-gold/50 hover:text-gold text-[10px] uppercase tracking-widest mt-2 transition-colors">
+                    <a href="https://alianzafrancesa.org.mx/san-cristobal-de-las-casas/" target="_blank" rel="noopener noreferrer" class="text-gold/50 hover:text-gold text-[10px] uppercase tracking-widest mt-2 transition-colors">
                         Visitar Sitio Web Oficial Institucional ↗
                     </a>
                 </div>
@@ -906,7 +871,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ── 1. GENERADOR DE PARTÍCULAS CINEMÁTICAS (INTRO) ── */
     const ptclContainer = document.getElementById('ptcl');
     if(ptclContainer) {
-        const particleCount = window.innerWidth < 768 ? 30 : 70; 
+        const particleCount = window.innerWidth < 768 ? 30 : 70;
         for (let i = 0; i < particleCount; i++) {
             const p = document.createElement('div');
             p.className = 'ptcl';
@@ -959,7 +924,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 icoPause.classList.add('hidden'); icoPlay.classList.remove('hidden');
                 audioBtn.style.borderColor = "rgba(255,255,255,0.3)";
             } else {
-                music.play().catch(() => { console.log("Reproducción bloqueada por políticas del navegador"); });  
+                music.play().catch(() => {});  
                 isPlaying = true;
                 icoPlay.classList.add('hidden'); icoPause.classList.remove('hidden');
                 audioBtn.style.borderColor = "var(--gold)";
@@ -988,9 +953,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 music.play().then(() => { 
                     isPlaying = true; 
                     if(audioBtn) audioBtn.classList.add('show'); 
-                }).catch(() => {
-                    console.log("El usuario debe interactuar con la página más profundamente para el audio.");
-                });
+                }).catch(() => {});
             }
 
             const introOverlay = document.getElementById('intro');
@@ -1005,7 +968,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         requestAnimationFrame(() => requestAnimationFrame(() => {
                             const heroVid = document.getElementById('hero-vid');
-                            if (heroVid) heroVid.play().catch(() => {});
+                            if (heroVid) {
+                                heroVid.load(); 
+                                const playPromise = heroVid.play();
+                                if (playPromise !== undefined) {
+                                    playPromise.catch(() => { setTimeout(() => heroVid.play().catch(() => {}), 300); });
+                                }
+                            }
+
                             gsap.to('.hero-a', { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: 'expo.out' });
                             if(audioBtn) audioBtn.classList.add('show');
                             initScrollAnimations();
@@ -1015,8 +985,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 introOverlay.style.display = 'none';
                 mainContent.classList.add('visible');
-                document.querySelectorAll('.hero-a').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+                document.querySelectorAll('.hero-a, .sr, .sr-l, .sr-r').forEach(el => { 
+                    el.style.opacity = '1'; 
+                    el.style.transform = 'none'; 
+                });
                 if(audioBtn) audioBtn.classList.add('show');
+                initScrollAnimations();
             }
         });
     }
@@ -1035,7 +1009,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hamBtn.addEventListener('click', () => {
             mmenu.classList.add('open');
             hamBtn.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden'; 
+            document.body.style.overflow = 'hidden';
         });
     }
 
@@ -1055,6 +1029,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
             document.querySelectorAll('.sr, .sr-l, .sr-r').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
             document.querySelectorAll('.stat-n[data-target]').forEach(el => { el.textContent = el.dataset.target; });
+            try {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'none';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.sr, .sr-l, .sr-r').forEach(el => {
+                    el.style.opacity = '0'; observer.observe(el);
+                });
+                
+                document.querySelectorAll('.stat-n[data-target]').forEach(el => {
+                    const target = parseInt(el.dataset.target, 10);
+                    const counterObserver = new IntersectionObserver((entries) => {
+                        if (entries[0].isIntersecting) {
+                            let start = 0;
+                            const step = target / 60;
+                            const timer = setInterval(() => {
+                                start += step;
+                                if (start >= target) { el.textContent = target; clearInterval(timer); }
+                                else { el.textContent = Math.round(start); }
+                            }, 25);
+                            counterObserver.unobserve(el);
+                        }
+                    }, { threshold: 0.5 });
+                    counterObserver.observe(el);
+                });
+            } catch(e) {}
             return;
         }
         
@@ -1092,7 +1098,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formEl = document.getElementById("formulario");
         if (divGracias) {
             divGracias.style.display = "block";
-            if (formEl) formEl.style.display = "none"; 
+            if (formEl) formEl.style.display = "none";
             setTimeout(() => { 
                 const yOffset = divGracias.getBoundingClientRect().top + window.scrollY - 150;
                 window.scrollTo({ top: yOffset, behavior: "smooth" }); 
@@ -1100,7 +1106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Detector de redirección local (#gracias tras envío de Web3Forms)
     if (window.location.hash === "#gracias") {
         document.getElementById('intro').style.display = 'none';
         document.getElementById('main').classList.add('visible');
@@ -1108,7 +1113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         triggerSuccessMessage(); 
     }
 
-    // Efecto visual de carga al enviar el formulario a Web3Forms
     const formRegistro = document.getElementById("formulario");
     if (formRegistro) {
         formRegistro.addEventListener("submit", function() {
