@@ -99,7 +99,7 @@
 
         .glass { background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.06); backdrop-filter:blur(10px); }
 
-        .vbox { position:relative; width:100%; aspect-ratio:16/9; border-radius:20px; overflow:hidden; background:#000; box-shadow:0 20px 50px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.05); }
+        .vbox { position:relative; width:100%; aspect-ratio:16/9; border-radius:20px; overflow:hidden; background:#111116; box-shadow:0 20px 50px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.05); }
         .vbox video,.vbox iframe { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:none; }
 
         .dossier-frame { position:relative; width:100%; padding-top:56.25%; border-radius:22px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.6); border:1px solid rgba(255,255,255,.07); }
@@ -110,6 +110,7 @@
         .ff { background:#fff!important; color:#1a1a1a!important; border:1.5px solid #e8e8e8!important; border-radius:14px; padding:1.1rem 1.3rem; font-size:.9rem; width:100%; transition:all .3s; font-family:'Outfit',sans-serif; }
         .ff:focus { outline:none; border-color:var(--gold)!important; box-shadow:0 0 0 4px rgba(201,168,76,.12); }
         .ff::placeholder { color:#aaa; }
+        .ff option { color:#1a1a1a; }
 
         /* Estilo idéntico a captura de contactos limpia */
         .qr-card { background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #f1f5f9; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -137,11 +138,15 @@
 </head>
 <body>
 
-<audio id="bg-music" src="Arrival_at_the_Terminal (1).mp3" loop preload="auto"></audio>
+<audio id="bg-music" src="Arrival_at_the_Terminal%20(1).mp3" loop preload="auto"></audio>
 
 <button id="audio-btn" aria-label="Control de música de fondo">
-    <svg id="ico-play" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
-    <svg id="ico-pause" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+    <svg id="ico-play" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+    </svg>
+    <svg id="ico-pause" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+    </svg>
 </button>
 
 <div id="intro" role="dialog" aria-label="Bienvenida al Portal Vichy 2026">
@@ -175,7 +180,7 @@
         </button>
 
         <p id="intro-note" class="text-white/18 text-[9px] uppercase tracking-[.35em] font-light" style="opacity:0">
-            Programa Exclusivo · Inscripciones Abiertas · <strong class="text-gold/40">Fechas por confirmar</strong>
+            Programa Exclusivo · Inscripciones Abiertas · <strong class="text-gold/40">Fechas por Confirmar</strong>
         </p>
     </div>
 </div>
@@ -286,9 +291,7 @@
                 <h2 class="lux font-light text-white" style="font-size:clamp(2.5rem,5.5vw,5rem)">Una suma de <em class="text-gold italic">experiencias únicas</em></h2>
                 <div class="gold-line mt-8 mx-auto"></div>
             </div>
-            <div class="sr flex flex-wrap justify-center gap-3 mb-14">
-                <span class="city-t">✦ Vichy</span><span class="city-t">✦ París</span><span class="city-t">✦ Lyon</span><span class="city-t">✦ Puy de Dôme</span><span class="city-t">✦ Clermont-Ferrand</span><span class="city-t">✦ Charroux</span><span class="city-t">✦ Disneyland® Paris</span>
-            </div>
+            
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="sr prog-card">
                     <div class="absolute top-0 right-0 w-40 h-40 bg-blue/15 rounded-full blur-[70px]" aria-hidden="true"></div>
@@ -349,15 +352,15 @@
             
             <div class="grid md:grid-cols-3 gap-6 mb-16">
                 <div class="sr bg-ink-mid rounded-[24px] overflow-hidden border border-white/5 hover:border-gold/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata" aria-label="Familia Sylvie Bertrand"><source src="video_famille_1.mp4#t=0.001" type="video/mp4"></video></div>
+                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="auto" poster="logo_af_sc.jpg" aria-label="Familia Sylvie Bertrand"><source src="video_famille_1.mp4" type="video/mp4"></video></div>
                     <div class="p-6 text-center"><h3 class="lux text-2xl font-semibold">Sylvie Bertrand</h3><p class="text-[10px] text-gold uppercase tracking-widest mt-1.5 font-semibold">Familia Certificada</p></div>
                 </div>
                 <div class="sr bg-ink-mid rounded-[24px] overflow-hidden border border-white/5 hover:border-gold/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata" aria-label="Familia Nadine et Philippe"><source src="video_famille_2.mp4#t=0.001" type="video/mp4"></video></div>
+                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="auto" poster="logo_af_sc.jpg" aria-label="Familia Nadine et Philippe"><source src="video_famille_2.mp4" type="video/mp4"></video></div>
                     <div class="p-6 text-center"><h3 class="lux text-2xl font-semibold">Nadine et Philippe</h3><p class="text-[10px] text-gold uppercase tracking-widest mt-1.5 font-semibold">Entorno Seguro</p></div>
                 </div>
                 <div class="sr bg-ink-mid rounded-[24px] overflow-hidden border border-white/5 hover:border-gold/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata" aria-label="Familia Gwendoline Laurent"><source src="video_famille_3.mp4#t=0.001" type="video/mp4"></video></div>
+                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="auto" poster="logo_af_sc.jpg" aria-label="Familia Gwendoline Laurent"><source src="video_famille_3.mp4" type="video/mp4"></video></div>
                     <div class="p-6 text-center"><h3 class="lux text-2xl font-semibold">Gwendoline Laurent</h3><p class="text-[10px] text-gold uppercase tracking-widest mt-1.5 font-semibold">Hospitalidad Total</p></div>
                 </div>
             </div>
@@ -374,8 +377,8 @@
         <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
             <div class="sr-l">
                 <div class="vbox shadow-2xl border border-gold/15">
-                    <video controls playsinline preload="metadata" aria-label="Testimonio de Regina, alumna CAVILAM">
-                        <source src="video_regina.mp4#t=0.001" type="video/mp4">
+                    <video controls playsinline preload="auto" poster="logo_af_sc.jpg" aria-label="Testimonio de Regina, alumna CAVILAM">
+                        <source src="video_regina.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
@@ -411,8 +414,11 @@
                     <div class="flex items-center gap-2 text-white/55 text-xs"><span class="text-gold flex-shrink-0">✦</span> Seguro médico internacional completo</div>
                     <div class="flex items-center gap-2 text-white/55 text-xs"><span class="text-gold flex-shrink-0">✦</span> Certificación CAVILAM oficial</div>
                 </div>
-                <p class="text-white/25 text-[10px] uppercase tracking-[.2em] font-semibold mb-4">* Precio aproximado sujeto al tipo de cambio. No incluye vuelo internacional México – Francia.</p>
-                <p class="text-gold/65 text-[11px] uppercase tracking-[.25em] font-semibold">📅 Fechas por confirmar · Cupos limitados · Inscripciones abiertas</p>
+                <p class="text-white/25 text-[10px] uppercase tracking-[.2em] font-semibold mb-4">* Precio aproximado. No incluye vuelo internacional México – Francia.</p>
+                
+                <p class="text-gold text-[12px] uppercase tracking-[.25em] font-bold mt-6 border border-gold/30 inline-block px-6 py-2 rounded-full bg-gold/5">
+                    📅 Fechas por confirmar · Cupos limitados
+                </p>
             </div>
         </div>
     </section>
@@ -464,7 +470,7 @@
                             <select name="Estatus_Pasaporte" required class="ff"><option value="">¿Cuenta con Pasaporte Vigente?</option><option value="Si">Sí, vigente</option><option value="Tramite">En trámite</option><option value="No">No / Requiere renovación</option></select>
                         </div>
                         <textarea name="Restricciones_Salud" placeholder="Restricciones médicas o alergias importantes (opcional)..." rows="2" class="ff mb-5"></textarea>
-                        <textarea name="Motivacion_Viaje" placeholder="¿Cuál es el motivo principal por el que desea realizar este viaje?..." required rows="3" class="ff"></textarea>
+                        <textarea name="Motivacion_Viaje" placeholder="¿Cuál es el motivo principal por el que deseas realizar este viaje?..." required rows="3" class="ff"></textarea>
                     </fieldset>
 
                     <fieldset class="mt-6">
@@ -545,6 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pc.appendChild(p);
     }
 
+    // AUDIO CON ESPACIOS CODIFICADOS (%20)
     const music   = document.getElementById('bg-music');
     const audioBtn = document.getElementById('audio-btn');
     const icoPlay = document.getElementById('ico-play');
@@ -556,12 +563,11 @@ document.addEventListener('DOMContentLoaded', () => {
             music.pause(); playing = false;
             icoPause.classList.add('hidden'); icoPlay.classList.remove('hidden');
         } else {
-            music.play().catch(() => {});  playing = true;
+            music.play().catch(() => {}); playing = true;
             icoPlay.classList.add('hidden'); icoPause.classList.remove('hidden');
         }
     });
 
-    /* AUTO-DUCKING DE AUDIO PARA VIDEOS */
     const allVideos = document.querySelectorAll('video:not(#hero-vid)');
     allVideos.forEach(vid => {
         vid.addEventListener('play', () => {
@@ -677,8 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ── SISTEMA DE RECEPCIÓN DE FORMULARIO (#gracias) Y GOOGLE SHEETS ── */
-    const GOOGLE_SCRIPT_URL = "PEGA_AQUI_TU_URL"; // <-- Reemplazar cuando se tenga el enlace de Google Sheets
+    const GOOGLE_SCRIPT_URL = "PEGA_AQUI_TU_URL";
 
     function mostrarMensaje() {
         const msgGracias = document.getElementById("gracias");
