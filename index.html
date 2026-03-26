@@ -39,228 +39,101 @@
     </script>
 
     <style>
-        /* ── TOKENS ──────────────────────────────────────────── */
-        :root {
-            --gold:    #C9A84C;
-            --gold-lt: #E8C96A;
-            --blue:    #002395;
-            --red:     #ED2939;
-            --ink:     #07070A;
-            --ink-mid: #0F0F14;
-            --cream:   #FAF8F3;
-        }
+        :root { --gold: #C9A84C; --gold-lt: #E8C96A; --blue: #002395; --red: #ED2939; --ink: #07070A; --ink-mid: #0F0F14; --cream: #FAF8F3; }
         *, *::before, *::after { box-sizing: border-box; margin: 0; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Outfit', sans-serif; background: var(--ink); color: #fff; overflow-x: hidden; }
 
-        /* ── SCROLLBAR ───────────────────────────────────────── */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: var(--ink); }
         ::-webkit-scrollbar-thumb { background: rgba(201,168,76,.4); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-        /* ── TYPOGRAPHY ──────────────────────────────────────── */
         .lux { font-family: 'Cormorant Garamond', serif; line-height: 1.05; }
         .tricolor { height: 3px; background: linear-gradient(90deg,var(--blue) 33.33%,#fff 33.33% 66.66%,var(--red) 66.66%); border-radius: 2px; }
         .gold-line { width: 56px; height: 1.5px; background: linear-gradient(90deg,var(--gold),transparent); }
 
-        /* ── GRAIN ───────────────────────────────────────────── */
         body::after {
             content:''; position:fixed; inset:0; pointer-events:none; z-index:997;
             background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
             opacity:.018;
         }
 
-        /* ── LOGO WRAP ───────────────────────────────────────── */
         .logo-wrap {
-            background:#fff; border-radius:22px;
-            padding:1.2rem 2.4rem;
-            display:inline-flex; flex-wrap:wrap; align-items:center; justify-content:center;
+            background:#fff; border-radius:22px; padding:1.2rem 2.4rem; display:inline-flex; flex-wrap:wrap; align-items:center; justify-content:center;
             gap:2rem; box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 80px rgba(201,168,76,.07);
         }
         .logo-fix { object-fit:contain; mix-blend-mode:multiply; filter:contrast(1.1) brightness(1.05); }
 
-        /* ── INTRO OVERLAY ───────────────────────────────────── */
-        #intro {
-            position:fixed; inset:0; background:var(--ink);
-            z-index:9999; display:flex; flex-direction:column;
-            align-items:center; justify-content:center;
-            padding:2rem; text-align:center; overflow:hidden;
-        }
-        #intro-inner {
-            position:relative; z-index:2;
-            display:flex; flex-direction:column; align-items:center;
-            gap:1.8rem; max-width:54rem; width:100%;
-            opacity:0; transform:translateY(28px);
-        }
+        #intro { position:fixed; inset:0; background:var(--ink); z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2rem; text-align:center; overflow:hidden; }
+        #intro-inner { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:1.8rem; max-width:54rem; width:100%; opacity:0; transform:translateY(28px); }
+        
         #ptcl { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-        .ptcl {
-            position:absolute; border-radius:50%;
-            background:var(--gold); opacity:0;
-            animation: floatUp var(--d,10s) ease-in-out infinite var(--dl,0s);
-        }
-        @keyframes floatUp {
-            0%   { opacity:0; transform:translateY(0) scale(0); }
-            12%  { opacity:.55; transform:translateY(-12px) scale(1); }
-            88%  { opacity:.2; transform:translateY(calc(-1*var(--t,220px))) scale(.4); }
-            100% { opacity:0; transform:translateY(calc(-1.1*var(--t,220px))) scale(0); }
-        }
-        .h-deco {
-            position:absolute; height:1px; width:100%;
-            background:linear-gradient(90deg,transparent,rgba(201,168,76,.16),transparent);
-            opacity:0; transform:scaleX(.3);
-        }
-        .intro-big {
-            font-family:'Cormorant Garamond',serif;
-            font-size:clamp(5rem,15vw,9.5rem);
-            font-weight:300; line-height:.92; letter-spacing:-.03em; color:#fff;
-        }
+        .ptcl { position:absolute; border-radius:50%; background:var(--gold); opacity:0; animation: floatUp var(--d,10s) ease-in-out infinite var(--dl,0s); }
+        @keyframes floatUp { 0% { opacity:0; transform:translateY(0) scale(0); } 12% { opacity:.55; transform:translateY(-12px) scale(1); } 88% { opacity:.2; transform:translateY(calc(-1*var(--t,220px))) scale(.4); } 100% { opacity:0; transform:translateY(calc(-1.1*var(--t,220px))) scale(0); } }
+        
+        .h-deco { position:absolute; height:1px; width:100%; background:linear-gradient(90deg,transparent,rgba(201,168,76,.16),transparent); opacity:0; transform:scaleX(.3); }
+        .intro-big { font-family:'Cormorant Garamond',serif; font-size:clamp(5rem,15vw,9.5rem); font-weight:300; line-height:.92; letter-spacing:-.03em; color:#fff; }
         .intro-big em { color:var(--gold); font-style:italic; font-weight:400; }
 
-        /* ── NAV ─────────────────────────────────────────────── */
-        #nav {
-            position:fixed; top:0; width:100%; z-index:50;
-            padding:1.4rem 3rem;
-            display:flex; justify-content:space-between; align-items:center;
-            transition:all .55s cubic-bezier(.16,1,.3,1);
-        }
-        #nav.scrolled {
-            background:rgba(7,7,10,.96); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);
-            border-bottom:1px solid rgba(201,168,76,.1);
-            padding-top:.9rem; padding-bottom:.9rem;
-        }
+        #nav { position:fixed; top:0; width:100%; z-index:50; padding:1.4rem 3rem; display:flex; justify-content:space-between; align-items:center; transition:all .55s cubic-bezier(.16,1,.3,1); }
+        #nav.scrolled { background:rgba(7,7,10,.96); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border-bottom:1px solid rgba(201,168,76,.1); padding-top:.9rem; padding-bottom:.9rem; }
         @media(max-width:768px){ #nav{ padding:1rem 1.25rem; } }
 
-        /* ── MAIN CONTENT ────────────────────────────────────── */
         #main { opacity:0; pointer-events:none; transition:opacity 1.5s ease; }
         #main.visible { opacity:1; pointer-events:auto; }
 
-        /* ── HERO ────────────────────────────────────────────── */
         #hero-vid { width:100%; height:100%; object-fit:cover; opacity:.55; }
-        .hero-tag {
-            display:inline-flex; align-items:center; gap:10px;
-            padding:7px 18px; border-radius:100px;
-            background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.3);
-            backdrop-filter:blur(8px);
-            font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--gold);
-        }
+        .hero-tag { display:inline-flex; align-items:center; gap:10px; padding:7px 18px; border-radius:100px; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.3); backdrop-filter:blur(8px); font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--gold); }
         .hero-a { opacity:0; transform:translateY(24px); }
 
-        /* ── SCROLL-REVEAL ───────────────────────────────────── */
-        .sr      { opacity:0; transform:translateY(44px); }
-        .sr-l    { opacity:0; transform:translateX(-44px); }
-        .sr-r    { opacity:0; transform:translateX(44px); }
+        .sr { opacity:0; transform:translateY(44px); }
+        .sr-l { opacity:0; transform:translateX(-44px); }
+        .sr-r { opacity:0; transform:translateX(44px); }
 
-        /* ── STATS ───────────────────────────────────────────── */
-        .stat-n {
-            font-family:'Cormorant Garamond',serif;
-            font-size:clamp(3.5rem,7vw,5rem); font-weight:600; color:var(--gold); line-height:1;
-        }
+        .stat-n { font-family:'Cormorant Garamond',serif; font-size:clamp(3.5rem,7vw,5rem); font-weight:600; color:var(--gold); line-height:1; }
 
-        /* ── PROGRAM CARDS ───────────────────────────────────── */
-        .prog-card {
-            background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.06);
-            border-radius:28px; padding:2.5rem 2.5rem 2.8rem;
-            transition:all .5s cubic-bezier(.16,1,.3,1); position:relative; overflow:hidden;
-        }
-        .prog-card::after {
-            content:''; position:absolute; inset:0;
-            background:linear-gradient(135deg,rgba(201,168,76,.05),transparent);
-            opacity:0; transition:opacity .5s;
-        }
+        .prog-card { background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.06); border-radius:28px; padding:2.5rem 2.5rem 2.8rem; transition:all .5s cubic-bezier(.16,1,.3,1); position:relative; overflow:hidden; }
+        .prog-card::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(201,168,76,.05),transparent); opacity:0; transition:opacity .5s; }
         .prog-card:hover { border-color:rgba(201,168,76,.35); transform:translateY(-6px); box-shadow:0 24px 54px rgba(0,0,0,.4); }
         .prog-card:hover::after { opacity:1; }
 
-        .city-t {
-            display:inline-flex; align-items:center; gap:5px;
-            padding:5px 14px; border-radius:100px;
-            background:rgba(201,168,76,.09); border:1px solid rgba(201,168,76,.22);
-            font-size:.68rem; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--gold);
-        }
+        .city-t { display:inline-flex; align-items:center; gap:5px; padding:5px 14px; border-radius:100px; background:rgba(201,168,76,.09); border:1px solid rgba(201,168,76,.22); font-size:.68rem; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); }
 
         .glass { background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.06); backdrop-filter:blur(10px); }
 
-        .vbox {
-            position:relative; width:100%; aspect-ratio:16/9;
-            border-radius:20px; overflow:hidden; background:#000;
-            box-shadow:0 20px 50px rgba(0,0,0,.5);
-            border:1px solid rgba(255,255,255,.05);
-        }
+        .vbox { position:relative; width:100%; aspect-ratio:16/9; border-radius:20px; overflow:hidden; background:#000; box-shadow:0 20px 50px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.05); }
         .vbox video,.vbox iframe { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:none; }
 
-        .dossier-frame {
-            position:relative; width:100%; padding-top:56.25%;
-            border-radius:22px; overflow:hidden;
-            box-shadow:0 24px 60px rgba(0,0,0,.6); border:1px solid rgba(255,255,255,.07);
-        }
+        .dossier-frame { position:relative; width:100%; padding-top:56.25%; border-radius:22px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.6); border:1px solid rgba(255,255,255,.07); }
         .dossier-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
 
-        .price-box {
-            background:rgba(255,255,255,.03); backdrop-filter:blur(16px);
-            border:1px solid rgba(201,168,76,.28); border-radius:40px;
-            box-shadow:0 0 100px rgba(201,168,76,.06),0 30px 70px rgba(0,0,0,.5);
-        }
+        .price-box { background:rgba(255,255,255,.03); backdrop-filter:blur(16px); border:1px solid rgba(201,168,76,.28); border-radius:40px; box-shadow:0 0 100px rgba(201,168,76,.06),0 30px 70px rgba(0,0,0,.5); }
 
-        .ff {
-            background:#fff!important; color:#1a1a1a!important;
-            border:1.5px solid #e8e8e8!important; border-radius:14px;
-            padding:1.1rem 1.3rem; font-size:.9rem; width:100%;
-            transition:all .3s; font-family:'Outfit',sans-serif;
-        }
+        .ff { background:#fff!important; color:#1a1a1a!important; border:1.5px solid #e8e8e8!important; border-radius:14px; padding:1.1rem 1.3rem; font-size:.9rem; width:100%; transition:all .3s; font-family:'Outfit',sans-serif; }
         .ff:focus { outline:none; border-color:var(--gold)!important; box-shadow:0 0 0 4px rgba(201,168,76,.12); }
         .ff::placeholder { color:#aaa; }
-        .ff option { color:#1a1a1a; }
 
-        .contact-photo {
-            width:120px; height:120px; border-radius:50%;
-            object-fit:cover; border:3px solid var(--gold);
-            display:block; margin:0 auto;
-        }
+        .contact-photo { width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid var(--gold); display:block; margin:0 auto; }
 
-        #audio-btn {
-            position:fixed; bottom:30px; left:30px; z-index:80;
-            width:54px; height:54px; border-radius:50%;
-            background:rgba(7,7,10,.9); border:1px solid var(--gold);
-            display:flex; align-items:center; justify-content:center;
-            cursor:pointer; backdrop-filter:blur(12px);
-            transition:all .38s cubic-bezier(.175,.885,.32,1.275);
-            opacity:0; pointer-events:none; color:var(--gold);
-        }
+        #audio-btn { position:fixed; bottom:30px; left:30px; z-index:80; width:54px; height:54px; border-radius:50%; background:rgba(7,7,10,.9); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; backdrop-filter:blur(12px); transition:all .38s cubic-bezier(.175,.885,.32,1.275); opacity:0; pointer-events:none; color:var(--gold); }
         #audio-btn.show { opacity:1; pointer-events:auto; }
         #audio-btn:hover { background:var(--gold); color:#000; transform:scale(1.12); }
 
-        #mmenu {
-            position:fixed; inset:0; background:rgba(7,7,10,.98);
-            z-index:60; display:flex; flex-direction:column;
-            align-items:center; justify-content:center; gap:2.5rem;
-            transform:translateX(100%); transition:transform .48s cubic-bezier(.16,1,.3,1);
-        }
+        #mmenu { position:fixed; inset:0; background:rgba(7,7,10,.98); z-index:60; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; transform:translateX(100%); transition:transform .48s cubic-bezier(.16,1,.3,1); }
         #mmenu.open { transform:translateX(0); }
 
         .sp { padding:6rem 0; }
-        @media(max-width:768px){
-            .sp { padding:4rem 0; }
-            .logo-wrap { padding:1rem 1.5rem; gap:1.2rem; border-radius:18px; }
-        }
+        @media(max-width:768px){ .sp { padding:4rem 0; } .logo-wrap { padding:1rem 1.5rem; gap:1.2rem; border-radius:18px; } }
 
-        .urgency-bar {
-            background:linear-gradient(90deg,rgba(201,168,76,.08),rgba(201,168,76,.14),rgba(201,168,76,.08));
-            border-top:1px solid rgba(201,168,76,.2); border-bottom:1px solid rgba(201,168,76,.2);
-            padding:.7rem 0; text-align:center; overflow:hidden;
-        }
-        .urgency-scroll {
-            display:inline-flex; gap:5rem; white-space:nowrap;
-            animation:marquee 30s linear infinite;
-            font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--gold);
-        }
+        .urgency-bar { background:linear-gradient(90deg,rgba(201,168,76,.08),rgba(201,168,76,.14),rgba(201,168,76,.08)); border-top:1px solid rgba(201,168,76,.2); border-bottom:1px solid rgba(201,168,76,.2); padding:.7rem 0; text-align:center; overflow:hidden; }
+        .urgency-scroll { display:inline-flex; gap:5rem; white-space:nowrap; animation:marquee 30s linear infinite; font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--gold); }
         @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
-        .editorial-quote {
-            font-family:'Cormorant Garamond',serif;
-            font-size:clamp(1.7rem,3.8vw,3rem);
-            font-weight:300; font-style:italic;
-            line-height:1.35; color:rgba(255,255,255,.88);
-        }
+        .editorial-quote { font-family:'Cormorant Garamond',serif; font-size:clamp(1.7rem,3.8vw,3rem); font-weight:300; font-style:italic; line-height:1.35; color:rgba(255,255,255,.88); }
+        
+        /* Mensaje de Éxito Formulario */
+        #gracias { display:none; }
     </style>
 </head>
 <body>
@@ -268,22 +141,18 @@
 <audio id="bg-music" src="Arrival_at_the_Terminal (1).mp3" loop preload="auto"></audio>
 
 <button id="audio-btn" aria-label="Control de música de fondo">
-    <svg id="ico-play" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-    </svg>
-    <svg id="ico-pause" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
-    </svg>
+    <svg id="ico-play" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+    <svg id="ico-pause" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
 </button>
 
 <div id="intro" role="dialog" aria-label="Bienvenida al Portal Vichy 2026">
     <div id="ptcl" aria-hidden="true"></div>
-    <div class="h-deco" id="h-top"    style="top:22%"  aria-hidden="true"></div>
-    <div class="h-deco" id="h-bottom" style="top:78%"  aria-hidden="true"></div>
+    <div class="h-deco" id="h-top" style="top:22%" aria-hidden="true"></div>
+    <div class="h-deco" id="h-bottom" style="top:78%" aria-hidden="true"></div>
 
     <div id="intro-inner">
         <div class="logo-wrap" id="logos">
-            <img src="logo_af_sc.jpg"   alt="Alliance Française de San Cristóbal" class="h-12 md:h-16 logo-fix" onerror="this.style.display='none'">
+            <img src="logo_af_sc.jpg" alt="Alliance Française de San Cristóbal" class="h-12 md:h-16 logo-fix" onerror="this.style.display='none'">
             <div class="w-px h-12 bg-gray-300 hidden md:block" aria-hidden="true"></div>
             <img src="logo-lasalle.png" alt="Colegio La Salle" class="h-16 md:h-[5.5rem] logo-fix" onerror="this.style.display='none'">
             <div class="w-px h-12 bg-gray-300 hidden md:block" aria-hidden="true"></div>
@@ -293,31 +162,16 @@
         <div class="tricolor w-28 opacity-60" aria-hidden="true"></div>
 
         <div>
-            <p class="text-white/28 text-[9px] md:text-[11px] uppercase tracking-[.5em] font-semibold mb-5 font-body">
-                Inmersión Lingüística · Vichy & París · Francia · 2026
-            </p>
-            <h1 class="intro-big">
-                Vichy&nbsp;<em>2026</em>
-            </h1>
-            <p class="lux text-gold/75 text-xl md:text-2xl font-light italic tracking-wide mt-4">
-                Un Voyage d'Exception
-            </p>
+            <p class="text-white/28 text-[9px] md:text-[11px] uppercase tracking-[.5em] font-semibold mb-5 font-body">Inmersión Lingüística · Vichy & París · Francia · 2026</p>
+            <h1 class="intro-big">Vichy&nbsp;<em>2026</em></h1>
+            <p class="lux text-gold/75 text-xl md:text-2xl font-light italic tracking-wide mt-4">Un Voyage d'Exception</p>
         </div>
 
         <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[10px] uppercase tracking-[.25em] font-semibold text-white/35">
-            <span>18 Días en Francia</span><span class="text-gold/40">·</span>
-            <span>5 Ciudades</span><span class="text-gold/40">·</span>
-            <span>60 Horas de Academia</span><span class="text-gold/40">·</span>
-            <span>Cupos Limitados</span>
+            <span>18 Días en Francia</span><span class="text-gold/40">·</span><span>5 Ciudades</span><span class="text-gold/40">·</span><span>60 Horas de Academia</span><span class="text-gold/40">·</span><span>Cupos Limitados</span>
         </div>
 
-        <button id="start-btn"
-            class="px-14 py-5 bg-transparent border-2 border-gold text-gold rounded-full
-                   lux italic text-[1.65rem] tracking-wider
-                   hover:bg-gold hover:text-ink transition-all duration-700
-                   shadow-[0_0_60px_rgba(201,168,76,.14)]
-                   focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-            style="opacity:0" aria-label="Ingresar al portal">
+        <button id="start-btn" class="px-14 py-5 bg-transparent border-2 border-gold text-gold rounded-full lux italic text-[1.65rem] tracking-wider hover:bg-gold hover:text-ink transition-all duration-700 shadow-[0_0_60px_rgba(201,168,76,.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold" style="opacity:0" aria-label="Ingresar al portal">
             Vivir la Experiencia
         </button>
 
@@ -332,17 +186,13 @@
         <span class="lux text-gold font-semibold text-2xl tracking-wider">Vichy 2026</span>
         <span class="text-[8px] uppercase tracking-[.4em] text-white/40 font-semibold mt-0.5">La Salle & Alliance Française</span>
     </a>
-
     <div class="hidden lg:flex gap-10 items-center">
         <a href="#dossier"   class="text-[11px] uppercase tracking-[.2em] text-white/75 hover:text-gold transition-colors font-medium">Dossier</a>
         <a href="#programa"  class="text-[11px] uppercase tracking-[.2em] text-white/75 hover:text-gold transition-colors font-medium">Programa</a>
         <a href="#bienestar" class="text-[11px] uppercase tracking-[.2em] text-white/75 hover:text-gold transition-colors font-medium">Bienestar</a>
         <a href="#precio"    class="text-[11px] uppercase tracking-[.2em] text-white/75 hover:text-gold transition-colors font-medium">Inversión</a>
-        <a href="#registro"  class="px-8 py-3 bg-gold text-ink rounded-full text-[11px] uppercase tracking-[.2em] font-bold hover:bg-gold-lt transition-colors shadow-lg">
-            Inscripción
-        </a>
+        <a href="#registro"  class="px-8 py-3 bg-gold text-ink rounded-full text-[11px] uppercase tracking-[.2em] font-bold hover:bg-gold-lt transition-colors shadow-lg">Inscripción</a>
     </div>
-
     <button id="ham" class="lg:hidden text-gold focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
@@ -370,30 +220,15 @@
             <div class="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/15 to-ink/85" aria-hidden="true"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-blue/10 via-transparent to-red/6" aria-hidden="true"></div>
         </div>
-
         <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-            <div class="hero-a mb-8">
-                <span class="hero-tag">
-                    <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
-                    Inmersión Total · Vichy & París · Francia
-                </span>
-            </div>
-            <h2 class="hero-a lux font-light text-white leading-none mb-6" style="font-size:clamp(3.2rem,9.5vw,7.5rem)">
-                Habla francés.<br><em class="text-gold italic">Conquista el mundo.</em>
-            </h2>
-            <p class="hero-a text-white/55 font-light text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-                El programa de inmersión más exclusivo de la región.<br>Para estudiantes La Salle que sueñan sin fronteras.
-            </p>
+            <div class="hero-a mb-8"><span class="hero-tag"><span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>Inmersión Total · Vichy & París · Francia</span></div>
+            <h2 class="hero-a lux font-light text-white leading-none mb-6" style="font-size:clamp(3.2rem,9.5vw,7.5rem)">Habla francés.<br><em class="text-gold italic">Conquista el mundo.</em></h2>
+            <p class="hero-a text-white/55 font-light text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed">El programa de inmersión más exclusivo de la región.<br>Para estudiantes La Salle que sueñan sin fronteras.</p>
             <div class="hero-a flex flex-wrap items-center justify-center gap-4">
-                <a href="#dossier" class="px-10 py-4 bg-gold text-ink rounded-full font-semibold text-sm uppercase tracking-[.15em] hover:bg-gold-lt transition-all duration-500 shadow-[0_0_45px_rgba(201,168,76,.3)]">
-                    Descubrir el Programa
-                </a>
-                <a href="#registro" class="px-10 py-4 border border-white/25 text-white rounded-full font-semibold text-sm uppercase tracking-[.15em] hover:border-gold hover:text-gold transition-all duration-500 backdrop-blur-sm">
-                    Registrar mi Interés
-                </a>
+                <a href="#dossier" class="px-10 py-4 bg-gold text-ink rounded-full font-semibold text-sm uppercase tracking-[.15em] hover:bg-gold-lt transition-all duration-500 shadow-[0_0_45px_rgba(201,168,76,.3)]">Descubrir el Programa</a>
+                <a href="#registro" class="px-10 py-4 border border-white/25 text-white rounded-full font-semibold text-sm uppercase tracking-[.15em] hover:border-gold hover:text-gold transition-all duration-500 backdrop-blur-sm">Registrar mi Interés</a>
             </div>
         </div>
-
         <div class="hero-a absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10">
             <span class="text-[9px] uppercase tracking-[.45em] text-white/45 font-semibold">Explorar</span>
             <div class="w-px h-14 bg-gradient-to-b from-gold/50 to-transparent"></div>
@@ -411,9 +246,7 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="sr text-center mb-14">
                 <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Material Institucional</p>
-                <h2 class="lux font-light text-white" style="font-size:clamp(2.5rem,5vw,4.5rem)">
-                    Dossier <em class="text-gold italic">Interactivo</em>
-                </h2>
+                <h2 class="lux font-light text-white" style="font-size:clamp(2.5rem,5vw,4.5rem)">Dossier <em class="text-gold italic">Interactivo</em></h2>
                 <div class="gold-line mt-6 mx-auto"></div>
             </div>
             <div class="sr dossier-frame mb-12">
@@ -450,10 +283,8 @@
     <section id="programa" class="sp bg-ink-mid">
         <div class="max-w-7xl mx-auto px-6">
             <div class="sr text-center mb-20">
-                <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">El Programa Detallado</p>
-                <h2 class="lux font-light text-white" style="font-size:clamp(2.5rem,5.5vw,5rem)">
-                    Una suma de <em class="text-gold italic">experiencias únicas</em>
-                </h2>
+                <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">El Programa Oficial</p>
+                <h2 class="lux font-light text-white" style="font-size:clamp(2.5rem,5.5vw,5rem)">Una suma de <em class="text-gold italic">experiencias únicas</em></h2>
                 <div class="gold-line mt-8 mx-auto"></div>
             </div>
             <div class="sr flex flex-wrap justify-center gap-3 mb-14">
@@ -490,7 +321,7 @@
                     <ul class="text-white/60 text-sm space-y-3 leading-relaxed relative z-10">
                         <li class="flex items-start gap-3"><span class="text-gold mt-0.5 flex-shrink-0">✦</span>Senderismo en la cadena volcánica: <strong class="text-white/80">Puy de Dôme</strong>.</li>
                         <li class="flex items-start gap-3"><span class="text-gold mt-0.5 flex-shrink-0">✦</span>Viaje en el tiempo por el pueblo medieval de <strong class="text-white/80">Charroux</strong>.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-0.5 flex-shrink-0">✦</span>Casco histórico de <strong class="text-white/80">Clermont-Ferrand</strong> en piedra volcánica.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-0.5 flex-shrink-0">✦</span>Casco histórico de <strong class="text-white/80">Clermont-Ferrand</strong> en piedra volcánica negra.</li>
                     </ul>
                 </div>
                 <div class="sr prog-card" style="background:linear-gradient(135deg,rgba(237,41,57,.04),rgba(0,35,149,.08));border-color:rgba(237,41,57,.14)">
@@ -514,19 +345,19 @@
                 <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Alojamiento & Seguridad</p>
                 <h2 class="lux font-light text-white" style="font-size:clamp(2.5rem,5.5vw,5rem)">Tu segundo hogar <em class="text-gold italic">en Francia</em></h2>
                 <div class="gold-line mt-8 mx-auto"></div>
-                <p class="text-white/45 text-sm max-w-2xl mx-auto mt-6 leading-relaxed font-light">Cada estudiante es acogido por una familia francesa certificada por CAVILAM, con los más altos estándares de seguridad y hospitalidad auténtica.</p>
+                <p class="text-white/45 text-sm max-w-2xl mx-auto mt-6 leading-relaxed font-light">Cada estudiante es acogido por una familia francesa certificada por CAVILAM, seleccionada con los más altos estándares de seguridad, comodidad y hospitalidad auténtica.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-6 mb-16">
                 <div class="sr bg-ink-mid rounded-[24px] overflow-hidden border border-white/5 hover:border-gold/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata"><source src="video_famille_1.mp4" type="video/mp4"></video></div>
+                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata" aria-label="Familia Sylvie Bertrand"><source src="video_famille_1.mp4" type="video/mp4"></video></div>
                     <div class="p-6 text-center"><h3 class="lux text-2xl font-semibold">Sylvie Bertrand</h3><p class="text-[10px] text-gold uppercase tracking-widest mt-1.5 font-semibold">Familia Certificada</p></div>
                 </div>
                 <div class="sr bg-ink-mid rounded-[24px] overflow-hidden border border-white/5 hover:border-gold/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata"><source src="video_famille_2.mp4" type="video/mp4"></video></div>
+                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata" aria-label="Familia Nadine et Philippe"><source src="video_famille_2.mp4" type="video/mp4"></video></div>
                     <div class="p-6 text-center"><h3 class="lux text-2xl font-semibold">Nadine et Philippe</h3><p class="text-[10px] text-gold uppercase tracking-widest mt-1.5 font-semibold">Entorno Seguro</p></div>
                 </div>
                 <div class="sr bg-ink-mid rounded-[24px] overflow-hidden border border-white/5 hover:border-gold/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata"><source src="video_famille_3.mp4" type="video/mp4"></video></div>
+                    <div class="vbox rounded-none border-none shadow-none"><video controls playsinline preload="metadata" aria-label="Familia Gwendoline Laurent"><source src="video_famille_3.mp4" type="video/mp4"></video></div>
                     <div class="p-6 text-center"><h3 class="lux text-2xl font-semibold">Gwendoline Laurent</h3><p class="text-[10px] text-gold uppercase tracking-widest mt-1.5 font-semibold">Hospitalidad Total</p></div>
                 </div>
             </div>
@@ -542,7 +373,7 @@
         <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
             <div class="sr-l">
                 <div class="vbox shadow-2xl border border-gold/15">
-                    <video controls playsinline preload="metadata">
+                    <video controls playsinline preload="metadata" aria-label="Testimonio de Regina, alumna CAVILAM">
                         <source src="video_regina.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -558,7 +389,7 @@
         </div>
     </section>
 
-    <section id="precio" class="sp bg-ink-mid text-center border-t border-white/5">
+    <section id="precio" class="sp bg-ink border-t border-white/5 text-center">
         <div class="max-w-4xl mx-auto px-6">
             <div class="sr mb-14">
                 <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Inversión en el Futuro</p>
@@ -585,7 +416,7 @@
         </div>
     </section>
 
-    <section class="py-20 bg-ink text-center">
+    <section class="py-20 bg-ink-mid text-center">
         <div class="max-w-3xl mx-auto px-6">
             <div class="sr">
                 <div class="tricolor w-12 mx-auto mb-10 opacity-50" aria-hidden="true"></div>
@@ -601,3 +432,252 @@
 
     <section id="registro" class="sp" style="background:var(--cream)">
         <div class="max-w-5xl mx-auto px-6">
+            <div class="sr text-center mb-14">
+                <p class="text-blue text-[11px] uppercase tracking-[.4em] font-bold mb-4">Asegura tu Plaza</p>
+                <h2 class="lux font-light text-blue mb-4" style="font-size:clamp(2.5rem,6vw,4.5rem)">Registro de <em class="text-gold italic">Interés</em></h2>
+                <p class="text-ink/45 text-base max-w-xl mx-auto font-light leading-relaxed">Completa el formulario oficial. La Dirección gestionará tu perfilamiento y confirmará tu lugar en el programa.</p>
+            </div>
+
+            <div class="sr bg-white p-10 md:p-16 rounded-[36px] border border-slate-200 shadow-2xl max-w-4xl mx-auto">
+                
+                <div id="gracias" style="display:none;" class="mb-10 p-8 bg-green-50 border border-green-200 rounded-3xl text-center">
+                    <p class="text-4xl mb-4">✨</p>
+                    <h3 class="lux text-3xl text-green-900 mb-2 font-bold">¡Solicitud Recibida con Éxito!</h3>
+                    <p class="text-green-800 text-sm">La Dirección de la Alliance Française ha recibido su perfil. Nos pondremos en contacto a la brevedad.</p>
+                </div>
+
+                <form id="formulario" action="https://api.web3forms.com/submit" method="POST" class="space-y-8">
+                    <input type="hidden" name="access_key"  value="205de288-1f78-4a3c-97d4-ae2950da7e82">
+                    <input type="hidden" name="subject"     value="NUEVO REGISTRO: Vichy 2026 La Salle">
+                    <input type="hidden" name="from_name"   value="Portal Institucional Vichy 2026">
+                    <input type="hidden" name="redirect"    value="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/#gracias">
+
+                    <fieldset>
+                        <legend class="text-[10px] uppercase tracking-[.25em] text-blue font-bold mb-6 border-b border-slate-200 w-full pb-2">Perfil del Estudiante</legend>
+                        <div class="grid md:grid-cols-2 gap-5 mb-5">
+                            <input type="text" name="Nombre_Estudiante" placeholder="Nombre Completo del Estudiante" required class="ff">
+                            <select name="Grado_Estudio" required class="ff"><option value="">Grado de Estudio en La Salle</option><option value="Secundaria">Secundaria</option><option value="Preparatoria">Preparatoria</option></select>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-5 mb-5">
+                            <select name="Nivel_Frances" required class="ff"><option value="">Nivel actual de Francés</option><option value="A1">A1 – Principiante</option><option value="A2">A2 – Elemental</option><option value="B1/B2">Intermedio / Avanzado</option></select>
+                            <select name="Estatus_Pasaporte" required class="ff"><option value="">¿Cuenta con Pasaporte Vigente?</option><option value="Si">Sí, vigente</option><option value="Tramite">En trámite</option><option value="No">No / Requiere renovación</option></select>
+                        </div>
+                        <textarea name="Restricciones_Salud" placeholder="Restricciones médicas o alergias importantes (opcional)..." rows="2" class="ff mb-5"></textarea>
+                        <textarea name="Motivacion_Viaje" placeholder="¿Cuál es el motivo principal por el que deseas realizar este viaje?..." required rows="3" class="ff"></textarea>
+                    </fieldset>
+
+                    <fieldset class="mt-6">
+                        <legend class="text-[10px] uppercase tracking-[.25em] text-blue font-bold mb-6 border-b border-slate-200 w-full pb-2">Datos del Responsable</legend>
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <input type="text" name="Nombre_Tutor" placeholder="Nombre del Padre / Tutor" required class="ff">
+                            <input type="tel"  name="WhatsApp_Contacto" placeholder="Número de WhatsApp (con código de país)" required class="ff">
+                        </div>
+                    </fieldset>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-blue text-white py-5 rounded-2xl lux italic text-2xl uppercase tracking-[.2em] hover:bg-gold hover:text-ink transition-all duration-500 shadow-xl">
+                            Enviar Registro a Dirección
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-20">
+                <div class="sr bg-white p-10 rounded-[28px] border border-slate-200 shadow-lg text-center flex flex-col items-center hover:-translate-y-2 transition-transform duration-300">
+                    <img src="imagen.png" alt="Miguel Tillero A." class="contact-photo mb-5" onerror="this.outerHTML='<div style=&quot;width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#002395,#1a49c8);border:3px solid #C9A84C;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:serif;font-size:2rem;color:#fff;&quot;>MT</div>'">
+                    <h3 class="lux text-2xl font-semibold text-blue">Miguel Tillero A.</h3>
+                    <p class="text-[9px] uppercase tracking-widest text-slate-400 mt-1 font-bold">Director General · AFSC</p>
+                    <a href="tel:+5219671721870" class="mt-4 text-base font-semibold text-gold hover:text-blue transition-colors">+52 1 967 172 1870</a>
+                    <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 px-6 py-2.5 bg-green-600 text-white rounded-full text-xs font-bold hover:bg-green-700 transition-colors">Escribir por WhatsApp</a>
+                </div>
+                <div class="sr bg-white p-10 rounded-[28px] border border-slate-200 shadow-lg text-center flex flex-col items-center hover:-translate-y-2 transition-transform duration-300">
+                    <img src="Román_Fuentes-1024.jpeg" alt="Román Fuentes" class="contact-photo mb-5" onerror="this.outerHTML='<div style=&quot;width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#002395,#1a49c8);border:3px solid #C9A84C;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:serif;font-size:2rem;color:#fff;&quot;>RF</div>'">
+                    <h3 class="lux text-2xl font-semibold text-blue">Román Fuentes</h3>
+                    <p class="text-[9px] uppercase tracking-widest text-slate-400 mt-1 font-bold">Responsable · Colegio La Salle</p>
+                    <a href="tel:+5214731219337" class="mt-4 text-base font-semibold text-gold hover:text-blue transition-colors">+52 1 473 121 9337</a>
+                    <a href="https://wa.me/5214731219337" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 px-6 py-2.5 bg-green-600 text-white rounded-full text-xs font-bold hover:bg-green-700 transition-colors">Escribir por WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-ink border-t border-white/5 py-14">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
+                <div>
+                    <p class="lux text-xl text-gold font-semibold">Vichy 2026</p>
+                    <p class="text-white/22 text-[10px] mt-1">Alliance Française de San Cristóbal · Colegio La Salle · CAVILAM</p>
+                </div>
+                <div class="logo-wrap" style="transform:scale(.74);transform-origin:center">
+                    <img src="logo_af_sc.jpg" class="h-8 logo-fix" onerror="this.style.display='none'" alt="AFSC">
+                    <div class="w-px h-8 bg-gray-300" aria-hidden="true"></div>
+                    <img src="logo-lasalle.png" class="h-8 logo-fix" onerror="this.style.display='none'" alt="La Salle">
+                    <div class="w-px h-8 bg-gray-300" aria-hidden="true"></div>
+                    <img src="logo-cavilam.png" class="h-6 logo-fix" onerror="this.style.display='none'" alt="CAVILAM">
+                </div>
+            </div>
+            <div class="tricolor w-full mb-6 opacity-25"></div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 text-center">
+                <p class="text-white/18 text-[9px] uppercase tracking-[.3em] font-semibold">© 2026 Alliance Française de San Cristóbal de Las Casas · Todos los derechos reservados.</p>
+                <p class="text-white/18 text-[9px] uppercase tracking-[.2em]">Av. La Almolonga 80, Barrio Santa Lucía · San Cristóbal de Las Casas, Chiapas</p>
+            </div>
+        </div>
+    </footer>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* ── PARTICULAS Y ANIMACIÓN INTRO ─────────────────────── */
+    const pc = document.getElementById('ptcl');
+    for (let i = 0; i < 60; i++) {
+        const p = document.createElement('div');
+        p.className = 'ptcl';
+        const size = .8 + Math.random() * 2.4;
+        p.style.width = size + 'px'; p.style.height = size + 'px';
+        p.style.left  = (Math.random() * 100) + 'vw'; p.style.top   = (30 + Math.random() * 60) + 'vh';
+        p.style.setProperty('--d',  (7 + Math.random() * 12) + 's'); p.style.setProperty('--dl', (Math.random() * 10) + 's');
+        p.style.setProperty('--t',  (80 + Math.random() * 320) + 'px');
+        if (Math.random() > .55) { p.style.background = '#ffffff'; p.style.opacity = '.08'; }
+        pc.appendChild(p);
+    }
+
+    const introInner = document.getElementById('intro-inner');
+    const startBtn   = document.getElementById('start-btn');
+    const introNote  = document.getElementById('intro-note');
+
+    if(typeof gsap !== 'undefined') {
+        gsap.to(introInner, { opacity: 1, y: 0, duration: 1.4, ease: 'expo.out', delay: .25 });
+        gsap.to('#h-top',    { opacity: 1, scaleX: 1, duration: 1.4, ease: 'power2.out', delay: .9 });
+        gsap.to('#h-bottom', { opacity: 1, scaleX: 1, duration: 1.4, ease: 'power2.out', delay: 1.1 });
+        gsap.to(startBtn,    { opacity: 1, duration: .9, ease: 'power2.out', delay: 1.5 });
+        gsap.to(introNote,   { opacity: 1, duration: .9, ease: 'power2.out', delay: 2.0 });
+    }
+
+    /* ── AUDIO Y BOTÓN FLOTANTE ──────────────────────────── */
+    const music   = document.getElementById('bg-music');
+    const audioBtn = document.getElementById('audio-btn');
+    const icoPlay = document.getElementById('ico-play');
+    const icoPause= document.getElementById('ico-pause');
+    let playing = false;
+
+    audioBtn.addEventListener('click', () => {
+        if (playing) {
+            music.pause(); playing = false;
+            icoPause.classList.add('hidden'); icoPlay.classList.remove('hidden');
+        } else {
+            music.play().catch(() => {}); playing = true;
+            icoPlay.classList.add('hidden'); icoPause.classList.remove('hidden');
+        }
+    });
+
+    /* AUTO-DUCKING DE AUDIO PARA VIDEOS */
+    const allVideos = document.querySelectorAll('video:not(#hero-vid)');
+    allVideos.forEach(vid => {
+        vid.addEventListener('play', () => {
+            if (playing) { music.pause(); icoPause.classList.add('hidden'); icoPlay.classList.remove('hidden'); }
+        });
+        vid.addEventListener('pause', () => {
+            if (playing) { music.play().catch(()=>{}); icoPlay.classList.add('hidden'); icoPause.classList.remove('hidden'); }
+        });
+        vid.addEventListener('ended', () => {
+            if (playing) { music.play().catch(()=>{}); icoPlay.classList.add('hidden'); icoPause.classList.remove('hidden'); }
+        });
+    });
+
+    /* ── INGRESAR AL PORTAL ──────────────────────────────── */
+    startBtn.addEventListener('click', () => {
+        music.volume = 0.22;
+        music.play().then(() => { playing = true; audioBtn.classList.add('show'); }).catch(() => {});
+
+        const intro = document.getElementById('intro');
+        const main  = document.getElementById('main');
+
+        if(typeof gsap !== 'undefined') {
+            gsap.to(intro, {
+                opacity: 0, duration: 1.2, ease: 'power3.inOut',
+                onComplete: () => {
+                    intro.style.display = 'none';
+                    main.classList.add('visible');
+
+                    requestAnimationFrame(() => requestAnimationFrame(() => {
+                        const vid = document.getElementById('hero-vid');
+                        if (vid) vid.play().catch(() => {});
+
+                        gsap.to('.hero-a', { opacity: 1, y: 0, duration: 1.2, stagger: .18, ease: 'power4.out' });
+                        audioBtn.classList.add('show');
+                        initScroll();
+                    }));
+                }
+            });
+        } else {
+            intro.style.display = 'none';
+            main.classList.add('visible');
+            audioBtn.classList.add('show');
+        }
+    });
+
+    /* ── MENÚ Y SCROLL ───────────────────────────────────── */
+    window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+
+    const mm  = document.getElementById('mmenu');
+    const ham = document.getElementById('ham');
+    ham.addEventListener('click', () => { mm.classList.add('open'); ham.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; });
+    const closeMM = () => { mm.classList.remove('open'); ham.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; };
+    document.getElementById('mclose').addEventListener('click', closeMM);
+    document.querySelectorAll('.mlink').forEach(l => l.addEventListener('click', closeMM));
+
+    function initScroll() {
+        if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.sr').forEach(el => { gsap.to(el, { opacity: 1, y: 0, duration: 1.2, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } }); });
+        gsap.utils.toArray('.sr-l').forEach(el => { gsap.to(el, { opacity: 1, x: 0, duration: 1.2, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } }); });
+        gsap.utils.toArray('.sr-r').forEach(el => { gsap.to(el, { opacity: 1, x: 0, duration: 1.2, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } }); });
+        document.querySelectorAll('.stat-n[data-target]').forEach(el => {
+            const target = parseInt(el.dataset.target, 10);
+            ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => { gsap.to({ v: 0 }, { v: target, duration: 2, ease: 'power2.out', onUpdate: function () { el.textContent = Math.round(this.targets()[0].v); } }); } });
+        });
+    }
+
+    /* ── SISTEMA DE RECEPCIÓN DE FORMULARIO (#gracias) Y GOOGLE SHEETS ── */
+    const GOOGLE_SCRIPT_URL = "PEGA_AQUI_TU_URL"; // <-- Reemplazar cuando se tenga el enlace de Google Sheets
+
+    function mostrarMensaje() {
+        const msgGracias = document.getElementById("gracias");
+        const formRegistro = document.getElementById("formulario");
+        if (msgGracias) {
+            msgGracias.style.display = "block";
+            if (formRegistro) formRegistro.style.display = "none"; 
+            setTimeout(() => { window.scrollTo({ top: msgGracias.offsetTop - 120, behavior: "smooth" }); }, 800); 
+        }
+    }
+
+    if (window.location.hash === "#gracias") { mostrarMensaje(); }
+
+    const formEl = document.getElementById("formulario");
+    if (formEl) {
+        formEl.addEventListener("submit", function() {
+            try {
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        Estudiante: formEl.Nombre_Estudiante.value,
+                        Grado: formEl.Grado_Estudio.value,
+                        Nivel_Frances: formEl.Nivel_Frances.value,
+                        Pasaporte: formEl.Estatus_Pasaporte.value,
+                        Restricciones_Salud: formEl.Restricciones_Salud.value,
+                        Motivacion_Viaje: formEl.Motivacion_Viaje.value,
+                        Tutor: formEl.Nombre_Tutor.value,
+                        WhatsApp: formEl.WhatsApp_Contacto.value
+                    })
+                });
+            } catch(e) { console.log("Sincronización en segundo plano inactiva."); }
+            setTimeout(mostrarMensaje, 1500);
+        });
+    }
+
+});
+</script>
+</body>
+</html>
