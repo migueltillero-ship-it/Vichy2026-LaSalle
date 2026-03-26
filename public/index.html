@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#07070A">
     
     <title>Inmersión Lingüística Vichy 2026 | La Salle & Alliance Française</title>
     <meta name="description" content="Programa exclusivo de inmersión lingüística en Francia para estudiantes La Salle. Excelencia académica con CAVILAM Alliance Française.">
@@ -102,14 +104,14 @@
             <h1 class="luxury-title text-4xl md:text-6xl text-white">Vichy 2026</h1>
             <p class="text-af-gold text-xs md:text-sm uppercase tracking-[0.4em] font-bold">Un Voyage d'Excellence</p>
         </div>
-        <button id="start-btn" class="mt-8 px-14 py-5 bg-transparent border-2 border-af-gold text-af-gold rounded-full font-display italic text-2xl hover:bg-af-gold hover:text-slate-dark transition-all duration-700 tracking-wider shadow-[0_0_40px_rgba(201,168,76,0.15)] focus:outline-none">
+        <button id="start-btn" aria-label="Ingresar al portal" class="mt-8 px-14 py-5 bg-transparent border-2 border-af-gold text-af-gold rounded-full font-display italic text-2xl hover:bg-af-gold hover:text-slate-dark transition-all duration-700 tracking-wider shadow-[0_0_40px_rgba(201,168,76,0.15)] focus:outline-none">
             Ingresar al Portal
         </button>
     </div>
 </div>
 
-<nav id="site-nav" class="fixed top-0 w-full z-50 px-6 md:px-12 py-5 flex justify-between items-center">
-    <a href="#" class="flex flex-col">
+<nav id="site-nav" class="fixed top-0 w-full z-50 px-6 md:px-12 py-5 flex justify-between items-center" aria-label="Navegación Principal">
+    <a href="#" class="flex flex-col" aria-label="Volver al inicio">
         <span class="text-af-gold font-display text-2xl tracking-wider">Vichy 2026</span>
         <span class="text-[9px] uppercase tracking-[0.4em] text-white/60 font-bold mt-1">La Salle & Alliance Française</span>
     </a>
@@ -121,13 +123,13 @@
         <a href="#registro" class="px-8 py-3 bg-af-gold text-slate-dark rounded-full text-xs uppercase tracking-[0.2em] font-bold hover:bg-white transition-colors shadow-lg">Inscripción</a>
     </div>
 
-    <button id="mobile-menu-btn" class="lg:hidden text-af-gold focus:outline-none">
+    <button id="mobile-menu-btn" class="lg:hidden text-af-gold focus:outline-none" aria-label="Abrir Menú">
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
     </button>
 </nav>
 
-<div id="mobile-menu" class="fixed inset-0 bg-slate-dark/98 z-[60] flex flex-col items-center justify-center gap-10 translate-x-full transition-transform duration-500">
-    <button id="close-menu-btn" class="absolute top-6 right-6 text-white/50 hover:text-af-gold text-5xl">&times;</button>
+<div id="mobile-menu" class="fixed inset-0 bg-slate-dark/98 z-[60] flex flex-col items-center justify-center gap-10 translate-x-full transition-transform duration-500" aria-hidden="true">
+    <button id="close-menu-btn" class="absolute top-6 right-6 text-white/50 hover:text-af-gold text-5xl" aria-label="Cerrar Menú">&times;</button>
     <a href="#programa" class="mob-link luxury-title text-4xl text-white">Programa</a>
     <a href="#bienestar" class="mob-link luxury-title text-4xl text-white">Bienestar</a>
     <a href="#dossier" class="mob-link luxury-title text-4xl text-white">Dossier</a>
@@ -135,11 +137,11 @@
     <a href="#registro" class="mob-link px-12 py-4 bg-af-gold text-slate-dark rounded-full text-sm uppercase tracking-widest font-bold">Inscripción</a>
 </div>
 
-<main id="main-content" style="opacity: 0; transition: opacity 1.5s ease;">
+<main id="main-content" style="opacity: 0; display: none;">
 
     <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
         <div class="absolute inset-0 z-0">
-            <video id="hero-video" class="w-full h-full object-cover opacity-80 mix-blend-screen" playsinline muted loop preload="auto" style="background-color: #07070A;">
+            <video id="hero-video" class="w-full h-full object-cover opacity-80 mix-blend-screen" playsinline autoplay muted loop preload="auto" style="background-color: #07070A;">
                 <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-b from-slate-dark/90 via-transparent to-slate-dark/90 pointer-events-none"></div>
@@ -165,6 +167,7 @@
             <div class="sr mb-20 text-center">
                 <p class="text-af-gold text-sm uppercase tracking-[0.4em] font-bold mb-4">El Itinerario Oficial</p>
                 <h2 class="luxury-title text-5xl md:text-7xl font-bold">Un abanico de <br><span class="text-white/50">Experiencias Únicas</span></h2>
+                <p class="mt-8 text-lg text-white/60 font-light max-w-3xl mx-auto">Mucho más que un curso de idiomas. El programa ha sido meticulosamente diseñado para abarcar el arte, la historia, la gastronomía y la aventura europea.</p>
                 <div class="gold-rule mt-10 mx-auto"></div>
             </div>
 
@@ -186,6 +189,7 @@
                     <h3 class="luxury-title text-3xl mb-4 text-white">El Arte de Vivir a la Francesa</h3>
                     <ul class="text-white/70 leading-relaxed text-sm space-y-3">
                         <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Taller interactivo de repostería y gastronomía local.</li>
+                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Tardes de deporte tradicional: Torneos de Petanca.</li>
                         <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Exploración de la capital gastronómica mundial: <strong>Lyon</strong>.</li>
                     </ul>
                 </div>
@@ -197,7 +201,7 @@
                     <ul class="text-white/70 leading-relaxed text-sm space-y-3">
                         <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Senderismo en la cadena de volcanes: <strong>Puy de Dôme</strong>.</li>
                         <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Viaje en el tiempo por el pueblo medieval de <strong>Charroux</strong>.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Visita al histórico casco antiguo de <strong>Clermont-Ferrand</strong>.</li>
+                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Visita al imponente casco histórico de <strong>Clermont-Ferrand</strong>.</li>
                     </ul>
                 </div>
 
@@ -207,7 +211,7 @@
                     <h3 class="luxury-title text-3xl mb-4 text-white">La Magia de París</h3>
                     <ul class="text-white/80 leading-relaxed text-sm space-y-3">
                         <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Traslado en tren bala (TGV) y 4 noches de hotel céntrico.</li>
-                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Visita a la <strong>Torre Eiffel</strong>, <strong>Louvre</strong> y crucero por el Sena.</li>
+                        <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Visita a la <strong>Torre Eiffel</strong>, <strong>Museo del Louvre</strong> y crucero por el Río Sena.</li>
                         <li class="flex items-start gap-3"><span class="text-af-gold">✦</span> Día completo de diversión en <strong>Disneyland París</strong>.</li>
                     </ul>
                 </div>
@@ -223,15 +227,15 @@
             </div>
             <div class="grid md:grid-cols-3 gap-10 sr">
                 <div class="bg-slate-dark rounded-3xl overflow-hidden border border-white/5 hover:border-af-gold/50 transition-all">
-                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy"><source src="video_famille_1.mp4" type="video/mp4"></video></div>
+                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy" aria-label="Testimonio Sylvie Bertrand"><source src="video_famille_1.mp4" type="video/mp4"></video></div>
                     <div class="p-8 text-center"><h3 class="font-display text-2xl font-bold">Sylvie Bertrand</h3><p class="text-xs text-af-gold uppercase tracking-widest mt-3 font-bold">Familia Certificada</p></div>
                 </div>
                 <div class="bg-slate-dark rounded-3xl overflow-hidden border border-white/5 hover:border-af-gold/50 transition-all">
-                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy"><source src="video_famille_2.mp4" type="video/mp4"></video></div>
+                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy" aria-label="Testimonio Nadine et Philippe"><source src="video_famille_2.mp4" type="video/mp4"></video></div>
                     <div class="p-8 text-center"><h3 class="font-display text-2xl font-bold">Nadine et Philippe</h3><p class="text-xs text-af-gold uppercase tracking-widest mt-3 font-bold">Entorno Seguro</p></div>
                 </div>
                 <div class="bg-slate-dark rounded-3xl overflow-hidden border border-white/5 hover:border-af-gold/50 transition-all">
-                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy"><source src="video_famille_3.mp4" type="video/mp4"></video></div>
+                    <div class="video-box rounded-none border-none"><video controls playsinline preload="metadata" loading="lazy" aria-label="Testimonio Gwendoline Laurent"><source src="video_famille_3.mp4" type="video/mp4"></video></div>
                     <div class="p-8 text-center"><h3 class="font-display text-2xl font-bold">Gwendoline Laurent</h3><p class="text-xs text-af-gold uppercase tracking-widest mt-3 font-bold">Hospitalidad Total</p></div>
                 </div>
             </div>
@@ -242,7 +246,7 @@
         <div class="max-w-6xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
             <div class="sr">
                 <div class="video-box shadow-2xl border border-af-gold/20">
-                    <video controls playsinline preload="metadata" loading="lazy"><source src="video_regina.mp4" type="video/mp4"></video>
+                    <video controls playsinline preload="metadata" loading="lazy" aria-label="Testimonio de la estudiante Regina"><source src="video_regina.mp4" type="video/mp4"></video>
                 </div>
             </div>
             <div class="sr">
@@ -260,11 +264,11 @@
         <div class="max-w-6xl mx-auto px-8 text-center sr">
             <h2 class="luxury-title text-5xl mb-12">Dossier <span class="text-af-gold italic">Interactivo</span></h2>
             <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%; padding-bottom: 0; box-shadow: 0 20px 60px rgba(0,0,0,0.6); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);">
-                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen" title="Dossier Vichy 2026"></iframe>
+                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen" title="Dossier Interactivo Vichy 2026"></iframe>
             </div>
             <div class="mt-16 flex justify-center">
                 <a href="Vichy_2026_La_Salle.pptx" download class="px-12 py-5 border-2 border-af-gold text-af-gold rounded-full hover:bg-af-gold hover:text-black transition-all duration-500 font-bold uppercase text-xs tracking-[0.2em] shadow-[0_0_20px_rgba(201,168,76,0.2)]">
-                    Descargar Dossier (PPTX)
+                    Descargar Dossier Institucional (PPTX)
                 </a>
             </div>
         </div>
@@ -301,10 +305,11 @@
                     <input type="hidden" name="subject" value="NUEVO REGISTRO: Vichy 2026 La Salle">
                     <input type="hidden" name="from_name" value="Portal Institucional Vichy 2026">
                     <input type="hidden" name="redirect" value="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
+                    <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
                     
                     <fieldset><legend class="text-sm uppercase tracking-[0.2em] text-af-blue font-bold mb-6 border-b border-slate-200 w-full pb-2">Perfil del Estudiante</legend>
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <input type="text" name="Nombre_Estudiante" placeholder="Nombre Completo del Estudiante" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}" title="Solo se permiten letras" required class="form-field">
+                            <input type="text" name="Nombre_Estudiante" placeholder="Nombre Completo del Estudiante" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}" title="Solo se permiten letras y espacios" autocomplete="name" required class="form-field">
                             <select name="Grado_Estudio" required class="form-field"><option value="">Grado de Estudio en La Salle</option><option value="Secundaria">Secundaria</option><option value="Preparatoria">Preparatoria</option></select>
                         </div>
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
@@ -317,112 +322,5 @@
 
                     <fieldset class="mt-10"><legend class="text-sm uppercase tracking-[0.2em] text-af-blue font-bold mb-6 border-b border-slate-200 w-full pb-2">Datos del Responsable</legend>
                         <div class="grid md:grid-cols-2 gap-6">
-                            <input type="text" name="Nombre_Tutor" placeholder="Nombre del Padre o Tutor" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}" title="Solo se permiten letras" required class="form-field">
-                            <input type="tel" name="WhatsApp_Contacto" placeholder="Número de WhatsApp" pattern="[0-9\+\-\s]{10,20}" title="Debe ser un número de teléfono válido" required class="form-field">
-                        </div>
-                    </fieldset>
-
-                    <div class="pt-6">
-                        <button type="submit" class="w-full bg-af-blue text-white py-6 rounded-2xl font-display italic text-2xl hover:bg-af-gold hover:text-slate-dark transition-all duration-500 shadow-xl uppercase tracking-[0.2em]">Enviar Registro a Dirección</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto mt-24 sr">
-                <div class="bg-white p-10 rounded-[32px] border border-slate-200 shadow-lg text-center flex flex-col items-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="qr-box mb-8"><img src="imagen.png" alt="QR Miguel Tillero" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
-                    <h3 class="font-display text-3xl font-bold text-af-blue">Miguel Tillero A.</h3>
-                    <p class="text-xs uppercase tracking-[0.2em] text-slate-500 mt-2 font-bold">Director General AFSC</p>
-                    <a href="https://wa.me/5219671721870" class="mt-6 text-lg font-bold text-af-gold hover:text-af-blue transition-colors">+52 1 967 172 1870</a>
-                </div>
-                <div class="bg-white p-10 rounded-[32px] border border-slate-200 shadow-lg text-center flex flex-col items-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="qr-box mb-8"><img src="Román_Fuentes-1024.jpeg" alt="QR Román Fuentes" loading="lazy" onerror="this.parentElement.style.display='none'" style="object-fit: cover;"></div>
-                    <h3 class="font-display text-3xl font-bold text-af-blue">Román Fuentes</h3>
-                    <p class="text-xs uppercase tracking-[0.2em] text-slate-500 mt-2 font-bold">Responsable La Salle</p>
-                    <a href="https://wa.me/5214731219337" class="mt-6 text-lg font-bold text-af-gold hover:text-af-blue transition-colors">+52 1 473 121 9337</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-slate-dark border-t border-white/10 py-16">
-        <div class="max-w-6xl mx-auto px-8 text-center flex flex-col items-center">
-            <div class="logo-container bg-white px-8 py-4 scale-75 mb-8">
-                <img src="logo_af_sc.jpg" class="h-10 logo-fix" loading="lazy" alt="AFSC"><div class="w-px h-10 bg-slate-300"></div><img src="logo-lasalle.png" class="h-10 logo-fix" loading="lazy" alt="La Salle"><div class="w-px h-10 bg-slate-300"></div><img src="logo-cavilam.png" class="h-8 logo-fix" loading="lazy" alt="CAVILAM">
-            </div>
-            <p class="text-white/30 text-xs uppercase tracking-[0.3em] font-bold">© 2026 Alliance Française de San Cristóbal de Las Casas. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-</main>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const music = document.getElementById('bg-music');
-    const audioBtn = document.getElementById('audio-control');
-    const iconPlay = document.getElementById('icon-play');
-    const iconPause = document.getElementById('icon-pause');
-    let isPlaying = false;
-
-    audioBtn.addEventListener('click', () => {
-        if (isPlaying) { music.pause(); iconPause.classList.add('hidden'); iconPlay.classList.remove('hidden'); } 
-        else { music.play(); iconPlay.classList.add('hidden'); iconPause.classList.remove('hidden'); }
-        isPlaying = !isPlaying;
-    });
-
-    const mobBtn = document.getElementById('mobile-menu-btn');
-    const mobMenu = document.getElementById('mobile-menu');
-    const mobClose = document.getElementById('close-menu-btn');
-    const mobLinks = document.querySelectorAll('.mob-link');
-
-    mobBtn.addEventListener('click', () => mobMenu.classList.remove('translate-x-full'));
-    mobClose.addEventListener('click', () => mobMenu.classList.add('translate-x-full'));
-    mobLinks.forEach(link => link.addEventListener('click', () => mobMenu.classList.add('translate-x-full')));
-
-    document.getElementById('start-btn').addEventListener('click', () => {
-        music.volume = 0.25;
-        music.play().then(() => { isPlaying = true; audioBtn.classList.add('visible'); }).catch(e => console.log("Audio pendiente de interacción de usuario."));
-
-        const overlay = document.getElementById('intro-overlay');
-        const main = document.getElementById('main-content');
-        
-        overlay.style.transition = "opacity 0.8s ease";
-        overlay.style.opacity = "0";
-        
-        setTimeout(() => {
-            overlay.style.display = 'none';
-            main.style.display = 'block';
-            
-            requestAnimationFrame(() => {
-                main.style.opacity = "1";
-                const heroVid = document.getElementById('hero-video');
-                if(heroVid) heroVid.play().catch(e => console.log(e));
-
-                if(typeof gsap !== 'undefined') {
-                    gsap.to(".hero-elem", { opacity: 1, y: 0, duration: 1.2, stagger: 0.2, ease: "power4.out" });
-                    initScrollAnimations();
-                } else {
-                    document.querySelectorAll('.sr, .hero-elem').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
-                }
-            });
-        }, 800);
-    });
-
-    window.addEventListener('scroll', () => {
-        const nav = document.getElementById('site-nav');
-        if (window.scrollY > 80) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-    });
-
-    function initScrollAnimations() {
-        if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-            gsap.utils.toArray('.sr').forEach(el => { 
-                gsap.to(el, { opacity: 1, y: 0, duration: 1.5, ease: "power4.out", scrollTrigger: { trigger: el, start: "top 85%", once: true } }); 
-            });
-        }
-    }
-});
-</script>
-</body>
-</html>
+                            <input type="text" name="Nombre_Tutor" placeholder="Nombre del Padre o Tutor" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}" title="Solo se permiten letras" autocomplete="name" required class="form-field">
+                            <input type="tel" name="WhatsApp_Contacto" placeholder="Número de WhatsApp" pattern="[0-9\+\-\
