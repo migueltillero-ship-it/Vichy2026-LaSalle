@@ -252,26 +252,6 @@
         .campus-frame:hover { transform:scale(1.02); }
         .campus-frame img { width:100%; height:auto; object-fit:cover; display:block; }
 
-        /* Loader para videos de familias */
-        .video-loader {
-            position: absolute; inset: 0; z-index: 3;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 10px; background: rgba(7,7,10,.85);
-            transition: opacity .4s ease;
-        }
-        .video-loader.hide { opacity: 0; pointer-events: none; }
-        .vl-spin {
-            width: 32px; height: 32px;
-            border: 2px solid rgba(201,168,76,.2);
-            border-top-color: var(--gold);
-            border-radius: 50%;
-            animation: spin .8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .video-loader span {
-            font-size: 9px; text-transform: uppercase; letter-spacing: .15em;
-            color: rgba(255,255,255,.35); font-family: 'Outfit', sans-serif;
-        }
     </style>
 </head>
 <body>
@@ -410,7 +390,8 @@
                     <img src="IMG-20260224-WA0062.jpg"
                          alt="Firma oficial del convenio entre Colegio La Salle y Alliance Française de San Cristóbal"
                          loading="lazy"
-                         onerror="this.parentElement.innerHTML='<div style=\'width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#0F0F14,#002395,#1A1A24);border-radius:28px;display:flex;align-items:center;justify-content:center;\'><p style=\'color:rgba(201,168,76,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;\'>Firma del Convenio Institucional</p></div>'">
+                         style="width:100%;height:auto;display:block;"
+                         onerror="this.onerror=null;this.src='https://placehold.co/900x600/0F0F14/C9A84C?text=Firma+del+Convenio+Institucional&font=playfair-display'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
                 </div>
             </div>
@@ -552,21 +533,14 @@
                 <div class="gold-line mt-8 mx-auto"></div>
                 <p class="text-white/50 text-base max-w-3xl mx-auto mt-8 leading-relaxed font-light">Familias de acogida certificadas rigurosamente por CAVILAM. Un entorno cálido, seguro y auténticamente francés.</p>
             </div>
-            <!-- Videos de familias de acogida -->
             <div class="grid lg:grid-cols-3 gap-10">
 
-                <!-- Familia 1: Sylvie -->
-                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,.12)]">
-                    <div class="vbox" style="border-radius:0;">
-                        <video controls playsinline preload="metadata"
-                               onloadedmetadata="this.previousElementSibling&&this.previousElementSibling.remove()"
-                               onerror="showFamilyVideoError(this,'video_famille_1.mp4')">
+                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2">
+                    <div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;">
+                        <video controls playsinline preload="auto"
+                               style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;">
                             <source src="video_famille_1.mp4" type="video/mp4">
                         </video>
-                        <div class="video-loader" id="vl-f1">
-                            <div class="vl-spin"></div>
-                            <span>Cargando…</span>
-                        </div>
                     </div>
                     <div class="p-8">
                         <span class="text-gold text-[10px] uppercase tracking-widest font-bold">Familia Certificada</span>
@@ -575,17 +549,12 @@
                     </div>
                 </article>
 
-                <!-- Familia 2: Nadine et Philippe -->
-                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,.12)]">
-                    <div class="vbox" style="border-radius:0;">
-                        <video controls playsinline preload="metadata"
-                               onerror="showFamilyVideoError(this,'video_famille_2.mp4')">
+                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2">
+                    <div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;">
+                        <video controls playsinline preload="auto"
+                               style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;">
                             <source src="video_famille_2.mp4" type="video/mp4">
                         </video>
-                        <div class="video-loader" id="vl-f2">
-                            <div class="vl-spin"></div>
-                            <span>Cargando…</span>
-                        </div>
                     </div>
                     <div class="p-8">
                         <span class="text-gold text-[10px] uppercase tracking-widest font-bold">Bienestar Integral</span>
@@ -594,17 +563,12 @@
                     </div>
                 </article>
 
-                <!-- Familia 3: Gwendoline -->
-                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,.12)]">
-                    <div class="vbox" style="border-radius:0;">
-                        <video controls playsinline preload="metadata"
-                               onerror="showFamilyVideoError(this,'video_famille_3.mp4')">
+                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2">
+                    <div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;">
+                        <video controls playsinline preload="auto"
+                               style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;">
                             <source src="video_famille_3.mp4" type="video/mp4">
                         </video>
-                        <div class="video-loader" id="vl-f3">
-                            <div class="vl-spin"></div>
-                            <span>Cargando…</span>
-                        </div>
                     </div>
                     <div class="p-8">
                         <span class="text-gold text-[10px] uppercase tracking-widest font-bold">Hospitalidad Francesa</span>
@@ -639,11 +603,9 @@
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
             <div class="sr-l relative">
                 <div class="absolute -inset-4 bg-gold/20 blur-[100px] rounded-full z-0"></div>
-                <!-- FIX: .vbox ahora tiene aspect-ratio:16/9 y video posicionado absolute -->
-                <div class="vbox shadow-[0_30px_80px_rgba(0,0,0,0.8)] border border-gold/30 relative z-10">
-                    <video controls playsinline preload="metadata"
-                           poster="logos_banner.png"
-                           aria-label="Testimonio en video de Regina, alumna de CAVILAM">
+                <div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:32px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.8);border:1px solid rgba(201,168,76,.3);" class="relative z-10">
+                    <video controls playsinline preload="auto"
+                           style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;">
                         <source src="video_regina.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -838,8 +800,7 @@
             <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
                 <article class="sr qr-card group hover:-translate-y-3 transition-transform duration-500">
                     <div class="qr-box">
-                        <img src="imagen.png" alt="QR Miguel Tillero" loading="lazy"
-                             onerror="this.outerHTML='<div style=\'width:140px;height:140px;border-radius:20px;background:linear-gradient(135deg,#002395,#1a49c8);border:2px solid #C9A84C;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:2.5rem;color:#fff;\'>MT</div>'">
+                        <img src="imagen.png" alt="QR Miguel Tillero A." style="width:140px;height:140px;object-fit:contain;" onerror="this.onerror=null;this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5219671721870&color=002395&bgcolor=ffffff'">
                     </div>
                     <h4 class="lux text-3xl font-semibold text-blue group-hover:text-gold transition-colors">Miguel Tillero A.</h4>
                     <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Director General · AFSC</p>
@@ -853,8 +814,7 @@
 
                 <article class="sr qr-card group hover:-translate-y-3 transition-transform duration-500">
                     <div class="qr-box">
-                        <img src="qr_roman.png" alt="QR Román Fuentes" loading="lazy"
-                             onerror="this.outerHTML='<div style=\'width:140px;height:140px;border-radius:20px;background:linear-gradient(135deg,#002395,#1a49c8);border:2px solid #C9A84C;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:2.5rem;color:#fff;\'>RF</div>'">
+                        <img src="qr_roman.png" alt="QR Román Fuentes" style="width:140px;height:140px;object-fit:contain;" onerror="this.onerror=null;this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5214731219337&color=002395&bgcolor=ffffff'">
                     </div>
                     <h4 class="lux text-3xl font-semibold text-blue group-hover:text-gold transition-colors">Román Fuentes</h4>
                     <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Responsable · Colegio La Salle</p>
@@ -1129,38 +1089,6 @@ document.addEventListener('DOMContentLoaded', () => {
         triggerSuccessMessage();
     }
 
-    /* ── VIDEOS FAMILIAS: timeout + error handlers ── */
-    function showFamilyVideoError(videoEl, filename) {
-        const container = videoEl.closest('.vbox');
-        if (!container) return;
-        const loader = container.querySelector('.video-loader');
-        if (loader) {
-            loader.innerHTML = \`<svg style="width:32px;height:32px;color:rgba(201,168,76,.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.362a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><span style="text-align:center;padding:0 1rem;">Archivo no encontrado<br><em style="color:rgba(201,168,76,.5);font-size:8px;">\${filename}</em></span>\`;
-        }
-    }
-
-    // Registrar timeouts para los 3 videos de familias
-    [
-        { vid: 'video_famille_1.mp4', loader: 'vl-f1' },
-        { vid: 'video_famille_2.mp4', loader: 'vl-f2' },
-        { vid: 'video_famille_3.mp4', loader: 'vl-f3' },
-    ].forEach(({ vid, loader }) => {
-        const loaderEl = document.getElementById(loader);
-        if (!loaderEl) return;
-        const videoEl = loaderEl.closest('.vbox').querySelector('video');
-        if (!videoEl) return;
-
-        videoEl.addEventListener('loadedmetadata', () => {
-            loaderEl.classList.add('hide');
-            setTimeout(() => loaderEl.remove(), 400);
-        });
-        videoEl.addEventListener('error', () => showFamilyVideoError(videoEl, vid));
-
-        // Timeout 5s: si no cargó, mostrar error
-        setTimeout(() => {
-            if (videoEl.readyState === 0) showFamilyVideoError(videoEl, vid);
-        }, 5000);
-    });
 
 });
 </script>
