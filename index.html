@@ -728,6 +728,49 @@
             body { background: #fff; color: #000; }
         }
     </style>
+<style>
+  /* Corregimos el estado inicial del dossier para evitar el 'hidden' */
+  #dossier-interactif {
+    display: none; /* Empezamos ocultos pero no 'hidden' de Tailwind */
+    opacity: 0;
+  }
+</style>
+
+<script>
+// Corrección de la Lógica de Visualización
+function showDossier() {
+  const dossier = document.getElementById('dossier-interactif');
+  const gallery = document.getElementById('sede-gallery');
+
+  if (dossier && gallery) {
+    // Primero cambiamos el display para que GSAP pueda animar
+    dossier.style.display = 'block';
+    gallery.style.display = 'block';
+
+    // Animación suave de entrada (fade-in)
+    gsap.to([dossier, gallery], { 
+      opacity: 1, 
+      duration: 2, 
+      delay: 0.5,
+      stagger: 0.3, // La galería aparece un poco después que el dossier
+      onComplete: () => {
+        // Aseguramos que las clases de transición de Tailwind estén limpias
+        dossier.classList.remove('opacity-0');
+        gallery.classList.remove('opacity-0');
+      }
+    });
+  } else {
+    console.error("Error: No se encontraron los IDs 'dossier-interactif' o 'sede-gallery'. Verifique el HTML.");
+  }
+}
+
+// Evento: Al terminar la intro de 3s, llamamos a la corrección
+// Nota: Este evento debe integrarse con tu lógica de GSAP actual
+window.addEventListener('load', function() {
+  // Simulación del final de la intro de 3s
+  setTimeout(showDossier, 3500); 
+});
+</script>
 </head>
 <body>
 
@@ -2220,7 +2263,36 @@ document.addEventListener('DOMContentLoaded', () => {
     WhatsApp Alianza Francesa
   </a>
 </div>
+<section id="sede-gallery" class="py-24 bg-black overflow-hidden opacity-0 transition-opacity duration-1000" style="background: radial-gradient(circle at center, #111 0%, #000 100%);">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-serif text-[#D4AF37] tracking-widest uppercase">Av. La Almolonga 80</h2>
+            <p class="text-xs text-gray-500 tracking-[0.3em] mt-2">NUESTRA SEDE INDEPENDIENTE EN SAN CRISTÓBAL</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="relative group overflow-hidden rounded-lg aspect-[16/10] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-700">
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all z-10"></div>
+                <img src="https://images.unsplash.com/photo-1596178065887-1138211979f0?q=80&w=1600" alt="Fachada Almolonga 80" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                <div class="absolute bottom-0 left-0 p-6 z-20">
+                    <p class="text-[#D4AF37] font-serif italic text-xl">Arquitectura y Tradición</p>
+                    <p class="text-xs text-gray-300 uppercase tracking-widest">Barrio de Santa Lucía</p>
+                </div>
+            </div>
+
+            <div class="relative group overflow-hidden rounded-lg aspect-[16/10] border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-700">
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all z-10"></div>
+                <img src="https://images.unsplash.com/photo-1510070009289-b5bc34383727?q=80&w=1600" alt="Interior AFSC" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                <div class="absolute bottom-0 left-0 p-6 z-20">
+                    <p class="text-[#D4AF37] font-serif italic text-xl">Inmersión Lingüística</p>
+                    <p class="text-xs text-gray-300 uppercase tracking-widest">Único Centro DELF/DALF en Chiapas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
+
 
 
