@@ -182,20 +182,25 @@
             padding: 2rem; text-align: center; overflow: hidden;
         }
         #intro-video-bg {
-            position: absolute; inset: 0; z-index: 0; overflow: hidden;
+            position: absolute; inset: 0; z-index: 3; overflow: hidden;
+            transition: z-index 0s 0s;
         }
         #intro-video-bg video {
             width: 100%; height: 100%; object-fit: cover;
-            opacity: 0; transition: opacity 2s ease;
+            opacity: 0; transition: opacity 1.5s ease;
         }
         #intro-video-bg.loaded video { opacity: 1; }
+        /* Dark overlay — hidden during video-only phase, shown after */
         #intro-video-bg::after {
             content: ''; position: absolute; inset: 0;
             background:
                 radial-gradient(ellipse at center, rgba(7,7,10,0.3) 0%, rgba(7,7,10,0.75) 70%, rgba(7,7,10,0.95) 100%),
                 linear-gradient(180deg, rgba(7,7,10,0.4) 0%, transparent 30%, transparent 70%, rgba(7,7,10,0.6) 100%);
             z-index: 1;
+            opacity: 0; transition: opacity 1.5s ease;
         }
+        #intro-video-bg.dimmed::after { opacity: 1; }
+        #intro-video-bg.dimmed { z-index: 0; }
         #intro-inner {
             position: relative; z-index: 2;
             display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
@@ -332,12 +337,14 @@
             padding: 8px 18px; border-radius: 100px;
             background: rgba(201,168,76,.06); border: 1px solid rgba(201,168,76,.2);
             font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .15em;
-            color: var(--gold);
-            transition: all .3s ease;
+            color: var(--gold); text-decoration: none; cursor: pointer;
+            transition: all .4s var(--ease-spring);
         }
         .city-t:hover {
-            background: rgba(201,168,76,.12); border-color: rgba(201,168,76,.5);
-            transform: translateY(-2px);
+            background: rgba(201,168,76,.15); border-color: rgba(201,168,76,.6);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(201,168,76,0.15), 0 0 12px rgba(201,168,76,0.1);
+            color: #fff;
         }
 
         /* ── DOSSIER FRAME ── */
@@ -526,6 +533,180 @@
             border-radius: 4px;
         }
 
+        /* ══════════════════════════════════════════════
+           ULTRA-SENSORIAL 3D IMMERSIVE SYSTEM
+        ══════════════════════════════════════════════ */
+
+        /* ── CURSOR SPOTLIGHT ── */
+        #cursor-spotlight {
+            position: fixed; width: 600px; height: 600px;
+            pointer-events: none; z-index: 9989;
+            background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, rgba(201,168,76,0.02) 25%, transparent 60%);
+            border-radius: 50%; transform: translate(-50%, -50%);
+            transition: opacity 0.4s ease;
+            mix-blend-mode: screen; opacity: 0;
+        }
+        body:hover #cursor-spotlight { opacity: 1; }
+
+        /* ── GLOBAL 3D SCENE ── */
+        #main { perspective: 1200px; perspective-origin: 50% 50%; }
+        .sp, section { transform-style: preserve-3d; }
+
+        /* ── PARALLAX DEPTH LAYERS ── */
+        .depth-layer {
+            position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        .depth-orb {
+            position: absolute; border-radius: 50%; pointer-events: none;
+            will-change: transform;
+        }
+        .depth-orb--gold {
+            background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.03) 40%, transparent 70%);
+            filter: blur(40px);
+            animation: orbFloat 18s ease-in-out infinite alternate;
+        }
+        .depth-orb--blue {
+            background: radial-gradient(circle, rgba(0,35,149,0.12) 0%, rgba(0,35,149,0.03) 40%, transparent 70%);
+            filter: blur(50px);
+            animation: orbFloat 22s ease-in-out infinite alternate-reverse;
+        }
+        .depth-orb--white {
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%);
+            filter: blur(30px);
+            animation: orbFloat 15s ease-in-out infinite alternate;
+        }
+        @keyframes orbFloat {
+            0%   { transform: translate3d(0, 0, 0) scale(1); }
+            33%  { transform: translate3d(30px, -40px, 50px) scale(1.1); }
+            66%  { transform: translate3d(-20px, 20px, -30px) scale(0.95); }
+            100% { transform: translate3d(15px, -15px, 40px) scale(1.05); }
+        }
+
+        /* ── LIGHT RAYS ── */
+        .light-ray {
+            position: absolute; pointer-events: none; z-index: 0;
+            width: 2px; height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(201,168,76,0.04), rgba(201,168,76,0.08), rgba(201,168,76,0.04), transparent);
+            animation: rayShimmer 8s ease-in-out infinite;
+            opacity: 0.5;
+        }
+        @keyframes rayShimmer {
+            0%, 100% { opacity: 0.3; transform: scaleY(1) translateZ(0); }
+            50%      { opacity: 0.7; transform: scaleY(1.1) translateZ(20px); }
+        }
+
+        /* ── ENHANCED 3D TEXT ── */
+        .text-3d-deep {
+            text-shadow:
+                0 1px 0 rgba(201,168,76,0.15),
+                0 2px 4px rgba(0,0,0,0.5),
+                0 4px 8px rgba(0,0,0,0.4),
+                0 8px 16px rgba(0,0,0,0.3),
+                0 16px 32px rgba(0,0,0,0.2),
+                0 0 60px rgba(201,168,76,0.08);
+        }
+
+        /* ── HOLOGRAPHIC ACCENT ── */
+        .holo-border {
+            position: relative;
+        }
+        .holo-border::before {
+            content: ''; position: absolute; inset: -1px;
+            background: linear-gradient(135deg,
+                rgba(201,168,76,0.3), rgba(0,35,149,0.2), rgba(237,41,57,0.2),
+                rgba(201,168,76,0.3), rgba(255,255,255,0.15));
+            background-size: 300% 300%;
+            animation: holoShift 8s ease infinite;
+            border-radius: inherit; z-index: -1;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude; -webkit-mask-composite: xor;
+            padding: 1px; pointer-events: none;
+        }
+        @keyframes holoShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ── MAGNETIC BUTTON GLOW ── */
+        .mag-btn {
+            position: relative; overflow: visible;
+            transition: transform 0.3s var(--ease-spring);
+        }
+        .mag-btn::after {
+            content: ''; position: absolute; inset: -8px;
+            border-radius: inherit; opacity: 0;
+            background: radial-gradient(circle, rgba(201,168,76,0.25) 0%, transparent 70%);
+            transition: opacity 0.5s ease; pointer-events: none; z-index: -1;
+        }
+        .mag-btn:hover::after { opacity: 1; }
+
+        /* ── SECTION DEPTH ON SCROLL ── */
+        .section-3d {
+            transition: transform 0.8s var(--ease-lux), opacity 0.8s ease;
+            transform: translateZ(0);
+        }
+        .section-3d.in-view {
+            transform: translateZ(0) rotateX(0);
+        }
+
+        /* ── ENHANCED CARD 3D GLOW ── */
+        .card-3d::before {
+            content: ''; position: absolute; inset: 0;
+            border-radius: inherit; z-index: 0; opacity: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201,168,76,0.08) 0%, transparent 60%);
+            transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .card-3d:hover::before { opacity: 1; }
+
+        /* ── FLOATING PARTICLES IN SECTIONS ── */
+        .section-particle {
+            position: absolute; border-radius: 50%;
+            pointer-events: none; opacity: 0;
+            animation: sectionFloat var(--sp-dur, 12s) ease-in-out infinite var(--sp-del, 0s);
+        }
+        @keyframes sectionFloat {
+            0%   { opacity: 0; transform: translate3d(0, 0, 0) scale(0.5); }
+            20%  { opacity: 0.6; }
+            80%  { opacity: 0.2; }
+            100% { opacity: 0; transform: translate3d(var(--sp-dx, 40px), var(--sp-dy, -80px), var(--sp-dz, 30px)) scale(0.2); }
+        }
+
+        /* ── INTRO 3D PARALLAX ── */
+        #intro { perspective: 800px; }
+        #intro-inner { transform-style: preserve-3d; }
+        .intro-big { transform: translateZ(60px); }
+        #intro .logo-wrap { transform: translateZ(40px); }
+        #start-btn { transform: translateZ(30px); }
+
+        /* ── HERO DEPTH LAYERS ── */
+        .hero-depth-far  { transform: translateZ(-80px) scale(1.15); }
+        .hero-depth-mid  { transform: translateZ(-30px) scale(1.05); }
+        .hero-depth-near { transform: translateZ(40px); }
+
+        /* ── ENHANCED GLASSMORPHISM 3D ── */
+        .glass-panel, .glass-panel-strong {
+            transform-style: preserve-3d;
+        }
+        .glass-panel-strong::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), rgba(201,168,76,0.2), rgba(255,255,255,0.15), transparent);
+            pointer-events: none; border-radius: inherit;
+        }
+
+        /* ── SCROLL-TRIGGERED DEPTH ── */
+        .depth-reveal {
+            opacity: 0;
+            transform: perspective(800px) rotateX(4deg) translateY(50px) translateZ(-40px);
+            transition: all 1.2s var(--ease-lux);
+        }
+        .depth-reveal.revealed {
+            opacity: 1;
+            transform: perspective(800px) rotateX(0) translateY(0) translateZ(0);
+        }
+
         /* ── REDUCED MOTION ── */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -549,6 +730,9 @@
     </style>
 </head>
 <body>
+
+<!-- ═══ CURSOR SPOTLIGHT ═══ -->
+<div id="cursor-spotlight" aria-hidden="true"></div>
 
 <!-- ═══ SCROLL PROGRESS ═══ -->
 <div id="scroll-progress" aria-hidden="true"></div>
@@ -588,10 +772,18 @@
         </div>
         <div class="tricolor w-28 opacity-60" aria-hidden="true"></div>
         <div class="mt-1">
+            <!-- Tricolor flag prominente -->
+            <div class="flex justify-center mb-6" aria-hidden="true">
+                <div style="display:flex;height:4px;width:180px;border-radius:4px;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,0.1)">
+                    <div style="flex:1;background:#002395"></div>
+                    <div style="flex:1;background:#FFFFFF"></div>
+                    <div style="flex:1;background:#ED2939"></div>
+                </div>
+            </div>
             <p class="text-white/25 text-[10px] md:text-[11px] uppercase tracking-[.55em] font-semibold mb-5">
                 Inmersión Lingüística · Vichy & París · Francia
             </p>
-            <h1 class="intro-big text-3d">Vichy&nbsp;<em>2026</em></h1>
+            <h1 class="intro-big text-3d text-3d-deep">Vichy&nbsp;<em>2026</em></h1>
             <p class="lux text-gold/70 text-2xl md:text-3xl font-light italic tracking-wide mt-5">
                 Un Voyage d'Exception
             </p>
@@ -651,7 +843,15 @@
 <main id="main" aria-label="Contenido principal">
 
     <!-- HERO -->
-    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-ink" aria-label="Sección principal">
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-ink section-3d" aria-label="Sección principal" data-depth-section>
+        <div class="depth-layer" aria-hidden="true">
+            <div class="depth-orb depth-orb--gold" style="width:500px;height:500px;top:10%;right:-10%;--sp-dur:20s"></div>
+            <div class="depth-orb depth-orb--blue" style="width:700px;height:700px;bottom:-20%;left:-15%"></div>
+            <div class="depth-orb depth-orb--white" style="width:300px;height:300px;top:40%;left:60%"></div>
+            <div class="light-ray" style="left:15%;animation-delay:0s"></div>
+            <div class="light-ray" style="left:45%;animation-delay:2.5s"></div>
+            <div class="light-ray" style="left:78%;animation-delay:5s"></div>
+        </div>
         <div class="ambient-glow-blue" style="top:-200px;left:-200px"></div>
         <div class="absolute inset-0 z-0">
             <video id="hero-vid" class="w-full h-full object-cover opacity-50" playsinline autoplay muted loop preload="metadata" poster="logos_banner.png">
@@ -666,7 +866,14 @@
                     Programa de Inmersión Total · Francia
                 </span>
             </div>
-            <h2 class="hero-a lux font-light text-white leading-none mb-7 text-3d" style="font-size:clamp(3rem,9vw,7.5rem)">
+            <div class="hero-a flex justify-center mb-5" aria-hidden="true">
+                <div style="display:flex;height:3px;width:120px;border-radius:4px;overflow:hidden;box-shadow:0 0 16px rgba(255,255,255,0.08)">
+                    <div style="flex:1;background:#002395"></div>
+                    <div style="flex:1;background:#FFFFFF"></div>
+                    <div style="flex:1;background:#ED2939"></div>
+                </div>
+            </div>
+            <h2 class="hero-a lux font-light text-white leading-none mb-7 text-3d text-3d-deep" style="font-size:clamp(3rem,9vw,7.5rem)">
                 Habla francés.<br><em class="text-gold italic">Conquista el mundo.</em>
             </h2>
             <p class="hero-a text-white/75 font-light text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -674,8 +881,8 @@
                 Diseñado estratégicamente para estudiantes La Salle que sueñan sin fronteras.
             </p>
             <div class="hero-a flex flex-wrap items-center justify-center gap-5">
-                <a href="#dossier" class="px-10 py-4 bg-gold text-ink rounded-full font-bold text-[12px] uppercase tracking-[.18em] hover:bg-white transition-all duration-500 shadow-[0_0_24px_rgba(201,168,76,0.3)] hover:shadow-[0_0_40px_rgba(201,168,76,0.5)] hover:-translate-y-1">Descubrir el Programa</a>
-                <a href="#registro" class="px-10 py-4 border-[1.5px] border-white/25 text-white rounded-full font-bold text-[12px] uppercase tracking-[.18em] hover:border-gold hover:text-gold transition-all duration-500 glass-panel hover:-translate-y-1">Registrar mi Interés</a>
+                <a href="#dossier" class="mag-btn px-10 py-4 bg-gold text-ink rounded-full font-bold text-[12px] uppercase tracking-[.18em] hover:bg-white transition-all duration-500 shadow-[0_0_24px_rgba(201,168,76,0.3)] hover:shadow-[0_0_40px_rgba(201,168,76,0.5)] hover:-translate-y-1">Descubrir el Programa</a>
+                <a href="#registro" class="mag-btn px-10 py-4 border-[1.5px] border-white/25 text-white rounded-full font-bold text-[12px] uppercase tracking-[.18em] hover:border-gold hover:text-gold transition-all duration-500 glass-panel holo-border hover:-translate-y-1">Registrar mi Interés</a>
             </div>
         </div>
         <div class="hero-a absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 floating">
@@ -685,7 +892,12 @@
     </section>
 
     <!-- CONVENIO -->
-    <section id="convenio" class="sp" aria-labelledby="convenio-heading">
+    <section id="convenio" class="sp section-3d" aria-labelledby="convenio-heading" data-depth-section>
+        <div class="depth-layer" aria-hidden="true">
+            <div class="depth-orb depth-orb--gold" style="width:400px;height:400px;top:20%;left:-10%"></div>
+            <div class="depth-orb depth-orb--blue" style="width:350px;height:350px;bottom:10%;right:5%"></div>
+            <div class="light-ray" style="left:85%;animation-delay:1s"></div>
+        </div>
         <div class="ambient-glow-gold" style="bottom:-200px;right:-200px"></div>
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
             <div class="sr-l md:col-span-7 card-3d-wrap">
@@ -706,6 +918,87 @@
                 <div class="glass-panel p-6 rounded-2xl border-l-2 border-gold">
                     <p class="text-white/75 text-base font-light leading-relaxed mb-3">Este programa no es solo un viaje; es un proyecto educativo de excelencia respaldado formalmente por la Dirección de ambas instituciones.</p>
                     <p class="text-white/55 text-sm font-light leading-relaxed">La firma de este convenio asegura los más altos estándares de calidad académica, seguridad logística y acompañamiento institucional para cada estudiante La Salle durante su inmersión en Francia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEDES INSTITUCIONALES -->
+    <section class="sp bg-ink border-t border-white/5 relative section-3d" aria-labelledby="sedes-heading" data-depth-section>
+        <div class="depth-layer" aria-hidden="true">
+            <div class="depth-orb depth-orb--gold" style="width:400px;height:400px;top:15%;right:-5%"></div>
+            <div class="depth-orb depth-orb--blue" style="width:500px;height:500px;bottom:-10%;left:-10%"></div>
+            <div class="light-ray" style="left:30%;animation-delay:2s"></div>
+            <div class="light-ray" style="left:72%;animation-delay:5s"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="sr text-center mb-20">
+                <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Nuestras Sedes</p>
+                <h2 id="sedes-heading" class="lux font-light text-white text-3d text-3d-deep" style="font-size:clamp(2.5rem,5.5vw,4.5rem)">Dos instituciones, <em class="text-gold italic">un mismo compromiso</em></h2>
+                <div class="gold-line mt-6 mx-auto"></div>
+            </div>
+
+            <!-- CAVILAM -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-28">
+                <div class="sr-l card-3d-wrap">
+                    <div class="card-3d glass-panel-strong holo-border p-3 rounded-[var(--radius-lg)]">
+                        <img src="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg"
+                             alt="Campus del CAVILAM - Alliance Française en Vichy, Francia"
+                             loading="lazy" data-observe
+                             style="width:100%;height:auto;display:block;border-radius:28px;">
+                    </div>
+                </div>
+                <div class="sr-r">
+                    <div class="flex items-center gap-5 mb-6">
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.4)] border border-gold/20 flex-shrink-0">
+                            <img src="logo-cavilam.png" alt="Logo CAVILAM" style="width:48px;height:auto;object-fit:contain;" onerror="this.parentElement.style.display='none'">
+                        </div>
+                        <div>
+                            <h3 class="lux text-3xl md:text-4xl font-semibold text-white">CAVILAM</h3>
+                            <p class="text-gold text-[10px] uppercase tracking-[.3em] font-bold mt-1">Alliance Fran&ccedil;aise de Vichy</p>
+                        </div>
+                    </div>
+                    <div class="gold-line mb-6"></div>
+                    <div class="glass-panel p-6 rounded-2xl border-l-2 border-gold mb-6">
+                        <p class="text-white/75 text-base font-light leading-relaxed mb-4">Centro de excelencia para la enseñanza del francés como lengua extranjera, fundado en 1964. Reconocido mundialmente por su metodología innovadora y su certificación internacional.</p>
+                        <p class="text-white/55 text-sm font-light leading-relaxed">Ubicado en el corazón de Vichy, la "Reina de las Ciudades Termales", el campus recibe cada año a más de 4,000 estudiantes de más de 130 nacionalidades en un entorno académico de primer nivel.</p>
+                    </div>
+                    <a href="https://www.cavilam.com/" target="_blank" rel="noopener" class="mag-btn inline-flex items-center gap-2 px-8 py-3 border-[1.5px] border-gold/60 text-gold rounded-full text-[11px] uppercase tracking-[.2em] font-bold hover:bg-gold hover:text-ink transition-all duration-500 glass-panel">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        Visitar CAVILAM
+                    </a>
+                </div>
+            </div>
+
+            <!-- ALLIANCE FRANÇAISE DE SAN CRISTÓBAL -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="sr-r lg:order-2 card-3d-wrap">
+                    <div class="card-3d glass-panel-strong holo-border p-3 rounded-[var(--radius-lg)]">
+                        <img src="WEBSITE 23-3-2026.jpeg"
+                             alt="Sede de la Alliance Française de San Cristóbal de Las Casas"
+                             loading="lazy" data-observe
+                             style="width:100%;height:auto;display:block;border-radius:28px;">
+                    </div>
+                </div>
+                <div class="sr-l lg:order-1">
+                    <div class="flex items-center gap-5 mb-6">
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.4)] border border-gold/20 flex-shrink-0">
+                            <img src="logo_af_sc.jpg" alt="Logo Alliance Française San Cristóbal" style="width:48px;height:auto;object-fit:contain;border-radius:6px;" onerror="this.parentElement.style.display='none'">
+                        </div>
+                        <div>
+                            <h3 class="lux text-3xl md:text-4xl font-semibold text-white">Alliance Fran&ccedil;aise</h3>
+                            <p class="text-gold text-[10px] uppercase tracking-[.3em] font-bold mt-1">San Crist&oacute;bal de Las Casas</p>
+                        </div>
+                    </div>
+                    <div class="gold-line mb-6"></div>
+                    <div class="glass-panel p-6 rounded-2xl border-l-2 border-blue mb-6">
+                        <p class="text-white/75 text-base font-light leading-relaxed mb-4">Parte de la red global de Alliances Fran&ccedil;aises presente en más de 130 países. Nuestra sede en San Cristóbal es el puente cultural entre México y Francia en la región de Chiapas.</p>
+                        <p class="text-white/55 text-sm font-light leading-relaxed">Desde nuestra sede en la Av. La Almolonga, ofrecemos cursos de francés, actividades culturales, y ahora este programa de inmersión en colaboración directa con el Colegio La Salle y CAVILAM Vichy.</p>
+                    </div>
+                    <a href="https://alianzafrancesa.org.mx/san-cristobal-de-las-casas/" target="_blank" rel="noopener" class="mag-btn inline-flex items-center gap-2 px-8 py-3 border-[1.5px] border-blue/60 text-white/80 rounded-full text-[11px] uppercase tracking-[.2em] font-bold hover:bg-blue hover:text-white transition-all duration-500 glass-panel">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        Visitar Alliance Fran&ccedil;aise
+                    </a>
                 </div>
             </div>
         </div>
@@ -770,7 +1063,14 @@
     </section>
 
     <!-- PROGRAMA -->
-    <section id="programa" class="sp bg-ink-mid border-t border-white/5 relative" aria-labelledby="programa-heading">
+    <section id="programa" class="sp bg-ink-mid border-t border-white/5 relative section-3d" aria-labelledby="programa-heading" data-depth-section>
+        <div class="depth-layer" aria-hidden="true">
+            <div class="depth-orb depth-orb--gold" style="width:450px;height:450px;top:5%;right:10%"></div>
+            <div class="depth-orb depth-orb--white" style="width:250px;height:250px;bottom:15%;left:20%"></div>
+            <div class="depth-orb depth-orb--blue" style="width:500px;height:500px;top:50%;left:-10%"></div>
+            <div class="light-ray" style="left:25%;animation-delay:3s"></div>
+            <div class="light-ray" style="left:65%;animation-delay:6s"></div>
+        </div>
         <div class="ambient-glow-blue" style="bottom:-200px;right:-200px"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="sr text-center mb-20">
@@ -780,17 +1080,20 @@
             </div>
 
             <div class="sr flex flex-wrap justify-center gap-3 mb-14">
-                <span class="city-t glass-panel">✦ Vichy</span><span class="city-t glass-panel">✦ París</span>
-                <span class="city-t glass-panel">✦ Lyon</span><span class="city-t glass-panel">✦ Puy de Dôme</span>
-                <span class="city-t glass-panel">✦ Clermont-Ferrand</span><span class="city-t glass-panel">✦ Charroux</span>
-                <span class="city-t glass-panel">✦ Disneyland® Paris</span>
+                <a href="https://www.cavilam.com/" target="_blank" rel="noopener" class="city-t glass-panel hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,168,76,0.2)]">✦ Vichy</a>
+                <a href="https://es.parisinfo.com/" target="_blank" rel="noopener" class="city-t glass-panel hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,168,76,0.2)]">✦ París</a>
+                <a href="https://es.lyon-france.com/" target="_blank" rel="noopener" class="city-t glass-panel hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,168,76,0.2)]">✦ Lyon</a>
+                <a href="https://www.puydedome.com/" target="_blank" rel="noopener" class="city-t glass-panel hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,168,76,0.2)]">✦ Puy de Dôme</a>
+                <a href="https://www.clermont-ferrand-tourisme.com/" target="_blank" rel="noopener" class="city-t glass-panel hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,168,76,0.2)]">✦ Clermont-Ferrand</a>
+                <a href="https://www.charroux.com/" target="_blank" rel="noopener" class="city-t glass-panel hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,168,76,0.2)]">✦ Charroux</a>
+                <a href="https://www.disneylandparis.com/es-es/" target="_blank" rel="noopener" class="city-t glass-panel hover:bg-gold/15 hover:shadow-[0_0_20px_rgba(201,168,76,0.2)]">✦ Disneyland® Paris</a>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 card-3d-wrap">
 
                 <article class="sr prog-card glass-panel card-3d group">
                     <div class="prog-card-img">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop" alt="Campus universitario en Francia" loading="lazy" data-observe>
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop" alt="Campus universitario CAVILAM en Vichy, Francia" loading="lazy" data-observe>
                         <div class="prog-card-img-overlay"></div>
                         <span class="absolute bottom-4 left-6 lux text-gold text-5xl italic z-10 drop-shadow-lg">01.</span>
                     </div>
@@ -809,7 +1112,7 @@
 
                 <article class="sr prog-card glass-panel card-3d group">
                     <div class="prog-card-img">
-                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop" alt="Gastronomía y cultura en Francia" loading="lazy" data-observe>
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800&auto=format&fit=crop" alt="Gastronomía y cultura francesa en Lyon" loading="lazy" data-observe>
                         <div class="prog-card-img-overlay"></div>
                         <span class="absolute bottom-4 left-6 lux text-gold text-5xl italic z-10 drop-shadow-lg">02.</span>
                     </div>
@@ -828,7 +1131,7 @@
 
                 <article class="sr prog-card glass-panel card-3d group">
                     <div class="prog-card-img">
-                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop" alt="Volcanes de Auvernia" loading="lazy" data-observe>
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop" alt="Volcanes y paisajes de la Auvernia, Francia" loading="lazy" data-observe>
                         <div class="prog-card-img-overlay"></div>
                         <span class="absolute bottom-4 left-6 lux text-gold text-5xl italic z-10 drop-shadow-lg">03.</span>
                     </div>
@@ -847,7 +1150,7 @@
 
                 <article class="sr prog-card glass-panel card-3d group">
                     <div class="prog-card-img">
-                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop" alt="Torre Eiffel París" loading="lazy" data-observe>
+                        <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?q=80&w=800&auto=format&fit=crop" alt="Torre Eiffel y río Sena en París" loading="lazy" data-observe>
                         <div class="prog-card-img-overlay"></div>
                         <span class="absolute bottom-4 left-6 lux text-gold text-5xl italic z-10 drop-shadow-lg">04.</span>
                     </div>
@@ -868,7 +1171,12 @@
     </section>
 
     <!-- BIENESTAR -->
-    <section id="bienestar" class="sp bg-ink-mid border-t border-white/5 relative" aria-labelledby="bienestar-heading">
+    <section id="bienestar" class="sp bg-ink-mid border-t border-white/5 relative section-3d" aria-labelledby="bienestar-heading" data-depth-section>
+        <div class="depth-layer" aria-hidden="true">
+            <div class="depth-orb depth-orb--blue" style="width:550px;height:550px;top:10%;right:-15%"></div>
+            <div class="depth-orb depth-orb--gold" style="width:300px;height:300px;bottom:20%;left:10%"></div>
+            <div class="light-ray" style="left:40%;animation-delay:2s"></div>
+        </div>
         <div class="ambient-glow-gold" style="top:30%;left:-200px"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="sr text-center mb-24">
@@ -921,22 +1229,22 @@
 
             <div class="sr max-w-5xl mx-auto grid md:grid-cols-3 gap-7 card-3d-wrap">
                 <div class="card-3d glass-panel rounded-[var(--radius-md)] p-8 text-center group border border-gold/10 hover:border-gold/40 transition-colors">
-                    <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-5 border-2 border-gold/40 shadow-[0_0_16px_rgba(201,168,76,0.2)] transition-transform duration-500 group-hover:scale-110">
-                        <img src="https://images.unsplash.com/photo-1502672260266-1c1e541b7336?q=80&w=200&auto=format&fit=crop" alt="Alojamiento" class="w-full h-full object-cover loaded" loading="lazy">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-5 border-2 border-gold/40 shadow-[0_0_16px_rgba(201,168,76,0.2)] transition-transform duration-500 group-hover:scale-110 bg-gradient-to-br from-gold/10 to-gold/5">
+                        <svg class="w-9 h-9 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                     </div>
                     <h4 class="lux text-2xl md:text-3xl font-semibold mb-2 text-gold">Alojamiento Premium</h4>
                     <p class="text-white/60 text-[13px] leading-relaxed font-light">Habitación privada en familia certificada. Media pensión con comidas tradicionales incluidas.</p>
                 </div>
                 <div class="card-3d glass-panel rounded-[var(--radius-md)] p-8 text-center group border border-blue/15 hover:border-blue/40 transition-colors">
-                    <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-5 border-2 border-blue/40 shadow-[0_0_16px_rgba(0,35,149,0.2)] transition-transform duration-500 group-hover:scale-110">
-                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=200&auto=format&fit=crop" alt="Traslados" class="w-full h-full object-cover loaded" loading="lazy">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-5 border-2 border-blue/40 shadow-[0_0_16px_rgba(0,35,149,0.2)] transition-transform duration-500 group-hover:scale-110 bg-gradient-to-br from-blue/10 to-blue/5">
+                        <svg class="w-9 h-9 text-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
                     </div>
                     <h4 class="lux text-2xl md:text-3xl font-semibold mb-2 text-gold">Logística & Traslados</h4>
                     <p class="text-white/60 text-[13px] leading-relaxed font-light">Autobuses privados para excursiones, transfers aeropuerto y billetes TGV incluidos.</p>
                 </div>
                 <div class="card-3d glass-panel rounded-[var(--radius-md)] p-8 text-center group border border-red/15 hover:border-red/40 transition-colors">
-                    <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-5 border-2 border-red/40 shadow-[0_0_16px_rgba(237,41,57,0.2)] transition-transform duration-500 group-hover:scale-110">
-                        <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ce122?q=80&w=200&auto=format&fit=crop" alt="Seguridad" class="w-full h-full object-cover loaded" loading="lazy">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-5 border-2 border-red/40 shadow-[0_0_16px_rgba(237,41,57,0.2)] transition-transform duration-500 group-hover:scale-110 bg-gradient-to-br from-red/10 to-red/5">
+                        <svg class="w-9 h-9 text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     </div>
                     <h4 class="lux text-2xl md:text-3xl font-semibold mb-2 text-gold">Seguridad Médica</h4>
                     <p class="text-white/60 text-[13px] leading-relaxed font-light">Póliza médica internacional desde el primer día. Acompañamiento institucional 24/7.</p>
@@ -992,7 +1300,7 @@
                 <h2 id="precio-heading" class="lux font-light text-white text-3d" style="font-size:clamp(2.5rem,5.5vw,5rem)">Costo <em class="text-gold italic">Aproximado</em></h2>
             </div>
             <div class="sr card-3d-wrap">
-                <div class="card-3d glass-panel-strong p-10 md:p-20 rounded-[var(--radius-xl)] relative overflow-hidden border-2 border-gold/15 shadow-[0_30px_80px_rgba(0,0,0,0.7)]">
+                <div class="card-3d glass-panel-strong holo-border p-10 md:p-20 rounded-[var(--radius-xl)] relative overflow-hidden border-2 border-gold/15 shadow-[0_30px_80px_rgba(0,0,0,0.7)]">
                     <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-gold/8 rounded-full blur-[100px] pointer-events-none"></div>
                     <p class="text-gold text-[10px] md:text-[12px] uppercase tracking-[.45em] font-bold mb-7 relative z-10">Programa Premium Todo Incluido en Francia</p>
                     <div class="flex items-baseline justify-center gap-3 mb-3 relative z-10">
@@ -1071,7 +1379,7 @@
                     Las plazas son estrictamente limitadas.<br>
                     <em class="text-gold">¿Será este el año que decidas cambiar tu futuro?</em>
                 </p>
-                <a href="#registro" class="inline-block px-14 py-5 bg-transparent border-2 border-gold/80 text-gold rounded-full lux italic font-bold text-2xl md:text-3xl tracking-wider hover:bg-gold hover:text-ink transition-all duration-500 shadow-[0_0_24px_rgba(201,168,76,0.2)] hover:shadow-[0_0_50px_rgba(201,168,76,0.5)] hover:-translate-y-2">
+                <a href="#registro" class="mag-btn holo-border inline-block px-14 py-5 bg-transparent border-2 border-gold/80 text-gold rounded-full lux italic font-bold text-2xl md:text-3xl tracking-wider hover:bg-gold hover:text-ink transition-all duration-500 shadow-[0_0_24px_rgba(201,168,76,0.2)] hover:shadow-[0_0_50px_rgba(201,168,76,0.5)] hover:-translate-y-2">
                     Asegurar mi Lugar Hoy
                 </a>
             </div>
@@ -1079,7 +1387,14 @@
     </section>
 
     <!-- REGISTRO -->
-    <section id="registro" class="sp bg-ink-lt relative text-white" aria-labelledby="registro-heading">
+    <section id="registro" class="sp bg-ink-lt relative text-white section-3d" aria-labelledby="registro-heading" data-depth-section>
+        <div class="depth-layer" aria-hidden="true">
+            <div class="depth-orb depth-orb--gold" style="width:600px;height:600px;top:-10%;right:-10%"></div>
+            <div class="depth-orb depth-orb--blue" style="width:400px;height:400px;bottom:10%;left:-5%"></div>
+            <div class="depth-orb depth-orb--white" style="width:200px;height:200px;top:50%;left:50%"></div>
+            <div class="light-ray" style="left:20%;animation-delay:1.5s"></div>
+            <div class="light-ray" style="left:70%;animation-delay:4s"></div>
+        </div>
         <div class="ambient-glow-blue" style="bottom:20%;left:-200px"></div>
         <div class="max-w-6xl mx-auto px-6 relative z-10">
             <div class="sr text-center mb-14">
@@ -1089,7 +1404,7 @@
             </div>
 
             <div class="sr card-3d-wrap max-w-4xl mx-auto">
-                <div class="card-3d glass-panel-strong p-8 md:p-14 rounded-[var(--radius-xl)] shadow-[0_30px_80px_rgba(0,0,0,0.7)] border-2 border-gold/15 overflow-hidden relative">
+                <div class="card-3d glass-panel-strong holo-border p-8 md:p-14 rounded-[var(--radius-xl)] shadow-[0_30px_80px_rgba(0,0,0,0.7)] border-2 border-gold/15 overflow-hidden relative">
 
                     <div id="gracias" style="display:none;" class="p-10 glass-panel border border-emerald-500/40 rounded-[var(--radius-lg)] text-center shadow-[0_0_30px_rgba(16,185,129,0.15)]">
                         <div class="w-16 h-16 bg-emerald-500/15 rounded-full flex items-center justify-center mx-auto mb-5 shadow-[0_0_16px_rgba(16,185,129,0.4)]">
@@ -1302,19 +1617,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ════════════════════════════════
-       2. INTRO ANIMATION
+       2. INTRO ANIMATION (Two-phase)
+       Phase 1: Video of 3 logos plays alone (3s)
+       Phase 2: Video dims, "Vichy 2026" content fades in
     ════════════════════════════════ */
     const introInner = $('#intro-inner');
     const startBtn = $('#start-btn');
     const introNote = $('#intro-note');
+    const introVideoBg = $('#intro-video-bg');
 
-    function animateIntro() {
+    function revealIntroContent() {
+        // Phase 2: dim the video and reveal the intro content
+        if (introVideoBg) introVideoBg.classList.add('dimmed');
+
         if (hasGSAP()) {
-            gsap.to(introInner, { opacity: 1, y: 0, duration: 1.5, ease: 'expo.out', delay: .3 });
-            gsap.to('#h-top', { opacity: 1, scaleX: 1, duration: 1.8, ease: 'power3.out', delay: .8 });
-            gsap.to('#h-bottom', { opacity: 1, scaleX: 1, duration: 1.8, ease: 'power3.out', delay: 1 });
-            gsap.to(startBtn, { opacity: 1, duration: 1.2, ease: 'power2.out', delay: 1.6 });
-            gsap.to(introNote, { opacity: 1, duration: 1.2, ease: 'power2.out', delay: 2.2 });
+            gsap.to(introInner, { opacity: 1, y: 0, duration: 1.5, ease: 'expo.out', delay: .5 });
+            gsap.to('#h-top', { opacity: 1, scaleX: 1, duration: 1.8, ease: 'power3.out', delay: 1 });
+            gsap.to('#h-bottom', { opacity: 1, scaleX: 1, duration: 1.8, ease: 'power3.out', delay: 1.2 });
+            gsap.to(startBtn, { opacity: 1, duration: 1.2, ease: 'power2.out', delay: 2 });
+            gsap.to(introNote, { opacity: 1, duration: 1.2, ease: 'power2.out', delay: 2.6 });
         } else {
             [introInner, startBtn, introNote].forEach(el => {
                 if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
@@ -1323,8 +1644,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (hasGSAP()) { animateIntro(); }
-    else { window.addEventListener('load', animateIntro, { once: true }); }
+    // Phase 1: let the logo video play alone for 3 seconds, then reveal content
+    // Use window.onload to ensure GSAP (deferred) is ready before scheduling
+    window.addEventListener('load', () => {
+        setTimeout(revealIntroContent, 3000);
+    }, { once: true });
 
     /* ════════════════════════════════
        3. AUDIO SYSTEM
@@ -1376,11 +1700,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Use multiple events to unlock on first interaction
-    ['click', 'touchstart', 'keydown'].forEach(evt => {
-        document.addEventListener(evt, unlockAudio, { once: true, passive: true });
-    });
-    window.addEventListener('scroll', unlockAudio, { once: true, passive: true });
+    // Music starts ONLY after intro is dismissed (not during the logo video)
+    // The unlockAudio() call is made inside revealMain() when user clicks "Vivir la Experiencia"
 
     /* ════════════════════════════════
        4. INTRO DISMISS → MAIN REVEAL
@@ -1696,7 +2017,136 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ════════════════════════════════
-       12. INTERACTIVE 3D TILT ON CARDS
+       12. CURSOR SPOTLIGHT TRACKER
+    ════════════════════════════════ */
+    const spotlight = $('#cursor-spotlight');
+    if (spotlight && window.innerWidth > 768) {
+        let spotX = 0, spotY = 0, curX = 0, curY = 0;
+        document.addEventListener('mousemove', (e) => { curX = e.clientX; curY = e.clientY; }, { passive: true });
+        (function moveSpot() {
+            spotX += (curX - spotX) * 0.08;
+            spotY += (curY - spotY) * 0.08;
+            spotlight.style.left = spotX + 'px';
+            spotlight.style.top = spotY + 'px';
+            requestAnimationFrame(moveSpot);
+        })();
+    }
+
+    /* ════════════════════════════════
+       13. INTRO 3D PARALLAX WITH MOUSE
+    ════════════════════════════════ */
+    const introEl = $('#intro');
+    if (introEl && window.innerWidth > 768) {
+        introEl.addEventListener('mousemove', (e) => {
+            const cx = (e.clientX / window.innerWidth - 0.5) * 2;
+            const cy = (e.clientY / window.innerHeight - 0.5) * 2;
+            const inner = $('#intro-inner');
+            if (inner) {
+                inner.style.transform = `translateY(0) rotateY(${cx * 3}deg) rotateX(${-cy * 2}deg) translateZ(10px)`;
+            }
+            const videoBg = $('#intro-video-bg video');
+            if (videoBg) {
+                videoBg.style.transform = `scale(1.05) translate(${-cx * 15}px, ${-cy * 10}px)`;
+            }
+        });
+        introEl.addEventListener('mouseleave', () => {
+            const inner = $('#intro-inner');
+            if (inner) inner.style.transition = 'transform 0.8s var(--ease-lux)';
+            setTimeout(() => { if (inner) inner.style.transition = ''; }, 800);
+            if (inner) inner.style.transform = '';
+            const videoBg = $('#intro-video-bg video');
+            if (videoBg) { videoBg.style.transition = 'transform 0.8s ease'; videoBg.style.transform = ''; setTimeout(() => { videoBg.style.transition = ''; }, 800); }
+        });
+    }
+
+    /* ════════════════════════════════
+       14. MAGNETIC BUTTONS
+    ════════════════════════════════ */
+    if (window.innerWidth > 768) {
+        $$('.mag-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.04)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transition = 'transform 0.5s var(--ease-spring)';
+                btn.style.transform = '';
+                setTimeout(() => { btn.style.transition = ''; }, 500);
+            });
+            btn.addEventListener('mouseenter', () => { btn.style.transition = 'none'; });
+        });
+    }
+
+    /* ════════════════════════════════
+       15. SECTION DEPTH REVEAL ON SCROLL
+    ════════════════════════════════ */
+    if ('IntersectionObserver' in window) {
+        const depthObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+        $$('.section-3d').forEach(s => depthObs.observe(s));
+    }
+
+    /* ════════════════════════════════
+       16. PARALLAX DEPTH ORBS ON SCROLL
+    ════════════════════════════════ */
+    if (window.innerWidth > 768) {
+        let scrollRAF;
+        window.addEventListener('scroll', () => {
+            if (scrollRAF) return;
+            scrollRAF = requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                $$('.depth-orb').forEach(orb => {
+                    const section = orb.closest('section') || orb.closest('div');
+                    if (!section) return;
+                    const rect = section.getBoundingClientRect();
+                    const progress = -rect.top / window.innerHeight;
+                    const isGold = orb.classList.contains('depth-orb--gold');
+                    const speed = isGold ? 0.3 : 0.15;
+                    orb.style.transform = `translate3d(0, ${progress * speed * 100}px, ${isGold ? 30 : -20}px)`;
+                });
+                scrollRAF = null;
+            });
+        }, { passive: true });
+    }
+
+    /* ════════════════════════════════
+       17. SECTION FLOATING PARTICLES
+    ════════════════════════════════ */
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth > 768) {
+        $$('[data-depth-section]').forEach(section => {
+            const layer = section.querySelector('.depth-layer');
+            if (!layer) return;
+            const count = 8;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'section-particle';
+                const size = 1 + Math.random() * 3;
+                const isWhite = Math.random() > 0.6;
+                p.style.cssText = `
+                    width:${size}px;height:${size}px;
+                    left:${Math.random()*100}%;top:${Math.random()*100}%;
+                    background:${isWhite ? 'rgba(255,255,255,0.5)' : 'rgba(201,168,76,0.6)'};
+                    box-shadow:0 0 ${size * 4}px ${isWhite ? 'rgba(255,255,255,0.3)' : 'rgba(201,168,76,0.4)'};
+                `;
+                p.style.setProperty('--sp-dur', `${8 + Math.random() * 10}s`);
+                p.style.setProperty('--sp-del', `${Math.random() * 8}s`);
+                p.style.setProperty('--sp-dx', `${(Math.random() - 0.5) * 80}px`);
+                p.style.setProperty('--sp-dy', `${-40 - Math.random() * 100}px`);
+                p.style.setProperty('--sp-dz', `${(Math.random() - 0.5) * 60}px`);
+                layer.appendChild(p);
+            }
+        });
+    }
+
+    /* ════════════════════════════════
+       18. INTERACTIVE 3D TILT ON CARDS
     ════════════════════════════════ */
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth > 768) {
         $$('.card-3d').forEach(card => {
