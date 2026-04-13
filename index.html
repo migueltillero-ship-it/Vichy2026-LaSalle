@@ -2362,8 +2362,43 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </section>
+<audio id="bg-music" loop>
+    <source src="assets/audio/ambience-vichy.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener('click', function() {
+    const audio = document.getElementById('bg-music');
+    const video = document.getElementById('hero-video');
+    
+    // Iniciar audio suavemente si no está sonando
+    if (audio.paused) {
+        audio.volume = 0;
+        audio.play();
+        // Fade-in del audio en 2 segundos
+        let vol = 0;
+        const interval = setInterval(() => {
+            if (vol < 0.4) {
+                vol += 0.05;
+                audio.volume = vol;
+            } else {
+                clearInterval(interval);
+            }
+        }, 200);
+    }
+}, { once: true }); // Solo se ejecuta al primer clic
+
+// Sincronización con el final del video (3 segundos)
+const video = document.getElementById('hero-video');
+if (video) {
+    video.onended = function() {
+        console.log("Video finalizado, transición a contenido estático.");
+    };
+}
+</script>
 </body>
 </html>
+
 
 
 
