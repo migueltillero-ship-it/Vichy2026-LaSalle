@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\")",
+      "Bash(copy \"C:\\\\Users\\\\ALIANZA FRANCESA\\\\Downloads\\\\Video_Creativo_Generado_Al_Instante.mp4\" \"C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\intro-video.mp4\")"
+    ]
+  }
+}
