@@ -848,6 +848,34 @@ document.addEventListener('mousemove', (e) => {
     layers.forEach(layer => { layer.style.transform = otateY(deg) rotateX(deg) translateZ(10px); });
 });
 </script>
+<style>
+  #hero-video {
+    transition: opacity 1s ease-out, filter 1s ease-out;
+    pointer-events: none; /* Evita que bloquee clics mientras desaparece */
+  }
+  .video-fade-out {
+    opacity: 0 !important;
+    filter: blur(10px);
+  }
+</style>
+
+<script>
+  window.addEventListener('load', function() {
+    const video = document.getElementById('hero-video');
+    if (video) {
+      // A los 2.5 segundos iniciamos el desvanecimiento
+      setTimeout(() => {
+        video.classList.add('video-fade-out');
+        
+        // A los 3.5 segundos eliminamos el elemento del DOM por completo
+        setTimeout(() => {
+          video.remove();
+          console.log("Video de intro eliminado para optimizar memoria.");
+        }, 1000); 
+      }, 2500);
+    }
+  });
+</script>
 </head>
 <body>
 
@@ -2432,6 +2460,7 @@ if (video) {
 </script>
 </body>
 </html>
+
 
 
 
