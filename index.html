@@ -876,6 +876,67 @@ document.addEventListener('mousemove', (e) => {
     }
   });
 </script>
+<style>
+  /* Desvanecimiento del video */
+  #hero-video {
+    transition: opacity 1.2s ease-out, filter 1.2s ease-out;
+    pointer-events: none;
+    z-index: 50;
+  }
+  .video-off {
+    opacity: 0 !important;
+    filter: blur(15px);
+  }
+  /* Fondo negro absoluto para el efecto 3D */
+  body { background-color: #050505; margin: 0; overflow-x: hidden; }
+</style>
+
+<audio id="bg-music" loop preload="auto">
+    <source src="assets/audio/ambience-vichy.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('hero-video');
+    const audio = document.getElementById('bg-music');
+
+    // 1. GESTIÓN DEL VIDEO: Desaparece completamente a los 3 segundos
+    if (video) {
+        setTimeout(() => {
+            video.classList.add('video-off');
+            // Eliminación física del video a los 4 segundos para liberar memoria
+            setTimeout(() => { video.remove(); }, 1200);
+        }, 2800);
+    }
+
+    // 2. GESTIÓN DEL SONIDO: Activación por interacción (Obligatorio por Navegadores)
+    const startExperience = () => {
+        if (audio.paused) {
+            audio.volume = 0;
+            audio.play().then(() => {
+                // Fade-in del audio: subida gradual de volumen
+                let vol = 0;
+                const interval = setInterval(() => {
+                    if (vol < 0.4) {
+                        vol += 0.02;
+                        audio.volume = vol;
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 150);
+            }).catch(err => console.log("Esperando interacción para audio..."));
+        }
+        // Limpiamos los eventos una vez activado
+        ['click', 'touchstart', 'wheel'].forEach(evt => 
+            document.removeEventListener(evt, startExperience)
+        );
+    };
+
+    ['click', 'touchstart', 'wheel'].forEach(evt => 
+        document.addEventListener(evt, startExperience)
+    );
+});
+</script>
 </head>
 <body>
 
@@ -2460,6 +2521,7 @@ if (video) {
 </script>
 </body>
 </html>
+
 
 
 
