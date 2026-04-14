@@ -814,6 +814,40 @@ window.addEventListener('load', function() {
   setTimeout(showDossier, 3500); 
 });
 </script>
+<style>
+   :root { --gold: #D4AF37; --black: #050505; }
+   body { background-color: var(--black); color: white; overflow-x: hidden; }
+   .perspective-container { perspective: 1200px; background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%); }
+   .depth-layer { transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+   .logo-glow { filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)); transition: all 0.5s ease; }
+   .logo-glow:hover { filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8)) brightness(1.2); transform: scale(1.05); }
+   #hero-video { mask-image: radial-gradient(circle, black 50%, transparent 100%); animation: fadeOutVideo 1s ease-in forwards; animation-delay: 2.5s; }
+   @keyframes fadeOutVideo { to { opacity: 0; visibility: hidden; } }
+</style>
+<audio id="bg-music" loop preload="auto"><source src="assets/audio/ambience-vichy.mp3" type="audio/mpeg"></audio>
+<script>
+function activateExperience() {
+    const audio = document.getElementById('bg-music');
+    if (audio && audio.paused) {
+        audio.volume = 0;
+        audio.play().then(() => {
+            let vol = 0;
+            const interval = setInterval(() => {
+                if (vol < 0.5) { vol += 0.02; audio.volume = vol; } else { clearInterval(interval); }
+            }, 100);
+        }).catch(e => console.log("Audio esperando..."));
+    }
+}
+document.addEventListener('click', activateExperience, { once: true });
+document.addEventListener('touchstart', activateExperience, { once: true });
+document.addEventListener('wheel', activateExperience, { once: true });
+document.addEventListener('mousemove', (e) => {
+    const layers = document.querySelectorAll('.depth-layer');
+    const x = (window.innerWidth / 2 - e.pageX) / 50;
+    const y = (window.innerHeight / 2 - e.pageY) / 50;
+    layers.forEach(layer => { layer.style.transform = otateY(deg) rotateX(deg) translateZ(10px); });
+});
+</script>
 </head>
 <body>
 
@@ -2398,6 +2432,7 @@ if (video) {
 </script>
 </body>
 </html>
+
 
 
 
