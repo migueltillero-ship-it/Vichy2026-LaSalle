@@ -1,107 +1,23 @@
 ﻿<!DOCTYPE html>
-<html lang="fr">
+<html lang="es-MX">
 <head>
-    <meta charset="UTF-8">
-    <title>Misión Vichy 2026 | AFSC</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        :root { --gold: #D4AF37; --black: #0a0a0a; }
-        body { background: var(--black); color: white; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
-        
-        /* Video Overlay con Failsafe */
-        #video-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: black; z-index: 10000; display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.8s ease;
-        }
-        video { width: 90%; max-width: 700px; filter: drop-shadow(0 0 20px rgba(212,175,55,0.4)); }
-
-        /* Header Estilo Boutique */
-        header { 
-            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
-            border-bottom: 1px solid rgba(212,175,55,0.2);
-        }
-        .logo-main { width: 120px; margin-bottom: 30px; }
-        h1 { 
-            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4rem); 
-            color: var(--gold); letter-spacing: 8px; text-transform: uppercase; margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .tagline { font-weight: 300; letter-spacing: 4px; color: #888; margin-top: 15px; text-transform: uppercase; font-size: 0.9rem; }
-
-        /* Contenedor 3D Armonizado */
-        .section-3d { padding: 100px 0; background: #0a0a0a; text-align: center; }
-        .grid-3d { 
-            display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; 
-            perspective: 2000px; max-width: 1200px; margin: 0 auto;
-        }
-        .card-3d {
-            width: 220px; height: 220px; background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(212,175,55,0.1); border-radius: 15px;
-            display: flex; align-items: center; justify-content: center;
-            transform-style: preserve-3d; animation: float3d 8s infinite ease-in-out;
-            padding: 20px; box-sizing: border-box;
-        }
-        @keyframes float3d {
-            0%, 100% { transform: rotateY(-10deg) translateY(0px); }
-            50% { transform: rotateY(10deg) translateY(-20px); }
-        }
-        .card-3d img { width: 100%; height: auto; max-height: 100%; filter: grayscale(20%) brightness(1.1); }
-
-        .wa-btn {
-            position: fixed; bottom: 40px; right: 40px; background: #25d366;
-            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 999; border: 2px solid var(--gold);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vichy 2026 | AFSC & La Salle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: #0A0A0F; color: white; font-family: sans-serif; }
+    .gold { color: #D4AF37; }
+  </style>
 </head>
 <body>
-
-    <div id="video-overlay">
-        <video id="intro-vid" autoplay muted playsinline>
-            <source src="intro.mp4" type="video/mp4">
-        </video>
+  <div style="padding: 50px; text-align: center;">
+    <h1 class="gold" style="font-size: 4rem;">VICHY 2026</h1>
+    <p style="letter-spacing: 5px;">LA SALLE x ALLIANCE FRANÇAISE</p>
+    <div style="margin-top: 50px; display: flex; justify-content: center; gap: 20px;">
+        <div style="border: 1px solid #333; padding: 20px;">AFSC</div>
+        <div style="border: 1px solid #333; padding: 20px;">LA SALLE</div>
     </div>
-
-    <audio id="audio-bg" loop><source src="background.mp3" type="audio/mpeg"></audio>
-
-    <header>
-        <img src="logo_af.png" class="logo-main" alt="AFSC">
-        <h1>Vichy 2026</h1>
-        <p class="tagline">L'immersion d'une vie</p>
-    </header>
-
-    <section class="section-3d">
-        <div class="grid-3d">
-            <div class="card-3d"><img src="logo_af.png"></div>
-            <div class="card-3d"><img src="logo_lasalle.png"></div>
-            <div class="card-3d"><img src="logo_parmentier.png"></div>
-        </div>
-    </section>
-
-    <a href="https://wa.me/529671721870?text=[WEB-VICHY]%20Bonjour" class="wa-btn">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30">
-    </a>
-
-    <script>
-        const overlay = document.getElementById('video-overlay');
-        const audio = document.getElementById('audio-bg');
-
-        // FALLSAFE: Si pasan 4 segundos, el video se va SÍ O SÍ
-        setTimeout(() => {
-            overlay.style.opacity = '0';
-            setTimeout(() => overlay.remove(), 800);
-        }, 4500);
-
-        // Audio al interactuar
-        const playMusic = () => { 
-            audio.play().catch(e => console.log("Audio waiting..."));
-            document.removeEventListener('click', playMusic);
-            document.removeEventListener('scroll', playMusic);
-        };
-        document.addEventListener('click', playMusic);
-        document.addEventListener('scroll', playMusic);
-    </script>
+  </div>
 </body>
 </html>
