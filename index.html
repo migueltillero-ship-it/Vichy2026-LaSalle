@@ -11,21 +11,28 @@
 </head>
 <body>
     <div class="min-h-screen flex flex-col items-center justify-center p-10 text-center">
-        <h1 class="lux-text text-6xl font-bold mb-4">VICHY 2026</h1>
-        <p class="tracking-[0.5em] text-gray-400 uppercase mb-12">Exclusividad La Salle</p>
+        <h1 class="lux-text text-6xl font-bold mb-4 uppercase">Vichy 2026</h1>
+        <p class="tracking-[0.5em] text-gray-400 uppercase mb-12 italic">Exclusividad La Salle x AFSC</p>
         
-        <div class="max-w-md w-full bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md">
-            <h2 class="text-2xl mb-6">Registro de Interés</h2>
+        <div class="max-w-md w-full bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md text-left">
+            <h2 class="text-2xl mb-6 text-center font-light">Registro de Interés</h2>
             <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
                 <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
-                <input type="text" name="nombre" placeholder="Nombre del Alumno" required class="w-full bg-black/20 border border-white/20 p-3 rounded">
-                <input type="tel" name="telefono" placeholder="WhatsApp del Tutor" required class="w-full bg-black/20 border border-white/20 p-3 rounded">
-                <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded hover:bg-gray-200 transition">Enviar Solicitud</button>
+                
+                <input type="hidden" name="from_name" value="Alliance Française San Cristóbal">
+                <input type="hidden" name="subject" value="Confirmación: Registro Vichy 2026 - Alianza Institucional">
+                <input type="hidden" name="replyto" value="director.sancristobal@afmexico.org">
+                
+                <input type="text" name="nombre" placeholder="Nombre completo del Alumno" required class="w-full bg-black/40 border border-white/10 p-3 rounded focus:border-gold">
+                <input type="email" name="email" placeholder="Correo electrónico" required class="w-full bg-black/40 border border-white/10 p-3 rounded focus:border-gold">
+                <input type="tel" name="telefono" placeholder="WhatsApp del Tutor" required class="w-full bg-black/40 border border-white/10 p-3 rounded focus:border-gold">
+                
+                <button type="submit" class="w-full bg-white text-black font-bold py-4 rounded hover:bg-gray-200 transition uppercase tracking-widest text-xs">Enviar Solicitud</button>
             </form>
         </div>
         
-        <footer class="mt-20 text-gray-500 text-xs">
-            Alliance Française de San Cristóbal de Las Casas
+        <footer class="mt-20 text-gray-500 text-[10px] tracking-widest uppercase">
+            Direction Générale | Alliance Française de San Cristóbal de Las Casas
         </footer>
     </div>
 </body>
