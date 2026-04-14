@@ -1,23 +1,32 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-MX">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vichy 2026 | AFSC & La Salle</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { background: #0A0A0F; color: white; font-family: sans-serif; }
-    .gold { color: #D4AF37; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Vichy 2026 | La Salle & Alliance Française</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: white; font-family: sans-serif; }
+        .lux-text { background: linear-gradient(to right, #D4AF37, #F7EF8A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
 </head>
 <body>
-  <div style="padding: 50px; text-align: center;">
-    <h1 class="gold" style="font-size: 4rem;">VICHY 2026</h1>
-    <p style="letter-spacing: 5px;">LA SALLE x ALLIANCE FRANÇAISE</p>
-    <div style="margin-top: 50px; display: flex; justify-content: center; gap: 20px;">
-        <div style="border: 1px solid #333; padding: 20px;">AFSC</div>
-        <div style="border: 1px solid #333; padding: 20px;">LA SALLE</div>
+    <div class="min-h-screen flex flex-col items-center justify-center p-10 text-center">
+        <h1 class="lux-text text-6xl font-bold mb-4">VICHY 2026</h1>
+        <p class="tracking-[0.5em] text-gray-400 uppercase mb-12">Exclusividad La Salle</p>
+        
+        <div class="max-w-md w-full bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md">
+            <h2 class="text-2xl mb-6">Registro de Interés</h2>
+            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
+                <input type="text" name="nombre" placeholder="Nombre del Alumno" required class="w-full bg-black/20 border border-white/20 p-3 rounded">
+                <input type="tel" name="telefono" placeholder="WhatsApp del Tutor" required class="w-full bg-black/20 border border-white/20 p-3 rounded">
+                <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded hover:bg-gray-200 transition">Enviar Solicitud</button>
+            </form>
+        </div>
+        
+        <footer class="mt-20 text-gray-500 text-xs">
+            Alliance Française de San Cristóbal de Las Casas
+        </footer>
     </div>
-  </div>
 </body>
 </html>
