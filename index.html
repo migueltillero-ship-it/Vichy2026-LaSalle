@@ -1,0 +1,3033 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vichy 2026 · Inmersión Lingüística de Excelencia. Un programa exclusivo de Colegio La Salle en alianza con Alianza Francesa de San Cristóbal y CAVILAM Vichy, Francia.">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Vichy 2026 · La Experiencia · La Salle × Alianza Francesa × CAVILAM</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* =====================================================
+           VICHY 2026 · ULTRA-LUXURY IMMERSIVE EXPERIENCE
+           Design System v2.0 — Cinematic · Sensorial · Elegant
+           ===================================================== */
+
+        :root {
+            /* Tricolor institucional */
+            --blue: #0055A4;
+            --blue-deep: #002654;
+            --white: #FFFFFF;
+            --red: #EF4135;
+            --red-deep: #8B0000;
+
+            /* Luxury palette */
+            --gold: #C9A961;
+            --gold-light: #E8D4A2;
+            --gold-deep: #8B7635;
+            --champagne: #F7E7CE;
+            --bronze: #CD7F32;
+
+            /* Ink & paper */
+            --ink: #0A0A0F;
+            --ink-2: #14141C;
+            --ink-3: #1F1F2B;
+            --paper: #F4EFE6;
+            --paper-warm: #EDE4D3;
+
+            /* Glass */
+            --glass: rgba(255, 255, 255, 0.06);
+            --glass-strong: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.14);
+
+            /* Motion */
+            --ease-lux: cubic-bezier(.22, .61, .36, 1);
+            --ease-silk: cubic-bezier(.77, 0, .175, 1);
+            --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+
+            /* Type */
+            --serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+            --serif-2: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        *::selection { background: var(--gold); color: var(--ink); }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--sans);
+            background: var(--ink);
+            color: var(--paper);
+            overflow-x: hidden;
+            line-height: 1.6;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ==========================================================
+           SCROLLBAR
+           ========================================================== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--ink); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold), var(--bronze));
+            border-radius: 4px;
+        }
+
+        /* ==========================================================
+           NOISE TEXTURE (global atmospheric grain)
+           ========================================================== */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: .035;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
+        }
+
+        /* ==========================================================
+           CURSOR SPOTLIGHT (ambient light following mouse)
+           ========================================================== */
+        #cursor-spotlight {
+            position: fixed;
+            top: 0; left: 0;
+            width: 800px;
+            height: 800px;
+            pointer-events: none;
+            z-index: 9997;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(
+                circle,
+                rgba(201, 169, 97, 0.12) 0%,
+                rgba(0, 85, 164, 0.04) 30%,
+                transparent 70%
+            );
+            mix-blend-mode: screen;
+            transition: opacity .5s ease;
+            opacity: 0;
+            will-change: transform;
+        }
+        body.ready #cursor-spotlight { opacity: 1; }
+
+        /* ==========================================================
+           PROGRESS BAR (top scroll indicator)
+           ========================================================== */
+        #scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--blue) 0%, var(--white) 50%, var(--red) 100%);
+            z-index: 9996;
+            box-shadow: 0 0 12px rgba(201, 169, 97, 0.6);
+            transition: width .1s linear;
+        }
+
+        /* ==========================================================
+           INTRO OVERLAY (video logo + brand reveal)
+           ========================================================== */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            overflow-x: hidden;
+            perspective: 1200px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #intro-overlay.dismissed {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.4s var(--ease-silk), visibility 0s 1.4s;
+        }
+
+        #intro-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            transition: opacity 1.2s ease, filter 1.2s ease, transform 1.8s var(--ease-lux);
+            z-index: 1;
+        }
+
+        #intro-overlay.phase-2 #intro-video {
+            opacity: .22;
+            filter: blur(8px) saturate(1.4);
+            transform: scale(1.08);
+        }
+
+        #intro-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,.65) 70%, #000 100%),
+                linear-gradient(180deg, rgba(0,0,0,.3) 0%, transparent 40%, transparent 60%, rgba(0,0,0,.5) 100%);
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            pointer-events: none;
+        }
+        #intro-overlay.phase-2::after { opacity: 1; }
+
+        #intro-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: var(--paper);
+            opacity: 0;
+            transform: translateY(40px) translateZ(0);
+            transition: opacity 1.6s var(--ease-lux), transform 1.8s var(--ease-lux);
+            max-width: 820px;
+            padding: 3vh 2rem;
+            transform-style: preserve-3d;
+            max-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #intro-overlay.phase-2 #intro-content {
+            opacity: 1;
+            transform: translateY(0) translateZ(0);
+        }
+
+        .intro-flag {
+            display: inline-flex;
+            gap: 0;
+            height: 32px;
+            width: 96px;
+            margin: 0 auto 1.2rem;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,.6), 0 0 60px rgba(201,169,97,.3);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1.2s ease .3s, transform 1.2s var(--ease-spring) .3s;
+        }
+        #intro-overlay.phase-2 .intro-flag {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .intro-flag > div { flex: 1; height: 100%; }
+        .flag-blue { background: var(--blue); }
+        .flag-white { background: var(--white); }
+        .flag-red { background: var(--red); }
+
+        .intro-eyebrow {
+            font-family: var(--sans);
+            font-weight: 300;
+            font-size: clamp(.6rem, 1.2vw, .75rem);
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            opacity: 0;
+            transition: opacity 1.2s ease .5s;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+        #intro-overlay.phase-2 .intro-eyebrow { opacity: .9; }
+
+        .intro-title {
+            font-family: var(--serif);
+            font-weight: 300;
+            font-size: clamp(2.5rem, 9vw, 5.5rem);
+            line-height: .95;
+            letter-spacing: -.04em;
+            margin: 0 0 .6rem;
+            background: linear-gradient(180deg, #fff 0%, var(--champagne) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 80px rgba(201,169,97,.4);
+        }
+        .intro-title em {
+            font-style: italic;
+            font-family: var(--serif-2);
+            font-weight: 300;
+        }
+
+        .intro-divider {
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 1.2rem auto;
+            transition: width 1.8s var(--ease-silk) .8s;
+        }
+        #intro-overlay.phase-2 .intro-divider { width: 200px; }
+
+        .intro-subtitle {
+            font-family: var(--serif-2);
+            font-style: italic;
+            font-size: clamp(.95rem, 1.8vw, 1.3rem);
+            font-weight: 400;
+            color: var(--paper);
+            opacity: 0;
+            transition: opacity 1.2s ease 1s;
+            letter-spacing: .02em;
+            margin: 0;
+        }
+        #intro-overlay.phase-2 .intro-subtitle { opacity: .85; }
+
+        .intro-partners {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.2rem;
+            margin-top: 1.4rem;
+            font-size: clamp(.6rem, 1.1vw, .7rem);
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.55);
+            opacity: 0;
+            transition: opacity 1.2s ease 1.3s;
+            flex-wrap: wrap;
+        }
+        #intro-overlay.phase-2 .intro-partners { opacity: 1; }
+        .intro-partners .dot {
+            width: 4px; height: 4px; border-radius: 50%;
+            background: var(--gold);
+        }
+
+        #enter-btn {
+            margin-top: 1.8rem;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: .8rem;
+            padding: 1rem 2.4rem;
+            font-family: var(--sans);
+            font-weight: 500;
+            font-size: clamp(.75rem, 1.4vw, .85rem);
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--ink);
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--bronze) 100%);
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease 1.6s, transform 1s var(--ease-spring) 1.6s, box-shadow .4s ease, letter-spacing .4s ease;
+            box-shadow: 0 10px 40px rgba(201,169,97,.5), 0 0 0 2px rgba(201,169,97,.3), inset 0 1px 0 rgba(255,255,255,.5);
+            overflow: hidden;
+            animation: pulseBtn 2.5s ease-in-out infinite;
+            animation-delay: 3s;
+        }
+        @keyframes pulseBtn {
+            0%, 100% { box-shadow: 0 10px 40px rgba(201,169,97,.5), 0 0 0 2px rgba(201,169,97,.3), inset 0 1px 0 rgba(255,255,255,.5); }
+            50% { box-shadow: 0 15px 50px rgba(201,169,97,.7), 0 0 0 6px rgba(201,169,97,.2), inset 0 1px 0 rgba(255,255,255,.6); }
+        }
+        #intro-overlay.phase-2 #enter-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+            transition: left .8s ease;
+        }
+        #enter-btn:hover {
+            box-shadow: 0 20px 60px rgba(201,169,97,.6), inset 0 1px 0 rgba(255,255,255,.8);
+            letter-spacing: .4em;
+            transform: translateY(-2px);
+        }
+        #enter-btn:hover::before { left: 100%; }
+        #enter-btn .arrow {
+            display: inline-block;
+            transition: transform .4s ease;
+        }
+        #enter-btn:hover .arrow { transform: translateX(6px); }
+
+        .intro-note {
+            margin-top: 1rem;
+            font-size: clamp(.6rem, 1.1vw, .7rem);
+            letter-spacing: .2em;
+            color: rgba(255,255,255,.45);
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 1s ease 2s;
+        }
+        #intro-overlay.phase-2 .intro-note { opacity: 1; }
+
+        .intro-hint {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: .7rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.5);
+            z-index: 4;
+            opacity: 0;
+            animation: hintPulse 2s ease-in-out infinite;
+            animation-delay: 4s;
+            animation-fill-mode: forwards;
+            pointer-events: none;
+        }
+        #intro-overlay.phase-2 .intro-hint { opacity: 1; }
+        @keyframes hintPulse {
+            0%, 100% { opacity: .5; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+        }
+
+        /* Intro particles */
+        .intro-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 6px var(--gold);
+            opacity: 0;
+            z-index: 2;
+        }
+        #intro-overlay.phase-2 .intro-particle {
+            animation: particleDrift linear infinite;
+        }
+        @keyframes particleDrift {
+            0% { opacity: 0; transform: translate(0, 0) scale(0); }
+            20% { opacity: 1; transform: translate(var(--dx, 20px), var(--dy, -30px)) scale(1); }
+            80% { opacity: 1; }
+            100% { opacity: 0; transform: translate(calc(var(--dx, 20px) * 4), calc(var(--dy, -30px) * 4)) scale(0); }
+        }
+
+        /* ==========================================================
+           MAIN CONTENT STATES
+           ========================================================== */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        body.experience-live #main-content { opacity: 1; }
+
+        /* ==========================================================
+           AMBIENT BACKGROUND (cosmic depth)
+           ========================================================== */
+        .ambient-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .ambient-bg::before,
+        .ambient-bg::after {
+            content: '';
+            position: absolute;
+            width: 80vmax;
+            height: 80vmax;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: .18;
+            animation: ambientFloat 30s ease-in-out infinite;
+        }
+        .ambient-bg::before {
+            top: -20%; left: -20%;
+            background: radial-gradient(circle, var(--blue) 0%, transparent 70%);
+        }
+        .ambient-bg::after {
+            bottom: -30%; right: -20%;
+            background: radial-gradient(circle, var(--red) 0%, transparent 70%);
+            animation-delay: -15s;
+        }
+        @keyframes ambientFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(5%, 10%) rotate(120deg); }
+            66% { transform: translate(-5%, -5%) rotate(240deg); }
+        }
+
+        /* Floating orbs */
+        .depth-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(40px);
+            opacity: .4;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+        .depth-orb--gold {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+        }
+        .depth-orb--blue {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, var(--blue) 0%, transparent 70%);
+        }
+        .depth-orb--red {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, var(--red) 0%, transparent 70%);
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -40px) scale(1.1); }
+        }
+
+        /* ==========================================================
+           NAVIGATION (minimal, floating, luxury)
+           ========================================================== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(10,10,15,.85) 0%, rgba(10,10,15,0) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: padding .3s ease, background .3s ease;
+        }
+        nav.scrolled {
+            padding: .8rem 3rem;
+            background: rgba(10,10,15,.95);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: .9rem;
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            letter-spacing: .25em;
+            font-weight: 400;
+        }
+        .nav-brand-flag {
+            display: inline-flex;
+            width: 28px;
+            height: 18px;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,.4);
+        }
+        .nav-brand-flag > div { flex: 1; }
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: .75rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.65);
+            position: relative;
+            transition: color .3s ease;
+            padding: .5rem 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width .4s var(--ease-lux);
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            padding: .6rem 1.4rem;
+            border: 1px solid var(--gold);
+            border-radius: 100px;
+            font-size: .7rem !important;
+            letter-spacing: .25em !important;
+            color: var(--gold) !important;
+            transition: all .3s ease;
+        }
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--ink) !important;
+        }
+        .nav-cta::after { display: none; }
+
+        @media (max-width: 900px) {
+            nav { padding: 1rem 1.2rem; }
+            .nav-links { gap: .8rem; }
+            .nav-links a:not(.nav-cta) { display: none; }
+        }
+
+        /* ==========================================================
+           HERO
+           ========================================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+            perspective: 1600px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at top, rgba(0,85,164,.25) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(239,65,53,.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(201,169,97,.12) 0%, transparent 50%);
+        }
+
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(10,10,15,.6) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-flag {
+            display: inline-flex;
+            width: 160px;
+            height: 50px;
+            margin-bottom: 2.5rem;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 100px rgba(201,169,97,.2);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        .hero-flag::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.3) 50%, transparent 65%);
+            animation: flagShine 6s ease-in-out infinite;
+        }
+        @keyframes flagShine {
+            0%, 100% { transform: translateX(-100%); opacity: 0; }
+            50% { transform: translateX(100%); opacity: 1; }
+        }
+        .hero-flag > div { flex: 1; height: 100%; }
+
+        .hero-eyebrow {
+            font-size: .75rem;
+            letter-spacing: .6em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(3.5rem, 11vw, 10rem);
+            line-height: .88;
+            letter-spacing: -.04em;
+            margin: 0 0 1.5rem;
+            font-weight: 300;
+            background: linear-gradient(180deg, #fff 0%, #fff 40%, var(--gold-light) 70%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            text-shadow: 0 0 100px rgba(201,169,97,.3);
+        }
+        .hero-title em {
+            font-style: italic;
+            font-family: var(--serif-2);
+            font-weight: 300;
+            display: block;
+            font-size: .6em;
+            color: transparent;
+            background: linear-gradient(180deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            margin-top: .2em;
+        }
+
+        .hero-location {
+            font-family: var(--serif-2);
+            font-style: italic;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--paper);
+            opacity: .85;
+            max-width: 700px;
+            margin: 1rem auto 2rem;
+            line-height: 1.5;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem auto 2.5rem;
+            opacity: .7;
+        }
+        .hero-divider span {
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .hero-divider .crest {
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--gold);
+            transform: rotate(45deg);
+            position: relative;
+        }
+        .hero-divider .crest::before {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat-number {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--gold);
+            font-weight: 400;
+            line-height: 1;
+            display: block;
+        }
+        .hero-stat-label {
+            font-size: .65rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.6);
+            margin-top: .5rem;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-luxury {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: .8rem;
+            padding: 1.15rem 2.6rem;
+            font-size: .8rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            font-weight: 400;
+            border-radius: 100px;
+            cursor: pointer;
+            border: none;
+            transition: all .4s var(--ease-lux);
+            overflow: hidden;
+        }
+        .btn-luxury.primary {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--bronze) 100%);
+            color: var(--ink);
+            box-shadow: 0 10px 40px rgba(201,169,97,.35), inset 0 1px 0 rgba(255,255,255,.5);
+        }
+        .btn-luxury.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(201,169,97,.5), inset 0 1px 0 rgba(255,255,255,.8);
+            letter-spacing: .4em;
+        }
+        .btn-luxury.ghost {
+            background: transparent;
+            color: var(--paper);
+            border: 1px solid rgba(255,255,255,.25);
+        }
+        .btn-luxury.ghost:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+            transition: left .7s ease;
+        }
+        .btn-luxury:hover::before { left: 100%; }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .8rem;
+            font-size: .65rem;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.5);
+            animation: scrollHint 2.5s ease-in-out infinite;
+        }
+        .scroll-indicator .line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(180deg, transparent, var(--gold));
+        }
+        @keyframes scrollHint {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: .5; }
+            50% { transform: translateX(-50%) translateY(10px); opacity: 1; }
+        }
+
+        /* ==========================================================
+           SECTION FRAMEWORK
+           ========================================================== */
+        section {
+            position: relative;
+            padding: 9rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+            section { padding: 5rem 1.2rem; }
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: .8rem;
+            font-size: .7rem;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        .section-label::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+            line-height: 1.05;
+            letter-spacing: -.02em;
+            margin: 0 0 1rem;
+            font-weight: 300;
+            color: var(--paper);
+        }
+        .section-title em {
+            font-style: italic;
+            font-family: var(--serif-2);
+            font-weight: 400;
+            background: linear-gradient(180deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            font-family: var(--serif-2);
+            font-style: italic;
+            font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+            color: rgba(255,255,255,.75);
+            max-width: 700px;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s var(--ease-lux), transform 1.2s var(--ease-lux);
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal.delay-1 { transition-delay: .15s; }
+        .reveal.delay-2 { transition-delay: .3s; }
+        .reveal.delay-3 { transition-delay: .45s; }
+        .reveal.delay-4 { transition-delay: .6s; }
+
+        /* ==========================================================
+           PARTNERSHIP (Alianza institucional)
+           ========================================================== */
+        .partnership {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        @media (max-width: 900px) { .partnership { grid-template-columns: 1fr; } }
+
+        .partner-card {
+            position: relative;
+            padding: 3rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            text-align: center;
+            transition: transform .6s var(--ease-lux), border-color .4s ease, box-shadow .4s ease;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--blue) 0%, transparent 30%, transparent 70%, var(--red) 100%);
+            opacity: 0;
+            transition: opacity .5s ease;
+            z-index: -1;
+        }
+        .partner-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px var(--gold);
+        }
+        .partner-card:hover::before { opacity: .15; }
+
+        .partner-seal {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--ink);
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(201,169,97,.4), inset 0 1px 0 rgba(255,255,255,.5);
+        }
+
+        .partner-title {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin: 0 0 .5rem;
+            color: var(--paper);
+        }
+        .partner-subtitle {
+            font-size: .7rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        .partner-description {
+            font-family: var(--serif-2);
+            font-style: italic;
+            color: rgba(255,255,255,.75);
+            line-height: 1.7;
+        }
+
+        /* ==========================================================
+           CONVENIO (details strip with counter)
+           ========================================================== */
+        .convenio-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 5rem 0;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(0,85,164,.15), rgba(239,65,53,.08));
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+        .convenio-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(201,169,97,.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        @media (max-width: 800px) {
+            .convenio-strip { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
+
+        .convenio-stat {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .convenio-stat-big {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4.5vw, 3.6rem);
+            font-weight: 400;
+            background: linear-gradient(180deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            display: block;
+        }
+        .convenio-stat-label {
+            font-size: .7rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.75);
+            margin-top: .8rem;
+        }
+
+        /* ==========================================================
+           VICHY CITY / CAVILAM IMMERSION
+           ========================================================== */
+        .split-feature {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+        .split-feature.reverse { grid-template-columns: 1fr 1.1fr; }
+        .split-feature.reverse .split-visual { order: 2; }
+        @media (max-width: 900px) {
+            .split-feature, .split-feature.reverse { grid-template-columns: 1fr; }
+            .split-feature.reverse .split-visual { order: 0; }
+        }
+
+        .split-visual {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            box-shadow: 0 30px 80px rgba(0,0,0,.5);
+            transform-style: preserve-3d;
+            transition: transform .8s var(--ease-lux);
+        }
+        .split-visual:hover { transform: scale(1.02); }
+        .split-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s var(--ease-lux), filter 1.2s ease;
+        }
+        .split-visual:hover img { transform: scale(1.05); filter: saturate(1.2); }
+        .split-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10,10,15,.8) 100%);
+        }
+        .split-visual-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            z-index: 2;
+            color: var(--paper);
+        }
+        .split-visual-caption .loc {
+            font-size: .7rem;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .5rem;
+        }
+        .split-visual-caption h4 {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .split-content h3 {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.1;
+            font-weight: 300;
+            margin: 1rem 0 1.5rem;
+            color: var(--paper);
+        }
+        .split-content h3 em {
+            font-style: italic;
+            font-family: var(--serif-2);
+            background: linear-gradient(180deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .split-content p {
+            color: rgba(255,255,255,.75);
+            line-height: 1.75;
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+        }
+        .split-content .inline-logo {
+            height: 40px;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+            opacity: .9;
+        }
+
+        .split-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0 0;
+        }
+        .split-features-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--paper);
+            font-size: .95rem;
+        }
+        .split-features-list li:last-child { border-bottom: none; }
+        .split-features-list li::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+        .split-features-list strong {
+            color: var(--gold);
+            font-weight: 400;
+            margin-right: .5rem;
+            font-family: var(--serif);
+        }
+
+        /* ==========================================================
+           PROGRAM TIMELINE
+           ========================================================== */
+        .timeline {
+            position: relative;
+            margin: 4rem auto;
+            padding: 2rem 0;
+            max-width: 1000px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+        }
+
+        .timeline-node {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        .timeline-node:nth-child(even) .timeline-content-left { opacity: 0; visibility: hidden; }
+        .timeline-node:nth-child(odd) .timeline-content-right { opacity: 0; visibility: hidden; }
+        @media (max-width: 768px) {
+            .timeline-node { grid-template-columns: 40px 1fr; gap: 1.5rem; }
+            .timeline-node:nth-child(even) .timeline-content-left,
+            .timeline-node:nth-child(odd) .timeline-content-right { display: none; }
+            .timeline-content-left, .timeline-content-right { grid-column: 2; }
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 4px rgba(201,169,97,.25), 0 0 20px var(--gold);
+            justify-self: center;
+            align-self: flex-start;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            opacity: .4;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: .4; }
+            50% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .timeline-card {
+            padding: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all .4s var(--ease-lux);
+        }
+        .timeline-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+        .timeline-phase {
+            font-size: .7rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .5rem;
+        }
+        .timeline-title {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin: 0 0 .8rem;
+            color: var(--paper);
+        }
+        .timeline-desc {
+            color: rgba(255,255,255,.7);
+            font-size: .95rem;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================
+           DESTINATIONS GRID
+           ========================================================== */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .dest-card {
+            position: relative;
+            aspect-ratio: 3/4;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            transition: transform .5s var(--ease-lux), box-shadow .5s ease;
+            transform-style: preserve-3d;
+        }
+        .dest-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(0,0,0,.6), 0 0 0 1px var(--gold);
+        }
+        .dest-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s var(--ease-lux);
+        }
+        .dest-card:hover img { transform: scale(1.1); }
+        .dest-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(10,10,15,.9) 100%);
+        }
+        .dest-info {
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            padding: 1.5rem;
+            color: var(--paper);
+            z-index: 2;
+        }
+        .dest-label {
+            font-size: .65rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .4rem;
+        }
+        .dest-name {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 0 0 .3rem;
+        }
+        .dest-arrow {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--paper);
+            z-index: 2;
+            transition: all .4s ease;
+        }
+        .dest-card:hover .dest-arrow {
+            background: var(--gold);
+            color: var(--ink);
+            transform: rotate(-45deg);
+        }
+
+        /* ==========================================================
+           CULTURE / EXPERIENCE MOSAIC
+           ========================================================== */
+        .culture-mosaic {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 160px;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        @media (max-width: 700px) {
+            .culture-mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+        }
+
+        .mosaic-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform .5s var(--ease-lux);
+        }
+        .mosaic-item.tall { grid-row: span 2; }
+        .mosaic-item.wide { grid-column: span 2; }
+        @media (max-width: 700px) {
+            .mosaic-item.wide { grid-column: span 2; }
+        }
+        .mosaic-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s var(--ease-lux), filter .5s ease;
+        }
+        .mosaic-item:hover { transform: scale(1.03); }
+        .mosaic-item:hover img { transform: scale(1.1); filter: saturate(1.3); }
+        .mosaic-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10,10,15,.85) 100%);
+        }
+        .mosaic-caption {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            color: var(--paper);
+            z-index: 2;
+        }
+        .mosaic-caption .tag {
+            font-size: .6rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        .mosaic-caption h5 {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 400;
+            margin: .3rem 0 0;
+        }
+
+        /* ==========================================================
+           WELLBEING / LOGISTICS CARDS
+           ========================================================== */
+        .wellbeing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .wb-card {
+            position: relative;
+            padding: 2.5rem;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: transform .5s var(--ease-lux), border-color .4s ease, box-shadow .4s ease;
+            overflow: hidden;
+        }
+        .wb-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,.4);
+        }
+        .wb-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(201,169,97,.35);
+        }
+        .wb-icon svg { width: 28px; height: 28px; }
+        .wb-title {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin: 0 0 .8rem;
+            color: var(--paper);
+        }
+        .wb-desc {
+            color: rgba(255,255,255,.7);
+            font-size: .95rem;
+            line-height: 1.7;
+        }
+        .wb-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 0;
+            font-size: .85rem;
+        }
+        .wb-features li {
+            padding: .5rem 0;
+            color: rgba(255,255,255,.65);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+        .wb-features li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* ==========================================================
+           TESTIMONIALS
+           ========================================================== */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            position: relative;
+            padding: 3rem 2.2rem 2.2rem;
+            background: linear-gradient(135deg, var(--glass), transparent);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all .4s var(--ease-lux);
+        }
+        .testimonial:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+        }
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-family: var(--serif);
+            font-size: 6rem;
+            color: var(--gold);
+            line-height: 1;
+            opacity: .4;
+        }
+        .testimonial-quote {
+            font-family: var(--serif-2);
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--paper);
+            margin-bottom: 1.5rem;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--paper);
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .testimonial-name {
+            font-weight: 500;
+            color: var(--paper);
+            font-size: .95rem;
+        }
+        .testimonial-role {
+            font-size: .75rem;
+            color: rgba(255,255,255,.5);
+            letter-spacing: .1em;
+        }
+
+        /* ==========================================================
+           FAQ
+           ========================================================== */
+        .faq-list {
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--glass-border);
+            transition: border-color .4s ease;
+        }
+        .faq-item.open { border-color: var(--gold); }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--paper);
+            font-family: var(--serif);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 400;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            transition: color .3s ease;
+        }
+        .faq-question:hover { color: var(--gold); }
+        .faq-toggle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all .4s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .faq-toggle::before,
+        .faq-toggle::after {
+            content: '';
+            position: absolute;
+            background: var(--paper);
+            transition: transform .4s var(--ease-spring), background .3s ease;
+        }
+        .faq-toggle::before { width: 14px; height: 1px; }
+        .faq-toggle::after { width: 1px; height: 14px; }
+        .faq-item.open .faq-toggle {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+        .faq-item.open .faq-toggle::before,
+        .faq-item.open .faq-toggle::after { background: var(--ink); }
+        .faq-item.open .faq-toggle::after { transform: scaleY(0); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .6s var(--ease-lux), padding .4s ease;
+            color: rgba(255,255,255,.75);
+            line-height: 1.75;
+            font-size: 1rem;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 400px;
+            padding: 0 0 2rem;
+        }
+
+        /* ==========================================================
+           REGISTRATION FORM
+           ========================================================== */
+        #registro {
+            position: relative;
+            padding: 8rem 2rem;
+            background:
+                linear-gradient(180deg, transparent 0%, rgba(0,85,164,.08) 50%, rgba(239,65,53,.06) 100%),
+                radial-gradient(circle at 30% 20%, rgba(201,169,97,.12) 0%, transparent 50%);
+            margin-top: 4rem;
+            overflow: hidden;
+        }
+        #registro::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(180deg, transparent, var(--gold));
+            transform: translateX(-50%);
+        }
+
+        .registro-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .registro-form {
+            margin-top: 3rem;
+            padding: 3rem;
+            background: rgba(20,20,28,.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            text-align: left;
+            box-shadow: 0 40px 100px rgba(0,0,0,.5), 0 0 0 1px rgba(201,169,97,.15);
+            position: relative;
+        }
+        .registro-form::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--white), var(--red));
+            border-radius: 24px 24px 0 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-field.full { grid-column: 1 / -1; }
+
+        .form-field label {
+            font-size: .7rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.65);
+            margin-bottom: .5rem;
+        }
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            background: rgba(255,255,255,.04);
+            border: 1px solid var(--glass-border);
+            color: var(--paper);
+            padding: .9rem 1rem;
+            border-radius: 10px;
+            font-family: var(--sans);
+            font-size: .95rem;
+            transition: all .3s ease;
+        }
+        .form-field textarea { resize: vertical; min-height: 100px; font-family: var(--sans); }
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(201,169,97,.06);
+            box-shadow: 0 0 0 3px rgba(201,169,97,.12);
+        }
+        .form-field select { cursor: pointer; }
+        .form-field select option { background: var(--ink-2); color: var(--paper); }
+
+        .form-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: .8rem;
+            margin: 1.5rem 0;
+            font-size: .85rem;
+            color: rgba(255,255,255,.75);
+            line-height: 1.5;
+        }
+        .form-consent input { margin-top: .3rem; accent-color: var(--gold); }
+
+        .form-submit {
+            width: 100%;
+            padding: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .form-success,
+        .form-error {
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: .9rem;
+            display: none;
+        }
+        .form-success {
+            background: rgba(46, 160, 67, .15);
+            border: 1px solid rgba(46, 160, 67, .4);
+            color: #7de090;
+        }
+        .form-error {
+            background: rgba(239, 65, 53, .15);
+            border: 1px solid rgba(239, 65, 53, .4);
+            color: #ff9b92;
+        }
+
+        /* ==========================================================
+           FOOTER
+           ========================================================== */
+        footer {
+            position: relative;
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+            text-align: center;
+        }
+        .footer-brand {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            letter-spacing: .2em;
+            margin-bottom: 1rem;
+            color: var(--paper);
+        }
+        .footer-partners {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+            font-size: .75rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.55);
+        }
+        .footer-partners .divider { color: var(--gold); }
+        .footer-meta {
+            font-size: .75rem;
+            color: rgba(255,255,255,.4);
+            letter-spacing: .15em;
+            margin-top: 2rem;
+        }
+
+        /* ==========================================================
+           FLOATING MUSIC TOGGLE
+           ========================================================== */
+        #music-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 90;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(20,20,28,.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all .4s ease;
+        }
+        #music-toggle:hover {
+            border-color: var(--gold);
+            transform: scale(1.08);
+            box-shadow: 0 10px 30px rgba(201,169,97,.3);
+        }
+        #music-toggle .bars {
+            display: flex;
+            gap: 3px;
+            align-items: flex-end;
+            height: 18px;
+        }
+        #music-toggle .bars span {
+            width: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: height .2s ease;
+        }
+        #music-toggle.playing .bars span {
+            animation: barEq 1.2s ease-in-out infinite;
+        }
+        #music-toggle .bars span:nth-child(1) { height: 40%; animation-delay: -.4s; }
+        #music-toggle .bars span:nth-child(2) { height: 80%; animation-delay: -.2s; }
+        #music-toggle .bars span:nth-child(3) { height: 50%; animation-delay: 0s; }
+        #music-toggle .bars span:nth-child(4) { height: 90%; animation-delay: -.3s; }
+        @keyframes barEq {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+        #music-toggle:not(.playing) .bars span {
+            height: 60%;
+            background: rgba(201,169,97,.4);
+        }
+
+        /* ==========================================================
+           REDUCED MOTION
+           ========================================================== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient atmosphere -->
+    <div class="ambient-bg">
+        <div class="depth-orb depth-orb--gold" style="top: 10%; left: 5%;"></div>
+        <div class="depth-orb depth-orb--blue" style="top: 60%; right: 5%; animation-delay: -5s;"></div>
+        <div class="depth-orb depth-orb--red" style="bottom: 10%; left: 40%; animation-delay: -10s;"></div>
+    </div>
+
+    <!-- Cursor spotlight -->
+    <div id="cursor-spotlight"></div>
+
+    <!-- Scroll progress -->
+    <div id="scroll-progress"></div>
+
+    <!-- INTRO OVERLAY with video + content -->
+    <div id="intro-overlay">
+        <video id="intro-video" autoplay muted playsinline preload="auto">
+            <source src="assets/videos/logo-intro.mp4" type="video/mp4">
+            <source src="Video_Creativo_Generado_Al_Instante.mp4" type="video/mp4">
+        </video>
+        <div id="intro-content">
+            <div class="intro-flag">
+                <div class="flag-blue"></div>
+                <div class="flag-white"></div>
+                <div class="flag-red"></div>
+            </div>
+            <div class="intro-eyebrow">Colegio La Salle × Alianza Francesa × CAVILAM</div>
+            <h1 class="intro-title">Vichy <em>2026</em></h1>
+            <div class="intro-divider"></div>
+            <p class="intro-subtitle">Una inmersión lingüística de excelencia<br>en el corazón de Francia</p>
+            <div class="intro-partners">
+                <span>San Cristóbal</span>
+                <span class="dot"></span>
+                <span>Vichy</span>
+                <span class="dot"></span>
+                <span>Julio 2026</span>
+            </div>
+            <button id="enter-btn">
+                <span>Vivir la Experiencia</span>
+                <span class="arrow">→</span>
+            </button>
+            <div class="intro-note">Se recomienda audífonos · Experiencia sensorial</div>
+        </div>
+        <div class="intro-hint">Click · Enter · ESC para continuar</div>
+    </div>
+
+    <!-- AMBIENT MUSIC -->
+    <audio id="ambient-audio" loop preload="auto">
+        <source src="https://cdn.pixabay.com/audio/2023/08/31/audio_e3b4bba8f7.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- NAVIGATION -->
+    <nav id="main-nav">
+        <a href="#top" class="nav-brand">
+            <span class="nav-brand-flag">
+                <div class="flag-blue"></div>
+                <div class="flag-white"></div>
+                <div class="flag-red"></div>
+            </span>
+            <span>Vichy 2026</span>
+        </a>
+        <div class="nav-links">
+            <a href="#convenio">Alianza</a>
+            <a href="#cavilam">CAVILAM</a>
+            <a href="#programa">Programa</a>
+            <a href="#destinos">Destinos</a>
+            <a href="#bienestar">Bienestar</a>
+            <a href="#faq">FAQ</a>
+            <a href="#registro" class="nav-cta">Inscribirme</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+
+        <!-- HERO -->
+        <section id="top" class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-vignette"></div>
+
+            <div class="hero-flag reveal">
+                <div class="flag-blue"></div>
+                <div class="flag-white"></div>
+                <div class="flag-red"></div>
+            </div>
+
+            <div class="hero-eyebrow reveal delay-1">Verano Francés · Edición 2026</div>
+
+            <h1 class="hero-title reveal delay-1">
+                Vichy
+                <em>Deux mille vingt-six</em>
+            </h1>
+
+            <p class="hero-location reveal delay-2">
+                Un programa exclusivo diseñado por el <strong>Colegio La Salle de San Cristóbal</strong>,
+                la <strong>Alianza Francesa</strong> y <strong>CAVILAM</strong>, centro internacional de
+                excelencia para la enseñanza del francés en Vichy, Francia.
+            </p>
+
+            <div class="hero-divider reveal delay-2">
+                <span></span>
+                <div class="crest"></div>
+                <span></span>
+            </div>
+
+            <div class="hero-stats reveal delay-3">
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-count="3">0</span>
+                    <span class="hero-stat-label">Semanas de<br>Inmersión</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-count="60">0</span>
+                    <span class="hero-stat-label">Horas<br>de Clase</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-count="12">0</span>
+                    <span class="hero-stat-label">Excursiones<br>Culturales</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-count="1">0</span>
+                    <span class="hero-stat-label">Experiencia<br>Única</span>
+                </div>
+            </div>
+
+            <div class="hero-cta-row reveal delay-3">
+                <a href="#registro" class="btn-luxury primary">
+                    <span>Reservar mi lugar</span>
+                    <span>→</span>
+                </a>
+                <a href="#convenio" class="btn-luxury ghost">
+                    <span>Descubrir el programa</span>
+                </a>
+            </div>
+
+            <div class="scroll-indicator">
+                <span>Desplazar</span>
+                <span class="line"></span>
+            </div>
+        </section>
+
+        <!-- CONVENIO / PARTNERSHIP -->
+        <section id="convenio">
+            <div class="section-label reveal">La Alianza</div>
+            <h2 class="section-title reveal">
+                Tres instituciones, <em>una misión</em><br>
+                formar ciudadanos del mundo
+            </h2>
+            <p class="section-subtitle reveal delay-1">
+                Un convenio histórico firmado entre el Colegio La Salle de San Cristóbal,
+                la Alianza Francesa y CAVILAM Vichy, el centro lingüístico más prestigioso
+                de Francia, reconocido por el sello oficial del Ministerio de Educación francés.
+            </p>
+
+            <div class="partnership">
+                <div class="partner-card reveal delay-1">
+                    <div class="partner-seal">LS</div>
+                    <h3 class="partner-title">La Salle</h3>
+                    <div class="partner-subtitle">San Cristóbal · Desde 1913</div>
+                    <p class="partner-description">
+                        Más de un siglo formando líderes con valores lasallistas,
+                        excelencia académica y visión internacional.
+                    </p>
+                </div>
+
+                <div class="partner-card reveal delay-2">
+                    <div class="partner-seal">AF</div>
+                    <h3 class="partner-title">Alianza Francesa</h3>
+                    <div class="partner-subtitle">San Cristóbal · Embajada Cultural</div>
+                    <p class="partner-description">
+                        Red internacional con más de 150 años difundiendo
+                        la lengua y cultura francesa en los cinco continentes.
+                    </p>
+                </div>
+
+                <div class="partner-card reveal delay-3">
+                    <div class="partner-seal">CV</div>
+                    <h3 class="partner-title">CAVILAM</h3>
+                    <div class="partner-subtitle">Vichy, Francia · Label Qualité</div>
+                    <p class="partner-description">
+                        Centro de excelencia creado en 1964 por la Alianza Francesa de París
+                        y la ciudad de Vichy. Referente mundial en la enseñanza del francés.
+                    </p>
+                </div>
+            </div>
+
+            <div class="convenio-strip reveal delay-1">
+                <div class="convenio-stat">
+                    <span class="convenio-stat-big" data-count="60">0</span>
+                    <span class="convenio-stat-label">Años<br>CAVILAM</span>
+                </div>
+                <div class="convenio-stat">
+                    <span class="convenio-stat-big" data-count="100">0</span>
+                    <span class="convenio-stat-label">Países<br>Representados</span>
+                </div>
+                <div class="convenio-stat">
+                    <span class="convenio-stat-big" data-count="150">0</span>
+                    <span class="convenio-stat-label">Años<br>Alianza Francesa</span>
+                </div>
+                <div class="convenio-stat">
+                    <span class="convenio-stat-big" data-count="112">0</span>
+                    <span class="convenio-stat-label">Años<br>La Salle SC</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAVILAM SEDE -->
+        <section id="cavilam">
+            <div class="section-label reveal">Sede Internacional</div>
+            <h2 class="section-title reveal">
+                CAVILAM <em>Alliance Française</em><br>
+                centro de excelencia en Vichy
+            </h2>
+
+            <div class="split-feature">
+                <div class="split-visual reveal">
+                    <img src="https://images.unsplash.com/photo-1524222717473-730000096953?q=80&w=1200&auto=format&fit=crop" alt="CAVILAM Vichy" loading="lazy">
+                    <div class="split-visual-caption">
+                        <div class="loc">03200 Vichy · Francia</div>
+                        <h4>1 avenue des Célestins</h4>
+                    </div>
+                </div>
+                <div class="split-content reveal delay-1">
+                    <h3>Donde el mundo <em>aprende francés</em></h3>
+                    <p>
+                        Fundado en 1964 por la Alianza Francesa de París y la ciudad de Vichy,
+                        CAVILAM es hoy uno de los principales centros del mundo para la enseñanza
+                        del francés como lengua extranjera y la formación de profesores.
+                    </p>
+                    <p>
+                        Cada año recibe a más de <strong style="color:var(--gold);">4.000 estudiantes de
+                        más de 120 nacionalidades</strong>, ofreciendo una experiencia pedagógica
+                        innovadora reconocida internacionalmente con el sello <em>Qualité FLE</em>
+                        del Ministerio francés.
+                    </p>
+                    <ul class="split-features-list">
+                        <li><strong>Enfoque</strong>Metodología comunicativa y accional</li>
+                        <li><strong>Profesores</strong>Equipo titular especializado en FLE</li>
+                        <li><strong>Certificación</strong>DELF · DALF · TCF reconocidos mundialmente</li>
+                        <li><strong>Instalaciones</strong>Aulas modernas · Biblioteca · Cafetería</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ALIANZA FRANCESA SEDE -->
+        <section id="af-sede">
+            <div class="section-label reveal">Nuestra Sede</div>
+            <h2 class="section-title reveal">
+                Alianza Francesa <em>San Cristóbal</em><br>
+                tu puerta al mundo francófono
+            </h2>
+
+            <div class="split-feature reverse">
+                <div class="split-visual reveal">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop" alt="Alianza Francesa San Cristóbal" loading="lazy">
+                    <div class="split-visual-caption">
+                        <div class="loc">San Cristóbal · Venezuela</div>
+                        <h4>Sede Central AF</h4>
+                    </div>
+                </div>
+                <div class="split-content reveal delay-1">
+                    <h3>Antes de partir, <em>tu base francófona</em></h3>
+                    <p>
+                        En nuestra sede de San Cristóbal preparamos a cada estudiante de La Salle
+                        con sesiones intensivas previas al viaje, asegurando que lleguen a Vichy
+                        con la confianza lingüística necesaria para aprovechar al máximo cada
+                        momento de la inmersión.
+                    </p>
+                    <p>
+                        Somos parte de la red <strong style="color:var(--gold);">Alliance Française
+                        mundial</strong>: más de 830 centros en 135 países unidos por una misión
+                        común — compartir la lengua y la cultura francesa.
+                    </p>
+                    <ul class="split-features-list">
+                        <li><strong>Preparación</strong>Módulo pre-viaje incluido en el programa</li>
+                        <li><strong>Exámenes</strong>Centro oficial DELF / DALF / TCF</li>
+                        <li><strong>Cultura</strong>Eventos · Cine · Biblioteca francesa</li>
+                        <li><strong>Comunidad</strong>Red de alumnos y francofilos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAM TIMELINE -->
+        <section id="programa">
+            <div class="section-label reveal">El Recorrido</div>
+            <h2 class="section-title reveal">
+                El viaje, <em>paso a paso</em>
+            </h2>
+            <p class="section-subtitle reveal delay-1">
+                Cada etapa del programa está diseñada para maximizar el aprendizaje,
+                la seguridad y la experiencia cultural de nuestros estudiantes.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-node reveal">
+                    <div class="timeline-card timeline-content-left">
+                        <div class="timeline-phase">Fase 1 · Mayo – Junio 2026</div>
+                        <h4 class="timeline-title">Preparación en San Cristóbal</h4>
+                        <p class="timeline-desc">
+                            Sesiones intensivas de francés, orientación cultural, taller de viaje,
+                            entrevistas familiares y preparación logística completa.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content-right"></div>
+                </div>
+
+                <div class="timeline-node reveal">
+                    <div class="timeline-content-left"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card timeline-content-right">
+                        <div class="timeline-phase">Fase 2 · Inicio de Julio 2026</div>
+                        <h4 class="timeline-title">Partida desde Caracas · París</h4>
+                        <p class="timeline-desc">
+                            Vuelo grupal con acompañamiento docente, traslado asistido desde
+                            París hacia Vichy y bienvenida oficial en CAVILAM.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-node reveal">
+                    <div class="timeline-card timeline-content-left">
+                        <div class="timeline-phase">Fase 3 · Julio 2026 · 3 semanas</div>
+                        <h4 class="timeline-title">Inmersión en CAVILAM</h4>
+                        <p class="timeline-desc">
+                            Clases diarias de francés por niveles (A1–C1), talleres culturales,
+                            deportivos, cine, teatro, gastronomía y excursiones supervisadas.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content-right"></div>
+                </div>
+
+                <div class="timeline-node reveal">
+                    <div class="timeline-content-left"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card timeline-content-right">
+                        <div class="timeline-phase">Fase 4 · Fines de Julio 2026</div>
+                        <h4 class="timeline-title">Gran Tour · París y Castillos</h4>
+                        <p class="timeline-desc">
+                            Visitas a París (Torre Eiffel, Louvre, Versalles), los Castillos del
+                            Loira y experiencias culinarias en bistrós tradicionales franceses.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-node reveal">
+                    <div class="timeline-card timeline-content-left">
+                        <div class="timeline-phase">Fase 5 · Agosto 2026</div>
+                        <h4 class="timeline-title">Regreso · Certificación · Celebración</h4>
+                        <p class="timeline-desc">
+                            Entrega oficial de certificados CAVILAM + DELF, ceremonia en La Salle
+                            con familias, presentación de proyectos y comunidad de egresados.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content-right"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESTINATIONS -->
+        <section id="destinos">
+            <div class="section-label reveal">Destinos</div>
+            <h2 class="section-title reveal">
+                Francia, <em>en todo su esplendor</em>
+            </h2>
+            <p class="section-subtitle reveal delay-1">
+                Más allá de Vichy, visitaremos los lugares que han hecho de Francia
+                un referente mundial del arte, la historia y la gastronomía.
+            </p>
+
+            <div class="destinations-grid">
+                <a href="https://en.vichy-destinations.fr/" target="_blank" rel="noopener" class="dest-card reveal">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=900&auto=format&fit=crop" alt="Vichy" loading="lazy">
+                    <div class="dest-arrow">↗</div>
+                    <div class="dest-info">
+                        <div class="dest-label">Sede · Auvernia</div>
+                        <h4 class="dest-name">Vichy</h4>
+                    </div>
+                </a>
+
+                <a href="https://en.parisinfo.com/" target="_blank" rel="noopener" class="dest-card reveal delay-1">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=900&auto=format&fit=crop" alt="París" loading="lazy">
+                    <div class="dest-arrow">↗</div>
+                    <div class="dest-info">
+                        <div class="dest-label">Ciudad Luz</div>
+                        <h4 class="dest-name">París</h4>
+                    </div>
+                </a>
+
+                <a href="https://en.chateauversailles.fr/" target="_blank" rel="noopener" class="dest-card reveal delay-2">
+                    <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?q=80&w=900&auto=format&fit=crop" alt="Versalles" loading="lazy">
+                    <div class="dest-arrow">↗</div>
+                    <div class="dest-info">
+                        <div class="dest-label">Palacio Real</div>
+                        <h4 class="dest-name">Versalles</h4>
+                    </div>
+                </a>
+
+                <a href="https://www.valdeloire-france.com/en/" target="_blank" rel="noopener" class="dest-card reveal delay-3">
+                    <img src="https://images.unsplash.com/photo-1550340499-a6c60fc8287c?q=80&w=900&auto=format&fit=crop" alt="Castillos del Loira" loading="lazy">
+                    <div class="dest-arrow">↗</div>
+                    <div class="dest-info">
+                        <div class="dest-label">Patrimonio UNESCO</div>
+                        <h4 class="dest-name">Valle del Loira</h4>
+                    </div>
+                </a>
+
+                <a href="https://www.lyon-france.com/" target="_blank" rel="noopener" class="dest-card reveal">
+                    <img src="https://images.unsplash.com/photo-1524396309943-e03f5249f002?q=80&w=900&auto=format&fit=crop" alt="Lyon" loading="lazy">
+                    <div class="dest-arrow">↗</div>
+                    <div class="dest-info">
+                        <div class="dest-label">Capital Gastronómica</div>
+                        <h4 class="dest-name">Lyon</h4>
+                    </div>
+                </a>
+
+                <a href="https://www.clermont-auvergne-tourisme.com/" target="_blank" rel="noopener" class="dest-card reveal delay-1">
+                    <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?q=80&w=900&auto=format&fit=crop" alt="Auvernia" loading="lazy">
+                    <div class="dest-arrow">↗</div>
+                    <div class="dest-info">
+                        <div class="dest-label">Volcanes · Naturaleza</div>
+                        <h4 class="dest-name">Auvernia</h4>
+                    </div>
+                </a>
+
+                <a href="https://www.bourgogne-tourisme.com/en" target="_blank" rel="noopener" class="dest-card reveal delay-2">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=900&auto=format&fit=crop" alt="Borgoña" loading="lazy">
+                    <div class="dest-arrow">↗</div>
+                    <div class="dest-info">
+                        <div class="dest-label">Viñedos Legendarios</div>
+                        <h4 class="dest-name">Borgoña</h4>
+                    </div>
+                </a>
+
+                <a href="https://www.chamonix.com/" target="_blank" rel="noopener" class="dest-card reveal delay-3">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=900&auto=format&fit=crop" alt="Alpes" loading="lazy">
+                    <div class="dest-arrow">↗</div>
+                    <div class="dest-info">
+                        <div class="dest-label">Mont Blanc</div>
+                        <h4 class="dest-name">Chamonix</h4>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- CULTURAL EXPERIENCE -->
+        <section id="cultura">
+            <div class="section-label reveal">Experiencia</div>
+            <h2 class="section-title reveal">
+                La Francia <em>sensorial</em>
+            </h2>
+            <p class="section-subtitle reveal delay-1">
+                Aprender francés no es solo gramática — es saborear un croissant recién horneado,
+                escuchar a Debussy en un museo, reír con otros estudiantes de 100 nacionalidades.
+            </p>
+
+            <div class="culture-mosaic">
+                <div class="mosaic-item tall reveal">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=800&auto=format&fit=crop" alt="Boulangerie" loading="lazy">
+                    <div class="mosaic-caption">
+                        <div class="tag">Gastronomía</div>
+                        <h5>Boulangerie artisanale</h5>
+                    </div>
+                </div>
+                <div class="mosaic-item wide reveal delay-1">
+                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1200&auto=format&fit=crop" alt="París" loading="lazy">
+                    <div class="mosaic-caption">
+                        <div class="tag">Paysage</div>
+                        <h5>Paisajes de Francia</h5>
+                    </div>
+                </div>
+                <div class="mosaic-item reveal delay-2">
+                    <img src="https://images.unsplash.com/photo-1543968996-ee822b8176ba?q=80&w=600&auto=format&fit=crop" alt="Museo" loading="lazy">
+                    <div class="mosaic-caption">
+                        <div class="tag">Arte</div>
+                        <h5>Museos</h5>
+                    </div>
+                </div>
+                <div class="mosaic-item reveal delay-1">
+                    <img src="https://images.unsplash.com/photo-1530569673472-307dc017a82d?q=80&w=600&auto=format&fit=crop" alt="Café" loading="lazy">
+                    <div class="mosaic-caption">
+                        <div class="tag">Café</div>
+                        <h5>Terrasses parisiennes</h5>
+                    </div>
+                </div>
+                <div class="mosaic-item wide reveal delay-2">
+                    <img src="https://images.unsplash.com/photo-1509121191855-2a7eeb42b5d8?q=80&w=1200&auto=format&fit=crop" alt="Arquitectura" loading="lazy">
+                    <div class="mosaic-caption">
+                        <div class="tag">Architecture</div>
+                        <h5>Patrimoine architectural</h5>
+                    </div>
+                </div>
+                <div class="mosaic-item tall reveal delay-3">
+                    <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?q=80&w=800&auto=format&fit=crop" alt="Viñedos" loading="lazy">
+                    <div class="mosaic-caption">
+                        <div class="tag">Terroir</div>
+                        <h5>Vignobles français</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WELLBEING / LOGISTICS -->
+        <section id="bienestar">
+            <div class="section-label reveal">Bienestar</div>
+            <h2 class="section-title reveal">
+                Cada detalle, <em>pensado con cuidado</em>
+            </h2>
+            <p class="section-subtitle reveal delay-1">
+                Los padres merecen tranquilidad y los estudiantes, una experiencia inolvidable.
+                Por eso cubrimos cada aspecto de logística, seguridad y acompañamiento.
+            </p>
+
+            <div class="wellbeing-grid">
+                <div class="wb-card reveal">
+                    <div class="wb-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <h3 class="wb-title">Alojamiento</h3>
+                    <p class="wb-desc">
+                        Residencia estudiantil oficial de CAVILAM con habitaciones individuales,
+                        wifi, desayuno y supervisión 24/7.
+                    </p>
+                    <ul class="wb-features">
+                        <li>Habitación privada o compartida</li>
+                        <li>Desayuno incluido</li>
+                        <li>Lavandería disponible</li>
+                        <li>Supervisión permanente</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-1">
+                    <div class="wb-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="wb-title">Logística integral</h3>
+                    <p class="wb-desc">
+                        Vuelos grupales con acompañamiento docente desde Caracas, traslados
+                        internos, excursiones en transporte privado.
+                    </p>
+                    <ul class="wb-features">
+                        <li>Vuelo ida y vuelta</li>
+                        <li>Acompañamiento docente</li>
+                        <li>Traslados incluidos</li>
+                        <li>Itinerario coordinado</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-2">
+                    <div class="wb-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="wb-title">Seguridad total</h3>
+                    <p class="wb-desc">
+                        Seguro médico internacional, contacto directo con familias 24/7 y
+                        protocolos de emergencia coordinados con embajadas.
+                    </p>
+                    <ul class="wb-features">
+                        <li>Seguro internacional</li>
+                        <li>Línea 24/7 para familias</li>
+                        <li>Protocolo de emergencia</li>
+                        <li>Coordinación consular</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-3">
+                    <div class="wb-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="wb-title">Académico</h3>
+                    <p class="wb-desc">
+                        Pre-test de nivelación, certificaciones oficiales DELF/DALF, material
+                        didáctico incluido y seguimiento post-programa.
+                    </p>
+                    <ul class="wb-features">
+                        <li>Clasificación por nivel</li>
+                        <li>Examen oficial al final</li>
+                        <li>Certificado CAVILAM</li>
+                        <li>Acompañamiento post</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-1">
+                    <div class="wb-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="wb-title">Bienestar emocional</h3>
+                    <p class="wb-desc">
+                        Tutores acompañantes especializados en adolescentes, espacios de escucha
+                        y contacto constante con las familias.
+                    </p>
+                    <ul class="wb-features">
+                        <li>Tutor asignado</li>
+                        <li>Actividades grupales</li>
+                        <li>Videollamadas familiares</li>
+                        <li>Check-in diario</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-2">
+                    <div class="wb-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="wb-title">Todo incluido</h3>
+                    <p class="wb-desc">
+                        Un solo pago, experiencia completa. Sin costos ocultos: matrícula,
+                        alojamiento, vuelo, excursiones y certificación.
+                    </p>
+                    <ul class="wb-features">
+                        <li>Matrícula CAVILAM</li>
+                        <li>Hospedaje completo</li>
+                        <li>Vuelos internacionales</li>
+                        <li>Planes de financiamiento</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonios">
+            <div class="section-label reveal">Voces</div>
+            <h2 class="section-title reveal">
+                Experiencias que <em>transforman</em>
+            </h2>
+
+            <div class="testimonials">
+                <div class="testimonial reveal">
+                    <p class="testimonial-quote">
+                        Vichy cambió mi forma de ver el mundo. Regresé con amigos de cinco
+                        continentes y un francés que jamás imaginé lograr en tan poco tiempo.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SM</div>
+                        <div>
+                            <div class="testimonial-name">Sofía M.</div>
+                            <div class="testimonial-role">Estudiante La Salle · Promoción 2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial reveal delay-1">
+                    <p class="testimonial-quote">
+                        Como padre, la tranquilidad fue absoluta. Comunicación constante,
+                        organización impecable y una experiencia académica de altísimo nivel.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JR</div>
+                        <div>
+                            <div class="testimonial-name">Javier R.</div>
+                            <div class="testimonial-role">Padre de familia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial reveal delay-2">
+                    <p class="testimonial-quote">
+                        CAVILAM es otro nivel. Los profesores, las instalaciones, la ciudad...
+                        todo respira cultura francesa. Lo recomendaría mil veces.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AP</div>
+                        <div>
+                            <div class="testimonial-name">Andrea P.</div>
+                            <div class="testimonial-role">Estudiante · Promoción 2023</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <div class="section-label reveal">Preguntas</div>
+            <h2 class="section-title reveal">
+                Lo que necesitas <em>saber</em>
+            </h2>
+
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>¿Qué nivel de francés necesito para participar?</span>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer">
+                        Ningún nivel previo es obligatorio. Realizamos una prueba de clasificación
+                        antes del viaje y CAVILAM organiza grupos desde A1 (principiante) hasta
+                        C1 (avanzado). Además, la Alianza Francesa de San Cristóbal ofrece sesiones
+                        preparatorias antes de la partida para todos los estudiantes.
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>¿Cuál es el rango de edades?</span>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer">
+                        El programa está diseñado para estudiantes del Colegio La Salle de San
+                        Cristóbal de 14 a 18 años. Casos especiales pueden ser evaluados por
+                        el equipo coordinador.
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>¿Qué incluye el costo del programa?</span>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer">
+                        Matrícula completa en CAVILAM, alojamiento en residencia oficial, desayuno,
+                        vuelos internacionales, traslados, excursiones programadas, seguro médico
+                        internacional, acompañamiento docente y certificación oficial. Contamos
+                        con planes de financiamiento flexibles para las familias.
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>¿Cómo garantizan la seguridad de los estudiantes?</span>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer">
+                        Los estudiantes viajan en grupo con docentes acompañantes del Colegio La
+                        Salle y la Alianza Francesa. En Vichy residen en la residencia oficial
+                        de CAVILAM con supervisión 24/7. Contamos con seguro médico internacional,
+                        línea directa para padres las 24 horas y coordinación con embajadas.
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>¿Cuándo y cómo me inscribo?</span>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer">
+                        El registro de interés está abierto ya mismo — completa el formulario
+                        al final de esta página. Nuestro equipo se pondrá en contacto contigo
+                        para una entrevista, evaluación de nivel y presentación formal del
+                        programa a tu familia.
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>¿Qué documentación necesito?</span>
+                        <span class="faq-toggle"></span>
+                    </button>
+                    <div class="faq-answer">
+                        Pasaporte vigente (con al menos 6 meses de vigencia al momento del viaje),
+                        visa Schengen para Francia (gestionamos el acompañamiento), consentimiento
+                        notariado de ambos padres, ficha médica y constancia de estudios del
+                        Colegio La Salle. Te guiamos paso a paso en todo el proceso.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REGISTRATION FORM -->
+        <section id="registro">
+            <div class="registro-wrap">
+                <div class="section-label reveal" style="justify-content:center;">Registro de Interés</div>
+                <h2 class="section-title reveal">
+                    Comienza tu <em>viaje a Vichy</em>
+                </h2>
+                <p class="section-subtitle reveal delay-1" style="margin-left:auto;margin-right:auto;">
+                    Regístrate ahora y nuestro equipo se pondrá en contacto contigo en menos de
+                    48 horas para presentarte el programa completo y resolver todas tus dudas.
+                </p>
+
+                <form class="registro-form reveal delay-1" id="registro-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                    <input type="hidden" name="subject" value="Nuevo registro Vichy 2026">
+                    <input type="hidden" name="from_name" value="Vichy 2026 · Landing Page">
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Nombre del estudiante</label>
+                            <input type="text" name="nombre_estudiante" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Apellido del estudiante</label>
+                            <input type="text" name="apellido_estudiante" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Edad</label>
+                            <input type="number" name="edad" min="12" max="20" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Grado / Año en La Salle</label>
+                            <select name="grado" required>
+                                <option value="">Selecciona...</option>
+                                <option>1er año de bachillerato</option>
+                                <option>2do año de bachillerato</option>
+                                <option>3er año de bachillerato</option>
+                                <option>4to año de bachillerato</option>
+                                <option>5to año de bachillerato</option>
+                                <option>Egresado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Nombre del representante</label>
+                            <input type="text" name="nombre_representante" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Parentesco</label>
+                            <select name="parentesco" required>
+                                <option value="">Selecciona...</option>
+                                <option>Padre</option>
+                                <option>Madre</option>
+                                <option>Tutor legal</option>
+                                <option>Abuelo/a</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Correo electrónico</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Teléfono / WhatsApp</label>
+                            <input type="tel" name="telefono" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Nivel estimado de francés</label>
+                            <select name="nivel_frances" required>
+                                <option value="">Selecciona...</option>
+                                <option>Ninguno (principiante total)</option>
+                                <option>Básico (A1–A2)</option>
+                                <option>Intermedio (B1–B2)</option>
+                                <option>Avanzado (C1–C2)</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>¿Cómo nos conoció?</label>
+                            <select name="canal">
+                                <option value="">Selecciona...</option>
+                                <option>Colegio La Salle</option>
+                                <option>Alianza Francesa</option>
+                                <option>Instagram / Redes</option>
+                                <option>Familia / Amigos</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-field full">
+                        <label>Mensaje (opcional)</label>
+                        <textarea name="mensaje" placeholder="Cuéntanos tu motivación, dudas, expectativas..."></textarea>
+                    </div>
+
+                    <label class="form-consent">
+                        <input type="checkbox" required>
+                        <span>Autorizo al Colegio La Salle y a la Alianza Francesa de San Cristóbal
+                        a contactarme sobre el programa Vichy 2026 y acepto el tratamiento de mis
+                        datos para fines exclusivos de este programa.</span>
+                    </label>
+
+                    <button type="submit" class="btn-luxury primary form-submit">
+                        <span>Enviar mi Registro</span>
+                        <span>→</span>
+                    </button>
+
+                    <div class="form-success">
+                        ¡Merci beaucoup! Tu registro fue recibido. Nos pondremos en contacto contigo en menos de 48 horas.
+                    </div>
+                    <div class="form-error">
+                        Ocurrió un error al enviar. Por favor intenta de nuevo o escríbenos directamente.
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-brand">VICHY 2026</div>
+            <div class="footer-partners">
+                <span>Colegio La Salle</span>
+                <span class="divider">·</span>
+                <span>Alianza Francesa San Cristóbal</span>
+                <span class="divider">·</span>
+                <span>CAVILAM Vichy</span>
+            </div>
+            <div class="footer-meta">
+                © 2026 · Una experiencia creada con excelencia · San Cristóbal — Vichy
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Music toggle -->
+    <button id="music-toggle" aria-label="Activar música ambiente">
+        <div class="bars">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </button>
+
+    <script>
+    (function () {
+        'use strict';
+
+        const $  = (sel, ctx) => (ctx || document).querySelector(sel);
+        const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
+
+        // =========================================================
+        // 1. CURSOR SPOTLIGHT
+        // =========================================================
+        const spotlight = $('#cursor-spotlight');
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let sx = mx, sy = my;
+
+        window.addEventListener('mousemove', (e) => {
+            mx = e.clientX;
+            my = e.clientY;
+        }, { passive: true });
+
+        function animateSpotlight() {
+            sx += (mx - sx) * 0.12;
+            sy += (my - sy) * 0.12;
+            if (spotlight) {
+                spotlight.style.transform = `translate(${sx}px, ${sy}px) translate(-50%, -50%)`;
+            }
+            requestAnimationFrame(animateSpotlight);
+        }
+        animateSpotlight();
+
+        // =========================================================
+        // 2. SCROLL PROGRESS BAR
+        // =========================================================
+        const progress = $('#scroll-progress');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            if (progress) progress.style.width = pct + '%';
+        }, { passive: true });
+
+        // =========================================================
+        // 3. NAV SCROLL STATE
+        // =========================================================
+        const nav = $('#main-nav');
+        window.addEventListener('scroll', () => {
+            if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
+
+        // =========================================================
+        // 4. INTRO VIDEO + TWO-PHASE REVEAL
+        // =========================================================
+        const overlay    = $('#intro-overlay');
+        const introVideo = $('#intro-video');
+        const enterBtn   = $('#enter-btn');
+        const audio      = $('#ambient-audio');
+        const musicBtn   = $('#music-toggle');
+
+        // Inject particles
+        if (overlay) {
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'intro-particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.setProperty('--dx', (Math.random() - .5) * 100 + 'px');
+                p.style.setProperty('--dy', -Math.random() * 100 - 30 + 'px');
+                p.style.animationDuration = (5 + Math.random() * 6) + 's';
+                p.style.animationDelay = Math.random() * 5 + 's';
+                overlay.appendChild(p);
+            }
+        }
+
+        function showPhase2() {
+            if (overlay) overlay.classList.add('phase-2');
+        }
+
+        // Phase 1 (video alone) → Phase 2 (content revealed) at 3s
+        setTimeout(showPhase2, 3000);
+
+        function dismissIntro() {
+            if (!overlay) return;
+            overlay.classList.add('dismissed');
+            document.body.classList.add('experience-live', 'ready');
+
+            // Start music AFTER user interaction
+            if (audio) {
+                audio.volume = 0;
+                audio.play().then(() => {
+                    // Fade-in volume
+                    let v = 0;
+                    const fade = setInterval(() => {
+                        v = Math.min(.3, v + .02);
+                        audio.volume = v;
+                        if (v >= .3) clearInterval(fade);
+                    }, 100);
+                    if (musicBtn) musicBtn.classList.add('playing');
+                }).catch(() => { /* autoplay blocked, user can toggle */ });
+            }
+
+            // Remove intro from DOM after transition
+            setTimeout(() => {
+                if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+            }, 1600);
+        }
+
+        if (enterBtn) enterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dismissIntro();
+        });
+
+        // Click anywhere on overlay (after phase-2) also dismisses
+        if (overlay) {
+            overlay.addEventListener('click', (e) => {
+                if (overlay.classList.contains('phase-2') && !overlay.classList.contains('dismissed')) {
+                    dismissIntro();
+                }
+            });
+        }
+
+        // ESC or Enter key dismisses intro
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') && overlay && !overlay.classList.contains('dismissed')) {
+                dismissIntro();
+            }
+        });
+
+        // Fallback: auto-dismiss after 8s if user doesn't interact
+        setTimeout(() => {
+            if (overlay && !overlay.classList.contains('dismissed')) dismissIntro();
+        }, 8000);
+
+        // =========================================================
+        // 5. MUSIC TOGGLE
+        // =========================================================
+        if (musicBtn && audio) {
+            musicBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play().then(() => musicBtn.classList.add('playing')).catch(() => {});
+                } else {
+                    audio.pause();
+                    musicBtn.classList.remove('playing');
+                }
+            });
+        }
+
+        // =========================================================
+        // 6. SCROLL REVEAL
+        // =========================================================
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+        $$('.reveal').forEach(el => revealObserver.observe(el));
+
+        // =========================================================
+        // 7. COUNTER ANIMATION
+        // =========================================================
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = parseInt(el.dataset.count, 10) || 0;
+                const duration = 1800;
+                const start = performance.now();
+                function tick(now) {
+                    const t = Math.min(1, (now - start) / duration);
+                    const eased = 1 - Math.pow(1 - t, 3);
+                    el.textContent = Math.round(target * eased).toLocaleString();
+                    if (t < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+                counterObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+
+        $$('[data-count]').forEach(el => counterObserver.observe(el));
+
+        // =========================================================
+        // 8. FAQ ACCORDION
+        // =========================================================
+        $$('.faq-item').forEach(item => {
+            const q = item.querySelector('.faq-question');
+            if (q) q.addEventListener('click', () => {
+                const wasOpen = item.classList.contains('open');
+                $$('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+
+        // =========================================================
+        // 9. CARD 3D TILT
+        // =========================================================
+        const tiltEls = $$('.partner-card, .wb-card, .timeline-card, .dest-card');
+        tiltEls.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const r = el.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                el.style.transform = `perspective(1000px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) translateZ(4px)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // =========================================================
+        // 10. SMOOTH ANCHOR SCROLL
+        // =========================================================
+        $$('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const href = a.getAttribute('href');
+                if (href === '#' || href.length < 2) return;
+                const target = document.querySelector(href);
+                if (!target) return;
+                e.preventDefault();
+                const y = target.getBoundingClientRect().top + window.pageYOffset - 70;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            });
+        });
+
+        // =========================================================
+        // 11. FORM SUBMISSION
+        // =========================================================
+        const form = $('#registro-form');
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const successEl = form.querySelector('.form-success');
+                const errorEl   = form.querySelector('.form-error');
+                const btn       = form.querySelector('button[type="submit"]');
+                const original  = btn.innerHTML;
+
+                btn.innerHTML = '<span>Enviando...</span>';
+                btn.disabled  = true;
+                successEl.style.display = 'none';
+                errorEl.style.display   = 'none';
+
+                try {
+                    const data = new FormData(form);
+                    const res = await fetch(form.action, { method: 'POST', body: data });
+                    if (res.ok) {
+                        successEl.style.display = 'block';
+                        form.reset();
+                        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        errorEl.style.display = 'block';
+                    }
+                } catch (_) {
+                    errorEl.style.display = 'block';
+                } finally {
+                    btn.innerHTML = original;
+                    btn.disabled  = false;
+                }
+            });
+        }
+
+        // =========================================================
+        // 12. PARALLAX ON HERO
+        // =========================================================
+        const hero = $('.hero');
+        if (hero) {
+            window.addEventListener('scroll', () => {
+                const y = window.scrollY;
+                const vh = window.innerHeight;
+                if (y < vh) {
+                    const heroBg = hero.querySelector('.hero-bg');
+                    if (heroBg) heroBg.style.transform = `translateY(${y * 0.35}px)`;
+                }
+            }, { passive: true });
+        }
+
+        // Mark ready
+        document.body.classList.add('ready');
+    })();
+    </script>
+</body>
+</html>
