@@ -947,31 +947,54 @@
         }
 
         .partner-logo-wrap {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(255,255,255,.1), rgba(255,255,255,.02));
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 1.8rem;
+            padding: 1.2rem;
+            background:
+                linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.03));
+            border: 1px solid rgba(201,169,97,.35);
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            transition: all .4s ease;
+            transition: all .5s var(--ease-lux);
+            box-shadow:
+                0 8px 32px rgba(0,0,0,.45),
+                0 2px 0 rgba(255,255,255,.08) inset,
+                0 -1px 0 rgba(0,0,0,.3) inset;
+            position: relative;
+            transform: perspective(600px) translateZ(0);
+        }
+        .partner-logo-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 50%);
+            border-radius: inherit;
+            pointer-events: none;
         }
         .partner-card:hover .partner-logo-wrap {
             border-color: var(--gold);
-            background: linear-gradient(135deg, rgba(201,169,97,.12), rgba(201,169,97,.04));
-            transform: scale(1.05);
+            background: linear-gradient(145deg, rgba(201,169,97,.18), rgba(201,169,97,.04));
+            transform: perspective(600px) translateZ(10px) scale(1.06);
+            box-shadow:
+                0 16px 48px rgba(0,0,0,.55),
+                0 0 20px rgba(201,169,97,.2),
+                0 2px 0 rgba(255,255,255,.12) inset;
         }
         .partner-logo {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 90%;
+            max-height: 90%;
             width: auto;
             height: auto;
             object-fit: contain;
-            filter: brightness(1.1) contrast(1.1);
+            filter: brightness(1.15) contrast(1.05) drop-shadow(0 2px 8px rgba(0,0,0,.5));
+            transition: filter .4s ease;
+        }
+        .partner-card:hover .partner-logo {
+            filter: brightness(1.25) contrast(1.1) drop-shadow(0 4px 12px rgba(0,0,0,.6));
         }
 
         /* ==========================================================
@@ -1001,8 +1024,9 @@
             display: block;
             width: 100%;
             height: auto;
-            max-height: 75vh;
-            object-fit: cover;
+            max-height: none;
+            object-fit: contain;
+            background: #0a0a0f;
             transition: transform 1.2s var(--ease-lux);
         }
         .signing-frame:hover .signing-image {
@@ -2226,21 +2250,16 @@
                 </figcaption>
             </figure>
 
-            <div class="signatories reveal delay-2">
+            <div class="signatories reveal delay-2" style="grid-template-columns: repeat(2,1fr); max-width: 700px; margin: 2.5rem auto 0;">
                 <div class="signatory">
                     <div class="signatory-role">Firmante</div>
-                    <div class="signatory-name">Dirección</div>
-                    <div class="signatory-inst">Colegio La Salle San Cristóbal</div>
-                </div>
-                <div class="signatory">
-                    <div class="signatory-role">Firmante</div>
-                    <div class="signatory-name">Dirección</div>
-                    <div class="signatory-inst">Alianza Francesa San Cristóbal</div>
+                    <div class="signatory-name">Alianza Francesa<br>San Cristóbal</div>
+                    <div class="signatory-inst">Red Alliance Française Internacional</div>
                 </div>
                 <div class="signatory">
                     <div class="signatory-role">Aliado Académico</div>
-                    <div class="signatory-name">Dirección</div>
-                    <div class="signatory-inst">CAVILAM Vichy · Francia</div>
+                    <div class="signatory-name">CAVILAM<br>Alliance Française</div>
+                    <div class="signatory-inst">Vichy · Francia · Label Qualité FLE</div>
                 </div>
             </div>
         </section>
@@ -2294,7 +2313,7 @@
 
             <div class="split-feature reverse">
                 <div class="split-visual reveal">
-                    <img src="WEBSITE 23-3-2026.jpeg" alt="Alianza Francesa de San Cristóbal - Sede Central" loading="lazy" onerror="this.src='assets/images/sede-interior.jpg'">
+                    <img src="assets/images/sede-interior.jpg" alt="Alianza Francesa de San Cristóbal - Sede Central" loading="lazy" onerror="this.src='Sin%20t%C3%ADtulo.jpeg'">
                     <div class="split-visual-caption">
                         <div class="loc">San Cristóbal · Venezuela</div>
                         <h4>Sede Central AF</h4>
@@ -2340,8 +2359,9 @@
                         <div class="timeline-phase">Fase 1 · Mayo – Junio 2026</div>
                         <h4 class="timeline-title">Preparación en San Cristóbal</h4>
                         <p class="timeline-desc">
-                            Sesiones intensivas de francés, orientación cultural, taller de viaje,
-                            entrevistas familiares y preparación logística completa.
+                            Sesiones intensivas de francés con la Alianza Francesa,
+                            orientación cultural, entrevistas familiares y tramitación
+                            de documentos de viaje.
                         </p>
                     </div>
                     <div class="timeline-dot"></div>
@@ -2353,10 +2373,11 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-card timeline-content-right">
                         <div class="timeline-phase">Fase 2 · Inicio de Julio 2026</div>
-                        <h4 class="timeline-title">Partida desde Caracas · París</h4>
+                        <h4 class="timeline-title">Llegada a Vichy · Bienvenida CAVILAM</h4>
                         <p class="timeline-desc">
-                            Vuelo grupal con acompañamiento docente, traslado asistido desde
-                            París hacia Vichy y bienvenida oficial en CAVILAM.
+                            Recepción oficial en el campus de CAVILAM, tour de instalaciones,
+                            ubicación en residencia estudiantil y primer contacto con la
+                            comunidad internacional.
                         </p>
                     </div>
                 </div>
@@ -2364,10 +2385,11 @@
                 <div class="timeline-node reveal">
                     <div class="timeline-card timeline-content-left">
                         <div class="timeline-phase">Fase 3 · Julio 2026 · 3 semanas</div>
-                        <h4 class="timeline-title">Inmersión en CAVILAM</h4>
+                        <h4 class="timeline-title">Inmersión total en CAVILAM</h4>
                         <p class="timeline-desc">
                             Clases diarias de francés por niveles (A1–C1), talleres culturales,
-                            deportivos, cine, teatro, gastronomía y excursiones supervisadas.
+                            deportivos, cine, teatro, gastronomía y excursiones supervisadas
+                            con estudiantes de más de 100 países.
                         </p>
                     </div>
                     <div class="timeline-dot"></div>
@@ -2379,10 +2401,10 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-card timeline-content-right">
                         <div class="timeline-phase">Fase 4 · Fines de Julio 2026</div>
-                        <h4 class="timeline-title">Gran Tour · París y Castillos</h4>
+                        <h4 class="timeline-title">Gran Tour · París y el Valle del Loira</h4>
                         <p class="timeline-desc">
                             Visitas a París (Torre Eiffel, Louvre, Versalles), los Castillos del
-                            Loira y experiencias culinarias en bistrós tradicionales franceses.
+                            Loira, Auvernia y experiencias gastronómicas en bistrós tradicionales.
                         </p>
                     </div>
                 </div>
@@ -2390,10 +2412,10 @@
                 <div class="timeline-node reveal">
                     <div class="timeline-card timeline-content-left">
                         <div class="timeline-phase">Fase 5 · Agosto 2026</div>
-                        <h4 class="timeline-title">Regreso · Certificación · Celebración</h4>
+                        <h4 class="timeline-title">Certificación · Celebración · Retorno</h4>
                         <p class="timeline-desc">
-                            Entrega oficial de certificados CAVILAM + DELF, ceremonia en La Salle
-                            con familias, presentación de proyectos y comunidad de egresados.
+                            Entrega oficial de certificados CAVILAM + DELF, ceremonia de cierre
+                            en La Salle con familias y bienvenida a la comunidad de egresados.
                         </p>
                     </div>
                     <div class="timeline-dot"></div>
@@ -2584,14 +2606,14 @@
                     </div>
                     <h3 class="wb-title">Logística integral</h3>
                     <p class="wb-desc">
-                        Vuelos grupales con acompañamiento docente desde Caracas, traslados
-                        internos, excursiones en transporte privado.
+                        Coordinación completa en Francia: traslados internos, excursiones
+                        en transporte privado y acompañamiento docente en todo momento.
                     </p>
                     <ul class="wb-features">
-                        <li>Vuelo ida y vuelta</li>
+                        <li>Traslados internos incluidos</li>
                         <li>Acompañamiento docente</li>
-                        <li>Traslados incluidos</li>
-                        <li>Itinerario coordinado</li>
+                        <li>Excursiones coordinadas</li>
+                        <li>Itinerario completo</li>
                     </ul>
                 </div>
 
@@ -2658,15 +2680,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                     </div>
-                    <h3 class="wb-title">Todo incluido</h3>
+                    <h3 class="wb-title">Programa todo incluido</h3>
                     <p class="wb-desc">
-                        Un solo pago, experiencia completa. Sin costos ocultos: matrícula,
-                        alojamiento, vuelo, excursiones y certificación.
+                        Un solo pago cubre toda la experiencia en Francia. Sin costos
+                        ocultos en destino: matrícula, alojamiento, excursiones y certificación.
                     </p>
                     <ul class="wb-features">
                         <li>Matrícula CAVILAM</li>
-                        <li>Hospedaje completo</li>
-                        <li>Vuelos internacionales</li>
+                        <li>Hospedaje en residencia</li>
+                        <li>Excursiones y tours</li>
                         <li>Planes de financiamiento</li>
                     </ul>
                 </div>
@@ -2765,9 +2787,11 @@
                     </button>
                     <div class="faq-answer">
                         Matrícula completa en CAVILAM, alojamiento en residencia oficial, desayuno,
-                        vuelos internacionales, traslados, excursiones programadas, seguro médico
-                        internacional, acompañamiento docente y certificación oficial. Contamos
-                        con planes de financiamiento flexibles para las familias.
+                        traslados internos en Francia, excursiones programadas, seguro médico
+                        internacional, acompañamiento docente y certificación oficial. <strong
+                        style="color:var(--gold)">Los pasajes de avión (ida y vuelta) no están
+                        incluidos</strong> y corren por cuenta de cada familia. Contamos con
+                        planes de financiamiento flexibles para el programa en Francia.
                     </div>
                 </div>
 
@@ -3040,8 +3064,33 @@
             if (overlay) overlay.classList.add('phase-2');
         }
 
-        // Phase 1 (video alone) → Phase 2 (content revealed) at 3s
-        setTimeout(showPhase2, 3000);
+        // Phase 1: solo video durante 3s exactos
+        // Si el video termina antes de 3s, esperar igual los 3s
+        let phase2Triggered = false;
+        function triggerPhase2() {
+            if (!phase2Triggered) {
+                phase2Triggered = true;
+                showPhase2();
+            }
+        }
+
+        // Trigger at 3s
+        setTimeout(triggerPhase2, 3000);
+
+        // Si el video termina antes → loop para que no quede negro, pero igual
+        // pasamos a phase-2 en el momento de 3s ya programado
+        if (introVideo) {
+            introVideo.addEventListener('ended', () => {
+                // Reiniciar loop manual para que no quede pantalla negra
+                introVideo.currentTime = 0;
+                introVideo.play().catch(() => {});
+            });
+
+            // Si el video no carga, igualmente hacemos phase-2 a los 3s
+            introVideo.addEventListener('error', () => {
+                setTimeout(triggerPhase2, 200);
+            });
+        }
 
         function startMusic() {
             if (!audio) return false;
