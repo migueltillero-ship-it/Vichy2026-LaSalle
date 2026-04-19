@@ -1995,6 +1995,83 @@
         }
 
         /* ==========================================================
+           VIDEO TESTIMONIALS
+           ========================================================== */
+        .testimonials-video {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .vid-testimonial {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform .5s var(--ease-lux), border-color .4s ease, box-shadow .4s ease;
+        }
+        .vid-testimonial:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,.5);
+        }
+
+        .vid-wrap {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: hidden;
+        }
+        .vid-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vid-caption {
+            padding: 1.4rem 1.6rem 1.8rem;
+        }
+        .vid-label {
+            font-size: .65rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .4rem;
+        }
+        .vid-name {
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin: 0 0 .6rem;
+            color: var(--paper);
+        }
+        .vid-quote {
+            font-family: var(--serif-2);
+            font-style: italic;
+            font-size: .95rem;
+            color: rgba(255,255,255,.7);
+            margin: 0;
+            line-height: 1.55;
+        }
+
+        /* Skip link (accessibility) */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            padding: .5rem 1rem;
+            background: var(--gold);
+            color: var(--ink);
+            font-size: .85rem;
+            border-radius: 0 0 8px 8px;
+            z-index: 10000;
+            transition: top .2s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* ==========================================================
            REDUCED MOTION
            ========================================================== */
         @media (prefers-reduced-motion: reduce) {
@@ -2008,8 +2085,10 @@
 </head>
 <body>
 
+    <a href="#convenio" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Ambient atmosphere -->
-    <div class="ambient-bg">
+    <div class="ambient-bg" aria-hidden="true">
         <div class="depth-orb depth-orb--gold" style="top: 10%; left: 5%;"></div>
         <div class="depth-orb depth-orb--blue" style="top: 60%; right: 5%; animation-delay: -5s;"></div>
         <div class="depth-orb depth-orb--red" style="bottom: 10%; left: 40%; animation-delay: -10s;"></div>
@@ -2061,7 +2140,7 @@
     </audio>
 
     <!-- NAVIGATION -->
-    <nav id="main-nav">
+    <nav id="main-nav" role="navigation" aria-label="Navegación principal">
         <a href="#top" class="nav-brand">
             <span class="nav-brand-flag">
                 <div class="flag-blue"></div>
@@ -2436,74 +2515,82 @@
             </p>
 
             <div class="destinations-grid">
-                <a href="https://en.vichy-destinations.fr/" target="_blank" rel="noopener" class="dest-card reveal">
-                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=900&auto=format&fit=crop" alt="Vichy" loading="lazy">
-                    <div class="dest-arrow">↗</div>
+                <!-- Vichy: ville thermale, opéra, architecture Belle Époque -->
+                <a href="https://en.vichy-destinations.fr/" target="_blank" rel="noopener" class="dest-card reveal" aria-label="Descubrir Vichy">
+                    <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?q=80&w=900&auto=format&fit=crop" alt="Vichy, ville thermale · Auvernia" loading="lazy">
+                    <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Sede · Auvernia</div>
                         <h4 class="dest-name">Vichy</h4>
                     </div>
                 </a>
 
-                <a href="https://en.parisinfo.com/" target="_blank" rel="noopener" class="dest-card reveal delay-1">
-                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=900&auto=format&fit=crop" alt="París" loading="lazy">
-                    <div class="dest-arrow">↗</div>
+                <!-- París: Torre Eiffel al atardecer -->
+                <a href="https://en.parisinfo.com/" target="_blank" rel="noopener" class="dest-card reveal delay-1" aria-label="Descubrir París">
+                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=900&auto=format&fit=crop" alt="París, la Ciudad Luz" loading="lazy">
+                    <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
-                        <div class="dest-label">Ciudad Luz</div>
+                        <div class="dest-label">La Ciudad Luz</div>
                         <h4 class="dest-name">París</h4>
                     </div>
                 </a>
 
-                <a href="https://en.chateauversailles.fr/" target="_blank" rel="noopener" class="dest-card reveal delay-2">
-                    <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?q=80&w=900&auto=format&fit=crop" alt="Versalles" loading="lazy">
-                    <div class="dest-arrow">↗</div>
+                <!-- Versalles: jardines y palacio -->
+                <a href="https://en.chateauversailles.fr/" target="_blank" rel="noopener" class="dest-card reveal delay-2" aria-label="Descubrir Versalles">
+                    <img src="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?q=80&w=900&auto=format&fit=crop" alt="Palacio de Versalles" loading="lazy">
+                    <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Palacio Real</div>
                         <h4 class="dest-name">Versalles</h4>
                     </div>
                 </a>
 
-                <a href="https://www.valdeloire-france.com/en/" target="_blank" rel="noopener" class="dest-card reveal delay-3">
-                    <img src="https://images.unsplash.com/photo-1550340499-a6c60fc8287c?q=80&w=900&auto=format&fit=crop" alt="Castillos del Loira" loading="lazy">
-                    <div class="dest-arrow">↗</div>
+                <!-- Valle del Loira: castillos medievales -->
+                <a href="https://www.valdeloire-france.com/en/" target="_blank" rel="noopener" class="dest-card reveal delay-3" aria-label="Descubrir el Valle del Loira">
+                    <img src="https://images.unsplash.com/photo-1600240644455-3edc55c375fe?q=80&w=900&auto=format&fit=crop" alt="Castillos del Valle del Loira" loading="lazy">
+                    <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Patrimonio UNESCO</div>
                         <h4 class="dest-name">Valle del Loira</h4>
                     </div>
                 </a>
 
-                <a href="https://www.lyon-france.com/" target="_blank" rel="noopener" class="dest-card reveal">
-                    <img src="https://images.unsplash.com/photo-1524396309943-e03f5249f002?q=80&w=900&auto=format&fit=crop" alt="Lyon" loading="lazy">
-                    <div class="dest-arrow">↗</div>
+                <!-- Lyon: vieux Lyon, gastronomía -->
+                <a href="https://www.lyon-france.com/" target="_blank" rel="noopener" class="dest-card reveal" aria-label="Descubrir Lyon">
+                    <img src="https://images.unsplash.com/photo-1524222717473-730000096953?q=80&w=900&auto=format&fit=crop" alt="Lyon, capital gastronómica de Francia" loading="lazy">
+                    <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Capital Gastronómica</div>
                         <h4 class="dest-name">Lyon</h4>
                     </div>
                 </a>
 
-                <a href="https://www.clermont-auvergne-tourisme.com/" target="_blank" rel="noopener" class="dest-card reveal delay-1">
-                    <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?q=80&w=900&auto=format&fit=crop" alt="Auvernia" loading="lazy">
-                    <div class="dest-arrow">↗</div>
+                <!-- Auvernia: paisaje volcánico, Puy de Dôme -->
+                <a href="https://www.clermont-auvergne-tourisme.com/" target="_blank" rel="noopener" class="dest-card reveal delay-1" aria-label="Descubrir Auvernia">
+                    <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=900&auto=format&fit=crop" alt="Auvernia, tierra de volcanes" loading="lazy">
+                    <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Volcanes · Naturaleza</div>
                         <h4 class="dest-name">Auvernia</h4>
                     </div>
                 </a>
 
-                <a href="https://www.bourgogne-tourisme.com/en" target="_blank" rel="noopener" class="dest-card reveal delay-2">
-                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=900&auto=format&fit=crop" alt="Borgoña" loading="lazy">
-                    <div class="dest-arrow">↗</div>
+                <!-- Borgoña: viñedos patrimonio UNESCO -->
+                <a href="https://www.bourgogne-tourisme.com/en" target="_blank" rel="noopener" class="dest-card reveal delay-2" aria-label="Descubrir Borgoña">
+                    <img src="https://images.unsplash.com/photo-1504279577054-acfeccf8fc52?q=80&w=900&auto=format&fit=crop" alt="Viñedos de Borgoña" loading="lazy">
+                    <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Viñedos Legendarios</div>
                         <h4 class="dest-name">Borgoña</h4>
                     </div>
                 </a>
 
-                <a href="https://www.chamonix.com/" target="_blank" rel="noopener" class="dest-card reveal delay-3">
-                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=900&auto=format&fit=crop" alt="Alpes" loading="lazy">
-                    <div class="dest-arrow">↗</div>
+                <!-- Chamonix: Mont Blanc, Alpes -->
+                <a href="https://www.chamonix.com/" target="_blank" rel="noopener" class="dest-card reveal delay-3" aria-label="Descubrir Chamonix">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop" alt="Chamonix y el Mont Blanc" loading="lazy">
+                    <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
-                        <div class="dest-label">Mont Blanc</div>
+                        <div class="dest-label">Mont Blanc · Alpes</div>
                         <h4 class="dest-name">Chamonix</h4>
                     </div>
                 </a>
@@ -2696,54 +2783,78 @@
         </section>
 
         <!-- TESTIMONIALS -->
-        <section id="testimonios">
-            <div class="section-label reveal">Voces</div>
-            <h2 class="section-title reveal">
-                Experiencias que <em>transforman</em>
+        <section id="testimonios" aria-labelledby="testimonios-title">
+            <div class="section-label reveal">Voces reales</div>
+            <h2 id="testimonios-title" class="section-title reveal">
+                Ellos vivieron <em>la experiencia</em>
             </h2>
+            <p class="section-subtitle reveal delay-1">
+                Familias de acogida y estudiantes del CAVILAM comparten su historia.
+                Esto es lo que espera a cada alumno de La Salle en Vichy.
+            </p>
 
-            <div class="testimonials">
-                <div class="testimonial reveal">
-                    <p class="testimonial-quote">
-                        Vichy cambió mi forma de ver el mundo. Regresé con amigos de cinco
-                        continentes y un francés que jamás imaginé lograr en tan poco tiempo.
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">SM</div>
-                        <div>
-                            <div class="testimonial-name">Sofía M.</div>
-                            <div class="testimonial-role">Estudiante La Salle · Promoción 2024</div>
-                        </div>
+            <div class="testimonials-video reveal delay-1">
+
+                <div class="vid-testimonial">
+                    <div class="vid-wrap">
+                        <video controls preload="none"
+                               poster="https://images.unsplash.com/photo-1524222717473-730000096953?q=80&w=800&auto=format&fit=crop"
+                               aria-label="Testimonio de Gwendoline y Romaric, familia de acogida CAVILAM">
+                            <source src="video_famille_1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="vid-caption">
+                        <div class="vid-label">Familia de acogida · CAVILAM</div>
+                        <h4 class="vid-name">Gwendoline &amp; Romaric</h4>
+                        <p class="vid-quote">"Recibir estudiantes del mundo nos ha cambiado la vida."</p>
                     </div>
                 </div>
 
-                <div class="testimonial reveal delay-1">
-                    <p class="testimonial-quote">
-                        Como padre, la tranquilidad fue absoluta. Comunicación constante,
-                        organización impecable y una experiencia académica de altísimo nivel.
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">JR</div>
-                        <div>
-                            <div class="testimonial-name">Javier R.</div>
-                            <div class="testimonial-role">Padre de familia</div>
-                        </div>
+                <div class="vid-testimonial">
+                    <div class="vid-wrap">
+                        <video controls preload="none"
+                               poster="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop"
+                               aria-label="Testimonio de Nadine y Philippe, familia de acogida CAVILAM">
+                            <source src="video_famille_2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="vid-caption">
+                        <div class="vid-label">Familia de acogida · CAVILAM</div>
+                        <h4 class="vid-name">Nadine &amp; Philippe</h4>
+                        <p class="vid-quote">"Vichy es un lugar donde el francés se vive, no solo se aprende."</p>
                     </div>
                 </div>
 
-                <div class="testimonial reveal delay-2">
-                    <p class="testimonial-quote">
-                        CAVILAM es otro nivel. Los profesores, las instalaciones, la ciudad...
-                        todo respira cultura francesa. Lo recomendaría mil veces.
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">AP</div>
-                        <div>
-                            <div class="testimonial-name">Andrea P.</div>
-                            <div class="testimonial-role">Estudiante · Promoción 2023</div>
-                        </div>
+                <div class="vid-testimonial">
+                    <div class="vid-wrap">
+                        <video controls preload="none"
+                               poster="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=800&auto=format&fit=crop"
+                               aria-label="Testimonio de Sylvie, familia de acogida CAVILAM">
+                            <source src="video_famille_3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="vid-caption">
+                        <div class="vid-label">Familia de acogida · CAVILAM</div>
+                        <h4 class="vid-name">Sylvie</h4>
+                        <p class="vid-quote">"Cada verano es una oportunidad de compartir lo mejor de Francia."</p>
                     </div>
                 </div>
+
+                <div class="vid-testimonial">
+                    <div class="vid-wrap">
+                        <video controls preload="none"
+                               poster="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800&auto=format&fit=crop"
+                               aria-label="Testimonio de Regina, estudiante de México en CAVILAM">
+                            <source src="video_regina.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="vid-caption">
+                        <div class="vid-label">Estudiante · México en CAVILAM</div>
+                        <h4 class="vid-name">Regina</h4>
+                        <p class="vid-quote">"Venir al CAVILAM fue la mejor decisión de mi vida."</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -2980,7 +3091,7 @@
     </main>
 
     <!-- Music toggle -->
-    <button id="music-toggle" aria-label="Activar música ambiente">
+    <button id="music-toggle" aria-label="Activar/pausar música ambiente" title="Música ambiente">
         <div class="bars">
             <span></span>
             <span></span>
@@ -3092,19 +3203,29 @@
             });
         }
 
+        // ─── MUSIC: intenta autoplay desde el inicio ──────────────
+        // Los navegadores bloquean audio sin gesto del usuario.
+        // Estrategia: intentar inmediato → si falla, escuchar primer
+        // gesto (mousemove / touch / scroll) y arrancar ahí.
+        let musicStarted = false;
         function startMusic() {
-            if (!audio) return false;
+            if (!audio || musicStarted) return false;
             audio.volume = 0;
             const p = audio.play();
             if (p && p.then) {
                 p.then(() => {
+                    musicStarted = true;
                     let v = 0;
                     const fade = setInterval(() => {
-                        v = Math.min(.35, v + .02);
+                        v = Math.min(.32, v + .015);
                         audio.volume = v;
-                        if (v >= .35) clearInterval(fade);
-                    }, 100);
+                        if (v >= .32) clearInterval(fade);
+                    }, 120);
                     if (musicBtn) musicBtn.classList.add('playing');
+                    // Quitar listeners de fallback
+                    ['mousemove','touchstart','scroll','keydown'].forEach(ev =>
+                        document.removeEventListener(ev, firstInteractionMusic, { passive: true })
+                    );
                 }).catch((err) => {
                     console.warn('Audio play blocked:', err);
                     if (musicBtn) musicBtn.classList.add('blocked');
@@ -3113,12 +3234,21 @@
             return true;
         }
 
+        // Fallback: primer gesto del usuario activa música
+        function firstInteractionMusic() { startMusic(); }
+        ['mousemove','touchstart','scroll','keydown'].forEach(ev =>
+            document.addEventListener(ev, firstInteractionMusic, { once: true, passive: true })
+        );
+
+        // Intentar autoplay inmediato (funciona en Chrome/Firefox si el tab tiene foco)
+        startMusic();
+
         function dismissIntro() {
             if (!overlay) return;
             overlay.classList.add('dismissed');
             document.body.classList.add('experience-live', 'ready');
 
-            // Start music AFTER user interaction (click/key)
+            // Si la música aún no arrancó, este click la garantiza
             startMusic();
 
             // Remove intro from DOM after transition
