@@ -1,0 +1,927 @@
+diff --git a/index.html b/index.html
+index 40b241c6..3dc14ff0 100644
+--- a/index.html
++++ b/index.html
+@@ -7,6 +7,17 @@
+     <meta name="theme-color" content="#0a0a0f">
+     <title>Vichy 2026 · La Experiencia · La Salle × Alianza Francesa × CAVILAM</title>
+ 
++    <!-- Open Graph — preview al compartir en WhatsApp, Instagram, Facebook -->
++    <meta property="og:type"        content="website">
++    <meta property="og:title"       content="Vichy 2026 · Inmersión Lingüística en Francia">
++    <meta property="og:description" content="Un programa exclusivo de La Salle × Alianza Francesa × CAVILAM. Tres semanas de inmersión total en el corazón de Francia.">
++    <meta property="og:image"       content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/Copilot_20260411_162152.png">
++    <meta property="og:url"         content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
++    <meta property="og:locale"      content="es_MX">
++    <meta name="twitter:card"       content="summary_large_image">
++    <meta name="twitter:title"      content="Vichy 2026 · Inmersión Lingüística en Francia">
++    <meta name="twitter:image"      content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/Copilot_20260411_162152.png">
++
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+@@ -62,7 +73,10 @@
+         * { box-sizing: border-box; }
+         *::selection { background: var(--gold); color: var(--ink); }
+ 
+-        html { scroll-behavior: smooth; }
++        html {
++            scroll-behavior: smooth;
++            scroll-padding-top: 72px; /* offset para nav fija */
++        }
+ 
+         body {
+             margin: 0;
+@@ -71,10 +85,12 @@
+             background: var(--ink);
+             color: var(--paper);
+             overflow-x: hidden;
+-            line-height: 1.6;
++            line-height: 1.68;
+             font-weight: 300;
+             -webkit-font-smoothing: antialiased;
++            -moz-osx-font-smoothing: grayscale;
+             text-rendering: optimizeLegibility;
++            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+         }
+ 
+         img { max-width: 100%; height: auto; display: block; }
+@@ -649,7 +665,7 @@
+ 
+         .hero-title {
+             font-family: var(--serif);
+-            font-size: clamp(3.5rem, 11vw, 10rem);
++            font-size: clamp(2.8rem, 9vw, 7rem);
+             line-height: .88;
+             letter-spacing: -.04em;
+             margin: 0 0 1.5rem;
+@@ -773,12 +789,14 @@
+             letter-spacing: .4em;
+         }
+         .btn-luxury.ghost {
+-            background: transparent;
++            background: rgba(255,255,255,.07);
+             color: var(--paper);
+-            border: 1px solid rgba(255,255,255,.25);
++            border: 1px solid rgba(255,255,255,.45);
++            backdrop-filter: blur(8px);
+         }
+         .btn-luxury.ghost:hover {
+             border-color: var(--gold);
++            background: rgba(201,169,97,.12);
+             color: var(--gold);
+             transform: translateY(-3px);
+         }
+@@ -822,7 +840,7 @@
+            ========================================================== */
+         section {
+             position: relative;
+-            padding: 9rem 2rem;
++            padding: 6rem 2rem;
+             max-width: 1400px;
+             margin: 0 auto;
+         }
+@@ -834,11 +852,12 @@
+             display: inline-flex;
+             align-items: center;
+             gap: .8rem;
+-            font-size: .7rem;
+-            letter-spacing: .4em;
++            font-size: .68rem;
++            letter-spacing: .55em;
+             text-transform: uppercase;
+             color: var(--gold);
+-            margin-bottom: 1.5rem;
++            margin-bottom: 1.8rem;
++            font-weight: 500;
+         }
+         .section-label::before {
+             content: '';
+@@ -850,9 +869,9 @@
+         .section-title {
+             font-family: var(--serif);
+             font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+-            line-height: 1.05;
+-            letter-spacing: -.02em;
+-            margin: 0 0 1rem;
++            line-height: .98;
++            letter-spacing: -.03em;
++            margin: 0 0 1.2rem;
+             font-weight: 300;
+             color: var(--paper);
+         }
+@@ -869,11 +888,12 @@
+         .section-subtitle {
+             font-family: var(--serif-2);
+             font-style: italic;
+-            font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+-            color: rgba(255,255,255,.75);
+-            max-width: 700px;
+-            line-height: 1.6;
+-            margin-bottom: 3rem;
++            font-size: clamp(1.08rem, 1.8vw, 1.32rem);
++            color: rgba(255,255,255,.78);
++            max-width: 680px;
++            line-height: 1.78;
++            margin-bottom: 3.5rem;
++            letter-spacing: .01em;
+         }
+ 
+         .reveal {
+@@ -947,13 +967,12 @@
+         }
+ 
+         .partner-logo-wrap {
+-            width: 130px;
+-            height: 130px;
++            width: 140px;
++            height: 140px;
+             margin: 0 auto 1.8rem;
+-            padding: 1.2rem;
+-            background:
+-                linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.03));
+-            border: 1px solid rgba(201,169,97,.35);
++            padding: 1.4rem;
++            background: #ffffff;
++            border: 2px solid rgba(201,169,97,.55);
+             border-radius: 24px;
+             display: flex;
+             align-items: center;
+@@ -961,9 +980,8 @@
+             overflow: hidden;
+             transition: all .5s var(--ease-lux);
+             box-shadow:
+-                0 8px 32px rgba(0,0,0,.45),
+-                0 2px 0 rgba(255,255,255,.08) inset,
+-                0 -1px 0 rgba(0,0,0,.3) inset;
++                0 8px 32px rgba(0,0,0,.5),
++                0 0 0 4px rgba(201,169,97,.08);
+             position: relative;
+             transform: perspective(600px) translateZ(0);
+         }
+@@ -971,18 +989,18 @@
+             content: '';
+             position: absolute;
+             inset: 0;
+-            background: linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 50%);
++            background: linear-gradient(135deg, rgba(201,169,97,.12) 0%, transparent 60%);
+             border-radius: inherit;
+             pointer-events: none;
+         }
+         .partner-card:hover .partner-logo-wrap {
+             border-color: var(--gold);
+-            background: linear-gradient(145deg, rgba(201,169,97,.18), rgba(201,169,97,.04));
++            background: #fffbf4;
+             transform: perspective(600px) translateZ(10px) scale(1.06);
+             box-shadow:
+                 0 16px 48px rgba(0,0,0,.55),
+-                0 0 20px rgba(201,169,97,.2),
+-                0 2px 0 rgba(255,255,255,.12) inset;
++                0 0 24px rgba(201,169,97,.35),
++                0 0 0 4px rgba(201,169,97,.18);
+         }
+         .partner-logo {
+             max-width: 90%;
+@@ -990,11 +1008,12 @@
+             width: auto;
+             height: auto;
+             object-fit: contain;
+-            filter: brightness(1.15) contrast(1.05) drop-shadow(0 2px 8px rgba(0,0,0,.5));
+-            transition: filter .4s ease;
++            filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
++            transition: filter .4s ease, transform .4s ease;
+         }
+         .partner-card:hover .partner-logo {
+-            filter: brightness(1.25) contrast(1.1) drop-shadow(0 4px 12px rgba(0,0,0,.6));
++            filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
++            transform: scale(1.04);
+         }
+ 
+         /* ==========================================================
+@@ -1940,6 +1959,108 @@
+             margin-top: 2rem;
+         }
+ 
++        /* ==========================================================
++           CUSTOM CURSOR (solo dispositivos con mouse preciso)
++           ========================================================== */
++        @media (pointer: fine) {
++            *, *::before, *::after { cursor: none !important; }
++
++            #cursor-dot {
++                position: fixed;
++                top: 0; left: 0;
++                width: 8px; height: 8px;
++                background: var(--gold);
++                border-radius: 50%;
++                pointer-events: none;
++                z-index: 999999;
++                transform: translate(-50%, -50%);
++                transition: width .18s var(--ease-lux), height .18s var(--ease-lux), background .18s ease;
++                will-change: left, top;
++            }
++
++            #cursor-ring {
++                position: fixed;
++                top: 0; left: 0;
++                width: 40px; height: 40px;
++                border: 1.5px solid rgba(201,169,97,.5);
++                border-radius: 50%;
++                pointer-events: none;
++                z-index: 999998;
++                transform: translate(-50%, -50%);
++                transition: width .38s var(--ease-lux), height .38s var(--ease-lux),
++                            border-color .38s ease, opacity .3s ease;
++                will-change: left, top;
++            }
++
++            body.cursor-hover #cursor-dot {
++                width: 14px; height: 14px;
++                background: var(--gold-light);
++            }
++            body.cursor-hover #cursor-ring {
++                width: 60px; height: 60px;
++                border-color: rgba(201,169,97,.85);
++            }
++            body.cursor-hidden #cursor-dot,
++            body.cursor-hidden #cursor-ring { opacity: 0; }
++        }
++
++        /* ==========================================================
++           FLOATING WHATSAPP BUTTON
++           ========================================================== */
++        #whatsapp-fab {
++            position: fixed;
++            bottom: 2rem;
++            left: 2rem;
++            z-index: 90;
++            width: 56px;
++            height: 56px;
++            border-radius: 50%;
++            background: #25D366;
++            display: flex;
++            align-items: center;
++            justify-content: center;
++            text-decoration: none;
++            box-shadow: 0 4px 20px rgba(37,211,102,.45);
++            transition: transform .3s var(--ease-spring), box-shadow .3s ease;
++            animation: waPulse 3s ease-in-out infinite;
++        }
++        @keyframes waPulse {
++            0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.35); }
++            60%     { box-shadow: 0 4px 20px rgba(37,211,102,.45), 0 0 0 14px rgba(37,211,102,0); }
++        }
++        #whatsapp-fab:hover {
++            transform: scale(1.13) translateY(-3px);
++            box-shadow: 0 10px 36px rgba(37,211,102,.6);
++            animation: none;
++        }
++        #whatsapp-fab svg { display: block; }
++
++        /* Tooltip */
++        #whatsapp-fab::after {
++            content: 'Escríbenos';
++            position: absolute;
++            left: calc(100% + 12px);
++            top: 50%;
++            transform: translateY(-50%);
++            background: #25D366;
++            color: #fff;
++            font-family: var(--sans);
++            font-size: .72rem;
++            font-weight: 600;
++            letter-spacing: .08em;
++            padding: .4rem .9rem;
++            border-radius: 100px;
++            white-space: nowrap;
++            opacity: 0;
++            pointer-events: none;
++            transition: opacity .25s ease, transform .25s ease;
++            transform: translateY(-50%) translateX(-6px);
++        }
++        #whatsapp-fab:hover::after {
++            opacity: 1;
++            transform: translateY(-50%) translateX(0);
++        }
++
+         /* ==========================================================
+            FLOATING MUSIC TOGGLE
+            ========================================================== */
+@@ -2020,15 +2141,46 @@
+         .vid-wrap {
+             position: relative;
+             aspect-ratio: 16/9;
+-            background: #000;
++            background: var(--ink-2);
+             overflow: hidden;
++            cursor: pointer;
+         }
+         .vid-wrap video {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
++            object-position: center;
+             display: block;
+         }
++        /* Botón play superpuesto — desaparece cuando el video está activo */
++        .vid-wrap::after {
++            content: '';
++            position: absolute;
++            inset: 0;
++            background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.55) 100%);
++            pointer-events: none;
++            transition: opacity .4s ease;
++        }
++        .vid-play-btn {
++            position: absolute;
++            top: 50%; left: 50%;
++            transform: translate(-50%,-50%);
++            width: 56px; height: 56px;
++            background: rgba(201,169,97,.92);
++            border-radius: 50%;
++            display: flex; align-items: center; justify-content: center;
++            z-index: 2;
++            transition: transform .3s var(--ease-spring), opacity .3s ease, background .3s ease;
++            pointer-events: none;
++            box-shadow: 0 4px 24px rgba(0,0,0,.45);
++        }
++        .vid-play-btn svg { margin-left: 4px; }
++        .vid-wrap:hover .vid-play-btn {
++            transform: translate(-50%,-50%) scale(1.15);
++            background: var(--gold);
++        }
++        /* Ocultar botón play cuando el video está en reproducción */
++        .vid-wrap video:not([paused]) ~ .vid-play-btn { display: none; }
+ 
+         .vid-caption {
+             padding: 1.4rem 1.6rem 1.8rem;
+@@ -2103,7 +2255,6 @@
+     <!-- INTRO OVERLAY with video + content -->
+     <div id="intro-overlay">
+         <video id="intro-video" autoplay muted playsinline preload="auto">
+-            <source src="assets/videos/logo-intro.mp4" type="video/mp4">
+             <source src="Video_Creativo_Generado_Al_Instante.mp4" type="video/mp4">
+         </video>
+         <div id="intro-content">
+@@ -2121,7 +2272,7 @@
+                 <span class="dot"></span>
+                 <span>Vichy</span>
+                 <span class="dot"></span>
+-                <span>Julio 2026</span>
++                <span>Francia</span>
+             </div>
+             <button id="enter-btn">
+                 <span>Vivir la Experiencia</span>
+@@ -2132,11 +2283,11 @@
+         <div class="intro-hint">Click · Enter · ESC para continuar</div>
+     </div>
+ 
+-    <!-- AMBIENT MUSIC - Debussy / Clásica Francesa -->
++    <!-- AMBIENT MUSIC: orden por tamaño ascendente para carga rápida -->
+     <audio id="ambient-audio" loop preload="auto">
+-        <source src="musica_clasica.mp3" type="audio/mpeg">
+-        <source src="French-Classical-Music-Debussy-S.mp3" type="audio/mpeg">
+         <source src="Arrival_at_the_Terminal%20%281%29.mp3" type="audio/mpeg">
++        <source src="French-Classical-Music-Debussy-S.mp3" type="audio/mpeg">
++        <source src="musica_clasica.mp3" type="audio/mpeg">
+     </audio>
+ 
+     <!-- NAVIGATION -->
+@@ -2157,6 +2308,7 @@
+             <a href="#destinos">Destinos</a>
+             <a href="#bienestar">Bienestar</a>
+             <a href="#faq">FAQ</a>
++            <a href="#dossier">Dossier</a>
+             <a href="#registro" class="nav-cta">Inscribirme</a>
+         </div>
+     </nav>
+@@ -2175,11 +2327,11 @@
+                 <div class="flag-red"></div>
+             </div>
+ 
+-            <div class="hero-eyebrow reveal delay-1">Verano Francés · Edición 2026</div>
++            <div class="hero-eyebrow reveal delay-1">Verano Francés · La Experiencia</div>
+ 
+             <h1 class="hero-title reveal delay-1">
+                 Vichy
+-                <em>Deux mille vingt-six</em>
++                <em>2026</em>
+             </h1>
+ 
+             <p class="hero-location reveal delay-2">
+@@ -2245,7 +2397,7 @@
+             <div class="partnership">
+                 <div class="partner-card reveal delay-1">
+                     <div class="partner-logo-wrap">
+-                        <img src="logo_lasalle.png" alt="Colegio La Salle" class="partner-logo" onerror="this.style.display='none'">
++                        <img src="logo_lasalle.png" alt="Colegio La Salle" class="partner-logo">
+                     </div>
+                     <h3 class="partner-title">La Salle</h3>
+                     <div class="partner-subtitle">San Cristóbal · Desde 1913</div>
+@@ -2257,7 +2409,7 @@
+ 
+                 <div class="partner-card reveal delay-2">
+                     <div class="partner-logo-wrap">
+-                        <img src="logo_af_sc.jpg" alt="Alianza Francesa San Cristóbal" class="partner-logo" onerror="this.src='logo_af.png'">
++                        <img src="logo_af.png" alt="Alianza Francesa San Cristóbal" class="partner-logo">
+                     </div>
+                     <h3 class="partner-title">Alianza Francesa</h3>
+                     <div class="partner-subtitle">San Cristóbal · Embajada Cultural</div>
+@@ -2392,10 +2544,10 @@
+ 
+             <div class="split-feature reverse">
+                 <div class="split-visual reveal">
+-                    <img src="assets/images/sede-interior.jpg" alt="Alianza Francesa de San Cristóbal - Sede Central" loading="lazy" onerror="this.src='Sin%20t%C3%ADtulo.jpeg'">
++                    <img src="Copilot_20260411_162152.png" alt="Alianza Francesa de San Cristóbal · CAVILAM · La Salle — Convenio Institucional" loading="lazy" style="object-position: center; background:#c0001d;">
+                     <div class="split-visual-caption">
+-                        <div class="loc">San Cristóbal · Venezuela</div>
+-                        <h4>Sede Central AF</h4>
++                        <div class="loc">San Cristóbal · México</div>
++                        <h4>Alianza Francesa × La Salle × CAVILAM</h4>
+                     </div>
+                 </div>
+                 <div class="split-content reveal delay-1">
+@@ -2435,7 +2587,7 @@
+             <div class="timeline">
+                 <div class="timeline-node reveal">
+                     <div class="timeline-card timeline-content-left">
+-                        <div class="timeline-phase">Fase 1 · Mayo – Junio 2026</div>
++                        <div class="timeline-phase">Fase 1 · Preparación</div>
+                         <h4 class="timeline-title">Preparación en San Cristóbal</h4>
+                         <p class="timeline-desc">
+                             Sesiones intensivas de francés con la Alianza Francesa,
+@@ -2451,7 +2603,7 @@
+                     <div class="timeline-content-left"></div>
+                     <div class="timeline-dot"></div>
+                     <div class="timeline-card timeline-content-right">
+-                        <div class="timeline-phase">Fase 2 · Inicio de Julio 2026</div>
++                        <div class="timeline-phase">Fase 2 · Llegada a Francia</div>
+                         <h4 class="timeline-title">Llegada a Vichy · Bienvenida CAVILAM</h4>
+                         <p class="timeline-desc">
+                             Recepción oficial en el campus de CAVILAM, tour de instalaciones,
+@@ -2463,7 +2615,7 @@
+ 
+                 <div class="timeline-node reveal">
+                     <div class="timeline-card timeline-content-left">
+-                        <div class="timeline-phase">Fase 3 · Julio 2026 · 3 semanas</div>
++                        <div class="timeline-phase">Fase 3 · Inmersión · 3 semanas</div>
+                         <h4 class="timeline-title">Inmersión total en CAVILAM</h4>
+                         <p class="timeline-desc">
+                             Clases diarias de francés por niveles (A1–C1), talleres culturales,
+@@ -2479,7 +2631,7 @@
+                     <div class="timeline-content-left"></div>
+                     <div class="timeline-dot"></div>
+                     <div class="timeline-card timeline-content-right">
+-                        <div class="timeline-phase">Fase 4 · Fines de Julio 2026</div>
++                        <div class="timeline-phase">Fase 4 · Exploración</div>
+                         <h4 class="timeline-title">Gran Tour · París y el Valle del Loira</h4>
+                         <p class="timeline-desc">
+                             Visitas a París (Torre Eiffel, Louvre, Versalles), los Castillos del
+@@ -2490,7 +2642,7 @@
+ 
+                 <div class="timeline-node reveal">
+                     <div class="timeline-card timeline-content-left">
+-                        <div class="timeline-phase">Fase 5 · Agosto 2026</div>
++                        <div class="timeline-phase">Fase 5 · Certificación</div>
+                         <h4 class="timeline-title">Certificación · Celebración · Retorno</h4>
+                         <p class="timeline-desc">
+                             Entrega oficial de certificados CAVILAM + DELF, ceremonia de cierre
+@@ -2517,7 +2669,7 @@
+             <div class="destinations-grid">
+                 <!-- Vichy: ville thermale, opéra, architecture Belle Époque -->
+                 <a href="https://en.vichy-destinations.fr/" target="_blank" rel="noopener" class="dest-card reveal" aria-label="Descubrir Vichy">
+-                    <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?q=80&w=900&auto=format&fit=crop" alt="Vichy, ville thermale · Auvernia" loading="lazy">
++                    <img src="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg" alt="Vichy · CAVILAM Alliance Française" loading="lazy">
+                     <div class="dest-arrow" aria-hidden="true">↗</div>
+                     <div class="dest-info">
+                         <div class="dest-label">Sede · Auvernia</div>
+@@ -2527,7 +2679,7 @@
+ 
+                 <!-- París: Torre Eiffel al atardecer -->
+                 <a href="https://en.parisinfo.com/" target="_blank" rel="noopener" class="dest-card reveal delay-1" aria-label="Descubrir París">
+-                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=900&auto=format&fit=crop" alt="París, la Ciudad Luz" loading="lazy">
++                    <img src="eiffel-tower.jpg" alt="París, la Ciudad Luz" loading="lazy">
+                     <div class="dest-arrow" aria-hidden="true">↗</div>
+                     <div class="dest-info">
+                         <div class="dest-label">La Ciudad Luz</div>
+@@ -2798,10 +2950,13 @@
+                 <div class="vid-testimonial">
+                     <div class="vid-wrap">
+                         <video controls preload="none"
+-                               poster="https://images.unsplash.com/photo-1524222717473-730000096953?q=80&w=800&auto=format&fit=crop"
++                               poster="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg"
+                                aria-label="Testimonio de Gwendoline y Romaric, familia de acogida CAVILAM">
+                             <source src="video_famille_1.mp4" type="video/mp4">
+                         </video>
++                        <div class="vid-play-btn" aria-hidden="true">
++                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
++                        </div>
+                     </div>
+                     <div class="vid-caption">
+                         <div class="vid-label">Familia de acogida · CAVILAM</div>
+@@ -2813,10 +2968,13 @@
+                 <div class="vid-testimonial">
+                     <div class="vid-wrap">
+                         <video controls preload="none"
+-                               poster="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop"
++                               poster="eiffel-tower.jpg"
+                                aria-label="Testimonio de Nadine y Philippe, familia de acogida CAVILAM">
+                             <source src="video_famille_2.mp4" type="video/mp4">
+                         </video>
++                        <div class="vid-play-btn" aria-hidden="true">
++                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
++                        </div>
+                     </div>
+                     <div class="vid-caption">
+                         <div class="vid-label">Familia de acogida · CAVILAM</div>
+@@ -2828,10 +2986,13 @@
+                 <div class="vid-testimonial">
+                     <div class="vid-wrap">
+                         <video controls preload="none"
+-                               poster="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=800&auto=format&fit=crop"
++                               poster="Copilot_20260411_162152.png"
+                                aria-label="Testimonio de Sylvie, familia de acogida CAVILAM">
+                             <source src="video_famille_3.mp4" type="video/mp4">
+                         </video>
++                        <div class="vid-play-btn" aria-hidden="true">
++                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
++                        </div>
+                     </div>
+                     <div class="vid-caption">
+                         <div class="vid-label">Familia de acogida · CAVILAM</div>
+@@ -2843,10 +3004,13 @@
+                 <div class="vid-testimonial">
+                     <div class="vid-wrap">
+                         <video controls preload="none"
+-                               poster="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800&auto=format&fit=crop"
++                               poster="IMG-20260224-WA0062.jpg"
+                                aria-label="Testimonio de Regina, estudiante de México en CAVILAM">
+                             <source src="video_regina.mp4" type="video/mp4">
+                         </video>
++                        <div class="vid-play-btn" aria-hidden="true">
++                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
++                        </div>
+                     </div>
+                     <div class="vid-caption">
+                         <div class="vid-label">Estudiante · México en CAVILAM</div>
+@@ -2947,6 +3111,56 @@
+             </div>
+         </section>
+ 
++        <!-- DOSSIER / PPTX DOWNLOAD -->
++        <section id="dossier" style="text-align:center;">
++            <div class="section-label reveal" style="justify-content:center;">Dossier Oficial</div>
++            <h2 class="section-title reveal">
++                El programa <em>completo</em>
++            </h2>
++            <p class="section-subtitle reveal delay-1" style="max-width:620px;margin:0 auto 3rem;">
++                Descarga la presentación institucional de Vichy 2026 — un documento completo
++                con el programa académico, destinos, bienestar y toda la información para
++                la familia.
++            </p>
++
++            <div class="reveal delay-2" style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
++                <!-- Vista previa del dossier -->
++                <div style="
++                    width:100%;max-width:780px;
++                    aspect-ratio:16/9;
++                    background:linear-gradient(135deg,var(--ink-3),var(--blue-deep));
++                    border:1px solid rgba(201,169,97,.35);
++                    border-radius:16px;
++                    overflow:hidden;
++                    display:flex;
++                    flex-direction:column;
++                    align-items:center;
++                    justify-content:center;
++                    gap:1.5rem;
++                    padding:2rem;
++                    box-shadow:0 20px 60px rgba(0,0,0,.5);
++                ">
++                    <img src="Copilot_20260411_162152.png"
++                         alt="Portada Dossier Vichy 2026"
++                         style="max-height:280px;object-fit:contain;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.4);">
++                    <p style="font-family:var(--serif-2);font-style:italic;color:var(--gold-light);font-size:1.1rem;margin:0;">
++                        Presentación Institucional · Vichy 2026
++                    </p>
++                </div>
++
++                <!-- Botón de descarga -->
++                <a href="Vichy_2026_La_Salle.pptx"
++                   download="Dossier_Vichy2026_LaSalle.pptx"
++                   class="btn-luxury primary"
++                   style="font-size:.85rem;padding:1.2rem 3rem;">
++                    <span>⬇ Descargar Dossier PPTX</span>
++                </a>
++                <p style="font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.1em;">
++                    Archivo PowerPoint · Compatible con Microsoft Office y LibreOffice
++                </p>
++            </div>
++        </section>
++
+         <!-- REGISTRATION FORM -->
+         <section id="registro">
+             <div class="registro-wrap">
+@@ -2959,10 +3173,7 @@
+                     48 horas para presentarte el programa completo y resolver todas tus dudas.
+                 </p>
+ 
+-                <form class="registro-form reveal delay-1" id="registro-form" action="https://api.web3forms.com/submit" method="POST">
+-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+-                    <input type="hidden" name="subject" value="Nuevo registro Vichy 2026">
+-                    <input type="hidden" name="from_name" value="Vichy 2026 · Landing Page">
++                <form class="registro-form reveal delay-1" id="registro-form" novalidate>
+ 
+                     <div class="form-row">
+                         <div class="form-field">
+@@ -3090,6 +3301,20 @@
+ 
+     </main>
+ 
++    <!-- Custom cursor elements (hidden on touch devices via CSS) -->
++    <div id="cursor-dot"  aria-hidden="true"></div>
++    <div id="cursor-ring" aria-hidden="true"></div>
++
++    <!-- WhatsApp FAB -->
++    <a id="whatsapp-fab"
++       href="https://wa.me/529673424456?text=Bonjour%2C%20deseo%20informaci%C3%B3n%20sobre%20el%20programa%20Vichy%202026."
++       target="_blank" rel="noopener"
++       aria-label="Contactar por WhatsApp — Miguel Tillero, Alianza Francesa">
++        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
++            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.124 1.522 5.861L.065 23.492a.5.5 0 00.61.61l5.708-1.457A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 01-5.073-1.387l-.363-.216-3.754.957.974-3.668-.237-.373A9.967 9.967 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm5.406-7.396c-.293-.147-1.737-.857-2.006-.955-.268-.098-.464-.147-.659.147-.195.293-.757.955-.928 1.151-.171.196-.342.22-.635.073-.293-.147-1.239-.456-2.361-1.456-.872-.778-1.461-1.739-1.632-2.032-.171-.293-.018-.452.129-.598.132-.131.293-.342.44-.513.146-.171.195-.293.293-.489.098-.195.049-.366-.024-.513-.073-.146-.659-1.588-.904-2.176-.238-.572-.48-.494-.659-.503-.171-.009-.366-.011-.562-.011s-.513.073-.781.366c-.268.293-1.025 1.001-1.025 2.44s1.049 2.831 1.196 3.026c.147.195 2.063 3.149 4.998 4.415.699.302 1.245.482 1.671.617.702.223 1.341.192 1.846.116.563-.083 1.734-.709 1.979-1.393.244-.684.244-1.27.171-1.393-.073-.122-.268-.195-.562-.342z"/>
++        </svg>
++    </a>
++
+     <!-- Music toggle -->
+     <button id="music-toggle" aria-label="Activar/pausar música ambiente" title="Música ambiente">
+         <div class="bars">
+@@ -3185,8 +3410,8 @@
+             }
+         }
+ 
+-        // Trigger at 3s
+-        setTimeout(triggerPhase2, 3000);
++        // Trigger at 5s
++        setTimeout(triggerPhase2, 5000);
+ 
+         // Si el video termina antes → loop para que no quede negro, pero igual
+         // pasamos a phase-2 en el momento de 3s ya programado
+@@ -3203,46 +3428,55 @@
+             });
+         }
+ 
+-        // ─── MUSIC: intenta autoplay desde el inicio ──────────────
+-        // Los navegadores bloquean audio sin gesto del usuario.
+-        // Estrategia: intentar inmediato → si falla, escuchar primer
+-        // gesto (mousemove / touch / scroll) y arrancar ahí.
++        // ─── SISTEMA DE AUDIO ─────────────────────────────────────────
++        // REGLA DEL NAVEGADOR: solo click / touchstart / keydown
++        // desbloquean audio. mousemove y scroll NO cuentan y causan
++        // AbortError silencioso. Se añade flag "pending" para evitar
++        // doble llamada y AudioContext unlock para máxima compatibilidad.
+         let musicStarted = false;
++        let musicPending = false;
++
++        function unlockAudioContext() {
++            try {
++                const AC = window.AudioContext || window.webkitAudioContext;
++                if (!AC) return;
++                const ctx = new AC();
++                if (ctx.state === 'suspended') ctx.resume();
++                const buf = ctx.createBuffer(1, 1, 22050);
++                const src = ctx.createBufferSource();
++                src.buffer = buf; src.connect(ctx.destination); src.start(0);
++            } catch (e) {}
++        }
++
+         function startMusic() {
+-            if (!audio || musicStarted) return false;
+-            audio.volume = 0;
+-            const p = audio.play();
+-            if (p && p.then) {
+-                p.then(() => {
+-                    musicStarted = true;
+-                    let v = 0;
+-                    const fade = setInterval(() => {
+-                        v = Math.min(.32, v + .015);
+-                        audio.volume = v;
+-                        if (v >= .32) clearInterval(fade);
+-                    }, 120);
+-                    if (musicBtn) musicBtn.classList.add('playing');
+-                    // Quitar listeners de fallback
+-                    ['mousemove','touchstart','scroll','keydown'].forEach(ev =>
+-                        document.removeEventListener(ev, firstInteractionMusic, { passive: true })
+-                    );
+-                }).catch((err) => {
+-                    console.warn('Audio play blocked:', err);
+-                    if (musicBtn) musicBtn.classList.add('blocked');
+-                });
+-            }
+-            return true;
++            if (!audio || musicStarted || musicPending) return;
++            musicPending = true;
++            unlockAudioContext();
++            audio.volume = 0.15;
++            audio.play().then(() => {
++                musicStarted = true;
++                musicPending = false;
++                let v = 0.15;
++                const fade = setInterval(() => {
++                    v = Math.min(.72, v + .045);
++                    audio.volume = v;
++                    if (v >= .72) clearInterval(fade);
++                }, 75);
++                if (musicBtn) {
++                    musicBtn.classList.add('playing');
++                    musicBtn.style.borderColor = '';
++                }
++            }).catch(() => {
++                musicPending = false;
++            });
+         }
+ 
+-        // Fallback: primer gesto del usuario activa música
+-        function firstInteractionMusic() { startMusic(); }
+-        ['mousemove','touchstart','scroll','keydown'].forEach(ev =>
+-            document.addEventListener(ev, firstInteractionMusic, { once: true, passive: true })
++        // Solo gestos reales (click, touch, tecla) desbloquean audio
++        function onFirstGesture() { startMusic(); }
++        ['click', 'touchstart', 'keydown'].forEach(ev =>
++            document.addEventListener(ev, onFirstGesture, { once: true, passive: true })
+         );
+ 
+-        // Intentar autoplay inmediato (funciona en Chrome/Firefox si el tab tiene foco)
+-        startMusic();
+-
+         function dismissIntro() {
+             if (!overlay) return;
+             overlay.classList.add('dismissed');
+@@ -3278,10 +3512,10 @@
+             }
+         });
+ 
+-        // Fallback: auto-dismiss after 8s if user doesn't interact
++        // Fallback: auto-dismiss 14s (5s video + 9s lectura)
+         setTimeout(() => {
+             if (overlay && !overlay.classList.contains('dismissed')) dismissIntro();
+-        }, 8000);
++        }, 14000);
+ 
+         // =========================================================
+         // 5. MUSIC TOGGLE
+@@ -3289,6 +3523,7 @@
+         if (musicBtn && audio) {
+             musicBtn.addEventListener('click', () => {
+                 if (audio.paused) {
++                    if (audio.volume < 0.1) audio.volume = 0.72;
+                     audio.play().then(() => musicBtn.classList.add('playing')).catch(() => {});
+                 } else {
+                     audio.pause();
+@@ -3378,38 +3613,56 @@
+         });
+ 
+         // =========================================================
+-        // 11. FORM SUBMISSION
++        // 11. FORM SUBMISSION → WhatsApp
++        // CAMBIAR: reemplaza TU_NUMERO_WA por el número real
++        //          (solo dígitos, con código de país, sin + ni espacios)
++        //          Ejemplo México: 5219611234567
+         // =========================================================
++        const WA_NUMBER = '529673424456'; // Miguel Tillero — Alianza Francesa San Cristóbal
++
+         const form = $('#registro-form');
+         if (form) {
+-            form.addEventListener('submit', async (e) => {
++            form.addEventListener('submit', (e) => {
+                 e.preventDefault();
++
++                // Validación HTML5 manual (usamos novalidate en el form)
++                if (!form.checkValidity()) {
++                    form.querySelectorAll(':invalid').forEach(el => {
++                        el.style.borderColor = 'var(--red)';
++                        el.addEventListener('input', () => el.style.borderColor = '', { once: true });
++                    });
++                    form.querySelector(':invalid').focus();
++                    return;
++                }
++
++                const g  = (n) => (form.querySelector(`[name="${n}"]`) || {}).value || '';
++                const nl = '\n';
++
++                const msg =
++                    '🇫🇷 *REGISTRO DE INTERÉS — VICHY 2026*' + nl +
++                    '━━━━━━━━━━━━━━━━━━━━━━━━' + nl + nl +
++                    '👤 *Estudiante:* ' + g('nombre_estudiante') + ' ' + g('apellido_estudiante') + nl +
++                    '📅 *Edad:* ' + g('edad') + ' años' + nl +
++                    '🎓 *Grado:* ' + g('grado') + nl + nl +
++                    '👨‍👩‍👧 *Representante:* ' + g('nombre_representante') + ' (' + g('parentesco') + ')' + nl +
++                    '📧 *Correo:* ' + g('email') + nl +
++                    '📱 *Teléfono:* ' + g('telefono') + nl + nl +
++                    '🗣️ *Nivel de francés:* ' + g('nivel_frances') + nl +
++                    '📢 *Nos conoció por:* ' + (g('canal') || 'No especificado') + nl +
++                    (g('mensaje') ? nl + '💬 *Mensaje:* ' + g('mensaje') + nl : '') +
++                    nl + '━━━━━━━━━━━━━━━━━━━━━━━━' + nl +
++                    '_Enviado desde vichy2026.lasalle.edu_';
++
++                const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
++                window.open(url, '_blank');
++
++                // Mensaje de éxito en la página
+                 const successEl = form.querySelector('.form-success');
+-                const errorEl   = form.querySelector('.form-error');
+-                const btn       = form.querySelector('button[type="submit"]');
+-                const original  = btn.innerHTML;
+-
+-                btn.innerHTML = '<span>Enviando...</span>';
+-                btn.disabled  = true;
+-                successEl.style.display = 'none';
+-                errorEl.style.display   = 'none';
+-
+-                try {
+-                    const data = new FormData(form);
+-                    const res = await fetch(form.action, { method: 'POST', body: data });
+-                    if (res.ok) {
+-                        successEl.style.display = 'block';
+-                        form.reset();
+-                        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+-                    } else {
+-                        errorEl.style.display = 'block';
+-                    }
+-                } catch (_) {
+-                    errorEl.style.display = 'block';
+-                } finally {
+-                    btn.innerHTML = original;
+-                    btn.disabled  = false;
++                if (successEl) {
++                    successEl.style.display = 'block';
++                    successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                 }
++                form.reset();
+             });
+         }
+ 
+@@ -3428,6 +3681,65 @@
+             }, { passive: true });
+         }
+ 
++        // =========================================================
++        // VIDEO PLAY BUTTONS — ocultar al reproducir, mostrar al pausar
++        // =========================================================
++        $$('.vid-wrap').forEach(wrap => {
++            const vid = wrap.querySelector('video');
++            const btn = wrap.querySelector('.vid-play-btn');
++            if (!vid || !btn) return;
++
++            // Click en el botón play → iniciar reproducción
++            btn.addEventListener('click', () => vid.play());
++
++            // Ocultar botón cuando el video está corriendo
++            vid.addEventListener('play',  () => { btn.style.opacity = '0'; btn.style.pointerEvents = 'none'; });
++            vid.addEventListener('pause', () => { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; });
++            vid.addEventListener('ended', () => { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; });
++        });
++
++        // =========================================================
++        // CUSTOM CURSOR — punto dorado con anillo flotante
++        // =========================================================
++        (function initCursor() {
++            if (!window.matchMedia('(pointer: fine)').matches) return;
++
++            const dot  = document.getElementById('cursor-dot');
++            const ring = document.getElementById('cursor-ring');
++            if (!dot || !ring) return;
++
++            let mx = -100, my = -100;  // posición del mouse
++            let rx = -100, ry = -100;  // posición del anillo (lag suave)
++
++            // Dot sigue instantáneamente
++            document.addEventListener('mousemove', (e) => {
++                mx = e.clientX;
++                my = e.clientY;
++                dot.style.left = mx + 'px';
++                dot.style.top  = my + 'px';
++            }, { passive: true });
++
++            // Anillo sigue con inercia suave (lerp 11%)
++            (function raf() {
++                rx += (mx - rx) * .11;
++                ry += (my - ry) * .11;
++                ring.style.left = rx + 'px';
++                ring.style.top  = ry + 'px';
++                requestAnimationFrame(raf);
++            })();
++
++            // Expand en elementos interactivos
++            const hoverSel = 'a, button, [role="button"], label, .partner-card, .dest-card, .faq-question, .vid-testimonial, .wb-card, .timeline-card, .btn-luxury';
++            document.querySelectorAll(hoverSel).forEach(el => {
++                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
++                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
++            });
++
++            // Ocultar al salir de ventana
++            document.addEventListener('mouseleave', () => document.body.classList.add('cursor-hidden'));
++            document.addEventListener('mouseenter', () => document.body.classList.remove('cursor-hidden'));
++        })();
++
+         // Mark ready
+         document.body.classList.add('ready');
+     })();

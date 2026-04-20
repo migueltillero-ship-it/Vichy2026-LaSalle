@@ -4,7 +4,31 @@
       "Bash(dir \"C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\")",
       "Bash(copy \"C:\\\\Users\\\\ALIANZA FRANCESA\\\\Downloads\\\\Video_Creativo_Generado_Al_Instante.mp4\" \"C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\intro-video.mp4\")",
       "Bash(grep -iE \"\\\\.\\(jpg|jpeg|png|mp3|mp4\\)$\")",
-      "Bash(ls -la musica_clasica.mp3 French-Classical-Music-Debussy-S.mp3 Arrival_at_the_Terminal*.mp3 logo_af_sc.jpg logo_lasalle.png logo-cavilam.png logos_banner.png WEBSITE*.jpeg IMG-*.jpg CAVILAM*.jpg cavilam-campus.jpg)"
+      "Bash(ls -la musica_clasica.mp3 French-Classical-Music-Debussy-S.mp3 Arrival_at_the_Terminal*.mp3 logo_af_sc.jpg logo_lasalle.png logo-cavilam.png logos_banner.png WEBSITE*.jpeg IMG-*.jpg CAVILAM*.jpg cavilam-campus.jpg)",
+      "Bash(gh pr create --title 'Vichy 2026: refactoring profundo + UX premium' --body ' *)",
+      "Bash(dir \"C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\" /b)",
+      "Bash(dir \"C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\assets\\\\images\" /b)",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\' -Filter '*.mp4' | Select-Object Name\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git status --short\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git add index.html; git commit -m 'Fix: 2026 numeral, video path, logos white-bg, section spacing, AF sede photo, ghost button visibility'\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git push origin main\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\' -File | Select-Object Name, Length | Sort-Object Name | Format-Table -AutoSize\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\assets\\\\' -Recurse -File | Select-Object Name, FullName, Length | Sort-Object FullName | Format-Table -AutoSize\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\public\\\\' -Recurse -File | Select-Object Name, FullName, Length | Sort-Object FullName | Format-Table -AutoSize\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git status --short; git diff --stat HEAD\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git add index.html; git status --short\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git commit -m 'Fix: fechas eliminadas, volumen musica 65%, posters locales, dossier PPTX descargable, nav actualizado'\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git push origin main --force\")",
+      "Bash(powershell.exe -Command \"Get-Item 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\Gemini_Generated_Image_49fmig49fmig49fm.png' | Select-Object -ExpandProperty Length; Get-Item 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\logo_lasalle.png' | Select-Object -ExpandProperty Length; Get-Item 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\logo-cavilam.png' | Select-Object -ExpandProperty Length; Get-Item 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle\\\\musica_clasica.mp3' | Select-Object -ExpandProperty Length\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git add index.html; git commit -m 'Feat: WhatsApp FAB + formulario via WA + OG tags + logos optimizados \\(346KB vs 7MB\\)'\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git add index.html; git commit -m 'Ultra-premium: cursor dorado, tipografia refinada, WA real \\(529673424456\\), lazy-load, scroll-padding'\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git ls-files | Select-String '\\\\.mp3'\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git add index.html; git commit -m 'Fix musica: archivo pequeno primero \\(3.7MB\\), volumen arranca en 12% audible, sube a 72% en 1.5s'; git push origin main\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git add index.html; git commit -m 'Fix: audio real \\(AudioContext unlock, solo click/touch\\), intro 5s, thumbnails distintos + boton play'; git push origin main\")",
+      "Bash(powershell.exe -Command \"Set-Location 'C:\\\\Users\\\\ALIANZA FRANCESA\\\\Vichy2026-LaSalle'; git log --oneline -8\")",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }
