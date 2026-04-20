@@ -2141,15 +2141,46 @@
         .vid-wrap {
             position: relative;
             aspect-ratio: 16/9;
-            background: #000;
+            background: var(--ink-2);
             overflow: hidden;
+            cursor: pointer;
         }
         .vid-wrap video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             display: block;
         }
+        /* Botón play superpuesto — desaparece cuando el video está activo */
+        .vid-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.55) 100%);
+            pointer-events: none;
+            transition: opacity .4s ease;
+        }
+        .vid-play-btn {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 56px; height: 56px;
+            background: rgba(201,169,97,.92);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2;
+            transition: transform .3s var(--ease-spring), opacity .3s ease, background .3s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 24px rgba(0,0,0,.45);
+        }
+        .vid-play-btn svg { margin-left: 4px; }
+        .vid-wrap:hover .vid-play-btn {
+            transform: translate(-50%,-50%) scale(1.15);
+            background: var(--gold);
+        }
+        /* Ocultar botón play cuando el video está en reproducción */
+        .vid-wrap video:not([paused]) ~ .vid-play-btn { display: none; }
 
         .vid-caption {
             padding: 1.4rem 1.6rem 1.8rem;
@@ -2923,6 +2954,9 @@
                                aria-label="Testimonio de Gwendoline y Romaric, familia de acogida CAVILAM">
                             <source src="video_famille_1.mp4" type="video/mp4">
                         </video>
+                        <div class="vid-play-btn" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                        </div>
                     </div>
                     <div class="vid-caption">
                         <div class="vid-label">Familia de acogida · CAVILAM</div>
@@ -2934,10 +2968,13 @@
                 <div class="vid-testimonial">
                     <div class="vid-wrap">
                         <video controls preload="none"
-                               poster="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg"
+                               poster="eiffel-tower.jpg"
                                aria-label="Testimonio de Nadine y Philippe, familia de acogida CAVILAM">
                             <source src="video_famille_2.mp4" type="video/mp4">
                         </video>
+                        <div class="vid-play-btn" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                        </div>
                     </div>
                     <div class="vid-caption">
                         <div class="vid-label">Familia de acogida · CAVILAM</div>
@@ -2949,10 +2986,13 @@
                 <div class="vid-testimonial">
                     <div class="vid-wrap">
                         <video controls preload="none"
-                               poster="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg"
+                               poster="Copilot_20260411_162152.png"
                                aria-label="Testimonio de Sylvie, familia de acogida CAVILAM">
                             <source src="video_famille_3.mp4" type="video/mp4">
                         </video>
+                        <div class="vid-play-btn" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                        </div>
                     </div>
                     <div class="vid-caption">
                         <div class="vid-label">Familia de acogida · CAVILAM</div>
@@ -2968,6 +3008,9 @@
                                aria-label="Testimonio de Regina, estudiante de México en CAVILAM">
                             <source src="video_regina.mp4" type="video/mp4">
                         </video>
+                        <div class="vid-play-btn" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                        </div>
                     </div>
                     <div class="vid-caption">
                         <div class="vid-label">Estudiante · México en CAVILAM</div>
@@ -3367,8 +3410,8 @@
             }
         }
 
-        // Trigger at 3s
-        setTimeout(triggerPhase2, 3000);
+        // Trigger at 5s
+        setTimeout(triggerPhase2, 5000);
 
         // Si el video termina antes → loop para que no quede negro, pero igual
         // pasamos a phase-2 en el momento de 3s ya programado
@@ -3385,45 +3428,54 @@
             });
         }
 
-        // ─── MUSIC: intenta autoplay desde el inicio ──────────────
-        // Los navegadores bloquean audio sin gesto del usuario.
-        // Estrategia: intentar inmediato → si falla, escuchar primer
-        // gesto (mousemove / touch / scroll) y arrancar ahí.
+        // ─── SISTEMA DE AUDIO ─────────────────────────────────────────
+        // REGLA DEL NAVEGADOR: solo click / touchstart / keydown
+        // desbloquean audio. mousemove y scroll NO cuentan y causan
+        // AbortError silencioso. Se añade flag "pending" para evitar
+        // doble llamada y AudioContext unlock para máxima compatibilidad.
         let musicStarted = false;
-        function startMusic() {
-            if (!audio || musicStarted) return false;
-            audio.volume = 0.12; // arranca audible de inmediato
-            const p = audio.play();
-            if (p && p.then) {
-                p.then(() => {
-                    musicStarted = true;
-                    let v = 0.12;
-                    const fade = setInterval(() => {
-                        v = Math.min(.72, v + .04);
-                        audio.volume = v;
-                        if (v >= .72) clearInterval(fade);
-                    }, 80); // llega a 72% en ~1.5s
-                    if (musicBtn) musicBtn.classList.add('playing');
-                    // Quitar listeners de fallback
-                    ['mousemove','touchstart','scroll','keydown'].forEach(ev =>
-                        document.removeEventListener(ev, firstInteractionMusic, { passive: true })
-                    );
-                }).catch((err) => {
-                    console.warn('Audio play blocked:', err);
-                    if (musicBtn) musicBtn.classList.add('blocked');
-                });
-            }
-            return true;
+        let musicPending = false;
+
+        function unlockAudioContext() {
+            try {
+                const AC = window.AudioContext || window.webkitAudioContext;
+                if (!AC) return;
+                const ctx = new AC();
+                if (ctx.state === 'suspended') ctx.resume();
+                const buf = ctx.createBuffer(1, 1, 22050);
+                const src = ctx.createBufferSource();
+                src.buffer = buf; src.connect(ctx.destination); src.start(0);
+            } catch (e) {}
         }
 
-        // Fallback: primer gesto del usuario activa música
-        function firstInteractionMusic() { startMusic(); }
-        ['mousemove','touchstart','scroll','keydown'].forEach(ev =>
-            document.addEventListener(ev, firstInteractionMusic, { once: true, passive: true })
-        );
+        function startMusic() {
+            if (!audio || musicStarted || musicPending) return;
+            musicPending = true;
+            unlockAudioContext();
+            audio.volume = 0.15;
+            audio.play().then(() => {
+                musicStarted = true;
+                musicPending = false;
+                let v = 0.15;
+                const fade = setInterval(() => {
+                    v = Math.min(.72, v + .045);
+                    audio.volume = v;
+                    if (v >= .72) clearInterval(fade);
+                }, 75);
+                if (musicBtn) {
+                    musicBtn.classList.add('playing');
+                    musicBtn.style.borderColor = '';
+                }
+            }).catch(() => {
+                musicPending = false;
+            });
+        }
 
-        // Intentar autoplay inmediato (funciona en Chrome/Firefox si el tab tiene foco)
-        startMusic();
+        // Solo gestos reales (click, touch, tecla) desbloquean audio
+        function onFirstGesture() { startMusic(); }
+        ['click', 'touchstart', 'keydown'].forEach(ev =>
+            document.addEventListener(ev, onFirstGesture, { once: true, passive: true })
+        );
 
         function dismissIntro() {
             if (!overlay) return;
@@ -3460,10 +3512,10 @@
             }
         });
 
-        // Fallback: auto-dismiss after 8s if user doesn't interact
+        // Fallback: auto-dismiss 14s (5s video + 9s lectura)
         setTimeout(() => {
             if (overlay && !overlay.classList.contains('dismissed')) dismissIntro();
-        }, 8000);
+        }, 14000);
 
         // =========================================================
         // 5. MUSIC TOGGLE
@@ -3628,6 +3680,23 @@
                 }
             }, { passive: true });
         }
+
+        // =========================================================
+        // VIDEO PLAY BUTTONS — ocultar al reproducir, mostrar al pausar
+        // =========================================================
+        $$('.vid-wrap').forEach(wrap => {
+            const vid = wrap.querySelector('video');
+            const btn = wrap.querySelector('.vid-play-btn');
+            if (!vid || !btn) return;
+
+            // Click en el botón play → iniciar reproducción
+            btn.addEventListener('click', () => vid.play());
+
+            // Ocultar botón cuando el video está corriendo
+            vid.addEventListener('play',  () => { btn.style.opacity = '0'; btn.style.pointerEvents = 'none'; });
+            vid.addEventListener('pause', () => { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; });
+            vid.addEventListener('ended', () => { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; });
+        });
 
         // =========================================================
         // CUSTOM CURSOR — punto dorado con anillo flotante
