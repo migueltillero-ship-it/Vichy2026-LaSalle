@@ -2252,11 +2252,11 @@
         <div class="intro-hint">Click · Enter · ESC para continuar</div>
     </div>
 
-    <!-- AMBIENT MUSIC - Debussy / Clásica Francesa -->
+    <!-- AMBIENT MUSIC: orden por tamaño ascendente para carga rápida -->
     <audio id="ambient-audio" loop preload="auto">
-        <source src="musica_clasica.mp3" type="audio/mpeg">
-        <source src="French-Classical-Music-Debussy-S.mp3" type="audio/mpeg">
         <source src="Arrival_at_the_Terminal%20%281%29.mp3" type="audio/mpeg">
+        <source src="French-Classical-Music-Debussy-S.mp3" type="audio/mpeg">
+        <source src="musica_clasica.mp3" type="audio/mpeg">
     </audio>
 
     <!-- NAVIGATION -->
@@ -3392,17 +3392,17 @@
         let musicStarted = false;
         function startMusic() {
             if (!audio || musicStarted) return false;
-            audio.volume = 0;
+            audio.volume = 0.12; // arranca audible de inmediato
             const p = audio.play();
             if (p && p.then) {
                 p.then(() => {
                     musicStarted = true;
-                    let v = 0;
+                    let v = 0.12;
                     const fade = setInterval(() => {
-                        v = Math.min(.65, v + .025);
+                        v = Math.min(.72, v + .04);
                         audio.volume = v;
-                        if (v >= .65) clearInterval(fade);
-                    }, 100);
+                        if (v >= .72) clearInterval(fade);
+                    }, 80); // llega a 72% en ~1.5s
                     if (musicBtn) musicBtn.classList.add('playing');
                     // Quitar listeners de fallback
                     ['mousemove','touchstart','scroll','keydown'].forEach(ev =>
@@ -3471,6 +3471,7 @@
         if (musicBtn && audio) {
             musicBtn.addEventListener('click', () => {
                 if (audio.paused) {
+                    if (audio.volume < 0.1) audio.volume = 0.72;
                     audio.play().then(() => musicBtn.classList.add('playing')).catch(() => {});
                 } else {
                     audio.pause();
