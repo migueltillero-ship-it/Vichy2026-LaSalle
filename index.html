@@ -73,7 +73,10 @@
         * { box-sizing: border-box; }
         *::selection { background: var(--gold); color: var(--ink); }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 72px; /* offset para nav fija */
+        }
 
         body {
             margin: 0;
@@ -82,10 +85,12 @@
             background: var(--ink);
             color: var(--paper);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.68;
             font-weight: 300;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
         }
 
         img { max-width: 100%; height: auto; display: block; }
@@ -847,11 +852,12 @@
             display: inline-flex;
             align-items: center;
             gap: .8rem;
-            font-size: .7rem;
-            letter-spacing: .4em;
+            font-size: .68rem;
+            letter-spacing: .55em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
+            font-weight: 500;
         }
         .section-label::before {
             content: '';
@@ -863,9 +869,9 @@
         .section-title {
             font-family: var(--serif);
             font-size: clamp(2.2rem, 5.5vw, 4.5rem);
-            line-height: 1.05;
-            letter-spacing: -.02em;
-            margin: 0 0 1rem;
+            line-height: .98;
+            letter-spacing: -.03em;
+            margin: 0 0 1.2rem;
             font-weight: 300;
             color: var(--paper);
         }
@@ -882,11 +888,12 @@
         .section-subtitle {
             font-family: var(--serif-2);
             font-style: italic;
-            font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-            color: rgba(255,255,255,.75);
-            max-width: 700px;
-            line-height: 1.6;
-            margin-bottom: 3rem;
+            font-size: clamp(1.08rem, 1.8vw, 1.32rem);
+            color: rgba(255,255,255,.78);
+            max-width: 680px;
+            line-height: 1.78;
+            margin-bottom: 3.5rem;
+            letter-spacing: .01em;
         }
 
         .reveal {
@@ -1950,6 +1957,51 @@
             color: rgba(255,255,255,.4);
             letter-spacing: .15em;
             margin-top: 2rem;
+        }
+
+        /* ==========================================================
+           CUSTOM CURSOR (solo dispositivos con mouse preciso)
+           ========================================================== */
+        @media (pointer: fine) {
+            *, *::before, *::after { cursor: none !important; }
+
+            #cursor-dot {
+                position: fixed;
+                top: 0; left: 0;
+                width: 8px; height: 8px;
+                background: var(--gold);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 999999;
+                transform: translate(-50%, -50%);
+                transition: width .18s var(--ease-lux), height .18s var(--ease-lux), background .18s ease;
+                will-change: left, top;
+            }
+
+            #cursor-ring {
+                position: fixed;
+                top: 0; left: 0;
+                width: 40px; height: 40px;
+                border: 1.5px solid rgba(201,169,97,.5);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 999998;
+                transform: translate(-50%, -50%);
+                transition: width .38s var(--ease-lux), height .38s var(--ease-lux),
+                            border-color .38s ease, opacity .3s ease;
+                will-change: left, top;
+            }
+
+            body.cursor-hover #cursor-dot {
+                width: 14px; height: 14px;
+                background: var(--gold-light);
+            }
+            body.cursor-hover #cursor-ring {
+                width: 60px; height: 60px;
+                border-color: rgba(201,169,97,.85);
+            }
+            body.cursor-hidden #cursor-dot,
+            body.cursor-hidden #cursor-ring { opacity: 0; }
         }
 
         /* ==========================================================
@@ -3206,11 +3258,15 @@
 
     </main>
 
-    <!-- WhatsApp FAB — CAMBIAR TU_NUMERO_WA por el número real (solo dígitos, con código país) -->
+    <!-- Custom cursor elements (hidden on touch devices via CSS) -->
+    <div id="cursor-dot"  aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+
+    <!-- WhatsApp FAB -->
     <a id="whatsapp-fab"
-       href="https://wa.me/TU_NUMERO_WA?text=%F0%9F%87%AB%F0%9F%87%B7%20Hola%2C%20me%20interesa%20el%20programa%20Vichy%202026%20de%20La%20Salle%20%C3%97%20Alianza%20Francesa."
+       href="https://wa.me/529673424456?text=Bonjour%2C%20deseo%20informaci%C3%B3n%20sobre%20el%20programa%20Vichy%202026."
        target="_blank" rel="noopener"
-       aria-label="Contactar por WhatsApp">
+       aria-label="Contactar por WhatsApp — Miguel Tillero, Alianza Francesa">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
             <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.124 1.522 5.861L.065 23.492a.5.5 0 00.61.61l5.708-1.457A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 01-5.073-1.387l-.363-.216-3.754.957.974-3.668-.237-.373A9.967 9.967 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm5.406-7.396c-.293-.147-1.737-.857-2.006-.955-.268-.098-.464-.147-.659.147-.195.293-.757.955-.928 1.151-.171.196-.342.22-.635.073-.293-.147-1.239-.456-2.361-1.456-.872-.778-1.461-1.739-1.632-2.032-.171-.293-.018-.452.129-.598.132-.131.293-.342.44-.513.146-.171.195-.293.293-.489.098-.195.049-.366-.024-.513-.073-.146-.659-1.588-.904-2.176-.238-.572-.48-.494-.659-.503-.171-.009-.366-.011-.562-.011s-.513.073-.781.366c-.268.293-1.025 1.001-1.025 2.44s1.049 2.831 1.196 3.026c.147.195 2.063 3.149 4.998 4.415.699.302 1.245.482 1.671.617.702.223 1.341.192 1.846.116.563-.083 1.734-.709 1.979-1.393.244-.684.244-1.27.171-1.393-.073-.122-.268-.195-.562-.342z"/>
         </svg>
@@ -3509,7 +3565,7 @@
         //          (solo dígitos, con código de país, sin + ni espacios)
         //          Ejemplo México: 5219611234567
         // =========================================================
-        const WA_NUMBER = 'TU_NUMERO_WA';
+        const WA_NUMBER = '529673424456'; // Miguel Tillero — Alianza Francesa San Cristóbal
 
         const form = $('#registro-form');
         if (form) {
@@ -3571,6 +3627,48 @@
                 }
             }, { passive: true });
         }
+
+        // =========================================================
+        // CUSTOM CURSOR — punto dorado con anillo flotante
+        // =========================================================
+        (function initCursor() {
+            if (!window.matchMedia('(pointer: fine)').matches) return;
+
+            const dot  = document.getElementById('cursor-dot');
+            const ring = document.getElementById('cursor-ring');
+            if (!dot || !ring) return;
+
+            let mx = -100, my = -100;  // posición del mouse
+            let rx = -100, ry = -100;  // posición del anillo (lag suave)
+
+            // Dot sigue instantáneamente
+            document.addEventListener('mousemove', (e) => {
+                mx = e.clientX;
+                my = e.clientY;
+                dot.style.left = mx + 'px';
+                dot.style.top  = my + 'px';
+            }, { passive: true });
+
+            // Anillo sigue con inercia suave (lerp 11%)
+            (function raf() {
+                rx += (mx - rx) * .11;
+                ry += (my - ry) * .11;
+                ring.style.left = rx + 'px';
+                ring.style.top  = ry + 'px';
+                requestAnimationFrame(raf);
+            })();
+
+            // Expand en elementos interactivos
+            const hoverSel = 'a, button, [role="button"], label, .partner-card, .dest-card, .faq-question, .vid-testimonial, .wb-card, .timeline-card, .btn-luxury';
+            document.querySelectorAll(hoverSel).forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+            });
+
+            // Ocultar al salir de ventana
+            document.addEventListener('mouseleave', () => document.body.classList.add('cursor-hidden'));
+            document.addEventListener('mouseenter', () => document.body.classList.remove('cursor-hidden'));
+        })();
 
         // Mark ready
         document.body.classList.add('ready');
