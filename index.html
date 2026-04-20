@@ -649,7 +649,7 @@
 
         .hero-title {
             font-family: var(--serif);
-            font-size: clamp(3.5rem, 11vw, 10rem);
+            font-size: clamp(2.8rem, 9vw, 7rem);
             line-height: .88;
             letter-spacing: -.04em;
             margin: 0 0 1.5rem;
@@ -773,12 +773,14 @@
             letter-spacing: .4em;
         }
         .btn-luxury.ghost {
-            background: transparent;
+            background: rgba(255,255,255,.07);
             color: var(--paper);
-            border: 1px solid rgba(255,255,255,.25);
+            border: 1px solid rgba(255,255,255,.45);
+            backdrop-filter: blur(8px);
         }
         .btn-luxury.ghost:hover {
             border-color: var(--gold);
+            background: rgba(201,169,97,.12);
             color: var(--gold);
             transform: translateY(-3px);
         }
@@ -822,7 +824,7 @@
            ========================================================== */
         section {
             position: relative;
-            padding: 9rem 2rem;
+            padding: 6rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -947,13 +949,12 @@
         }
 
         .partner-logo-wrap {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             margin: 0 auto 1.8rem;
-            padding: 1.2rem;
-            background:
-                linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.03));
-            border: 1px solid rgba(201,169,97,.35);
+            padding: 1.4rem;
+            background: #ffffff;
+            border: 2px solid rgba(201,169,97,.55);
             border-radius: 24px;
             display: flex;
             align-items: center;
@@ -961,9 +962,8 @@
             overflow: hidden;
             transition: all .5s var(--ease-lux);
             box-shadow:
-                0 8px 32px rgba(0,0,0,.45),
-                0 2px 0 rgba(255,255,255,.08) inset,
-                0 -1px 0 rgba(0,0,0,.3) inset;
+                0 8px 32px rgba(0,0,0,.5),
+                0 0 0 4px rgba(201,169,97,.08);
             position: relative;
             transform: perspective(600px) translateZ(0);
         }
@@ -971,18 +971,18 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 50%);
+            background: linear-gradient(135deg, rgba(201,169,97,.12) 0%, transparent 60%);
             border-radius: inherit;
             pointer-events: none;
         }
         .partner-card:hover .partner-logo-wrap {
             border-color: var(--gold);
-            background: linear-gradient(145deg, rgba(201,169,97,.18), rgba(201,169,97,.04));
+            background: #fffbf4;
             transform: perspective(600px) translateZ(10px) scale(1.06);
             box-shadow:
                 0 16px 48px rgba(0,0,0,.55),
-                0 0 20px rgba(201,169,97,.2),
-                0 2px 0 rgba(255,255,255,.12) inset;
+                0 0 24px rgba(201,169,97,.35),
+                0 0 0 4px rgba(201,169,97,.18);
         }
         .partner-logo {
             max-width: 90%;
@@ -990,11 +990,12 @@
             width: auto;
             height: auto;
             object-fit: contain;
-            filter: brightness(1.15) contrast(1.05) drop-shadow(0 2px 8px rgba(0,0,0,.5));
-            transition: filter .4s ease;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
+            transition: filter .4s ease, transform .4s ease;
         }
         .partner-card:hover .partner-logo {
-            filter: brightness(1.25) contrast(1.1) drop-shadow(0 4px 12px rgba(0,0,0,.6));
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+            transform: scale(1.04);
         }
 
         /* ==========================================================
@@ -2103,7 +2104,6 @@
     <!-- INTRO OVERLAY with video + content -->
     <div id="intro-overlay">
         <video id="intro-video" autoplay muted playsinline preload="auto">
-            <source src="assets/videos/logo-intro.mp4" type="video/mp4">
             <source src="Video_Creativo_Generado_Al_Instante.mp4" type="video/mp4">
         </video>
         <div id="intro-content">
@@ -2179,7 +2179,7 @@
 
             <h1 class="hero-title reveal delay-1">
                 Vichy
-                <em>Deux mille vingt-six</em>
+                <em>2026</em>
             </h1>
 
             <p class="hero-location reveal delay-2">
@@ -2245,7 +2245,7 @@
             <div class="partnership">
                 <div class="partner-card reveal delay-1">
                     <div class="partner-logo-wrap">
-                        <img src="logo_lasalle.png" alt="Colegio La Salle" class="partner-logo" onerror="this.style.display='none'">
+                        <img src="Gemini_Generated_Image_49fmig49fmig49fm.png" alt="Colegio La Salle" class="partner-logo" onerror="this.src='logo_lasalle.png'">
                     </div>
                     <h3 class="partner-title">La Salle</h3>
                     <div class="partner-subtitle">San Cristóbal · Desde 1913</div>
@@ -2257,7 +2257,7 @@
 
                 <div class="partner-card reveal delay-2">
                     <div class="partner-logo-wrap">
-                        <img src="logo_af_sc.jpg" alt="Alianza Francesa San Cristóbal" class="partner-logo" onerror="this.src='logo_af.png'">
+                        <img src="Gemini_Generated_Image_ihyxtfihyxtfihyx(1).png" alt="Alianza Francesa San Cristóbal" class="partner-logo" onerror="this.src='logo_af.png'">
                     </div>
                     <h3 class="partner-title">Alianza Francesa</h3>
                     <div class="partner-subtitle">San Cristóbal · Embajada Cultural</div>
@@ -2392,10 +2392,10 @@
 
             <div class="split-feature reverse">
                 <div class="split-visual reveal">
-                    <img src="assets/images/sede-interior.jpg" alt="Alianza Francesa de San Cristóbal - Sede Central" loading="lazy" onerror="this.src='Sin%20t%C3%ADtulo.jpeg'">
+                    <img src="Copilot_20260411_162152.png" alt="Alianza Francesa de San Cristóbal · CAVILAM · La Salle — Convenio Institucional" loading="lazy" style="object-position: center; background:#c0001d;">
                     <div class="split-visual-caption">
-                        <div class="loc">San Cristóbal · Venezuela</div>
-                        <h4>Sede Central AF</h4>
+                        <div class="loc">San Cristóbal · México</div>
+                        <h4>Alianza Francesa × La Salle × CAVILAM</h4>
                     </div>
                 </div>
                 <div class="split-content reveal delay-1">
