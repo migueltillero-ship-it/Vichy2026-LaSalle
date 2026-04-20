@@ -7,6 +7,17 @@
     <meta name="theme-color" content="#0a0a0f">
     <title>Vichy 2026 · La Experiencia · La Salle × Alianza Francesa × CAVILAM</title>
 
+    <!-- Open Graph — preview al compartir en WhatsApp, Instagram, Facebook -->
+    <meta property="og:type"        content="website">
+    <meta property="og:title"       content="Vichy 2026 · Inmersión Lingüística en Francia">
+    <meta property="og:description" content="Un programa exclusivo de La Salle × Alianza Francesa × CAVILAM. Tres semanas de inmersión total en el corazón de Francia.">
+    <meta property="og:image"       content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/Copilot_20260411_162152.png">
+    <meta property="og:url"         content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
+    <meta property="og:locale"      content="es_MX">
+    <meta name="twitter:card"       content="summary_large_image">
+    <meta name="twitter:title"      content="Vichy 2026 · Inmersión Lingüística en Francia">
+    <meta name="twitter:image"      content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/Copilot_20260411_162152.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -1942,6 +1953,63 @@
         }
 
         /* ==========================================================
+           FLOATING WHATSAPP BUTTON
+           ========================================================== */
+        #whatsapp-fab {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 90;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,.45);
+            transition: transform .3s var(--ease-spring), box-shadow .3s ease;
+            animation: waPulse 3s ease-in-out infinite;
+        }
+        @keyframes waPulse {
+            0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.35); }
+            60%     { box-shadow: 0 4px 20px rgba(37,211,102,.45), 0 0 0 14px rgba(37,211,102,0); }
+        }
+        #whatsapp-fab:hover {
+            transform: scale(1.13) translateY(-3px);
+            box-shadow: 0 10px 36px rgba(37,211,102,.6);
+            animation: none;
+        }
+        #whatsapp-fab svg { display: block; }
+
+        /* Tooltip */
+        #whatsapp-fab::after {
+            content: 'Escríbenos';
+            position: absolute;
+            left: calc(100% + 12px);
+            top: 50%;
+            transform: translateY(-50%);
+            background: #25D366;
+            color: #fff;
+            font-family: var(--sans);
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            padding: .4rem .9rem;
+            border-radius: 100px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease, transform .25s ease;
+            transform: translateY(-50%) translateX(-6px);
+        }
+        #whatsapp-fab:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        /* ==========================================================
            FLOATING MUSIC TOGGLE
            ========================================================== */
         #music-toggle {
@@ -2246,7 +2314,7 @@
             <div class="partnership">
                 <div class="partner-card reveal delay-1">
                     <div class="partner-logo-wrap">
-                        <img src="Gemini_Generated_Image_49fmig49fmig49fm.png" alt="Colegio La Salle" class="partner-logo" onerror="this.src='logo_lasalle.png'">
+                        <img src="logo_lasalle.png" alt="Colegio La Salle" class="partner-logo">
                     </div>
                     <h3 class="partner-title">La Salle</h3>
                     <div class="partner-subtitle">San Cristóbal · Desde 1913</div>
@@ -2258,7 +2326,7 @@
 
                 <div class="partner-card reveal delay-2">
                     <div class="partner-logo-wrap">
-                        <img src="Gemini_Generated_Image_ihyxtfihyxtfihyx(1).png" alt="Alianza Francesa San Cristóbal" class="partner-logo" onerror="this.src='logo_af.png'">
+                        <img src="logo_af.png" alt="Alianza Francesa San Cristóbal" class="partner-logo">
                     </div>
                     <h3 class="partner-title">Alianza Francesa</h3>
                     <div class="partner-subtitle">San Cristóbal · Embajada Cultural</div>
@@ -3010,10 +3078,7 @@
                     48 horas para presentarte el programa completo y resolver todas tus dudas.
                 </p>
 
-                <form class="registro-form reveal delay-1" id="registro-form" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-                    <input type="hidden" name="subject" value="Nuevo registro Vichy 2026">
-                    <input type="hidden" name="from_name" value="Vichy 2026 · Landing Page">
+                <form class="registro-form reveal delay-1" id="registro-form" novalidate>
 
                     <div class="form-row">
                         <div class="form-field">
@@ -3140,6 +3205,16 @@
         </footer>
 
     </main>
+
+    <!-- WhatsApp FAB — CAMBIAR TU_NUMERO_WA por el número real (solo dígitos, con código país) -->
+    <a id="whatsapp-fab"
+       href="https://wa.me/TU_NUMERO_WA?text=%F0%9F%87%AB%F0%9F%87%B7%20Hola%2C%20me%20interesa%20el%20programa%20Vichy%202026%20de%20La%20Salle%20%C3%97%20Alianza%20Francesa."
+       target="_blank" rel="noopener"
+       aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.124 1.522 5.861L.065 23.492a.5.5 0 00.61.61l5.708-1.457A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 01-5.073-1.387l-.363-.216-3.754.957.974-3.668-.237-.373A9.967 9.967 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm5.406-7.396c-.293-.147-1.737-.857-2.006-.955-.268-.098-.464-.147-.659.147-.195.293-.757.955-.928 1.151-.171.196-.342.22-.635.073-.293-.147-1.239-.456-2.361-1.456-.872-.778-1.461-1.739-1.632-2.032-.171-.293-.018-.452.129-.598.132-.131.293-.342.44-.513.146-.171.195-.293.293-.489.098-.195.049-.366-.024-.513-.073-.146-.659-1.588-.904-2.176-.238-.572-.48-.494-.659-.503-.171-.009-.366-.011-.562-.011s-.513.073-.781.366c-.268.293-1.025 1.001-1.025 2.44s1.049 2.831 1.196 3.026c.147.195 2.063 3.149 4.998 4.415.699.302 1.245.482 1.671.617.702.223 1.341.192 1.846.116.563-.083 1.734-.709 1.979-1.393.244-.684.244-1.27.171-1.393-.073-.122-.268-.195-.562-.342z"/>
+        </svg>
+    </a>
 
     <!-- Music toggle -->
     <button id="music-toggle" aria-label="Activar/pausar música ambiente" title="Música ambiente">
@@ -3429,38 +3504,56 @@
         });
 
         // =========================================================
-        // 11. FORM SUBMISSION
+        // 11. FORM SUBMISSION → WhatsApp
+        // CAMBIAR: reemplaza TU_NUMERO_WA por el número real
+        //          (solo dígitos, con código de país, sin + ni espacios)
+        //          Ejemplo México: 5219611234567
         // =========================================================
+        const WA_NUMBER = 'TU_NUMERO_WA';
+
         const form = $('#registro-form');
         if (form) {
-            form.addEventListener('submit', async (e) => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const successEl = form.querySelector('.form-success');
-                const errorEl   = form.querySelector('.form-error');
-                const btn       = form.querySelector('button[type="submit"]');
-                const original  = btn.innerHTML;
 
-                btn.innerHTML = '<span>Enviando...</span>';
-                btn.disabled  = true;
-                successEl.style.display = 'none';
-                errorEl.style.display   = 'none';
-
-                try {
-                    const data = new FormData(form);
-                    const res = await fetch(form.action, { method: 'POST', body: data });
-                    if (res.ok) {
-                        successEl.style.display = 'block';
-                        form.reset();
-                        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    } else {
-                        errorEl.style.display = 'block';
-                    }
-                } catch (_) {
-                    errorEl.style.display = 'block';
-                } finally {
-                    btn.innerHTML = original;
-                    btn.disabled  = false;
+                // Validación HTML5 manual (usamos novalidate en el form)
+                if (!form.checkValidity()) {
+                    form.querySelectorAll(':invalid').forEach(el => {
+                        el.style.borderColor = 'var(--red)';
+                        el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+                    });
+                    form.querySelector(':invalid').focus();
+                    return;
                 }
+
+                const g  = (n) => (form.querySelector(`[name="${n}"]`) || {}).value || '';
+                const nl = '\n';
+
+                const msg =
+                    '🇫🇷 *REGISTRO DE INTERÉS — VICHY 2026*' + nl +
+                    '━━━━━━━━━━━━━━━━━━━━━━━━' + nl + nl +
+                    '👤 *Estudiante:* ' + g('nombre_estudiante') + ' ' + g('apellido_estudiante') + nl +
+                    '📅 *Edad:* ' + g('edad') + ' años' + nl +
+                    '🎓 *Grado:* ' + g('grado') + nl + nl +
+                    '👨‍👩‍👧 *Representante:* ' + g('nombre_representante') + ' (' + g('parentesco') + ')' + nl +
+                    '📧 *Correo:* ' + g('email') + nl +
+                    '📱 *Teléfono:* ' + g('telefono') + nl + nl +
+                    '🗣️ *Nivel de francés:* ' + g('nivel_frances') + nl +
+                    '📢 *Nos conoció por:* ' + (g('canal') || 'No especificado') + nl +
+                    (g('mensaje') ? nl + '💬 *Mensaje:* ' + g('mensaje') + nl : '') +
+                    nl + '━━━━━━━━━━━━━━━━━━━━━━━━' + nl +
+                    '_Enviado desde vichy2026.lasalle.edu_';
+
+                const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+                window.open(url, '_blank');
+
+                // Mensaje de éxito en la página
+                const successEl = form.querySelector('.form-success');
+                if (successEl) {
+                    successEl.style.display = 'block';
+                    successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                form.reset();
             });
         }
 
