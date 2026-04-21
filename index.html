@@ -418,6 +418,48 @@
             50% { opacity: 1; transform: translateX(-50%) translateY(-4px); }
         }
 
+        /* Slide preview in intro — glassmorphism card */
+        .intro-slide-preview {
+            background: rgba(255,255,255,.10);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(201,169,97,.38);
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 260px;
+            width: 100%;
+            margin: 0 auto 1.4rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06);
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 1.2s ease .85s, transform 1.2s var(--ease-lux) .85s;
+            flex-shrink: 0;
+        }
+        #intro-overlay.phase-2 .intro-slide-preview {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .intro-slide-preview img { width: 100%; height: auto; display: block; }
+        .intro-slide-caption {
+            font-family: var(--sans);
+            font-size: .62rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-align: center;
+            padding: .45rem .6rem;
+            background: rgba(0,0,0,.18);
+        }
+
+        /* Footer logos banner */
+        .footer-logos-banner {
+            margin: 0 auto 1.8rem;
+            max-width: 380px;
+            opacity: .75;
+            filter: brightness(0) invert(1);
+        }
+        .footer-logos-banner img { width: 100%; height: auto; display: block; }
+
         /* Intro particles */
         .intro-particle {
             position: absolute;
@@ -2254,7 +2296,8 @@
 
     <!-- INTRO OVERLAY with video + content -->
     <div id="intro-overlay">
-        <video id="intro-video" autoplay muted playsinline preload="auto">
+        <video id="intro-video" autoplay muted loop playsinline preload="auto">
+            <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
             <source src="Video_Creativo_Generado_Al_Instante.mp4" type="video/mp4">
         </video>
         <div id="intro-content">
@@ -2266,6 +2309,13 @@
             <div class="intro-eyebrow">Colegio La Salle × Alianza Francesa × CAVILAM</div>
             <h1 class="intro-title">Vichy <em>2026</em></h1>
             <div class="intro-divider"></div>
+
+            <!-- Primera diapositiva — tarjeta glassmorphism -->
+            <div class="intro-slide-preview">
+                <img src="WEBSITE%2023-3-2026.jpeg" alt="Descubre la oportunidad · Vichy 2026" loading="eager">
+                <div class="intro-slide-caption">Descubre la oportunidad</div>
+            </div>
+
             <p class="intro-subtitle">Una inmersión lingüística de excelencia<br>en el corazón de Francia</p>
             <div class="intro-partners">
                 <span>San Cristóbal</span>
@@ -3019,6 +3069,44 @@
                     </div>
                 </div>
 
+                <!-- Video 5: Multimedia CAVILAM -->
+                <div class="vid-testimonial">
+                    <div class="vid-wrap">
+                        <video controls preload="none"
+                               poster="cavilam-campus.jpg"
+                               aria-label="Vida en el campus CAVILAM — programa multimedia">
+                            <source src="Multimedia.mp4" type="video/mp4">
+                        </video>
+                        <div class="vid-play-btn" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                        </div>
+                    </div>
+                    <div class="vid-caption">
+                        <div class="vid-label">Campus · CAVILAM Vichy</div>
+                        <h4 class="vid-name">La Vida en el Campus</h4>
+                        <p class="vid-quote">"Un entorno diseñado para que el francés sea tu lengua de vida."</p>
+                    </div>
+                </div>
+
+                <!-- Video 6: Video generado por IA — experiencia Vichy -->
+                <div class="vid-testimonial">
+                    <div class="vid-wrap">
+                        <video controls preload="none"
+                               poster="eiffel-tower.jpg"
+                               aria-label="Experiencia Vichy 2026 — video institucional">
+                            <source src="Video_Generation_Complete.mp4" type="video/mp4">
+                        </video>
+                        <div class="vid-play-btn" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                        </div>
+                    </div>
+                    <div class="vid-caption">
+                        <div class="vid-label">Experiencia · Vichy 2026</div>
+                        <h4 class="vid-name">La Experiencia Completa</h4>
+                        <p class="vid-quote">"Francia te espera — una aventura que marca para siempre."</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -3123,40 +3211,49 @@
                 la familia.
             </p>
 
-            <div class="reveal delay-2" style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
-                <!-- Vista previa del dossier -->
-                <div style="
-                    width:100%;max-width:780px;
-                    aspect-ratio:16/9;
-                    background:linear-gradient(135deg,var(--ink-3),var(--blue-deep));
-                    border:1px solid rgba(201,169,97,.35);
-                    border-radius:16px;
-                    overflow:hidden;
-                    display:flex;
-                    flex-direction:column;
-                    align-items:center;
-                    justify-content:center;
-                    gap:1.5rem;
-                    padding:2rem;
-                    box-shadow:0 20px 60px rgba(0,0,0,.5);
-                ">
-                    <img src="Copilot_20260411_162152.png"
-                         alt="Portada Dossier Vichy 2026"
-                         style="max-height:280px;object-fit:contain;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.4);">
-                    <p style="font-family:var(--serif-2);font-style:italic;color:var(--gold-light);font-size:1.1rem;margin:0;">
-                        Presentación Institucional · Vichy 2026
-                    </p>
+            <div class="reveal delay-2" style="display:flex;flex-direction:column;align-items:center;gap:1.8rem;">
+
+                <!-- Dos diapositivas de vista previa -->
+                <div style="display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:900px;">
+                    <!-- Diapositiva 1: Portada -->
+                    <div style="flex:1;min-width:260px;max-width:420px;background:linear-gradient(135deg,var(--ink-3),var(--blue-deep));border:1px solid rgba(201,169,97,.45);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.55);">
+                        <img src="Copilot_20260411_162152.png"
+                             alt="Portada Dossier Vichy 2026"
+                             loading="lazy"
+                             style="width:100%;height:auto;display:block;object-fit:cover;">
+                        <p style="font-family:var(--sans);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-align:center;padding:.6rem;margin:0;background:rgba(0,0,0,.3);">
+                            Portada · Presentación Institucional
+                        </p>
+                    </div>
+                    <!-- Diapositiva 2: Web / Mapa -->
+                    <div style="flex:1;min-width:260px;max-width:420px;background:linear-gradient(135deg,var(--ink-3),var(--blue-deep));border:1px solid rgba(201,169,97,.45);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.55);">
+                        <img src="WEBSITE%2023-3-2026.jpeg"
+                             alt="Vichy 2026 — Programa y Destinos"
+                             loading="lazy"
+                             style="width:100%;height:auto;display:block;object-fit:cover;">
+                        <p style="font-family:var(--sans);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-align:center;padding:.6rem;margin:0;background:rgba(0,0,0,.3);">
+                            Programa · Destinos · Vichy 2026
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Botón de descarga -->
-                <a href="Vichy_2026_La_Salle.pptx"
-                   download="Dossier_Vichy2026_LaSalle.pptx"
-                   class="btn-luxury primary"
-                   style="font-size:.85rem;padding:1.2rem 3rem;">
-                    <span>⬇ Descargar Dossier PPTX</span>
-                </a>
+                <!-- Botones de descarga (PPT + PPTX) -->
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+                    <a href="Vichy_2026_La_Salle.ppt"
+                       download="Dossier_Vichy2026_LaSalle.ppt"
+                       class="btn-luxury primary"
+                       style="font-size:.85rem;padding:1.2rem 2.4rem;">
+                        <span>⬇ Descargar Presentación PPT</span>
+                    </a>
+                    <a href="Vichy_2026_La_Salle.pptx"
+                       download="Dossier_Vichy2026_LaSalle.pptx"
+                       class="btn-luxury ghost"
+                       style="font-size:.85rem;padding:1.2rem 2.4rem;">
+                        <span>⬇ Versión PPTX</span>
+                    </a>
+                </div>
                 <p style="font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.1em;">
-                    Archivo PowerPoint · Compatible con Microsoft Office y LibreOffice
+                    Compatible con Microsoft Office, LibreOffice y Google Slides
                 </p>
             </div>
         </section>
@@ -3286,6 +3383,10 @@
 
         <!-- FOOTER -->
         <footer>
+            <!-- Banner combinado de los tres logos -->
+            <div class="footer-logos-banner">
+                <img src="logos_banner.png" alt="La Salle · Alianza Francesa · CAVILAM — alianza institucional" loading="lazy">
+            </div>
             <div class="footer-brand">VICHY 2026</div>
             <div class="footer-partners">
                 <span>Colegio La Salle</span>
@@ -3294,8 +3395,15 @@
                 <span class="divider">·</span>
                 <span>CAVILAM Vichy</span>
             </div>
-            <div class="footer-meta">
+            <div class="footer-meta" style="margin-bottom:.8rem;">
                 © 2026 · Una experiencia creada con excelencia · San Cristóbal — Vichy
+            </div>
+            <div class="footer-meta">
+                <a href="https://wa.me/529673424456?text=Bonjour%2C%20deseo%20informaci%C3%B3n%20sobre%20Vichy%202026."
+                   target="_blank" rel="noopener"
+                   style="color:var(--gold);text-decoration:none;opacity:.8;">
+                    📞 Miguel Tillero · Director AF San Cristóbal · WhatsApp
+                </a>
             </div>
         </footer>
 
@@ -3428,62 +3536,24 @@
             });
         }
 
-        // ─── SISTEMA DE AUDIO ─────────────────────────────────────────
-        // REGLA DEL NAVEGADOR: solo click / touchstart / keydown
-        // desbloquean audio. mousemove y scroll NO cuentan y causan
-        // AbortError silencioso. Se añade flag "pending" para evitar
-        // doble llamada y AudioContext unlock para máxima compatibilidad.
+        // ─── AUDIO: click-to-play exclusivo ───────────────────────────
+        // La música SOLO arranca cuando el padre hace clic en
+        // "Vivir la Experiencia". Esto garantiza luz verde del navegador
+        // (Chrome, Safari, Firefox) sin ningún bloqueo de autoplay.
         let musicStarted = false;
-        let musicPending = false;
-
-        function unlockAudioContext() {
-            try {
-                const AC = window.AudioContext || window.webkitAudioContext;
-                if (!AC) return;
-                const ctx = new AC();
-                if (ctx.state === 'suspended') ctx.resume();
-                const buf = ctx.createBuffer(1, 1, 22050);
-                const src = ctx.createBufferSource();
-                src.buffer = buf; src.connect(ctx.destination); src.start(0);
-            } catch (e) {}
-        }
 
         function startMusic() {
-            if (!audio || musicStarted || musicPending) return;
-            musicPending = true;
-            unlockAudioContext();
-            audio.volume = 0.15;
-            audio.play().then(() => {
-                musicStarted = true;
-                musicPending = false;
-                let v = 0.15;
-                const fade = setInterval(() => {
-                    v = Math.min(.72, v + .045);
-                    audio.volume = v;
-                    if (v >= .72) clearInterval(fade);
-                }, 75);
-                if (musicBtn) {
-                    musicBtn.classList.add('playing');
-                    musicBtn.style.borderColor = '';
-                }
-            }).catch(() => {
-                musicPending = false;
-            });
+            if (!audio || musicStarted) return;
+            musicStarted = true;
+            audio.volume = 0.65;
+            audio.play().catch(e => console.log('Audio bloqueado:', e));
+            if (musicBtn) musicBtn.classList.add('playing');
         }
-
-        // Solo gestos reales (click, touch, tecla) desbloquean audio
-        function onFirstGesture() { startMusic(); }
-        ['click', 'touchstart', 'keydown'].forEach(ev =>
-            document.addEventListener(ev, onFirstGesture, { once: true, passive: true })
-        );
 
         function dismissIntro() {
             if (!overlay) return;
             overlay.classList.add('dismissed');
             document.body.classList.add('experience-live', 'ready');
-
-            // Si la música aún no arrancó, este click la garantiza
-            startMusic();
 
             // Remove intro from DOM after transition
             setTimeout(() => {
@@ -3493,6 +3563,7 @@
 
         if (enterBtn) enterBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            startMusic();   // ← gesto humano garantizado = audio desbloqueado
             dismissIntro();
         });
 
@@ -3523,7 +3594,7 @@
         if (musicBtn && audio) {
             musicBtn.addEventListener('click', () => {
                 if (audio.paused) {
-                    if (audio.volume < 0.1) audio.volume = 0.72;
+                    audio.volume = 0.65;
                     audio.play().then(() => musicBtn.classList.add('playing')).catch(() => {});
                 } else {
                     audio.pause();
