@@ -2717,7 +2717,7 @@
 
             <div class="split-feature reverse">
                 <div class="split-visual reveal">
-                    <img src="assets/images/sede-interior.jpg" alt="Sede Alianza Francesa de San Cristóbal · Patio interior" loading="lazy" onerror="this.src='Copilot_20260411_162152.png'" style="object-position: center;">
+                    <img src="logo_af_sc.jpg" alt="Sede Alianza Francesa de San Cristóbal" loading="lazy" onerror="this.src='assets/images/sede-interior.jpg'" style="object-fit:cover;width:100%;height:100%;object-position:center;">
                     <div class="split-visual-caption">
                         <div class="loc">San Cristóbal · México</div>
                         <h4>Alianza Francesa × La Salle × CAVILAM</h4>
@@ -3810,9 +3810,17 @@
             if (!audio || musicStarted) return;
             musicStarted = true;
             audio.volume = 0.65;
-            audio.play().catch(e => console.log('Audio bloqueado:', e));
-            if (musicBtn) musicBtn.classList.add('playing');
+            audio.play()
+                .then(() => { if (musicBtn) musicBtn.classList.add('playing'); })
+                .catch(e => console.log('Audio pendiente de gesto:', e));
         }
+
+        // Intento inmediato al cargar (funciona en visitas repetidas)
+        startMusic();
+        // Respaldo: primer gesto del usuario en cualquier parte de la página
+        const _unlockAudio = () => startMusic();
+        document.addEventListener('click',      _unlockAudio, { once: true, passive: true });
+        document.addEventListener('touchstart', _unlockAudio, { once: true, passive: true });
 
         function dismissIntro() {
             if (!overlay) return;
@@ -3827,7 +3835,7 @@
 
         if (enterBtn) enterBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            startMusic();   // ← gesto humano garantizado = audio desbloqueado
+            startMusic();
             dismissIntro();
         });
 
