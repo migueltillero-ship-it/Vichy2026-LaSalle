@@ -451,15 +451,6 @@
             background: rgba(0,0,0,.18);
         }
 
-        /* Footer logos banner */
-        .footer-logos-banner {
-            margin: 0 auto 1.8rem;
-            max-width: 380px;
-            opacity: .75;
-            filter: brightness(0) invert(1);
-        }
-        .footer-logos-banner img { width: 100%; height: auto; display: block; }
-
         /* Intro particles */
         .intro-particle {
             position: absolute;
@@ -864,7 +855,10 @@
             font-size: .65rem;
             letter-spacing: .4em;
             text-transform: uppercase;
-            color: rgba(255,255,255,.5);
+            color: var(--gold-light);
+            opacity: .9;
+            z-index: 10;
+            text-shadow: 0 2px 12px rgba(0,0,0,.8);
             animation: scrollHint 2.5s ease-in-out infinite;
         }
         .scroll-indicator .line {
@@ -1013,7 +1007,7 @@
             height: 140px;
             margin: 0 auto 1.8rem;
             padding: 1.4rem;
-            background: #ffffff;
+            background: transparent;
             border: 2px solid rgba(201,169,97,.55);
             border-radius: 24px;
             display: flex;
@@ -1037,7 +1031,7 @@
         }
         .partner-card:hover .partner-logo-wrap {
             border-color: var(--gold);
-            background: #fffbf4;
+            background: rgba(255,255,255,.06);
             transform: perspective(600px) translateZ(10px) scale(1.06);
             box-shadow:
                 0 16px 48px rgba(0,0,0,.55),
@@ -1050,7 +1044,8 @@
             width: auto;
             height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
+            mix-blend-mode: screen;
+            filter: brightness(1.3) drop-shadow(0 2px 8px rgba(0,0,0,.3));
             transition: filter .4s ease, transform .4s ease;
         }
         .partner-card:hover .partner-logo {
@@ -2001,6 +1996,80 @@
             margin-top: 2rem;
         }
 
+        /* Footer QR contact blocks */
+        .footer-qr-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2.5rem auto 0;
+            max-width: 720px;
+        }
+        .footer-qr-card {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(201,169,97,.28);
+            border-radius: 14px;
+            padding: 1.4rem 1.6rem;
+            text-align: left;
+            flex: 1;
+            min-width: 270px;
+            max-width: 320px;
+        }
+        .footer-qr-img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #fff;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+        .footer-qr-info {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .footer-qr-photo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(201,169,97,.5);
+            margin-bottom: .3rem;
+        }
+        .footer-qr-name {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--paper);
+            margin: 0;
+            line-height: 1.2;
+        }
+        .footer-qr-role {
+            font-family: var(--sans);
+            font-size: .68rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.5);
+            margin: 0;
+            line-height: 1.5;
+        }
+        .footer-qr-wa {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            font-family: var(--sans);
+            font-size: .75rem;
+            color: #25d366;
+            text-decoration: none;
+            margin-top: .3rem;
+            opacity: .9;
+            transition: opacity .2s;
+        }
+        .footer-qr-wa:hover { opacity: 1; }
+
         /* ==========================================================
            CUSTOM CURSOR (solo dispositivos con mouse preciso)
            ========================================================== */
@@ -2310,10 +2379,10 @@
             <h1 class="intro-title">Vichy <em>2026</em></h1>
             <div class="intro-divider"></div>
 
-            <!-- Primera diapositiva — tarjeta glassmorphism -->
+            <!-- Banner institucional: 3 logos con fondo rojo -->
             <div class="intro-slide-preview">
-                <img src="WEBSITE%2023-3-2026.jpeg" alt="Descubre la oportunidad · Vichy 2026" loading="eager">
-                <div class="intro-slide-caption">Descubre la oportunidad</div>
+                <img src="logos_banner.png" alt="Colegio La Salle · Alianza Francesa · CAVILAM — Vichy 2026" loading="eager">
+                <div class="intro-slide-caption">La Salle · Alianza Francesa · CAVILAM</div>
             </div>
 
             <p class="intro-subtitle">Una inmersión lingüística de excelencia<br>en el corazón de Francia</p>
@@ -2445,7 +2514,7 @@
             </p>
 
             <div class="partnership">
-                <div class="partner-card reveal delay-1">
+                <a href="#lasalle-sede" class="partner-card reveal delay-1" style="display:block;text-decoration:none;color:inherit;">
                     <div class="partner-logo-wrap">
                         <img src="logo_lasalle.png" alt="Colegio La Salle" class="partner-logo">
                     </div>
@@ -2455,9 +2524,9 @@
                         Más de un siglo formando líderes con valores lasallistas,
                         excelencia académica y visión internacional.
                     </p>
-                </div>
+                </a>
 
-                <div class="partner-card reveal delay-2">
+                <a href="#af-sede" class="partner-card reveal delay-2" style="display:block;text-decoration:none;color:inherit;">
                     <div class="partner-logo-wrap">
                         <img src="logo_af.png" alt="Alianza Francesa San Cristóbal" class="partner-logo">
                     </div>
@@ -2467,9 +2536,9 @@
                         Red internacional con más de 150 años difundiendo
                         la lengua y cultura francesa en los cinco continentes.
                     </p>
-                </div>
+                </a>
 
-                <div class="partner-card reveal delay-3">
+                <a href="#cavilam" class="partner-card reveal delay-3" style="display:block;text-decoration:none;color:inherit;">
                     <div class="partner-logo-wrap">
                         <img src="logo-cavilam.png" alt="CAVILAM Vichy" class="partner-logo" onerror="this.src='logocavilam2024.png'">
                     </div>
@@ -2479,7 +2548,7 @@
                         Centro de excelencia creado en 1964 por la Alianza Francesa de París
                         y la ciudad de Vichy. Referente mundial en la enseñanza del francés.
                     </p>
-                </div>
+                </a>
             </div>
 
             <div class="convenio-strip reveal delay-1">
@@ -2580,6 +2649,61 @@
                         <li><strong>Certificación</strong>DELF · DALF · TCF reconocidos mundialmente</li>
                         <li><strong>Instalaciones</strong>Aulas modernas · Biblioteca · Cafetería</li>
                     </ul>
+
+                    <!-- Programa oficial CAVILAM -->
+                    <div style="margin-top:2rem;padding:1.4rem 1.6rem;background:rgba(255,255,255,.05);border:1px solid rgba(201,169,97,.3);border-radius:12px;">
+                        <p style="font-family:var(--sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 .5rem;">Documento oficial</p>
+                        <p style="font-size:.92rem;color:var(--paper);margin:0 0 1rem;line-height:1.5;">
+                            <strong>Programme ML · Groupe Mexique</strong><br>
+                            <span style="color:rgba(255,255,255,.55);font-size:.82rem;">Cours Matin · 2 semaines · Septembre 2026</span>
+                        </p>
+                        <a href="programa_cavilam_2026.pdf"
+                           download="Programa_CAVILAM_Vichy2026.pdf"
+                           class="btn-luxury ghost"
+                           style="font-size:.78rem;padding:.9rem 1.8rem;display:inline-flex;align-items:center;gap:.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span>Descargar programa oficial CAVILAM</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LA SALLE SEDE -->
+        <section id="lasalle-sede">
+            <div class="section-label reveal">La Institución</div>
+            <h2 class="section-title reveal">
+                Colegio La Salle <em>San Cristóbal</em><br>
+                más de un siglo de excelencia
+            </h2>
+            <div class="split-feature">
+                <div class="split-visual reveal">
+                    <img src="logos_banner.png" alt="Colegio La Salle San Cristóbal de Las Casas" loading="lazy" style="object-fit:contain;background:var(--ink-2);padding:2rem;">
+                    <div class="split-visual-caption">
+                        <div class="loc">San Cristóbal de Las Casas · Chiapas</div>
+                        <h4>Colegio La Salle · Desde 1913</h4>
+                    </div>
+                </div>
+                <div class="split-content reveal delay-1">
+                    <h3>Donde comienza <em>la aventura francesa</em></h3>
+                    <p>
+                        El Colegio La Salle de San Cristóbal de Las Casas es una institución educativa de
+                        excelencia con más de un siglo de historia. Fundado por los Hermanos de las Escuelas
+                        Cristianas, forma a sus estudiantes con valores lasallistas, compromiso social y
+                        visión internacional.
+                    </p>
+                    <p>
+                        Como organizador del programa Vichy 2026, La Salle garantiza el
+                        <strong style="color:var(--gold);">acompañamiento institucional completo</strong>:
+                        desde la preparación previa hasta la reintegración post-programa, con el respaldo
+                        académico y logístico que las familias merecen.
+                    </p>
+                    <ul class="split-features-list">
+                        <li><strong>Fundación</strong>Hermanos de las Escuelas Cristianas — 1913</li>
+                        <li><strong>Nivel</strong>Preescolar · Primaria · Secundaria · Preparatoria</li>
+                        <li><strong>Valores</strong>Fe · Servicio · Comunidad</li>
+                        <li><strong>Visión</strong>Educación integral con proyección internacional</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -2594,7 +2718,7 @@
 
             <div class="split-feature reverse">
                 <div class="split-visual reveal">
-                    <img src="image_4bdc9b.jpg" alt="Alianza Francesa de San Cristóbal · CAVILAM · La Salle — Convenio Institucional" loading="lazy" style="object-position: center; background:#c0001d;">
+                    <img src="assets/images/sede-interior.jpg" alt="Sede Alianza Francesa de San Cristóbal · Patio interior" loading="lazy" onerror="this.src='Copilot_20260411_162152.png'" style="object-position: center;">
                     <div class="split-visual-caption">
                         <div class="loc">San Cristóbal · México</div>
                         <h4>Alianza Francesa × La Salle × CAVILAM</h4>
@@ -2634,6 +2758,38 @@
                 la seguridad y la experiencia cultural de nuestros estudiantes.
             </p>
 
+            <!-- Video y diapositivas del programa — antes de la línea de tiempo -->
+            <div class="reveal delay-1" style="margin-bottom:4rem;">
+                <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:flex-start;justify-content:center;">
+                    <!-- Video de presentación del programa -->
+                    <div style="flex:1;min-width:280px;max-width:560px;">
+                        <div class="vid-wrap" style="border-radius:14px;overflow:hidden;border:1px solid rgba(201,169,97,.35);">
+                            <video controls preload="none" poster="Copilot_20260411_162152.png"
+                                   aria-label="Video de presentación del programa Vichy 2026"
+                                   style="width:100%;height:auto;display:block;">
+                                <source src="Multimedia.mp4" type="video/mp4">
+                                <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
+                            </video>
+                            <div class="vid-play-btn" aria-hidden="true">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                            </div>
+                        </div>
+                        <p style="font-family:var(--sans);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-align:center;margin-top:.8rem;">
+                            Presentación del Programa · Vichy 2026
+                        </p>
+                    </div>
+                    <!-- Diapositivas del dossier -->
+                    <div style="flex:1;min-width:240px;max-width:360px;display:flex;flex-direction:column;gap:1rem;">
+                        <div style="border:1px solid rgba(201,169,97,.35);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.4);">
+                            <img src="WEBSITE%2023-3-2026.jpeg" alt="Programa Vichy 2026 · Presentación" loading="lazy" style="width:100%;height:auto;display:block;">
+                        </div>
+                        <div style="border:1px solid rgba(201,169,97,.35);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.4);">
+                            <img src="Copilot_20260411_162152.png" alt="Vichy 2026 · Dossier Institucional" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;max-height:160px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="timeline">
                 <div class="timeline-node reveal">
                     <div class="timeline-card timeline-content-left">
@@ -2672,6 +2828,47 @@
                             deportivos, cine, teatro, gastronomía y excursiones supervisadas
                             con estudiantes de más de 100 países.
                         </p>
+
+                        <!-- Desglose semanal del programa CAVILAM -->
+                        <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+
+                            <div style="background:rgba(201,169,97,.08);border:1px solid rgba(201,169,97,.3);border-radius:12px;padding:1.2rem 1.4rem;">
+                                <div style="font-family:var(--sans);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;">Semana 1</div>
+                                <h5 style="font-family:var(--serif);color:var(--paper);margin:0 0 .5rem;font-size:1rem;">Integración y Diagnóstico</h5>
+                                <ul style="margin:0;padding-left:1.2rem;font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.6;">
+                                    <li>Test de nivelación y asignación de grupo (A1–C1)</li>
+                                    <li>4 horas diarias de clase intensiva de francés</li>
+                                    <li>Talleres: Gastronomía y Chanson française</li>
+                                    <li>Excursión: Vichy termal y parques Belle Époque</li>
+                                    <li>Actividades deportivas en el campus</li>
+                                </ul>
+                            </div>
+
+                            <div style="background:rgba(0,85,164,.08);border:1px solid rgba(0,85,164,.35);border-radius:12px;padding:1.2rem 1.4rem;">
+                                <div style="font-family:var(--sans);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:#6699cc;margin-bottom:.5rem;">Semana 2</div>
+                                <h5 style="font-family:var(--serif);color:var(--paper);margin:0 0 .5rem;font-size:1rem;">Profundización Cultural</h5>
+                                <ul style="margin:0;padding-left:1.2rem;font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.6;">
+                                    <li>Clases intensivas + preparación para DELF</li>
+                                    <li>Talleres: Teatro, Cine y Arte y Patrimonio</li>
+                                    <li>Excursión: Lyon (Vieux-Lyon y Fourvière)</li>
+                                    <li>Visita a museos con guía en francés</li>
+                                    <li>Noche cultural con estudiantes internacionales</li>
+                                </ul>
+                            </div>
+
+                            <div style="background:rgba(239,65,53,.06);border:1px solid rgba(239,65,53,.3);border-radius:12px;padding:1.2rem 1.4rem;">
+                                <div style="font-family:var(--sans);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:#ef6b65;margin-bottom:.5rem;">Semana 3</div>
+                                <h5 style="font-family:var(--serif);color:var(--paper);margin:0 0 .5rem;font-size:1rem;">Excelencia y Certificación</h5>
+                                <ul style="margin:0;padding-left:1.2rem;font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.6;">
+                                    <li>Examen oficial DELF / Certificado CAVILAM</li>
+                                    <li>Taller final de integración + presentación grupal</li>
+                                    <li>Excursión: Castillos del Valle del Loira</li>
+                                    <li>Cena de gala y ceremonia de clausura</li>
+                                    <li>Preparación del Gran Tour París</li>
+                                </ul>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="timeline-dot"></div>
                     <div class="timeline-content-right"></div>
@@ -2717,9 +2914,9 @@
             </p>
 
             <div class="destinations-grid">
-                <!-- Vichy: ville thermale, opéra, architecture Belle Époque -->
+                <!-- Vichy: ville thermale, architecture Belle Époque -->
                 <a href="https://en.vichy-destinations.fr/" target="_blank" rel="noopener" class="dest-card reveal" aria-label="Descubrir Vichy">
-                    <img src="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg" alt="Vichy · CAVILAM Alliance Française" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=900&auto=format&fit=crop" alt="Vichy · Ville thermale Belle Époque" loading="lazy">
                     <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Sede · Auvernia</div>
@@ -2737,9 +2934,9 @@
                     </div>
                 </a>
 
-                <!-- Versalles: jardines y palacio -->
+                <!-- Versalles: jardines y palacio real -->
                 <a href="https://en.chateauversailles.fr/" target="_blank" rel="noopener" class="dest-card reveal delay-2" aria-label="Descubrir Versalles">
-                    <img src="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?q=80&w=900&auto=format&fit=crop" alt="Palacio de Versalles" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1597075961081-da9e9c10f6cb?q=80&w=900&auto=format&fit=crop" alt="Palacio y jardines de Versalles" loading="lazy">
                     <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Palacio Real</div>
@@ -2757,9 +2954,9 @@
                     </div>
                 </a>
 
-                <!-- Lyon: vieux Lyon, gastronomía -->
+                <!-- Lyon: Vieux-Lyon, colinas Fourvière, Ródano -->
                 <a href="https://www.lyon-france.com/" target="_blank" rel="noopener" class="dest-card reveal" aria-label="Descubrir Lyon">
-                    <img src="https://images.unsplash.com/photo-1524222717473-730000096953?q=80&w=900&auto=format&fit=crop" alt="Lyon, capital gastronómica de Francia" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1576385562267-aecc8f11eb8f?q=80&w=900&auto=format&fit=crop" alt="Lyon · Vieux Lyon y colinas de Fourvière" loading="lazy">
                     <div class="dest-arrow" aria-hidden="true">↗</div>
                     <div class="dest-info">
                         <div class="dest-label">Capital Gastronómica</div>
@@ -2799,60 +2996,120 @@
             </div>
         </section>
 
-        <!-- CULTURAL EXPERIENCE -->
+        <!-- TALLERES CULTURALES — sección interactiva -->
         <section id="cultura">
-            <div class="section-label reveal">Experiencia</div>
+            <div class="section-label reveal">Talleres CAVILAM</div>
             <h2 class="section-title reveal">
-                La Francia <em>sensorial</em>
+                La Francia <em>que se vive</em>
             </h2>
             <p class="section-subtitle reveal delay-1">
-                Aprender francés no es solo gramática — es saborear un croissant recién horneado,
-                escuchar a Debussy en un museo, reír con otros estudiantes de 100 nacionalidades.
+                Cada tarde en CAVILAM, el francés se convierte en gastronomía, teatro, cine, danza
+                y arte. Esto es aprendizaje total: vivir la cultura mientras la hablas.
             </p>
 
-            <div class="culture-mosaic">
+            <!-- Mosaico de fondo — mantiene el diseño visual -->
+            <div class="culture-mosaic" style="margin-bottom:3rem;">
                 <div class="mosaic-item tall reveal">
-                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=800&auto=format&fit=crop" alt="Boulangerie" loading="lazy">
-                    <div class="mosaic-caption">
-                        <div class="tag">Gastronomía</div>
-                        <h5>Boulangerie artisanale</h5>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=800&auto=format&fit=crop" alt="Gastronomía francesa" loading="lazy">
+                    <div class="mosaic-caption"><div class="tag">Taller</div><h5>Gastronomía</h5></div>
                 </div>
                 <div class="mosaic-item wide reveal delay-1">
                     <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1200&auto=format&fit=crop" alt="París" loading="lazy">
-                    <div class="mosaic-caption">
-                        <div class="tag">Paysage</div>
-                        <h5>Paisajes de Francia</h5>
-                    </div>
+                    <div class="mosaic-caption"><div class="tag">Excursión</div><h5>Paisajes de Francia</h5></div>
                 </div>
                 <div class="mosaic-item reveal delay-2">
                     <img src="https://images.unsplash.com/photo-1543968996-ee822b8176ba?q=80&w=600&auto=format&fit=crop" alt="Museo" loading="lazy">
-                    <div class="mosaic-caption">
-                        <div class="tag">Arte</div>
-                        <h5>Museos</h5>
-                    </div>
+                    <div class="mosaic-caption"><div class="tag">Taller</div><h5>Historia del Arte</h5></div>
                 </div>
                 <div class="mosaic-item reveal delay-1">
-                    <img src="https://images.unsplash.com/photo-1530569673472-307dc017a82d?q=80&w=600&auto=format&fit=crop" alt="Café" loading="lazy">
-                    <div class="mosaic-caption">
-                        <div class="tag">Café</div>
-                        <h5>Terrasses parisiennes</h5>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1530569673472-307dc017a82d?q=80&w=600&auto=format&fit=crop" alt="Café parisino" loading="lazy">
+                    <div class="mosaic-caption"><div class="tag">Vida</div><h5>Terrasses parisiennes</h5></div>
                 </div>
                 <div class="mosaic-item wide reveal delay-2">
                     <img src="https://images.unsplash.com/photo-1509121191855-2a7eeb42b5d8?q=80&w=1200&auto=format&fit=crop" alt="Arquitectura" loading="lazy">
-                    <div class="mosaic-caption">
-                        <div class="tag">Architecture</div>
-                        <h5>Patrimoine architectural</h5>
-                    </div>
+                    <div class="mosaic-caption"><div class="tag">Excursión</div><h5>Patrimonio Arquitectónico</h5></div>
                 </div>
                 <div class="mosaic-item tall reveal delay-3">
                     <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?q=80&w=800&auto=format&fit=crop" alt="Viñedos" loading="lazy">
-                    <div class="mosaic-caption">
-                        <div class="tag">Terroir</div>
-                        <h5>Vignobles français</h5>
-                    </div>
+                    <div class="mosaic-caption"><div class="tag">Terroir</div><h5>Vignobles français</h5></div>
                 </div>
+            </div>
+
+            <!-- Tarjetas interactivas de talleres específicos -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:1rem;">
+
+                <div class="wb-card reveal" style="cursor:default;">
+                    <div class="wb-icon">🥐</div>
+                    <h3 class="wb-title">Gastronomía Francesa</h3>
+                    <p class="wb-desc">Clases de cocina en la cocina del campus: aprende a preparar quiche, crêpes y macarons con chef. El vocabulario culinario se aprende cocinando.</p>
+                    <ul class="wb-features">
+                        <li>Recetas clásicas de bistró</li>
+                        <li>Vocabulario culinario FLE</li>
+                        <li>Visita al mercado francés</li>
+                        <li>Degustación de vinos y quesos (adultos)</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-1" style="cursor:default;">
+                    <div class="wb-icon">🎭</div>
+                    <h3 class="wb-title">Teatro en Francés</h3>
+                    <p class="wb-desc">Improvisación, lectura dramatizada y presentación de piezas breves. El teatro libera el habla y vence el miedo a equivocarse en el idioma.</p>
+                    <ul class="wb-features">
+                        <li>Técnicas de improvisación</li>
+                        <li>Fonetica y pronunciación</li>
+                        <li>Presentación final en escenario</li>
+                        <li>Interacción con estudiantes de todo el mundo</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-2" style="cursor:default;">
+                    <div class="wb-icon">🎬</div>
+                    <h3 class="wb-title">Cine Francés</h3>
+                    <p class="wb-desc">Proyecciones y análisis de películas de la Nouvelle Vague y el cine contemporáneo, con debate en francés guiado por profesores especializados.</p>
+                    <ul class="wb-features">
+                        <li>Nouvelle Vague y cine actual</li>
+                        <li>Debate guiado post-proyección</li>
+                        <li>Redacción de reseñas en francés</li>
+                        <li>Visita al cine de Vichy</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-3" style="cursor:default;">
+                    <div class="wb-icon">🎨</div>
+                    <h3 class="wb-title">Arte y Patrimonio</h3>
+                    <p class="wb-desc">Visitas guiadas a museos de Vichy y Lyon, con actividades de descripción e interpretación artística en francés. La historia cobra vida.</p>
+                    <ul class="wb-features">
+                        <li>Museos locales de Vichy</li>
+                        <li>Taller de acuarela y descripción</li>
+                        <li>Patrimonio Belle Époque</li>
+                        <li>Historia del arte francés</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal" style="cursor:default;">
+                    <div class="wb-icon">🏊</div>
+                    <h3 class="wb-title">Deporte y Naturaleza</h3>
+                    <p class="wb-desc">Actividades deportivas organizadas por CAVILAM en las instalaciones del campus y excursiones a los volcanes de la Auvernia con guía en francés.</p>
+                    <ul class="wb-features">
+                        <li>Piscina en campus CAVILAM</li>
+                        <li>Senderismo Puy de Dôme</li>
+                        <li>Deportes de equipo internacionales</li>
+                        <li>Vocabulario deportivo FLE</li>
+                    </ul>
+                </div>
+
+                <div class="wb-card reveal delay-1" style="cursor:default;">
+                    <div class="wb-icon">🎵</div>
+                    <h3 class="wb-title">Música y Chanson</h3>
+                    <p class="wb-desc">Descubrimiento de la chanson française: de Édith Piaf a Stromae. Talleres de análisis lírico y presentaciones musicales grupales en el campus.</p>
+                    <ul class="wb-features">
+                        <li>Chanson française clásica y moderna</li>
+                        <li>Análisis de letras (compréhension)</li>
+                        <li>Karaoke en francés</li>
+                        <li>Concierto fin de programa</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
@@ -2999,8 +3256,7 @@
 
                 <div class="vid-testimonial">
                     <div class="vid-wrap">
-                        <video controls preload="none"
-                               poster="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg"
+                        <video controls preload="metadata"
                                aria-label="Testimonio de Gwendoline y Romaric, familia de acogida CAVILAM">
                             <source src="video_famille_1.mp4" type="video/mp4">
                         </video>
@@ -3213,45 +3469,24 @@
 
             <div class="reveal delay-2" style="display:flex;flex-direction:column;align-items:center;gap:1.8rem;">
 
-                <!-- Dos diapositivas de vista previa -->
-                <div style="display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:900px;">
-                    <!-- Diapositiva 1: Portada -->
-                    <div style="flex:1;min-width:260px;max-width:420px;background:linear-gradient(135deg,var(--ink-3),var(--blue-deep));border:1px solid rgba(201,169,97,.45);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.55);">
-                        <img src="Copilot_20260411_162152.png"
-                             alt="Portada Dossier Vichy 2026"
-                             loading="lazy"
-                             style="width:100%;height:auto;display:block;object-fit:cover;">
-                        <p style="font-family:var(--sans);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-align:center;padding:.6rem;margin:0;background:rgba(0,0,0,.3);">
-                            Portada · Presentación Institucional
-                        </p>
-                    </div>
-                    <!-- Diapositiva 2: Web / Mapa -->
-                    <div style="flex:1;min-width:260px;max-width:420px;background:linear-gradient(135deg,var(--ink-3),var(--blue-deep));border:1px solid rgba(201,169,97,.45);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.55);">
-                        <img src="WEBSITE%2023-3-2026.jpeg"
-                             alt="Vichy 2026 — Programa y Destinos"
-                             loading="lazy"
-                             style="width:100%;height:auto;display:block;object-fit:cover;">
-                        <p style="font-family:var(--sans);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-align:center;padding:.6rem;margin:0;background:rgba(0,0,0,.3);">
-                            Programa · Destinos · Vichy 2026
-                        </p>
-                    </div>
+                <!-- Portada de la presentación -->
+                <div style="max-width:480px;width:100%;background:linear-gradient(135deg,var(--ink-3),var(--blue-deep));border:1px solid rgba(201,169,97,.45);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.55);">
+                    <img src="Copilot_20260411_162152.png"
+                         alt="Portada Dossier Vichy 2026"
+                         loading="lazy"
+                         style="width:100%;height:auto;display:block;object-fit:cover;">
+                    <p style="font-family:var(--sans);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-align:center;padding:.6rem;margin:0;background:rgba(0,0,0,.3);">
+                        Portada · Presentación Institucional 2026
+                    </p>
                 </div>
 
-                <!-- Botones de descarga (PPT + PPTX) -->
-                <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
-                    <a href="Vichy_2026_La_Salle.ppt"
-                       download="Dossier_Vichy2026_LaSalle.ppt"
-                       class="btn-luxury primary"
-                       style="font-size:.85rem;padding:1.2rem 2.4rem;">
-                        <span>⬇ Descargar Presentación PPT</span>
-                    </a>
-                    <a href="Vichy_2026_La_Salle.pptx"
-                       download="Dossier_Vichy2026_LaSalle.pptx"
-                       class="btn-luxury ghost"
-                       style="font-size:.85rem;padding:1.2rem 2.4rem;">
-                        <span>⬇ Versión PPTX</span>
-                    </a>
-                </div>
+                <!-- Botón de descarga -->
+                <a href="Vichy_2026_La_Salle.ppt"
+                   download="Dossier_Vichy2026_LaSalle.ppt"
+                   class="btn-luxury primary"
+                   style="font-size:.85rem;padding:1.2rem 2.8rem;">
+                    <span>⬇ Descargar Presentación PPT</span>
+                </a>
                 <p style="font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.1em;">
                     Compatible con Microsoft Office, LibreOffice y Google Slides
                 </p>
@@ -3383,10 +3618,6 @@
 
         <!-- FOOTER -->
         <footer>
-            <!-- Banner combinado de los tres logos -->
-            <div class="footer-logos-banner">
-                <img src="logos_banner.png" alt="La Salle · Alianza Francesa · CAVILAM — alianza institucional" loading="lazy">
-            </div>
             <div class="footer-brand">VICHY 2026</div>
             <div class="footer-partners">
                 <span>Colegio La Salle</span>
@@ -3395,15 +3626,49 @@
                 <span class="divider">·</span>
                 <span>CAVILAM Vichy</span>
             </div>
-            <div class="footer-meta" style="margin-bottom:.8rem;">
+
+            <!-- Bloques de contacto QR -->
+            <div class="footer-qr-row">
+
+                <!-- Bloque 1: Dirección General AFSC -->
+                <div class="footer-qr-card">
+                    <img src="qr_af_director.png"
+                         alt="QR WhatsApp — Director General AFSC"
+                         loading="lazy"
+                         class="footer-qr-img">
+                    <div class="footer-qr-info">
+                        <p class="footer-qr-name">Miguel Tillero</p>
+                        <p class="footer-qr-role">Director General<br>Alianza Francesa San Cristóbal</p>
+                        <a href="https://wa.me/529671721870?text=Bonjour%2C%20deseo%20informaci%C3%B3n%20sobre%20el%20programa%20Vichy%202026."
+                           target="_blank" rel="noopener"
+                           class="footer-qr-wa">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.124 1.522 5.861L.065 23.492a.5.5 0 00.61.61l5.708-1.457A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.406 14.604c-.293-.147-1.737-.857-2.006-.955-.268-.098-.464-.147-.659.147-.195.293-.757.955-.928 1.151-.171.196-.342.22-.635.073-.293-.147-1.239-.456-2.361-1.456-.872-.778-1.461-1.739-1.632-2.032-.171-.293-.018-.452.129-.598.132-.131.293-.342.44-.513.146-.171.195-.293.293-.489.098-.195.049-.366-.024-.513-.073-.146-.659-1.588-.904-2.176-.238-.572-.48-.494-.659-.503-.171-.009-.366-.011-.562-.011s-.513.073-.781.366c-.268.293-1.025 1.001-1.025 2.44s1.049 2.831 1.196 3.026c.147.195 2.063 3.149 4.998 4.415.699.302 1.245.482 1.671.617.702.223 1.341.192 1.846.116.563-.083 1.734-.709 1.979-1.393.244-.684.244-1.27.171-1.393-.073-.122-.268-.195-.562-.342z"/></svg>
+                            +52 967 172 1870
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bloque 2: Coordinador La Salle -->
+                <div class="footer-qr-card">
+                    <img src="qr_roman_fuentes.png"
+                         alt="QR Contacto — Román Fuentes, La Salle"
+                         loading="lazy"
+                         class="footer-qr-img">
+                    <div class="footer-qr-info">
+                        <img src="Román_Fuentes-1024.jpeg"
+                             alt="Román Fuentes"
+                             loading="lazy"
+                             class="footer-qr-photo"
+                             onerror="this.style.display='none'">
+                        <p class="footer-qr-name">Román Fuentes</p>
+                        <p class="footer-qr-role">Coordinador de Secundaria<br>Colegio La Salle</p>
+                    </div>
+                </div>
+
+            </div><!-- /footer-qr-row -->
+
+            <div class="footer-meta" style="margin-top:2rem;">
                 © 2026 · Una experiencia creada con excelencia · San Cristóbal — Vichy
-            </div>
-            <div class="footer-meta">
-                <a href="https://wa.me/529673424456?text=Bonjour%2C%20deseo%20informaci%C3%B3n%20sobre%20Vichy%202026."
-                   target="_blank" rel="noopener"
-                   style="color:var(--gold);text-decoration:none;opacity:.8;">
-                    📞 Miguel Tillero · Director AF San Cristóbal · WhatsApp
-                </a>
             </div>
         </footer>
 
@@ -3518,8 +3783,8 @@
             }
         }
 
-        // Trigger at 5s
-        setTimeout(triggerPhase2, 5000);
+        // Trigger at 7s (rango 6-8s solicitado)
+        setTimeout(triggerPhase2, 7000);
 
         // Si el video termina antes → loop para que no quede negro, pero igual
         // pasamos a phase-2 en el momento de 3s ya programado
@@ -3583,10 +3848,10 @@
             }
         });
 
-        // Fallback: auto-dismiss 14s (5s video + 9s lectura)
+        // Fallback: auto-dismiss 16s (7s video + 9s lectura del banner)
         setTimeout(() => {
             if (overlay && !overlay.classList.contains('dismissed')) dismissIntro();
-        }, 14000);
+        }, 16000);
 
         // =========================================================
         // 5. MUSIC TOGGLE
