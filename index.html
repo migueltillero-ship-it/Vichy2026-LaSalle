@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#07070A">
     <meta name="author" content="Alliance Française de San Cristóbal de Las Casas">
+    <!-- Favicon institucional AF -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307070A' rx='7'/%3E%3Crect x='0' y='0' width='10.6' height='32' fill='%23002395' rx='7'/%3E%3Crect x='10.6' y='0' width='10.8' height='32' fill='%23fff'/%3E%3Crect x='21.4' y='0' width='10.6' height='32' fill='%23ED2939' rx='0'/%3E%3Crect x='21.4' y='0' width='10.6' height='32' fill='%23ED2939'/%3E%3Cpath d='M16 7 l2.2 6.7h7l-5.7 4.1 2.2 6.7L16 20.5l-5.7 4 2.2-6.7-5.7-4.1h7z' fill='%23C9A84C' opacity='.9'/%3E%3C/svg%3E">
+    <link rel="alternate icon" href="logo_af_gris.png">
 
     <title>Vichy 2026 · Experiencia Inmersiva | La Salle &amp; Alliance Française</title>
     <meta name="description" content="Misión oficial de inmersión lingüística y cultural en Francia 2026. Exclusivo para el Colegio La Salle, con certificación internacional CAVILAM.">
@@ -493,6 +496,77 @@
             0%,100% { opacity: 0; transform: translateY(-6px); }
             50%      { opacity: 1; transform: translateY(6px);  }
         }
+
+        /* ══════════════════════════════════════════════
+           INTRO LOGOS FLOTANTES (sin recuadro)
+        ══════════════════════════════════════════════ */
+        .intro-logos-wrap {
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .intro-logos-img {
+            filter: drop-shadow(0 0 28px rgba(201,168,76,0.45))
+                    drop-shadow(0 0 8px rgba(201,168,76,0.25));
+            animation: float-logos 4s ease-in-out infinite;
+        }
+        @keyframes float-logos {
+            0%,100% { transform: translateY(0); }
+            50%      { transform: translateY(-8px); }
+        }
+
+        /* ══════════════════════════════════════════════
+           FAQ ACCORDION
+        ══════════════════════════════════════════════ */
+        .faq-list { list-style: none; }
+        .faq-item {
+            border-bottom: 1px solid rgba(201,168,76,0.12);
+        }
+        .faq-item:first-child { border-top: 1px solid rgba(201,168,76,0.12); }
+
+        .faq-q {
+            width: 100%; background: none; border: none; text-align: left;
+            padding: 1.75rem 0;
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            transition: color 0.3s;
+        }
+        .faq-q:hover { color: var(--gold); }
+        .faq-q[aria-expanded="true"] { color: var(--gold); }
+
+        .faq-icon {
+            flex-shrink: 0; width: 24px; height: 24px;
+            border-radius: 50%;
+            border: 1px solid rgba(201,168,76,0.35);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); font-size: 1rem; line-height: 1;
+            transition: transform 0.35s var(--ease-lux), background 0.3s;
+        }
+        .faq-q[aria-expanded="true"] .faq-icon {
+            transform: rotate(45deg);
+            background: rgba(201,168,76,0.12);
+        }
+
+        .faq-body {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.45s var(--ease-lux), opacity 0.35s ease;
+            opacity: 0;
+        }
+        .faq-body.open {
+            opacity: 1;
+        }
+        .faq-body-inner {
+            padding-bottom: 1.75rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 1rem;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+        .faq-body-inner strong { color: rgba(255,255,255,0.75); font-weight: 600; }
     </style>
 </head>
 <body>
@@ -519,6 +593,7 @@
     <a href="#convenio"  onclick="closeMobileMenu()">Convenio</a>
     <a href="#dossier"   onclick="closeMobileMenu()">Dossier</a>
     <a href="#bienestar" onclick="closeMobileMenu()">Bienestar</a>
+    <a href="#faq"       onclick="closeMobileMenu()">FAQ</a>
     <a href="#precio"    onclick="closeMobileMenu()">Costo</a>
     <a href="#registro"  onclick="closeMobileMenu()"
         style="font-style:normal;background:var(--gold);color:var(--ink);border-radius:9999px;padding:.75rem 2.5rem;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;">
@@ -529,8 +604,10 @@
 <!-- PANTALLA DE BIENVENIDA -->
 <div id="intro">
     <div id="intro-inner" class="flex flex-col items-center">
-        <div class="glass-panel p-6 rounded-2xl mb-8">
-            <img src="logos_banner.png" alt="Alliance Française &amp; La Salle" class="h-20 md:h-24 object-contain">
+        <!-- Logos flotantes sin recuadros — Intro Diamante -->
+        <div class="mb-8 intro-logos-wrap">
+            <img src="logos_banner.png" alt="Alliance Française &amp; La Salle"
+                class="h-20 md:h-28 object-contain intro-logos-img">
         </div>
         <div class="tricolor w-32 opacity-70 mb-6"></div>
         <h1 class="intro-big mb-4 text-3d">Vichy&nbsp;<em>2026</em></h1>
@@ -555,6 +632,7 @@
             <a href="#convenio"  class="text-[11px] uppercase tracking-[.25em] text-white/65 hover:text-gold transition font-bold">Convenio</a>
             <a href="#dossier"   class="text-[11px] uppercase tracking-[.25em] text-white/65 hover:text-gold transition font-bold">Dossier</a>
             <a href="#bienestar" class="text-[11px] uppercase tracking-[.25em] text-white/65 hover:text-gold transition font-bold">Bienestar</a>
+            <a href="#faq"       class="text-[11px] uppercase tracking-[.25em] text-white/65 hover:text-gold transition font-bold">FAQ</a>
             <a href="#precio"    class="text-[11px] uppercase tracking-[.25em] text-white/65 hover:text-gold transition font-bold">Costo</a>
             <a href="#registro"
                 class="px-8 py-3 bg-gold text-ink rounded-full text-[10px] uppercase font-black hover:bg-white transition-all shadow-lg hover:-translate-y-0.5">
@@ -659,6 +737,41 @@
         </div>
     </section>
 
+    <!-- ══════════ DOSSIER ══════════ -->
+    <section id="dossier" class="sp" style="background:var(--ink-lt)">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="sr mb-16">
+                <p class="text-gold text-[12px] uppercase tracking-[.45em] font-bold mb-4">Material Oficial</p>
+                <h2 class="lux text-6xl text-white font-light">
+                    El <em class="text-gold italic">Dossier</em> Completo
+                </h2>
+                <p class="text-white/40 mt-5 max-w-xl mx-auto text-lg">Presentación interactiva y documentos descargables del programa académico 2026.</p>
+            </div>
+            <!-- Canva embed -->
+            <div class="sr dossier-embed">
+                <iframe
+                    src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed"
+                    allowfullscreen allow="autoplay; fullscreen"
+                    title="Presentación Interactiva Vichy 2026 — Colegio La Salle">
+                </iframe>
+            </div>
+            <!-- Botones de descarga -->
+            <div class="sr flex flex-wrap justify-center gap-4 mt-8">
+                <a href="Vichy_2026_La_Salle.pdf" target="_blank" rel="noopener"
+                    class="flex items-center gap-3 px-8 py-4 glass-panel rounded-full border border-gold/35 text-white hover:border-gold/70 transition-all">
+                    <span class="text-gold" style="font-size:1.2rem;line-height:1">⬇</span>
+                    <span class="text-[11px] uppercase tracking-widest font-bold">Dossier PDF</span>
+                </a>
+                <a href="Vichy_2026_La_Salle.ppt" download
+                    class="flex items-center gap-3 px-8 py-4 glass-panel rounded-full border border-white/15 hover:border-white/30 transition-all"
+                    style="color:rgba(255,255,255,.65)">
+                    <span style="font-size:1.2rem;line-height:1">⬇</span>
+                    <span class="text-[11px] uppercase tracking-widest font-bold">Presentación PPT</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- ══════════ CONVENIO ══════════ -->
     <section id="convenio" class="sp bg-ink-mid border-y border-white/5">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-16 items-center">
@@ -748,41 +861,6 @@
         </div>
     </section>
 
-    <!-- ══════════ DOSSIER ══════════ -->
-    <section id="dossier" class="sp" style="background:var(--ink-lt)">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <div class="sr mb-16">
-                <p class="text-gold text-[12px] uppercase tracking-[.45em] font-bold mb-4">Material Oficial</p>
-                <h2 class="lux text-6xl text-white font-light">
-                    El <em class="text-gold italic">Dossier</em> Completo
-                </h2>
-                <p class="text-white/40 mt-5 max-w-xl mx-auto text-lg">Presentación interactiva y documentos descargables del programa académico 2026.</p>
-            </div>
-            <!-- Canva embed -->
-            <div class="sr dossier-embed">
-                <iframe
-                    src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed"
-                    allowfullscreen allow="autoplay; fullscreen"
-                    title="Presentación Interactiva Vichy 2026 — Colegio La Salle">
-                </iframe>
-            </div>
-            <!-- Botones de descarga -->
-            <div class="sr flex flex-wrap justify-center gap-4 mt-8">
-                <a href="Vichy_2026_La_Salle.pdf" target="_blank" rel="noopener"
-                    class="flex items-center gap-3 px-8 py-4 glass-panel rounded-full border border-gold/35 text-white hover:border-gold/70 transition-all">
-                    <span class="text-gold" style="font-size:1.2rem;line-height:1">⬇</span>
-                    <span class="text-[11px] uppercase tracking-widest font-bold">Dossier PDF</span>
-                </a>
-                <a href="Vichy_2026_La_Salle.ppt" download
-                    class="flex items-center gap-3 px-8 py-4 glass-panel rounded-full border border-white/15 hover:border-white/30 transition-all"
-                    style="color:rgba(255,255,255,.65)">
-                    <span style="font-size:1.2rem;line-height:1">⬇</span>
-                    <span class="text-[11px] uppercase tracking-widest font-bold">Presentación PPT</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- ══════════ BIENESTAR ══════════ -->
     <section id="bienestar" class="sp relative overflow-hidden bg-ink-mid">
         <div class="absolute inset-0 z-0" style="opacity:.08">
@@ -856,6 +934,108 @@
         </div>
     </section>
 
+    <!-- ══════════ FAQ ══════════ -->
+    <section id="faq" class="sp bg-ink-mid">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="sr text-center mb-16">
+                <p class="text-gold text-[12px] uppercase tracking-[.45em] font-bold mb-4">Todo lo que Necesitas Saber</p>
+                <h2 class="lux text-6xl text-white font-light">
+                    Preguntas <em class="text-gold italic">Frecuentes</em>
+                </h2>
+            </div>
+            <ul class="faq-list">
+                <li class="faq-item sr">
+                    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span>¿Se requiere un nivel de francés previo?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="faq-body-inner">
+                            <strong>No es obligatorio,</strong> pero sí es recomendable un nivel básico (A1–A2). El programa CAVILAM divide a los estudiantes en grupos según su nivel desde el primer día, garantizando que cada alumno avance a su ritmo. La inmersión diaria con la familia anfitriona acelera el aprendizaje de forma natural.
+                        </div>
+                    </div>
+                </li>
+                <li class="faq-item sr">
+                    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span>¿Qué incluye exactamente el costo aproximado de €3,500?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="faq-body-inner">
+                            El monto proyectado cubre: <strong>60 horas de academia certificada CAVILAM, alojamiento en familia francesa certificada</strong> (pensión completa), traslados privados durante todo el programa, entradas a museos y atracciones (Torre Eiffel, Louvre, Disneyland® Paris), seguro médico internacional y materiales académicos. <strong>El vuelo internacional México–Francia no está incluido.</strong>
+                        </div>
+                    </div>
+                </li>
+                <li class="faq-item sr">
+                    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span>¿El vuelo internacional está incluido?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="faq-body-inner">
+                            No. El vuelo de ida y vuelta México–Francia corre por cuenta de cada familia. El equipo de coordinación puede orientar sobre las mejores opciones de vuelo y fechas tentativas una vez que estas sean confirmadas. Se recomienda gestionar el vuelo con anticipación.
+                        </div>
+                    </div>
+                </li>
+                <li class="faq-item sr">
+                    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span>¿Cómo se garantiza la seguridad de los estudiantes?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="faq-body-inner">
+                            La seguridad es la prioridad absoluta. El programa opera bajo el protocolo institucional de la <strong>Alliance Française</strong> y el <strong>CAVILAM</strong>, reconocido internacionalmente. Las familias anfitrionas son certificadas y revisadas anualmente. Hay un acompañante institucional de La Salle + AF durante todo el viaje, y los estudiantes cuentan con seguro médico y de viaje internacional 24/7.
+                        </div>
+                    </div>
+                </li>
+                <li class="faq-item sr">
+                    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span>¿Qué certificación internacional obtendrán los alumnos?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="faq-body-inner">
+                            Al concluir el programa, cada estudiante recibe el <strong>Diploma Oficial CAVILAM</strong> avalado por la Fondation des Alliances Françaises en París. Este certificado es reconocido internacionalmente y puede sumarse al expediente académico del alumno. Es equivalente a niveles del <strong>Marco Común Europeo de Referencia (MCER)</strong>.
+                        </div>
+                    </div>
+                </li>
+                <li class="faq-item sr">
+                    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span>¿Cuándo son las fechas exactas de la Misión 2026?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="faq-body-inner">
+                            Las fechas definitivas están en proceso de confirmación logística con CAVILAM en Vichy. La coordinación entre los periodos vacacionales del Colegio La Salle y el calendario académico francés garantiza la mejor ventana. <strong>Las familias serán notificadas con mínimo 4 meses de anticipación</strong> para la planificación del vuelo.
+                        </div>
+                    </div>
+                </li>
+                <li class="faq-item sr">
+                    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span>¿Cuántos cupos hay disponibles?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="faq-body-inner">
+                            Los cupos son <strong>muy limitados</strong> para garantizar una experiencia de calidad y supervisión personalizada. El programa privilegia a alumnos del Colegio La Salle San Cristóbal. El registro de interés no asegura el lugar — la confirmación oficial se emite tras la evaluación de cada expediente por la Dirección.
+                        </div>
+                    </div>
+                </li>
+                <li class="faq-item sr">
+                    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span>¿Qué es el CAVILAM y por qué es la mejor institución?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="faq-body-inner">
+                            El <strong>CAVILAM – Alliance Française</strong> en Vichy es uno de los centros de formación en francés lengua extranjera más prestigiosos del mundo. Cada año recibe a más de 5,000 estudiantes de 80 países. Sus profesores son certificados por el Ministerio de Educación francés y la Fondation des Alliances Françaises. Es el socio pedagógico oficial de Alliance Française San Cristóbal para este programa.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
     <!-- ══════════ PRECIO ══════════ -->
     <section id="precio" class="sp bg-ink-mid text-center">
         <div class="max-w-5xl mx-auto px-6">
@@ -911,6 +1091,8 @@
                 <form id="formulario" action="https://api.web3forms.com/submit" method="POST" class="space-y-8">
                     <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
                     <input type="hidden" name="subject" value="NUEVO REGISTRO: Vichy 2026 - Colegio La Salle">
+                    <input type="hidden" name="from_name" value="Vichy 2026 · La Salle × Alliance Française">
+                    <input type="hidden" name="redirect" value="false">
                     <div class="grid md:grid-cols-2 gap-6 text-left">
                         <div>
                             <label class="text-[10px] uppercase font-bold text-slate-400 ml-1">Nombre del Alumno *</label>
@@ -934,6 +1116,10 @@
                             <label class="text-[10px] uppercase font-bold text-slate-400 ml-1">WhatsApp *</label>
                             <input type="tel" name="WhatsApp" placeholder="+52 967 000 0000" required class="ff font-mono">
                         </div>
+                    </div>
+                    <div class="text-left">
+                        <label class="text-[10px] uppercase font-bold text-slate-400 ml-1">Correo Electrónico del Tutor <span class="text-slate-300">(para recibir el dossier)</span></label>
+                        <input type="email" name="email" placeholder="correo@ejemplo.com" class="ff">
                     </div>
                     <div class="text-left">
                         <label class="text-[10px] uppercase font-bold text-slate-400 ml-1">Motivación *</label>
@@ -1213,7 +1399,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* ══ IX. FORM — Web3Forms AJAX ══ */
+    /* ══ IX. FAQ ACCORDION ══ */
+    window.toggleFaq = (btn) => {
+        const body    = btn.nextElementSibling;
+        const isOpen  = btn.getAttribute('aria-expanded') === 'true';
+        const icon    = btn.querySelector('.faq-icon');
+
+        // Cierra todos los demás
+        document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(other => {
+            if (other === btn) return;
+            other.setAttribute('aria-expanded', 'false');
+            const otherBody = other.nextElementSibling;
+            otherBody.style.maxHeight = '0';
+            otherBody.classList.remove('open');
+        });
+
+        if (isOpen) {
+            btn.setAttribute('aria-expanded', 'false');
+            body.style.maxHeight = '0';
+            body.classList.remove('open');
+        } else {
+            btn.setAttribute('aria-expanded', 'true');
+            body.style.maxHeight = body.scrollHeight + 'px';
+            body.classList.add('open');
+        }
+    };
+
+    /* ══ X. FORM — Web3Forms AJAX ══ */
     const form      = document.getElementById('formulario');
     const successEl = document.getElementById('gracias');
     const submitBtn = document.getElementById('btn-submit');
