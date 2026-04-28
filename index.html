@@ -303,7 +303,7 @@
                     <ul class="text-white/60 text-sm space-y-4 leading-relaxed relative z-10">
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Día completo de inmersión mágica en <strong class="text-white">Disneyland Paris</strong>.</li>
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Ceremonia oficial y entrega de certificación CAVILAM.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Despedida y vuelo de retorno a México depuis l'aéroport CDG.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Despedida y vuelo de retorno a México desde aeropuerto CDG.</li>
                     </ul>
                 </article>
             </div>
@@ -581,19 +581,15 @@
             
             <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Postulación Oficial</p>
             <h2 class="lux text-5xl mb-6">Registro de <em class="text-gold italic">Interés</em></h2>
-            <p class="text-white/50 text-sm mb-12 max-w-xl mx-auto leading-relaxed">Complete el expediente. Recibirá una confirmación automática con el Dossier adjunto y la Dirección evaluará su perfil.</p>
+            <p class="text-white/50 text-sm mb-12 max-w-xl mx-auto leading-relaxed">Complete el expediente. Recibirá una confirmación y la Dirección evaluará su perfil.</p>
             
             <div id="gracias" style="display:none" class="p-8 bg-emerald-900/30 border border-emerald-500/30 rounded-2xl mb-8">
                 <p class="lux text-2xl text-emerald-400 mb-2">¡Expediente Recibido!</p>
-                <p class="text-emerald-200/70 text-sm">Revise su bandeja de correo electrónico (y spam) para ver la confirmación.</p>
+                <p class="text-emerald-200/70 text-sm">Registro capturado exitosamente en el sistema central.</p>
             </div>
             <div id="errBox" style="display:none" class="p-4 mb-6 bg-red-900/30 border border-red-500/30 text-red-300 rounded-xl text-sm"></div>
             
             <form id="formulario-afsc" class="space-y-6 text-left relative z-10">
-                <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
-                <input type="hidden" name="subject" value="🇫🇷 NUEVO EXPEDIENTE: Misión Vichy 2026">
-                <input type="hidden" name="autoresponse" value="Estimada familia: Hemos recibido de forma exitosa su registro de interés para la Misión Vichy 2026. Puede visualizar y descargar nuestro Dossier Interactivo accediendo al siguiente enlace oficial: https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view">
-                
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Nombre del Estudiante *</label>
@@ -815,7 +811,8 @@ document.addEventListener('DOMContentLoaded', () => {
             errBox.style.display = 'none';
             
             try {
-                const response = await fetch('https://api.web3forms.com/submit', {
+                // Aquí el formulario se comunica directamente con tu servidor local en Python
+                const response = await fetch('http://127.0.0.1:8000/submit', {
                     method: 'POST',
                     body: new FormData(formEl)
                 });
@@ -827,7 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else { throw new Error(); }
             } catch (err) {
                 errBox.style.display = 'block';
-                errBox.innerHTML = '⚠ Error de conexión. Intente nuevamente.';
+                errBox.innerHTML = '⚠ Error de conexión con el servidor. Compruebe que el motor Python está encendido.';
                 btnText.style.opacity = '1';
                 btnSpin.classList.add('hidden');
                 btnSubmit.disabled = false;
