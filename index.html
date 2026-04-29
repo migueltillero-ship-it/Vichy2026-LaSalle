@@ -1,148 +1,171 @@
 <!DOCTYPE html>
 <html lang="es-MX" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#07070A">
-    <meta name="author" content="Alliance Française de San Cristóbal de Las Casas">
-    <title>Vichy 2026 · Un Voyage d'Exception | La Salle & Alliance Française</title>
-    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Dirigido a estudiantes del Colegio La Salle, con certificación CAVILAM.">
-    <meta property="og:title" content="Vichy 2026 · Un Voyage d'Exception">
-    <meta property="og:description" content="18 días, 5 ciudades, una vida transformada.">
-    <meta property="og:image" content="logos_banner.png">
-    <meta property="og:url" content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
-    <meta property="og:type" content="website">
-    <link rel="icon" type="image/png" href="favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'gold': '#C9A84C',
-                        'gold-lt': '#E8C96A',
-                        'gold-dk': '#A68A3D',
-                        'blue': '#002395',
-                        'red': '#ED2939',
-                        'ink': '#07070A',
-                        'ink-mid': '#0F0F14',
-                        'ink-lt': '#1A1A24'
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-    
-        <style>
-        :root { --gold: #C9A84C; --blue: #002395; --ink: #07070A; }
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Instrument Sans', sans-serif; background: var(--ink); color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; cursor: none; }
-        @media(max-width: 1024px) { body { cursor: auto; } }
-        .lux { font-family: 'Cormorant Garamond', serif; }
-        .text-glow { text-shadow: 0 0 25px rgba(201, 168, 76, 0.4); }
-        .gold-line-c { width: 80px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto; }
-        #webgl-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 1; }
-        #intro-screen { position: fixed; inset: 0; z-index: 99999; background: #96000c; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease; }
-        #intro-vid { width: 100%; height: 100%; object-fit: cover; }
-        #main-content { display: none; opacity: 0; transition: opacity 1s ease; }
-        #cursor { position: fixed; width: 32px; height: 32px; border: 1px solid rgba(201,168,76,0.6); border-radius: 50%; pointer-events: none; z-index: 999999; transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease; transform: translate(-50%, -50%); mix-blend-mode: difference; }
-        #cursor-dot { position: fixed; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 999999; transform: translate(-50%, -50%); transition: opacity 0.3s ease; }
-        .cursor-hover { transform: translate(-50%, -50%) scale(1.8) !important; background: rgba(255,255,255,0.1); border-color: transparent !important; backdrop-filter: blur(2px); }
-        .cursor-hover-dot { opacity: 0; }
-        @media(max-width: 1024px) { #cursor, #cursor-dot { display: none !important; } }
-        .glass-card { background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%); border: 1px solid rgba(255, 255, 255, 0.03); border-top: 1px solid rgba(255, 255, 255, 0.1); border-left: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.4); backdrop-filter: blur(24px); border-radius: 2rem; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s; }
-        .prog-card:hover { transform: translateY(-8px); border-color: rgba(201, 168, 76, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
-        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; background: transparent; border: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.5); cursor: none; transition: all 0.3s; }
-        .tab-btn:hover { border-color: rgba(201, 168, 76, 0.3); color: var(--gold); }
-        .tab-btn.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
-        .tab-panel { display: none; animation: fadeTab 0.5s ease; }
-        .tab-panel.active { display: block; }
-        @keyframes fadeTab { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: none; } }
-        .ff { background: rgba(255,255,255,0.05) !important; color: #fff !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: 14px; padding: 1.1rem 1.25rem; font-size: 0.9rem; width: 100%; transition: all 0.3s ease; }
-        .ff:focus { outline: none; border-color: var(--gold) !important; background: rgba(255,255,255,0.08) !important; box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.12); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#07070A">
+<meta name="author" content="Alliance Française de San Cristóbal de Las Casas">
+<title>Vichy 2026 · Un Voyage d'Exception | La Salle & Alliance Française</title>
+<meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Dirigido a estudiantes del Colegio La Salle, con certificación CAVILAM.">
+<meta property="og:title" content="Vichy 2026 · Un Voyage d'Exception">
+<meta property="og:description" content="18 días, 5 ciudades, una vida transformada.">
+<meta property="og:image" content="logos_banner.png">
+<meta property="og:url" content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="favicon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalEvent","name":"Inmersión Lingüística Vichy 2026","startDate":"2026-07-01","endDate":"2026-07-18","location":{"@type":"Place","name":"CAVILAM - Alliance Française","address":{"@type":"PostalAddress","addressLocality":"Vichy","addressCountry":"FR"}},"organizer":{"@type":"EducationalOrganization","name":"Alliance Française de San Cristóbal de Las Casas"},"offers":{"@type":"Offer","price":"3500","priceCurrency":"EUR","availability":"https://schema.org/LimitedAvailability"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'gold':'#C9A84C','gold-lt':'#E8C96A','gold-dk':'#A68A3D','blue':'#002395','blue-dk':'#00186B','red':'#ED2939','ink':'#07070A','ink-mid':'#0F0F14','ink-lt':'#1A1A24','cream':'#FAF8F3'},fontFamily:{'display':['"Cormorant Garamond"','serif'],'body':['"Instrument Sans"','system-ui','sans-serif']}}}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<style>
+:root{--gold:#C9A84C;--gold-lt:#E8C96A;--blue:#002395;--red:#ED2939;--ink:#07070A;--ink-mid:#0F0F14;--ink-lt:#1A1A24}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+::selection{background:var(--gold);color:#000}
+html{scroll-padding-top:90px}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--ink);color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+@media(max-width:1024px){body{cursor:auto}}
+.skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);padding:.75rem 2rem;border-radius:0 0 12px 12px;font-weight:700;z-index:99999;transition:top .3s}.skip-link:focus{top:0}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--ink)}::-webkit-scrollbar-thumb{background:rgba(201,168,76,.25);border-radius:10px}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.02;mix-blend-mode:overlay}
+.lux{font-family:'Cormorant Garamond',serif;line-height:1.05;letter-spacing:-.01em}
+.tricolor{height:3px;background:linear-gradient(90deg,var(--blue) 33.33%,#fff 33.33%,#fff 66.66%,var(--red) 66.66%);border-radius:2px}
+.gold-line-c{width:80px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto}
+#webgl-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+#cursor{position:fixed;width:20px;height:20px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:width .3s,height .3s;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cursor-dot{position:fixed;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;border-color:var(--gold-lt)}
+@media(max-width:1024px){#cursor,#cursor-dot{display:none}}
+#scroll-bar{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-lt));z-index:9998;transition:width .05s linear}
+#btt{position:fixed;bottom:2.5rem;right:2.5rem;z-index:80;width:46px;height:46px;border-radius:50%;background:rgba(7,7,10,.85);border:1px solid rgba(201,168,76,.3);backdrop-filter:blur(16px);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:none;opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1)}
+#btt.show{opacity:1;pointer-events:auto}#btt:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px) scale(1.08)}
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:2rem}
+.alliance-crest{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(0,35,149,.08));border:1px solid rgba(201,168,76,.25);box-shadow:0 20px 50px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.05);position:relative;overflow:hidden;backdrop-filter:blur(20px);border-radius:2.5rem}
+.alliance-crest::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.04) 0%,transparent 70%);animation:rotateCrest 20s linear infinite;pointer-events:none}
+@keyframes rotateCrest{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+#nav{position:fixed;top:0;width:100%;z-index:50;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;transition:all .5s;background:rgba(7,7,10,.5);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)}
+#nav.scrolled{background:rgba(7,7,10,.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,168,76,.12);padding-top:.85rem;padding-bottom:.85rem}
+@media(max-width:768px){#nav{padding:1rem 1.5rem}}
+.nav-link{position:relative;font-size:.68rem;text-transform:uppercase;letter-spacing:.22em;color:rgba(255,255,255,.6);font-weight:600;transition:color .3s;cursor:none}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .4s}
+.nav-link:hover{color:var(--gold)}.nav-link:hover::after{width:100%}
+#mmenu{position:fixed;inset:0;background:rgba(7,7,10,.98);z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+#mmenu.open{transform:translateX(0)}
+#main{position:relative;z-index:1}
+.hero-a{opacity:0;transform:translateY(30px)}
+.sr{opacity:0;transform:translateY(50px)}.sr-l{opacity:0;transform:translateX(-50px)}.sr-r{opacity:0;transform:translateX(50px)}
+.urgency-bar{background:linear-gradient(90deg,rgba(201,168,76,.03),rgba(201,168,76,.1),rgba(201,168,76,.03));border-top:1px solid rgba(201,168,76,.15);border-bottom:1px solid rgba(201,168,76,.15);padding:.75rem 0;overflow:hidden}
+.urgency-scroll{display:inline-flex;gap:5rem;white-space:nowrap;animation:marquee 40s linear infinite;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:var(--gold)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tab-btn{padding:.75rem 1.5rem;border-radius:100px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;background:transparent;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.5);cursor:none;transition:all .3s}
+.tab-btn:hover{border-color:rgba(201,168,76,.3);color:var(--gold)}
+.tab-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.tab-panel{display:none;animation:fadeTab .5s ease}.tab-panel.active{display:block}
+@keyframes fadeTab{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.prog-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:2rem;padding:2.5rem 2rem;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform .5s,border-color .5s,box-shadow .5s}
+.prog-card:hover{border-color:rgba(201,168,76,.35);box-shadow:0 25px 50px rgba(0,0,0,.5);transform:translateY(-6px)}
+.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:opacity .3s}
+.play-btn{width:64px;height:64px;background:rgba(201,168,76,.9);color:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);box-shadow:0 0 30px rgba(201,168,76,.3)}
+.vid-error{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(7,7,10,.9);gap:12px;padding:2rem;text-align:center;z-index:5}
+.vid-error svg{width:40px;height:40px;color:rgba(201,168,76,.4)}
+.vid-error p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.5;text-transform:uppercase;letter-spacing:.1em}
+.vid-error a{color:var(--gold);text-decoration:underline;font-weight:700}
+.convenio-img-frame{position:relative;border-radius:2rem;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.8);border:2px solid rgba(201,168,76,.15);transition:border-color .5s}
+.convenio-img-frame:hover{border-color:rgba(201,168,76,.45)}.convenio-img-frame img{width:100%;height:auto;object-fit:cover;display:block}
+.quote-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:2rem;padding:2.5rem;transition:all .5s}
+.quote-card:hover{border-color:rgba(201,168,76,.2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.price-box{background:rgba(255,255,255,.02);backdrop-filter:blur(20px);border:1px solid rgba(201,168,76,.25);border-radius:3rem;box-shadow:0 0 120px rgba(201,168,76,.04),0 40px 80px rgba(0,0,0,.6)}
+.faq-item{border:1px solid rgba(255,255,255,.06);border-radius:1.25rem;overflow:hidden;transition:border-color .3s;margin-bottom:.75rem;background:rgba(255,255,255,.02)}
+.faq-item:hover,.faq-item.open{border-color:rgba(201,168,76,.2)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;background:transparent;border:none;cursor:none;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:600;text-align:left;transition:color .3s}
+.faq-q:hover{color:var(--gold)}
+.faq-q .chv{flex-shrink:0;width:20px;height:20px;color:var(--gold);transition:transform .3s}.faq-item.open .faq-q .chv{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}.faq-item.open .faq-a{max-height:600px}
+.faq-a-inner{padding:0 2rem 1.5rem;color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.7}
+.ff{background:rgba(255,255,255,.05)!important;color:#fff!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:14px;padding:1.1rem 1.25rem;font-size:.9rem;width:100%;transition:all .3s;font-family:'Instrument Sans',sans-serif}
+.ff:focus{outline:none;border-color:var(--gold)!important;background:rgba(255,255,255,.08)!important;box-shadow:0 0 0 4px rgba(201,168,76,.12)}.ff::placeholder{color:rgba(255,255,255,.3)}
+.qr-card{background:rgba(255,255,255,.02);border-radius:2rem;padding:2rem;text-align:center;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;transition:transform .4s,border-color .3s}
+.qr-card:hover{transform:translateY(-5px);border-color:rgba(201,168,76,.3);background:rgba(255,255,255,.04)}
+.qr-box{width:120px;height:120px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:1rem;overflow:hidden;margin-bottom:1rem;transition:transform .4s}
+.qr-card:hover .qr-box{transform:scale(1.05)}
+#audio-btn{position:fixed;bottom:2.5rem;left:2.5rem;z-index:80;width:52px;height:52px;border-radius:50%;background:rgba(7,7,10,.8);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);color:var(--gold);opacity:0;pointer-events:none;transition:.4s;cursor:none}
+#audio-btn.show{opacity:1;pointer-events:auto}#audio-btn:hover{background:var(--gold);color:var(--ink);transform:scale(1.1)}
+.audio-bar{display:inline-block;width:2.5px;background:currentColor;margin:0 1.5px;border-radius:1px;animation:barMove .8s infinite alternate}
+@keyframes barMove{from{height:4px}to{height:16px}}
+.bars-paused span{animation:none!important;height:4px!important}
+.cavilam-card{background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(0,35,149,.04));border:1px solid rgba(201,168,76,.2);border-radius:1.5rem;padding:2rem;transition:all .4s}
+.cavilam-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+</style>
 </head>
 <body>
-
+<a href="#main" class="skip-link">Ir al contenido principal</a>
 <div id="cursor"></div><div id="cursor-dot"></div>
-
 <canvas id="webgl-bg"></canvas>
-
 <audio id="bg-music" src="Arrival_at_the_Terminal%20(1).mp3" loop preload="auto"></audio>
-<button id="audio-btn" aria-label="Audio Control">
-    <div id="audio-bars" class="flex items-end h-4 bars-paused">
-        <span class="audio-bar" style="animation-delay: 0s"></span>
-        <span class="audio-bar" style="animation-delay: 0.2s"></span>
-        <span class="audio-bar" style="animation-delay: 0.4s"></span>
-        <span class="audio-bar" style="animation-delay: 0.1s"></span>
-    </div>
-</button>
+<button id="audio-btn" aria-label="Música de fondo"><div id="audio-bars" class="flex items-end h-4 bars-paused"><span class="audio-bar" style="animation-delay:0s"></span><span class="audio-bar" style="animation-delay:.2s"></span><span class="audio-bar" style="animation-delay:.4s"></span><span class="audio-bar" style="animation-delay:.1s"></span></div></button>
+<div id="scroll-bar"></div>
+<button id="btt" aria-label="Volver arriba"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg></button>
 
 <header>
-    <nav id="nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center transition-all duration-500 bg-ink/50 backdrop-blur-md border-b border-white/5">
-        <div class="flex flex-col">
-            <span class="lux text-gold text-2xl font-semibold tracking-tighter">Vichy 2026</span>
-            <span class="text-[8px] uppercase tracking-[.4em] text-white/40">La Salle & Alliance Française</span>
-        </div>
-        <div class="hidden lg:flex gap-6 items-center">
-            <a href="#convenio" class="nav-link cursor-none">Convenio</a>
-            <a href="#programa" class="nav-link cursor-none">Misión</a>
-            <a href="#bienestar" class="nav-link cursor-none">Bienestar</a>
-            <a href="#precio" class="nav-link cursor-none">Costo</a>
-            <a href="#sedes" class="nav-link cursor-none">Sedes</a>
-            <a href="#registro" class="px-7 py-2.5 bg-gold text-ink rounded-full text-[10px] uppercase font-bold tracking-widest hover:bg-white transition-all cursor-none">Inscripción</a>
-        </div>
-    </nav>
+<nav id="nav">
+    <div class="flex flex-col"><span class="lux text-gold text-2xl font-semibold tracking-tighter">Vichy 2026</span><span class="text-[8px] uppercase tracking-[.4em] text-white/40">La Salle & Alliance Française</span></div>
+    <div class="hidden lg:flex gap-6 items-center">
+        <a href="#convenio" class="nav-link">Convenio</a>
+        <a href="#programa" class="nav-link">Misión</a>
+        <a href="#cavilam" class="nav-link">CAVILAM</a>
+        <a href="#bienestar" class="nav-link">Bienestar</a>
+        <a href="#precio" class="nav-link">Costo</a>
+        <a href="#sedes" class="nav-link">Sedes</a>
+        <a href="#registro" class="px-7 py-2.5 bg-gold text-ink rounded-full text-[10px] uppercase font-bold tracking-widest hover:bg-white transition-all cursor-none">Inscripción</a>
+    </div>
+    <button id="ham" class="lg:hidden text-gold hover:text-white" aria-label="Menú" aria-expanded="false"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+</nav>
 </header>
+
+<div id="mmenu" role="dialog" aria-modal="true">
+    <button id="mclose" class="absolute top-6 right-6 text-white/40 hover:text-gold" aria-label="Cerrar"><svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <div class="tricolor w-20 mb-3"></div>
+    <a href="#convenio" class="mlink lux text-4xl text-white hover:text-gold transition-colors">Convenio</a>
+    <a href="#programa" class="mlink lux text-4xl text-white hover:text-gold transition-colors">Misión</a>
+    <a href="#cavilam" class="mlink lux text-4xl text-white hover:text-gold transition-colors">CAVILAM</a>
+    <a href="#bienestar" class="mlink lux text-4xl text-white hover:text-gold transition-colors">Bienestar</a>
+    <a href="#precio" class="mlink lux text-4xl text-white hover:text-gold transition-colors">Costo</a>
+    <a href="#sedes" class="mlink lux text-4xl text-white hover:text-gold transition-colors">Sedes</a>
+    <a href="#faq" class="mlink lux text-4xl text-white hover:text-gold transition-colors">FAQ</a>
+    <div class="w-12 h-px bg-white/10 my-3"></div>
+    <a href="#registro" class="mlink px-12 py-4 bg-gold text-ink rounded-full text-sm uppercase tracking-widest font-bold">Inscripción</a>
+</div>
 
 <main id="main">
 
+<!-- ═══════════ HERO ═══════════ -->
 <section class="relative h-screen flex items-center justify-center overflow-hidden">
-    <video id="hero-vid" class="absolute inset-0 w-full h-full object-cover opacity-40" playsinline autoplay muted loop>
-        <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
-    </video>
+    <video id="hero-vid" class="absolute inset-0 w-full h-full object-cover opacity-40" playsinline autoplay muted loop poster="logos_banner.png"><source src="Vichy_2026_La_Salle.mp4" type="video/mp4"></video>
     <div class="absolute inset-0 bg-gradient-to-b from-ink/80 via-transparent to-ink"></div>
-    
     <div class="relative z-10 text-center px-6 max-w-5xl mt-16">
-        <div class="hero-a mb-6 inline-flex items-center gap-3 px-5 py-2 glass-card rounded-full border-gold/20">
-            <span class="w-2 h-2 bg-gold rounded-full animate-pulse"></span>
-            <span class="text-[10px] uppercase tracking-[.3em] text-gold font-bold">Misión 2026 · Inmersión Total</span>
-        </div>
-        <h1 class="hero-a lux text-6xl md:text-8xl font-light mb-8 leading-none drop-shadow-lg">
-            Habla francés.<br><em class="text-gold italic">Conquista el mundo.</em>
-        </h1>
-        <p class="hero-a text-white/55 font-light text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
-            El programa de inmersión más exclusivo de la región.<br>Diseñado para estudiantes La Salle que sueñan sin fronteras.
-        </p>
+        <div class="hero-a mb-6 inline-flex items-center gap-3 px-5 py-2 glass-card rounded-full border-gold/20"><span class="w-2 h-2 bg-gold rounded-full animate-pulse"></span><span class="text-[10px] uppercase tracking-[.3em] text-gold font-bold">Misión 2026 · Inmersión Total</span></div>
+        <h1 class="hero-a lux text-6xl md:text-8xl font-light mb-8 leading-none drop-shadow-lg">Habla francés.<br><em class="text-gold italic">Conquista el mundo.</em></h1>
+        <p class="hero-a text-white/55 font-light text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">El programa de inmersión más exclusivo de la región.<br>Diseñado para estudiantes La Salle que sueñan sin fronteras.</p>
         <div class="hero-a flex flex-wrap justify-center gap-4">
-            <a href="#dossier" class="px-10 py-4 bg-gold text-ink rounded-full font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform cursor-none shadow-[0_0_30px_rgba(201,168,76,0.2)]">Explorar Dossier</a>
+            <a href="#dossier" class="px-10 py-4 bg-gold text-ink rounded-full font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform cursor-none shadow-[0_0_30px_rgba(201,168,76,.2)]">Explorar Dossier</a>
             <a href="#registro" class="px-10 py-4 border border-white/20 rounded-full font-bold text-xs uppercase tracking-widest backdrop-blur-md hover:border-gold hover:text-gold transition-colors cursor-none">Registrar Interés</a>
         </div>
     </div>
 </section>
 
+<div class="urgency-bar" aria-hidden="true"><span class="urgency-scroll"><span>✦ Cupos Limitados</span><span>✦ Inmersión Total en Francia</span><span>✦ Certificación CAVILAM</span><span>✦ Disneyland® París</span><span>✦ 18 Días · 5 Ciudades</span><span>✦ Chef Cyrille Moutarde</span><span>✦ Accrobranche & Canoë</span><span>✦ Charroux · Pueblo Más Bello</span><span>✦ Cupos Limitados</span><span>✦ Inmersión Total en Francia</span><span>✦ Certificación CAVILAM</span><span>✦ Disneyland® París</span><span>✦ 18 Días · 5 Ciudades</span><span>✦ Chef Cyrille Moutarde</span><span>✦ Accrobranche & Canoë</span><span>✦ Charroux · Pueblo Más Bello</span></span></div>
+
+<!-- ═══════════ CONVENIO ═══════════ -->
 <section id="convenio" class="py-32 relative border-t border-white/5">
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
         <div class="sr-l">
-            <div class="alliance-crest aspect-[4/3] rounded-[3rem] flex flex-col items-center justify-center p-12 text-center">
-                <div class="mb-8 p-6 rounded-full bg-gold/10 border border-gold/20 shadow-[0_0_40px_rgba(201,168,76,0.2)]">
-                    <svg class="w-16 h-16 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                    </svg>
-                </div>
-                <h3 class="lux text-4xl text-white mb-4">Tratado de Cooperación Estratégica</h3>
-                <div class="w-20 h-px bg-gold/50 mb-6 mx-auto"></div>
-                <p class="text-white/70 text-sm uppercase tracking-[.3em] font-bold">La Salle × Alliance Française</p>
-                <p class="mt-8 text-xs text-gold/60 italic font-light">Validación Jurídica y Académica Vigente para la Misión 2026</p>
+            <div class="convenio-img-frame">
+                <img src="IMG-20260224-WA0062.jpg" alt="Firma oficial del convenio La Salle – Alliance Française" loading="lazy" onerror="this.onerror=null;this.src='convenio_lasalle_af.png';">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
             </div>
         </div>
         <div class="sr-r">
@@ -150,127 +173,175 @@
             <h2 class="lux text-5xl md:text-6xl font-light mb-8">Alianza de <em class="text-gold italic">Alto Nivel</em></h2>
             <div class="w-16 h-1 bg-gradient-to-r from-gold to-transparent mb-8"></div>
             <p class="text-white/55 text-lg font-light leading-relaxed mb-6">Este programa no es solo un viaje; es un proyecto educativo de excelencia respaldado formalmente por la Dirección de ambas instituciones.</p>
-            <p class="text-white/40 text-sm font-light leading-relaxed">El convenio garantiza estándares internacionales de seguridad logística, inmersión académica certificada por CAVILAM y acompañamiento institucional ininterrumpido durante los 18 días en Francia.</p>
+            <p class="text-white/40 text-sm font-light leading-relaxed mb-8">El convenio garantiza estándares internacionales de seguridad logística, inmersión académica certificada por CAVILAM y acompañamiento institucional ininterrumpido durante los 18 días en Francia.</p>
+            <div class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-gold/5 border border-gold/20">
+                <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                <p class="text-gold/80 text-xs font-semibold uppercase tracking-widest">Relación directa AFSC · CAVILAM · Sin intermediarios</p>
+            </div>
         </div>
     </div>
 </section>
 
+<!-- ═══════════ DOSSIER ═══════════ -->
 <section id="dossier" class="py-24 bg-ink-mid border-t border-white/[0.04]">
     <div class="max-w-6xl mx-auto px-6 text-center">
-        <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Material Oficial</p>
-        <h2 class="lux text-5xl mb-12">Dossier <em class="text-gold italic">Interactivo</em></h2>
-        <div class="glass-card overflow-hidden aspect-video shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-white/10 relative">
-            <iframe loading="lazy" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" class="absolute inset-0 w-full h-full border-none"></iframe>
+        <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4 sr">Material Oficial</p>
+        <h2 class="lux text-5xl mb-12 sr">Dossier <em class="text-gold italic">Interactivo</em></h2>
+        <div class="sr glass-card overflow-hidden aspect-video shadow-[0_20px_50px_rgba(0,0,0,.5)] border-white/10 relative">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" class="absolute inset-0 w-full h-full border-none" title="Dossier Vichy 2026"></iframe>
         </div>
+        <div class="sr mt-10 flex justify-center"><a href="Vichy_2026_La_Salle.pptx" download class="inline-flex items-center gap-3 px-12 py-4 border border-gold/50 text-gold rounded-full font-bold text-[11px] uppercase tracking-[.2em] hover:bg-gold hover:text-ink transition-all duration-500 hover:-translate-y-1 bg-gold/5 backdrop-blur-sm cursor-none group"><svg class="w-4 h-4 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Descargar Presentación</a></div>
     </div>
 </section>
 
+<!-- ═══════════ STATS + QUOTE ═══════════ -->
 <section class="py-20 bg-ink border-t border-white/[0.04]">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-        <div class="sr"><div class="lux text-5xl md:text-6xl text-gold mb-2 font-semibold">18</div><p class="text-white/45 text-[11px] uppercase tracking-[.2em] font-bold">Días en Francia</p></div>
-        <div class="sr"><div class="lux text-5xl md:text-6xl text-gold mb-2 font-semibold">60</div><p class="text-white/45 text-[11px] uppercase tracking-[.2em] font-bold">Horas de Academia</p></div>
-        <div class="sr"><div class="lux text-5xl md:text-6xl text-gold mb-2 font-semibold">5</div><p class="text-white/45 text-[11px] uppercase tracking-[.2em] font-bold">Ciudades Visitadas</p></div>
+        <div class="sr"><div class="lux text-5xl md:text-6xl text-gold mb-2 font-semibold" data-target="18">0</div><p class="text-white/45 text-[11px] uppercase tracking-[.2em] font-bold">Días en Francia</p></div>
+        <div class="sr"><div class="lux text-5xl md:text-6xl text-gold mb-2 font-semibold" data-target="60">0</div><p class="text-white/45 text-[11px] uppercase tracking-[.2em] font-bold">Horas de Academia</p></div>
+        <div class="sr"><div class="lux text-5xl md:text-6xl text-gold mb-2 font-semibold" data-target="5">0</div><p class="text-white/45 text-[11px] uppercase tracking-[.2em] font-bold">Ciudades Visitadas</p></div>
         <div class="sr"><div class="lux text-5xl md:text-6xl text-gold mb-2 font-semibold">100<span class="text-3xl align-super">%</span></div><p class="text-white/45 text-[11px] uppercase tracking-[.2em] font-bold">Inmersión Cultural</p></div>
     </div>
-    
     <div class="max-w-4xl mx-auto px-6 text-center mt-24 sr">
-        <p class="lux text-3xl md:text-4xl font-light italic leading-relaxed text-white/90">
-            "Imagina despertar cada día en el corazón de Francia, estudiar en la institución lingüística más prestigiosa de Europa y explorar París como si siempre fuera tu ciudad."
-        </p>
+        <p class="lux text-3xl md:text-4xl font-light italic leading-relaxed text-white/90">"No es solo un viaje, es la construcción de una visión global. Imagina despertar cada día en el corazón de Francia, estudiar en la institución lingüística más prestigiosa de Europa."</p>
         <div class="gold-line-c opacity-60 mt-10"></div>
     </div>
 </section>
 
-<section id="programa" class="py-28 bg-ink-mid border-t border-white/[0.04]">
+<!-- ═══════════ CAVILAM ═══════════ -->
+<section id="cavilam" class="py-28 bg-ink-mid border-t border-white/[0.04]">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="sr text-center mb-16">
+            <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">La Institución · Nuestro Socio Académico</p>
+            <h2 class="lux text-5xl text-white">CAVILAM <em class="text-gold italic">Alliance Française</em></h2>
+            <p class="text-white/40 text-sm font-light mt-4 max-w-xl mx-auto">Vichy, Francia · Fundado en 1964 · 60 años formando estudiantes del mundo</p>
+            <div class="gold-line-c mt-8"></div>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div class="sr cavilam-card text-center">
+                <p class="lux text-5xl text-gold font-semibold mb-2">1964</p>
+                <p class="text-white/50 text-[11px] uppercase tracking-[.2em] font-bold">Año de Fundación</p>
+                <p class="text-white/35 text-xs mt-3 font-light">60 años formando estudiantes de todo el mundo en francés.</p>
+            </div>
+            <div class="sr cavilam-card text-center">
+                <p class="lux text-5xl text-gold font-semibold mb-2">133</p>
+                <p class="text-white/50 text-[11px] uppercase tracking-[.2em] font-bold">Países Alliance Française</p>
+                <p class="text-white/35 text-xs mt-3 font-light">Red global que conecta a CAVILAM con el mundo entero.</p>
+            </div>
+            <div class="sr cavilam-card text-center">
+                <p class="lux text-4xl text-gold font-semibold mb-2">Qualité<br>FLE</p>
+                <p class="text-white/50 text-[11px] uppercase tracking-[.2em] font-bold">Sello Oficial de Calidad</p>
+                <p class="text-white/35 text-xs mt-3 font-light">Certificación del Estado francés para enseñanza de FLE.</p>
+            </div>
+            <div class="sr cavilam-card text-center">
+                <p class="lux text-3xl text-gold font-semibold mb-2">Univ. Clermont<br>Auvergne</p>
+                <p class="text-white/50 text-[11px] uppercase tracking-[.2em] font-bold">Asociación Académica</p>
+                <p class="text-white/35 text-xs mt-3 font-light">Vínculo universitario que garantiza rigor académico superior.</p>
+            </div>
+        </div>
+        <div class="sr glass-card p-10 md:p-14 max-w-4xl mx-auto text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-blue/5 rounded-full blur-[80px] pointer-events-none"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-[80px] pointer-events-none"></div>
+            <div class="tricolor w-16 mx-auto mb-8"></div>
+            <p class="lux text-2xl md:text-3xl font-light italic text-white/90 leading-relaxed relative z-10">"El CAVILAM no es solo una escuela de francés. Es un ecosistema de inmersión total donde cada conversación, cada comida y cada excursión son una lección de vida en francés."</p>
+            <div class="gold-line-c mt-8 relative z-10"></div>
+            <p class="text-white/30 text-[10px] uppercase tracking-[.3em] font-bold mt-6 relative z-10">CAVILAM · Vichy, Auvernia, Francia</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ PROGRAMA TABS ═══════════ -->
+<section id="programa" class="py-28 bg-ink border-t border-white/[0.04]">
     <div class="max-w-7xl mx-auto px-6">
         <div class="sr text-center mb-16">
             <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Itinerario Oficial · Misión 2026</p>
             <h2 class="lux text-5xl text-white">Una suma de <em class="text-gold italic">experiencias únicas</em></h2>
             <div class="gold-line-c mt-8"></div>
         </div>
-        
         <div class="sr flex flex-wrap justify-center gap-3 mb-12">
             <button class="tab-btn active" data-tab="semana1">Semana 1 · Vichy</button>
             <button class="tab-btn" data-tab="inmersion">Inmersión · Auvernia</button>
             <button class="tab-btn" data-tab="paris">París · Grand Final</button>
         </div>
-
         <div class="tab-panel active" id="tab-semana1">
             <div class="grid md:grid-cols-2 gap-8">
                 <article class="sr prog-card group" data-tilt>
                     <div class="absolute top-0 right-0 w-40 h-40 bg-blue/10 rounded-full blur-[60px] group-hover:bg-blue/20 transition-all duration-500"></div>
                     <span class="lux text-gold text-2xl italic mb-4 block relative z-10">01.</span>
                     <h3 class="lux text-3xl font-semibold mb-2 text-white relative z-10">Llegada & Acogida</h3>
-                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Vichy</p>
+                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Días 1–2 · Vichy</p>
                     <ul class="text-white/60 text-sm space-y-4 leading-relaxed relative z-10">
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Recepción en aeropuerto y traslado a Vichy.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Recepción en aeropuerto y traslado privado a Vichy.</li>
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Encuentro oficial con las familias anfitrionas certificadas.</li>
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Tour de orientación por el centro histórico de Vichy.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Búsqueda del tesoro por las calles de la ciudad termal.</li>
                     </ul>
                 </article>
                 <article class="sr prog-card group" data-tilt>
                     <div class="absolute top-0 right-0 w-40 h-40 bg-gold/10 rounded-full blur-[60px] group-hover:bg-gold/20 transition-all duration-500"></div>
                     <span class="lux text-gold text-2xl italic mb-4 block relative z-10">02.</span>
                     <h3 class="lux text-3xl font-semibold mb-2 text-white relative z-10">Excelencia Académica</h3>
-                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">CAVILAM</p>
+                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Días 3–7 · CAVILAM</p>
                     <ul class="text-white/60 text-sm space-y-4 leading-relaxed relative z-10">
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Clases de inmersión matutina con profesores nativos.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Atelier de repostería francesa con Chef Pâtissier.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Taller de crêpes y gastronomía francesa tradicional.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Taller culinario con <strong class="text-white/90">Chef Cyrille Moutarde</strong>.</li>
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Veladas culturales e iniciación a la Pétanca tradicional.</li>
                     </ul>
                 </article>
             </div>
         </div>
-
         <div class="tab-panel" id="tab-inmersion">
             <div class="grid md:grid-cols-2 gap-8">
                 <article class="sr prog-card group" data-tilt>
                     <div class="absolute top-0 right-0 w-40 h-40 bg-emerald-600/10 rounded-full blur-[60px] group-hover:bg-emerald-500/20 transition-all duration-500"></div>
                     <span class="lux text-gold text-2xl italic mb-4 block relative z-10">03.</span>
-                    <h3 class="lux text-3xl font-semibold mb-2 text-white relative z-10">Patrimonio & Naturaleza</h3>
-                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Auvernia</p>
+                    <h3 class="lux text-3xl font-semibold mb-2 text-white relative z-10">Naturaleza & Aventura</h3>
+                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Días 8–10 · Auvernia</p>
                     <ul class="text-white/60 text-sm space-y-4 leading-relaxed relative z-10">
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Descente en canoë por el río Sioule en <strong class="text-white/90">Saint-Yorre</strong>.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Accrobranche en el <strong class="text-white/90">Lac Saint-Clément</strong>: tirolinas y puentes colgantes.</li>
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Ascensión al volcán <strong class="text-white/90">Puy de Dôme</strong> (Patrimonio UNESCO).</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Inmersión histórica en el pueblo medieval de Charroux.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Exploración de la Catedral de Clermont-Ferrand.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Paseo en bicicleta por las orillas del río Allier.</li>
                     </ul>
                 </article>
                 <article class="sr prog-card group" data-tilt>
                     <div class="absolute top-0 right-0 w-40 h-40 bg-gold/10 rounded-full blur-[60px] group-hover:bg-gold/20 transition-all duration-500"></div>
                     <span class="lux text-gold text-2xl italic mb-4 block relative z-10">04.</span>
-                    <h3 class="lux text-3xl font-semibold mb-2 text-white relative z-10">Gastronomía & Lyon</h3>
-                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Lyon</p>
+                    <h3 class="lux text-3xl font-semibold mb-2 text-white relative z-10">Patrimonio & Gastronomía</h3>
+                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Días 11–12 · Charroux & Lyon</p>
                     <ul class="text-white/60 text-sm space-y-4 leading-relaxed relative z-10">
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Inmersión histórica en <strong class="text-white/90">Charroux</strong>, "uno de los pueblos más bonitos de Francia".</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Catedral de <strong class="text-white/90">Clermont-Ferrand</strong>, construida de lava volcánica negra.</li>
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Exploración guiada de Lyon, capital gastronómica mundial.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Paseo cultural por el Vieux-Lyon y monumentos históricos.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Compras libres y tarde de integración grupal.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Paseo cultural por el Vieux-Lyon y sus traboules medievales.</li>
                     </ul>
                 </article>
             </div>
         </div>
-
         <div class="tab-panel" id="tab-paris">
             <div class="grid md:grid-cols-2 gap-8">
                 <article class="sr prog-card group" data-tilt style="border-color:rgba(237,41,57,.15)">
                     <div class="absolute top-0 right-0 w-40 h-40 bg-red/10 rounded-full blur-[60px] group-hover:bg-red/20 transition-all duration-500"></div>
                     <span class="lux text-gold text-2xl italic mb-4 block relative z-10">05.</span>
                     <h3 class="lux text-3xl font-semibold mb-2 text-white relative z-10">La Magie de Paris</h3>
-                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">París</p>
+                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Días 13–15 · París</p>
                     <ul class="text-white/60 text-sm space-y-4 leading-relaxed relative z-10">
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Viaje en tren de alta velocidad (TGV) hacia la capital.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Torre Eiffel, Montmartre, Campos Elíseos y Ópera Garnier.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Musée d'Orsay y romántico crucero <strong class="text-white">Bateau Mouche</strong> en el Sena.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Viaje en <strong class="text-white/90">TGV</strong> hacia la capital. Hotel categoría superior.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Torre Eiffel + Trocadéro · Montmartre · Ópera Garnier.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Musée d'Orsay · Campos Elíseos · Arco del Triunfo · Jardines Tullerías.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Crucero <strong class="text-white/90">Bateau Mouche</strong> por el río Sena al atardecer.</li>
                     </ul>
                 </article>
                 <article class="sr prog-card group" data-tilt>
                     <div class="absolute top-0 right-0 w-40 h-40 bg-blue/10 rounded-full blur-[60px] group-hover:bg-blue/20 transition-all duration-500"></div>
                     <span class="lux text-gold text-2xl italic mb-4 block relative z-10">06.</span>
                     <h3 class="lux text-3xl font-semibold mb-2 text-white relative z-10">Disneyland® & Retorno</h3>
-                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Magia & Certificación</p>
+                    <p class="text-[10px] uppercase tracking-[.2em] text-gold/60 font-bold mb-6 relative z-10">Días 16–18 · Certificación</p>
                     <ul class="text-white/60 text-sm space-y-4 leading-relaxed relative z-10">
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Día completo de inmersión mágica en <strong class="text-white">Disneyland Paris</strong>.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Día completo de magia en <strong class="text-white/90">Disneyland Paris</strong>.</li>
                         <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Ceremonia oficial y entrega de certificación CAVILAM.</li>
-                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Despedida y vuelo de retorno a México desde aeropuerto CDG.</li>
+                        <li class="flex items-start gap-3"><span class="text-gold mt-1">✦</span>Despedida y vuelo de retorno a México desde CDG.</li>
                     </ul>
                 </article>
             </div>
@@ -278,380 +349,303 @@
     </div>
 </section>
 
-<section id="bienestar" class="py-32 bg-ink border-t border-white/[0.04]">
+<!-- ═══════════ BIENESTAR ═══════════ -->
+<section id="bienestar" class="py-32 bg-ink-mid border-t border-white/[0.04]">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16 sr-l">
             <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Alojamiento & Seguridad</p>
             <h2 class="lux text-5xl font-light text-white">Voz de las familias: <em class="text-gold italic">un hogar en Francia</em></h2>
             <div class="w-20 h-px bg-gold/50 mx-auto mt-8"></div>
         </div>
-        
         <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20">
             <div class="sr glass-card p-5 flex flex-col items-center">
                 <h3 class="text-[9px] text-gold uppercase tracking-[.25em] font-bold mb-5 mt-2">La Douceur de Vivre</h3>
-                <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black/50 shadow-2xl group border border-white/5">
-                    <video controls playsinline preload="metadata" class="w-full h-full object-cover custom-video" poster="banner_logos.jpg">
-                        <source src="video_famille_1.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay transition-opacity duration-300">
-                        <div class="w-16 h-16 bg-gold/90 text-ink rounded-full flex items-center justify-center backdrop-blur-md shadow-[0_0_30px_rgba(201,168,76,0.3)]">
-                            <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+                <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black/50 shadow-2xl border border-white/5">
+                    <video controls playsinline preload="metadata" class="w-full h-full object-cover custom-video" poster="logos_banner.png"><source src="video_famille_1.mp4" type="video/mp4"></video>
+                    <div class="play-overlay"><div class="play-btn"><svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                 </div>
-                <div class="text-center mt-6 mb-2">
-                    <h4 class="lux text-2xl text-white mb-1">Familia Bertrand</h4>
-                    <p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Famille d'Accueil Certifiée</p>
-                </div>
+                <div class="text-center mt-6 mb-2"><h4 class="lux text-2xl text-white mb-1">Familia Bertrand</h4><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Famille d'Accueil Certifiée</p></div>
             </div>
-
             <div class="sr glass-card p-5 flex flex-col items-center">
                 <h3 class="text-[9px] text-gold uppercase tracking-[.25em] font-bold mb-5 mt-2">Testimonio</h3>
-                <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black/50 shadow-2xl group border border-white/5">
-                    <video controls playsinline preload="metadata" class="w-full h-full object-cover custom-video" poster="banner_logos.jpg">
-                        <source src="video_famille_2.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay transition-opacity duration-300">
-                        <div class="w-16 h-16 bg-gold/90 text-ink rounded-full flex items-center justify-center backdrop-blur-md shadow-[0_0_30px_rgba(201,168,76,0.3)]">
-                            <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+                <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black/50 shadow-2xl border border-white/5">
+                    <video controls playsinline preload="metadata" class="w-full h-full object-cover custom-video" poster="logos_banner.png"><source src="video_famille_2.mp4" type="video/mp4"></video>
+                    <div class="play-overlay"><div class="play-btn"><svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                 </div>
-                <div class="text-center mt-6 mb-2">
-                    <h4 class="lux text-2xl text-white mb-1">Nadine et Philippe</h4>
-                    <p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Environnement Sûr</p>
-                </div>
+                <div class="text-center mt-6 mb-2"><h4 class="lux text-2xl text-white mb-1">Nadine et Philippe</h4><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Environnement Sûr</p></div>
             </div>
-
             <div class="sr glass-card p-5 flex flex-col items-center">
                 <h3 class="text-[9px] text-gold uppercase tracking-[.25em] font-bold mb-5 mt-2">Vivencias</h3>
-                <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black/50 shadow-2xl group border border-white/5">
-                    <video controls playsinline preload="metadata" class="w-full h-full object-cover custom-video" poster="banner_logos.jpg">
-                        <source src="video_regina.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none play-overlay transition-opacity duration-300">
-                        <div class="w-16 h-16 bg-gold/90 text-ink rounded-full flex items-center justify-center backdrop-blur-md shadow-[0_0_30px_rgba(201,168,76,0.3)]">
-                            <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                    </div>
+                <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black/50 shadow-2xl border border-white/5">
+                    <video controls playsinline preload="metadata" class="w-full h-full object-cover custom-video" poster="logos_banner.png"><source src="video_regina.mp4" type="video/mp4"></video>
+                    <div class="play-overlay"><div class="play-btn"><svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                 </div>
-                <div class="text-center mt-6 mb-2">
-                    <h4 class="lux text-2xl text-white mb-1">Regina</h4>
-                    <p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Alumna La Salle</p>
-                </div>
+                <div class="text-center mt-6 mb-2"><h4 class="lux text-2xl text-white mb-1">Regina</h4><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Alumna La Salle</p></div>
             </div>
         </div>
-
+        <div class="grid lg:grid-cols-3 gap-6 mb-16">
+            <div class="sr quote-card"><svg class="w-10 h-10 text-gold/15 mb-5" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg><p class="lux text-lg text-white/80 font-light italic leading-snug mb-6">"Es un honor recibir a estudiantes de La Salle y compartir con ellos la douceur de vivre de Vichy."</p><p class="text-[10px] uppercase tracking-[.2em] font-bold text-white/30">Sylvie Bertrand · Familia Certificada</p></div>
+            <div class="sr quote-card"><svg class="w-10 h-10 text-gold/15 mb-5" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg><p class="lux text-lg text-white/80 font-light italic leading-snug mb-6">"Nuestro compromiso es total con la seguridad y el bienestar emocional de cada joven que nos confían."</p><p class="text-[10px] uppercase tracking-[.2em] font-bold text-white/30">Nadine et Philippe · Entorno Seguro</p></div>
+            <div class="sr quote-card"><svg class="w-10 h-10 text-gold/15 mb-5" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg><p class="lux text-lg text-white/80 font-light italic leading-snug mb-6">"Es maravilloso ver cómo su francés florece día con día gracias a la inmersión constante en familia."</p><p class="text-[10px] uppercase tracking-[.2em] font-bold text-white/30">Gwendoline Laurent · Hospitalidad Total</p></div>
+        </div>
         <div class="sr max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
-            <div class="glass-card p-8 text-center hover:bg-white/[0.04] transition-colors">
-                <div class="w-14 h-14 mx-auto bg-gold/10 rounded-full flex items-center justify-center mb-5 border border-gold/20"><p class="text-2xl">🏡</p></div>
-                <h4 class="lux text-xl font-semibold mb-2 text-white">Alojamiento Premium</h4>
-                <p class="text-white/50 text-[13px] leading-relaxed font-light">Habitación privada en familia certificada. Media pensión incluida.</p>
-            </div>
-            <div class="glass-card p-8 text-center hover:bg-white/[0.04] transition-colors">
-                <div class="w-14 h-14 mx-auto bg-blue/15 rounded-full flex items-center justify-center mb-5 border border-blue/30"><p class="text-2xl">🚌</p></div>
-                <h4 class="lux text-xl font-semibold mb-2 text-white">Logística & Traslados</h4>
-                <p class="text-white/50 text-[13px] leading-relaxed font-light">Autobuses privados, transfers a aeropuerto y billetes TGV incluidos.</p>
-            </div>
-            <div class="glass-card p-8 text-center hover:bg-white/[0.04] transition-colors">
-                <div class="w-14 h-14 mx-auto bg-red/10 rounded-full flex items-center justify-center mb-5 border border-red/20"><p class="text-2xl">🏥</p></div>
-                <h4 class="lux text-xl font-semibold mb-2 text-white">Seguridad Médica</h4>
-                <p class="text-white/50 text-[13px] leading-relaxed font-light">Póliza médica internacional. Acompañamiento institucional 24/7.</p>
-            </div>
+            <div class="glass-card p-8 text-center hover:bg-white/[0.04] transition-colors"><div class="w-14 h-14 mx-auto bg-gold/10 rounded-full flex items-center justify-center mb-5 border border-gold/20"><p class="text-2xl">🏡</p></div><h4 class="lux text-xl font-semibold mb-2 text-white">Alojamiento Premium</h4><p class="text-white/50 text-[13px] leading-relaxed font-light">Habitación privada en familia certificada por CAVILAM. Media pensión incluida.</p></div>
+            <div class="glass-card p-8 text-center hover:bg-white/[0.04] transition-colors"><div class="w-14 h-14 mx-auto bg-blue/15 rounded-full flex items-center justify-center mb-5 border border-blue/30"><p class="text-2xl">🚌</p></div><h4 class="lux text-xl font-semibold mb-2 text-white">Logística & Traslados</h4><p class="text-white/50 text-[13px] leading-relaxed font-light">Autobuses privados, transfers a aeropuerto y billetes TGV París incluidos.</p></div>
+            <div class="glass-card p-8 text-center hover:bg-white/[0.04] transition-colors"><div class="w-14 h-14 mx-auto bg-red/10 rounded-full flex items-center justify-center mb-5 border border-red/20"><p class="text-2xl">🏥</p></div><h4 class="lux text-xl font-semibold mb-2 text-white">Seguridad Médica</h4><p class="text-white/50 text-[13px] leading-relaxed font-light">Póliza médica internacional. Acompañamiento institucional 24/7 en Francia.</p></div>
         </div>
     </div>
 </section>
 
-<section id="precio" class="py-28 bg-ink-mid text-center border-t border-white/[0.04]">
+<!-- ═══════════ PRECIO ═══════════ -->
+<section id="precio" class="py-28 bg-ink text-center border-t border-white/[0.04]">
     <div class="max-w-5xl mx-auto px-6">
-        <div class="sr mb-14">
-            <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">El Valor de la Experiencia</p>
-            <h2 class="lux text-5xl text-white">Costo <em class="text-gold italic">Aproximado</em></h2>
-        </div>
-        
-        <div class="sr glass-card p-10 md:p-20 relative overflow-hidden border-gold/20 shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
+        <div class="sr mb-14"><p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">El Valor de la Experiencia</p><h2 class="lux text-5xl text-white">Costo <em class="text-gold italic">Aproximado</em></h2></div>
+        <div class="sr price-box p-10 md:p-20 relative overflow-hidden">
             <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
             <p class="text-white/40 text-[10px] md:text-[12px] uppercase tracking-[.45em] font-bold mb-8 relative z-10">Programa Premium Todo Incluido en Francia</p>
-            
-            <div class="flex items-baseline justify-center gap-3 mb-4 relative z-10">
-                <p class="lux font-semibold text-gold" style="font-size:clamp(4.5rem,11vw,8rem);line-height:.9">~€3,500*</p>
-                <span class="lux text-2xl text-white/30 font-light">Euros</span>
-            </div>
-            
+            <div class="flex items-baseline justify-center gap-3 mb-4 relative z-10"><p class="lux font-semibold text-gold" style="font-size:clamp(4.5rem,11vw,8rem);line-height:.9">~€3,500*</p><span class="lux text-2xl text-white/30 font-light">Euros</span></div>
             <div class="gold-line-c my-10 relative z-10 w-20"></div>
-            
             <div class="grid md:grid-cols-2 gap-y-4 gap-x-8 text-left max-w-3xl mx-auto mb-12 relative z-10">
-                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold flex-shrink-0 mt-0.5">✦</span><p>Inmersión académica <strong>CAVILAM</strong> y material.</p></div>
-                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold flex-shrink-0 mt-0.5">✦</span><p>Alojamiento con familia y hotel en París.</p></div>
-                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold flex-shrink-0 mt-0.5">✦</span><p>Pensión de comidas y traslados privados.</p></div>
-                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold flex-shrink-0 mt-0.5">✦</span><p>Excursiones guiadas a 5 ciudades francesas.</p></div>
-                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold flex-shrink-0 mt-0.5">✦</span><p>Weekend en París + entrada a <strong>Disneyland®</strong>.</p></div>
-                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold flex-shrink-0 mt-0.5">✦</span><p>Seguro médico internacional activo 24/7.</p></div>
+                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold mt-0.5">✦</span><p>Inmersión académica <strong>CAVILAM</strong> y material didáctico.</p></div>
+                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold mt-0.5">✦</span><p>Alojamiento con familia certificada y hotel en París.</p></div>
+                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold mt-0.5">✦</span><p>Pensión de comidas y todos los traslados privados.</p></div>
+                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold mt-0.5">✦</span><p>Excursiones guiadas a 5 ciudades francesas.</p></div>
+                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold mt-0.5">✦</span><p>Weekend en París + entrada a <strong>Disneyland®</strong>.</p></div>
+                <div class="flex items-start gap-3 text-white/70 text-[14px]"><span class="text-gold mt-0.5">✦</span><p>Seguro médico internacional activo 24/7.</p></div>
             </div>
-            
-            <div class="bg-black/40 border border-white/10 rounded-xl p-5 inline-block max-w-2xl mx-auto relative z-10 mb-7">
-                <p class="text-white/40 text-[11px] uppercase tracking-[.12em] font-semibold leading-relaxed">
-                    <span class="text-red font-bold">* IMPORTANTE:</span> Costo aproximado sujeto a variaciones del tipo de cambio EUR/MXN. <strong class="text-white/70">NO incluye vuelo internacional México–Francia–México.</strong>
-                </p>
-            </div>
-            <br>
-            <p class="text-gold text-[11px] uppercase tracking-[.25em] font-bold mt-2 border border-gold/30 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold/10 backdrop-blur-md relative z-10">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                Fechas por confirmar · Cupos limitados
-            </p>
+            <div class="bg-black/40 border border-white/10 rounded-xl p-5 inline-block max-w-2xl mx-auto relative z-10 mb-7"><p class="text-white/40 text-[11px] uppercase tracking-[.12em] font-semibold leading-relaxed"><span class="text-red font-bold">* IMPORTANTE:</span> Costo aproximado sujeto a variaciones del tipo de cambio EUR/MXN. <strong class="text-white/70">NO incluye vuelo internacional México–Francia–México.</strong></p></div>
+            <br><p class="text-gold text-[11px] uppercase tracking-[.25em] font-bold mt-2 border border-gold/30 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold/10 backdrop-blur-md relative z-10"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Fechas por confirmar · Cupos limitados</p>
         </div>
     </div>
 </section>
 
-<section id="faq" class="py-28 bg-ink border-t border-white/[0.04]">
+<!-- ═══════════ FAQ ═══════════ -->
+<section id="faq" class="py-28 bg-ink-mid border-t border-white/[0.04]">
     <div class="max-w-3xl mx-auto px-6">
-        <div class="sr text-center mb-14">
-            <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Información para Padres</p>
-            <h2 class="lux text-5xl text-white">Preguntas <em class="text-gold italic">Frecuentes</em></h2>
-            <div class="gold-line-c mt-8"></div>
-        </div>
-        
-        <div class="sr space-y-3" id="faq-list">
-            <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">
-                    <span>¿Es necesario que mi hijo(a) hable francés?</span>
-                    <svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-a"><div class="faq-a-inner">No. CAVILAM recibe desde principiantes absolutos (A1). Se realiza una evaluación inicial para asignar grupos homogéneos, garantizando un aprendizaje acelerado mediante la inmersión total.</div></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">
-                    <span>¿Cómo se seleccionan las familias anfitrionas?</span>
-                    <svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-a"><div class="faq-a-inner">Todas son auditadas y certificadas formalmente por CAVILAM - Alliance Française. Esto incluye visitas domiciliarias, verificación de antecedentes y formación específica para acogida de estudiantes internacionales.</div></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">
-                    <span>¿Qué sucede ante una emergencia médica?</span>
-                    <svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-a"><div class="faq-a-inner">El programa incluye un seguro médico internacional de cobertura amplia. Además, el equipo institucional y los responsables del viaje están disponibles 24/7 para asistir inmediatamente en cualquier eventualidad médica en Francia.</div></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">
-                    <span>¿El precio incluye el vuelo internacional?</span>
-                    <svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-a"><div class="faq-a-inner">No. El costo aproximado de ~€3,500 cubre todas las actividades, academia, traslados internos (TGV y autobuses privados), seguros y alojamientos dentro de Europa. El boleto aéreo redondo México-Francia se cotiza y gestiona por separado.</div></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">
-                    <span>¿Quién acompaña a los estudiantes desde México?</span>
-                    <svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-a"><div class="faq-a-inner">El grupo viaja y es supervisado permanentemente por representantes institucionales capacitados, en trabajo conjunto con el equipo de logística y pedagogía de CAVILAM en territorio francés.</div></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">
-                    <span>¿Cuáles son las fechas exactas del viaje?</span>
-                    <svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-a"><div class="faq-a-inner">Las fechas exactas de la Misión 2026 están por confirmarse de manera oficial. Aconsejamos realizar el Registro de Interés con antelación para asegurar su lugar y recibir las actualizaciones logísticas de forma prioritaria.</div></div>
-            </div>
+        <div class="sr text-center mb-14"><p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Información para Padres de Familia</p><h2 class="lux text-5xl text-white">Preguntas <em class="text-gold italic">Frecuentes</em></h2><div class="gold-line-c mt-8"></div></div>
+        <div class="sr" id="faq-list">
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Es necesario que mi hijo(a) hable francés?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">No. CAVILAM recibe desde principiantes absolutos (nivel A1). Se realiza una evaluación diagnóstica inicial para asignar grupos homogéneos, garantizando un progreso acelerado y significativo mediante la inmersión total en el idioma y la cultura francesa.</div></div></div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Cómo se seleccionan las familias anfitrionas?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">Todas las familias son auditadas y certificadas directamente por CAVILAM - Alliance Française: visitas domiciliarias previas, verificación de antecedentes y formación específica en acogida de estudiantes internacionales. Solo las que superan todos los criterios participan en el programa.</div></div></div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Qué sucede ante una emergencia médica?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">El programa incluye una póliza de seguro médico internacional de cobertura amplia. El equipo institucional y los responsables del viaje están disponibles las 24 horas, los 7 días, para asistir de inmediato ante cualquier eventualidad médica en territorio francés. Los padres reciben actualizaciones constantes.</div></div></div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿El precio incluye el vuelo internacional?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">No. Los ~€3,500 cubren todas las actividades, inmersión académica CAVILAM, traslados internos en Francia (autobuses privados + TGV), seguros, pensión de comidas y alojamientos durante los 18 días en Europa. El boleto aéreo redondo México–Francia se cotiza y gestiona de forma separada.</div></div></div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Quién acompaña a los estudiantes desde México?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">El grupo viaja y es supervisado permanentemente por representantes institucionales capacitados de La Salle y la Alliance Française, en trabajo coordinado con el equipo de logística y pedagogía de CAVILAM en territorio francés. Nunca están solos.</div></div></div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Cuáles son las fechas exactas del viaje?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">Las fechas de la Misión 2026 están en proceso de confirmación oficial. Se manejan como referencia las primeras semanas de julio. Recomendamos realizar el Registro de Interés con antelación para asegurar el cupo y recibir todas las actualizaciones logísticas de forma prioritaria vía WhatsApp y correo.</div></div></div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Qué certificación obtendrán los estudiantes?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">Al finalizar el programa, los estudiantes reciben la certificación oficial de CAVILAM - Alliance Française que acredita las horas de inmersión y el nivel alcanzado. Adicionalmente, los alumnos con el nivel requerido pueden optar por presentar el examen DELF, reconocido mundialmente y avalado por el Ministerio de Educación de Francia.</div></div></div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Cuántos cupos hay disponibles?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">Los cupos son intencionalmente limitados para garantizar la calidad pedagógica, la atención personalizada y la integración óptima con las familias anfitrionas. La asignación se realiza por orden de registro e idoneidad del perfil. Se recomienda actuar con prontitud.</div></div></div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>¿Qué es el CAVILAM y por qué es importante?</span><svg class="chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-a"><div class="faq-a-inner">El CAVILAM (Centre d'Approches Vivantes des Langues et des Médias) es la institución de enseñanza de francés más prestigiosa de la región de Auvernia, fundada en 1964. Cuenta con el Sello Qualité FLE —certificación del Estado francés—, está asociado a la Universidad Clermont Auvergne y forma parte de la red Alliance Française presente en 133 países. La relación con la AFSC es directa, sin intermediarios, lo que garantiza condiciones académicas y logísticas de primer nivel.</div></div></div>
         </div>
     </div>
 </section>
 
-<section id="directorio" class="py-32 bg-ink-mid border-t border-white/[0.04]">
+<!-- ═══════════ DIRECTORIO ═══════════ -->
+<section id="directorio" class="py-32 bg-ink border-t border-white/[0.04]">
     <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-20 sr">
-            <h2 class="lux text-5xl">Directorio <em class="text-gold italic">Institucional</em></h2>
-            <p class="text-white/40 text-[10px] mt-4 uppercase tracking-[.3em] font-bold">Los 3 Pilares de la Misión 2026</p>
-        </div>
-        
+        <div class="text-center mb-20 sr"><h2 class="lux text-5xl">Directorio <em class="text-gold italic">Institucional</em></h2><p class="text-white/40 text-[10px] mt-4 uppercase tracking-[.3em] font-bold">Los 3 Pilares de la Misión 2026</p></div>
         <div class="grid md:grid-cols-3 gap-8">
-            <article class="qr-card group sr">
-                <div class="qr-box">
-                    <img src="qr.jpg" class="w-full h-full object-contain" alt="QR Miguel Tillero" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5219671721870&color=002395'">
-                </div>
+            <article class="qr-card group sr" data-tilt>
+                <div class="qr-box"><img src="qr.jpg" class="w-full h-full object-contain" alt="QR Miguel Tillero" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5219671721870&color=002395'"></div>
                 <h4 class="lux text-2xl font-semibold text-white group-hover:text-gold transition-colors">Miguel Tillero Álvarez</h4>
                 <p class="text-[9px] uppercase font-bold text-white/40 tracking-[.2em] mt-2 mb-4 bg-white/5 px-4 py-1.5 rounded-full">Director General · AFSC</p>
-                <a href="https://wa.me/5219671721870" target="_blank" class="mt-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-[10px] font-bold cursor-none hover:bg-[#128C7E] transition-colors shadow-lg flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
-                    WhatsApp
-                </a>
+                <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" class="mt-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-[10px] font-bold cursor-none hover:bg-[#128C7E] transition-colors shadow-lg flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>WhatsApp</a>
             </article>
-
-            <article class="qr-card group sr">
-                <div class="qr-box p-0">
-                    <img src="Román_Fuentes-1024.jpeg" class="w-full h-full object-cover" alt="Román Fuentes" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5214731219337&color=002395'">
-                </div>
+            <article class="qr-card group sr" data-tilt>
+                <div class="qr-box p-0"><img src="Román_Fuentes-1024.jpeg" class="w-full h-full object-cover" alt="Román Fuentes" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5214731219337&color=002395'"></div>
                 <h4 class="lux text-2xl font-semibold text-white group-hover:text-gold transition-colors">Román Fuentes</h4>
                 <p class="text-[9px] uppercase font-bold text-white/40 tracking-[.2em] mt-2 mb-4 bg-white/5 px-4 py-1.5 rounded-full">Coordinador · La Salle</p>
-                <a href="https://wa.me/5214731219337" target="_blank" class="mt-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-[10px] font-bold cursor-none hover:bg-[#128C7E] transition-colors shadow-lg flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
-                    WhatsApp
-                </a>
+                <a href="https://wa.me/5214731219337" target="_blank" rel="noopener" class="mt-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-[10px] font-bold cursor-none hover:bg-[#128C7E] transition-colors shadow-lg flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>WhatsApp</a>
             </article>
-
-            <article class="qr-card group sr">
-                <div class="qr-box p-1">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5212381519690&color=002395" class="w-full h-full object-contain" alt="QR Maritere">
-                </div>
+            <article class="qr-card group sr" data-tilt>
+                <div class="qr-box p-1"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5212381519690&color=002395" class="w-full h-full object-contain" alt="QR Maritere Aguilar"></div>
                 <h4 class="lux text-2xl font-semibold text-white group-hover:text-gold transition-colors">Maritere Aguilar</h4>
-                <p class="text-[9px] uppercase font-bold text-white/40 tracking-[.2em] mt-2 mb-4 bg-white/5 px-4 py-1.5 rounded-full">Contacto Oficial</p>
-                <a href="https://wa.me/5212381519690" target="_blank" class="mt-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-[10px] font-bold cursor-none hover:bg-[#128C7E] transition-colors shadow-lg flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
-                    WhatsApp
-                </a>
+                <p class="text-[9px] uppercase font-bold text-white/40 tracking-[.2em] mt-2 mb-4 bg-white/5 px-4 py-1.5 rounded-full">Contacto Oficial · La Salle</p>
+                <a href="https://wa.me/5212381519690" target="_blank" rel="noopener" class="mt-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-[10px] font-bold cursor-none hover:bg-[#128C7E] transition-colors shadow-lg flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>WhatsApp</a>
             </article>
         </div>
     </div>
 </section>
 
-<section id="sedes" class="py-24 bg-ink border-t border-white/[0.04]">
+<!-- ═══════════ SEDES ═══════════ -->
+<section id="sedes" class="py-24 bg-ink-mid border-t border-white/[0.04]">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16 sr">
-            <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">San Cristóbal de Las Casas</p>
-            <h2 class="lux text-5xl">Sedes <em class="text-gold italic">Institucionales</em></h2>
-            <div class="w-20 h-px bg-gold/50 mx-auto mt-8"></div>
-        </div>
-        
+        <div class="text-center mb-16 sr"><p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">San Cristóbal de Las Casas</p><h2 class="lux text-5xl">Sedes <em class="text-gold italic">Institucionales</em></h2><div class="w-20 h-px bg-gold/50 mx-auto mt-8"></div></div>
         <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
             <article class="sr glass-card p-6 flex flex-col group overflow-hidden border-white/10 hover:border-gold/30 transition-colors">
-                <div class="w-full aspect-video rounded-xl overflow-hidden mb-6 relative bg-white/5">
-                    <img src="sede_lasalle.jpg" alt="Colegio La Salle San Cristóbal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.src='banner_logos.jpg'; this.classList.add('object-contain', 'p-6');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent"></div>
-                    <h3 class="absolute bottom-5 left-5 lux text-3xl text-white">Colegio La Salle</h3>
-                </div>
-                <div class="px-2">
-                    <p class="text-[10px] uppercase font-bold text-gold tracking-[.2em] mb-3">San Cristóbal de Las Casas</p>
-                    <p class="text-white/60 text-sm font-light leading-relaxed">Institución educativa de excelencia, profundamente comprometida con la formación en valores, el desarrollo integral humano y la proyección internacional sin fronteras de sus estudiantes.</p>
-                </div>
+                <div class="w-full aspect-video rounded-xl overflow-hidden mb-6 relative bg-white/5"><img src="sede_lasalle.jpg" alt="Colegio La Salle San Cristóbal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.src='logos_banner.png';this.classList.add('object-contain','p-6');"><div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent"></div><h3 class="absolute bottom-5 left-5 lux text-3xl text-white">Colegio La Salle</h3></div>
+                <div class="px-2"><p class="text-[10px] uppercase font-bold text-gold tracking-[.2em] mb-3">San Cristóbal de Las Casas</p><p class="text-white/60 text-sm font-light leading-relaxed">Institución educativa de excelencia, profundamente comprometida con la formación en valores, el desarrollo integral humano y la proyección internacional sin fronteras de sus estudiantes.</p></div>
             </article>
-            
             <article class="sr glass-card p-6 flex flex-col group overflow-hidden border-white/10 hover:border-gold/30 transition-colors">
-                <div class="w-full aspect-video rounded-xl overflow-hidden mb-6 relative bg-white/5">
-                    <img src="sede_afsc.jpg" alt="Alliance Française San Cristóbal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.src='banner_logos.jpg'; this.classList.add('object-contain', 'p-6');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent"></div>
-                    <h3 class="absolute bottom-5 left-5 lux text-3xl text-white">Alliance Française</h3>
-                </div>
-                <div class="px-2">
-                    <p class="text-[10px] uppercase font-bold text-gold tracking-[.2em] mb-3">Centro Oficial DELF/DALF</p>
-                    <p class="text-white/60 text-sm font-light leading-relaxed">Av. La Almolonga 80, Barrio Santa Lucía.<br>Único centro cultural y de examinación oficial avalado por el Gobierno de Francia y la Fondation des Alliances Françaises de París en el estado de Chiapas.</p>
-                </div>
+                <div class="w-full aspect-video rounded-xl overflow-hidden mb-6 relative bg-white/5"><img src="sede_afsc.jpg" alt="Alliance Française San Cristóbal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.src='logos_banner.png';this.classList.add('object-contain','p-6');"><div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent"></div><h3 class="absolute bottom-5 left-5 lux text-3xl text-white">Alliance Française</h3></div>
+                <div class="px-2"><p class="text-[10px] uppercase font-bold text-gold tracking-[.2em] mb-3">Centro Oficial DELF/DALF</p><p class="text-white/60 text-sm font-light leading-relaxed">Av. La Almolonga 80, Barrio Santa Lucía. Único centro cultural y de examinación oficial avalado por el Gobierno de Francia y la Fondation des Alliances Françaises de París en el estado de Chiapas.</p></div>
             </article>
         </div>
     </div>
 </section>
 
+<!-- ═══════════ REGISTRO ═══════════ -->
 <section id="registro" class="py-32 bg-ink border-t border-white/[0.04]">
     <div class="max-w-4xl mx-auto px-6 sr">
         <div class="glass-card p-10 md:p-16 text-center shadow-2xl relative overflow-hidden">
             <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 blur-[80px] pointer-events-none"></div>
-            
             <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Postulación Oficial</p>
             <h2 class="lux text-5xl mb-6">Registro de <em class="text-gold italic">Interés</em></h2>
-            <p class="text-white/50 text-sm mb-12 max-w-xl mx-auto leading-relaxed">Complete el expediente. Recibirá una confirmación y la Dirección evaluará su perfil.</p>
-            
-            <div id="gracias" style="display:none" class="p-8 bg-emerald-900/30 border border-emerald-500/30 rounded-2xl mb-8">
-                <p class="lux text-2xl text-emerald-400 mb-2">¡Expediente Recibido!</p>
-                <p class="text-emerald-200/70 text-sm">Registro capturado exitosamente en el sistema central.</p>
-            </div>
+            <p class="text-white/50 text-sm mb-12 max-w-xl mx-auto leading-relaxed">Complete el expediente. Recibirá una confirmación automática con el Dossier adjunto y la Dirección evaluará su perfil con prioridad.</p>
+            <div id="gracias" style="display:none" class="p-8 bg-emerald-900/30 border border-emerald-500/30 rounded-2xl mb-8"><p class="lux text-2xl text-emerald-400 mb-2">¡Expediente Recibido!</p><p class="text-emerald-200/70 text-sm">Revise su correo para la confirmación con el Dossier. Nos pondremos en contacto a la brevedad.</p></div>
             <div id="errBox" style="display:none" class="p-4 mb-6 bg-red-900/30 border border-red-500/30 text-red-300 rounded-xl text-sm"></div>
-            
             <form id="formulario-afsc" class="space-y-6 text-left relative z-10">
+                <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
+                <input type="hidden" name="subject" value="🇫🇷 NUEVO EXPEDIENTE: Misión Vichy 2026">
+                <input type="hidden" name="from_name" value="Portal Vichy 2026">
+                <input type="hidden" name="redirect" value="false">
+                <input type="checkbox" name="botcheck" class="hidden" style="display:none">
                 <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Nombre del Estudiante *</label>
-                        <input type="text" name="Nombre_Estudiante" required class="ff">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Padre / Tutor *</label>
-                        <input type="text" name="Nombre_Tutor" required class="ff">
-                    </div>
+                    <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Nombre del Estudiante *</label><input type="text" name="Nombre_Estudiante" required class="ff" placeholder="Nombre y apellidos completos"></div>
+                    <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Grado Académico *</label><select name="Grado_Estudio" required class="ff cursor-none"><option value="" disabled selected>Seleccione grado</option><option>Secundaria 1°</option><option>Secundaria 2°</option><option>Secundaria 3°</option><option>Preparatoria 1°</option><option>Preparatoria 2°</option><option>Preparatoria 3°</option></select></div>
                 </div>
                 <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">WhatsApp de Contacto *</label>
-                        <input type="tel" name="WhatsApp" required class="ff">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Correo Electrónico (Tutor) *</label>
-                        <input type="email" name="email" required class="ff">
-                    </div>
+                    <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Nivel de Francés *</label><select name="Nivel_Frances" required class="ff cursor-none"><option value="" disabled selected>Nivel actual</option><option value="A1">A1 – Principiante absoluto</option><option value="A2">A2 – Elemental</option><option value="B1">B1 – Intermedio</option><option value="B2">B2 – Intermedio alto</option><option value="Ninguno">Sin conocimientos previos</option></select></div>
+                    <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Pasaporte *</label><select name="Estatus_Pasaporte" required class="ff cursor-none"><option value="" disabled selected>¿Vigente?</option><option value="Si_Vigente">Sí, vigente</option><option value="Tramite">En trámite</option><option value="No">No lo tengo aún</option></select></div>
                 </div>
-                
-                <button type="submit" id="btn-submit" class="w-full mt-8 py-5 bg-gold text-ink font-bold uppercase tracking-[.2em] rounded-xl hover:bg-white transition-all cursor-none shadow-[0_10px_30px_rgba(201,168,76,0.2)]">
-                    <span id="btn-text">Enviar Expediente a Dirección</span>
-                    <svg id="btn-spin" class="hidden mx-auto animate-spin h-5 w-5 text-ink" viewBox="0 0 24 24" fill="none"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                </button>
+                <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Información Médica Relevante</label><textarea name="Restricciones_Salud" rows="2" class="ff" placeholder="Alergias, medicamentos permanentes o escriba 'Ninguna'"></textarea></div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Nombre del Padre / Tutor *</label><input type="text" name="Nombre_Tutor" required class="ff" placeholder="Nombre completo del responsable"></div>
+                    <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">WhatsApp del Tutor *</label><input type="tel" name="WhatsApp_Contacto" required class="ff" placeholder="+52 967 123 4567"></div>
+                </div>
+                <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">Correo Electrónico del Tutor *</label><input type="email" name="email" required class="ff" placeholder="correo@ejemplo.com"></div>
+                <div><label class="block text-[10px] uppercase tracking-widest text-white/50 mb-2 ml-2 font-bold">¿Por qué desea que su hijo(a) participe?</label><textarea name="Motivacion" rows="3" class="ff" placeholder="Cuéntenos sobre las motivaciones y expectativas de la familia para esta experiencia..."></textarea></div>
+                <button type="submit" id="btn-submit" class="w-full mt-8 py-5 bg-gold text-ink font-bold uppercase tracking-[.2em] rounded-xl hover:bg-white transition-all cursor-none shadow-[0_10px_30px_rgba(201,168,76,.2)]"><span id="btn-text">Enviar Expediente a Dirección</span><svg id="btn-spin" class="hidden mx-auto animate-spin h-5 w-5 text-ink" viewBox="0 0 24 24" fill="none"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></button>
             </form>
         </div>
     </div>
 </section>
 
-<footer class="py-12 border-t border-white/5 text-center bg-ink">
-    <div class="relative inline-block mb-6">
-        <div class="absolute inset-0 bg-gold/20 blur-2xl opacity-60 rounded-full"></div>
-        <img src="logos_banner.png" class="relative z-10 w-64 h-auto drop-shadow-2xl" onerror="this.src='banner_logos.jpg'; this.classList.add('bg-white', 'p-3', 'rounded-xl');" alt="Logos Institucionales">
-    </div>
-    <p class="text-[9px] uppercase tracking-[.4em] text-white/30 mt-4">Alliance Française de San Cristóbal de Las Casas · 2026</p>
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="py-14 border-t border-white/5 text-center bg-ink">
+    <div class="relative inline-block mb-6"><div class="absolute inset-0 bg-gold/20 blur-2xl opacity-60 rounded-full"></div><img src="logos_banner.png" class="relative z-10 w-64 h-auto drop-shadow-2xl bg-white p-3 rounded-xl" onerror="this.style.display='none'" alt="Logos Institucionales La Salle · Alliance Française · CAVILAM"></div>
+    <div class="tricolor w-24 mx-auto mb-4 mt-6"></div>
+    <p class="text-[9px] uppercase tracking-[.4em] text-white/30 mt-4">Alliance Française de San Cristóbal de Las Casas · Misión 2026</p>
+    <p class="text-[8px] uppercase tracking-[.2em] text-white/15 mt-2">Av. La Almolonga 80, Barrio Santa Lucía · San Cristóbal de Las Casas, Chiapas, México</p>
+    <p class="text-[8px] uppercase tracking-[.2em] text-white/10 mt-3">CAVILAM - Alliance Française · Vichy, Auvernia, Francia · Est. 1964</p>
 </footer>
 
+</main>
+
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const introVid = document.getElementById('intro-vid');
-    const introScreen = document.getElementById('intro-screen');
-    const mainContent = document.getElementById('main-content');
-    function iniciarEcosistema3D() {
-        if(!introScreen) return;
-        introScreen.style.opacity = '0';
-        setTimeout(() => {
-            introScreen.style.display = 'none';
-            if(mainContent) {
-                mainContent.style.display = 'block';
-                setTimeout(() => { mainContent.style.opacity = '1'; if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); init3D(); }, 50);
-            }
-        }, 800);
-    }
-    if(introVid) { introVid.addEventListener('ended', iniciarEcosistema3D); setTimeout(iniciarEcosistema3D, 7000); } else { iniciarEcosistema3D(); }
-    const cur = document.getElementById('cursor'); const dot = document.getElementById('cursor-dot');
-    if (window.innerWidth > 1024 && cur && dot) {
-        document.addEventListener('mousemove', (e) => { cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px'; dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; });
-        document.querySelectorAll('a, button, input').forEach(el => {
-            el.addEventListener('mouseenter', () => { cur.classList.add('cursor-hover'); dot.classList.add('cursor-hover-dot'); });
-            el.addEventListener('mouseleave', () => { cur.classList.remove('cursor-hover'); dot.classList.remove('cursor-hover-dot'); });
-        });
-    }
-    function init3D() {
-        if (typeof THREE !== 'undefined') {
-            const canvas = document.getElementById('webgl-bg'); if(!canvas) return;
-            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
-            const scene = new THREE.Scene(); const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000); camera.position.z = 10;
-            const starCount = 3000; const starGeo = new THREE.BufferGeometry(); const starPos = new Float32Array(starCount * 3); const starColors = new Float32Array(starCount * 3);
-            for(let i=0; i<starCount; i++) { starPos[i*3] = (Math.random() - 0.5) * 40; starPos[i*3+1] = (Math.random() - 0.5) * 40; starPos[i*3+2] = (Math.random() - 0.5) * 40; const color = new THREE.Color(Math.random() > 0.8 ? 0xE8C96A : 0xFFFFFF); starColors[i*3] = color.r; starColors[i*3+1] = color.g; starColors[i*3+2] = color.b; }
-            starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3)); starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
-            const starMat = new THREE.PointsMaterial({ size: 0.03, transparent: true, opacity: 0.8, vertexColors: true }); const stars = new THREE.Points(starGeo, starMat); scene.add(stars);
-            let mouseX = 0, mouseY = 0; document.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth - 0.5) * 2; mouseY = (e.clientY / window.innerHeight - 0.5) * 2; });
-            function animate() { requestAnimationFrame(animate); stars.rotation.y += 0.0002; stars.rotation.x += 0.0001; camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05; camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.05; camera.lookAt(scene.position); renderer.render(scene, camera); }
-            animate(); window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
-        }
-    }
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => { document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active')); btn.classList.add('active'); const tabId = btn.getAttribute('data-tab'); if(tabId && document.getElementById('tab-' + tabId)) { document.getElementById('tab-' + tabId).classList.add('active'); } if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); });
+document.addEventListener('DOMContentLoaded',()=>{
+
+/* I. Three.js — Campo de partículas estelares */
+if(typeof THREE!=='undefined'){
+    const canvas=document.getElementById('webgl-bg');
+    const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+    renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,1000);
+    camera.position.z=10;
+    const ct=3000,geo=new THREE.BufferGeometry(),pos=new Float32Array(ct*3),cols=new Float32Array(ct*3);
+    for(let i=0;i<ct;i++){pos[i*3]=(Math.random()-.5)*40;pos[i*3+1]=(Math.random()-.5)*40;pos[i*3+2]=(Math.random()-.5)*40;const c=new THREE.Color(Math.random()>.8?0xE8C96A:0xFFFFFF);cols[i*3]=c.r;cols[i*3+1]=c.g;cols[i*3+2]=c.b}
+    geo.setAttribute('position',new THREE.BufferAttribute(pos,3));geo.setAttribute('color',new THREE.BufferAttribute(cols,3));
+    const mat=new THREE.PointsMaterial({size:.03,transparent:true,opacity:.8,vertexColors:true,sizeAttenuation:true});
+    const stars=new THREE.Points(geo,mat);scene.add(stars);
+    let mx=0,my=0;document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2});
+    const clock=new THREE.Clock();
+    function tick(){requestAnimationFrame(tick);const t=clock.getElapsedTime();stars.rotation.y+=.0002;stars.rotation.x+=.0001;camera.position.x+=(mx*.5-camera.position.x)*.05;camera.position.y+=(-my*.5-camera.position.y)*.05;camera.lookAt(scene.position);mat.opacity=.6+Math.sin(t*2)*.4;renderer.render(scene,camera)}
+    tick();addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+}
+
+/* II. Cursor animado (solo desktop) */
+if(innerWidth>1024){
+    const cur=document.getElementById('cursor'),dot=document.getElementById('cursor-dot');
+    let cx=0,cy=0,dx=0,dy=0;
+    document.addEventListener('mousemove',e=>{dx=e.clientX;dy=e.clientY});
+    function acur(){cx+=(dx-cx)*.12;cy+=(dy-cy)*.12;if(cur){cur.style.left=cx+'px';cur.style.top=cy+'px'}if(dot){dot.style.left=dx+'px';dot.style.top=dy+'px'}requestAnimationFrame(acur)}
+    acur();
+}
+
+/* III. Hero video */
+const hv=document.getElementById('hero-vid');if(hv){hv.muted=true;hv.play().catch(()=>{})}
+
+/* IV. Música de fondo + Auto-ducking */
+const music=document.getElementById('bg-music'),audioBtn=document.getElementById('audio-btn'),bars=document.getElementById('audio-bars');
+let playing=false;
+document.body.addEventListener('click',()=>{if(!playing&&music){music.volume=.3;music.play().then(()=>{playing=true;audioBtn.classList.add('show');bars.classList.remove('bars-paused')}).catch(()=>{})}},{once:true});
+if(audioBtn)audioBtn.addEventListener('click',e=>{e.stopPropagation();if(playing){music.pause();bars.classList.add('bars-paused')}else{music.play().catch(()=>{});bars.classList.remove('bars-paused')}playing=!playing});
+
+/* V. Videos verticales — ducking de audio */
+document.querySelectorAll('.custom-video').forEach(v=>{
+    const ov=v.parentElement.querySelector('.play-overlay');
+    v.addEventListener('play',()=>{if(ov)ov.style.opacity='0';if(playing&&music)music.pause()});
+    v.addEventListener('pause',()=>{if(ov)ov.style.opacity='1';if(playing&&music)music.play().catch(()=>{})});
+    v.addEventListener('ended',()=>{if(ov)ov.style.opacity='1';if(playing&&music)music.play().catch(()=>{})});
+    v.addEventListener('error',()=>{if(ov)ov.style.display='none';const fb=document.createElement('div');fb.className='vid-error';fb.innerHTML='<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><p>Video disponible en línea</p>';v.parentElement.appendChild(fb)});
+});
+
+/* VI. Nav + Scroll bar + BTT */
+const nav=document.getElementById('nav'),btt=document.getElementById('btt'),sb=document.getElementById('scroll-bar');
+addEventListener('scroll',()=>{const y=scrollY;if(nav)nav.classList.toggle('scrolled',y>80);if(btt)btt.classList.toggle('show',y>600);const dh=document.documentElement.scrollHeight-innerHeight;if(sb&&dh>0)sb.style.width=(y/dh*100)+'%'},{passive:true});
+if(btt)btt.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+/* VII. Mobile Menu */
+const mm=document.getElementById('mmenu'),hb=document.getElementById('ham'),mc=document.getElementById('mclose');
+const closeMM=()=>{if(mm)mm.classList.remove('open');if(hb)hb.setAttribute('aria-expanded','false');document.body.style.overflow=''};
+if(hb&&mm)hb.addEventListener('click',()=>{mm.classList.add('open');hb.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});
+if(mc)mc.addEventListener('click',closeMM);
+document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',closeMM));
+
+/* VIII. GSAP Scroll Reveal + Contadores animados */
+if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('.hero-a',{opacity:1,y:0,duration:1.2,stagger:.15,ease:'power3.out'});
+    gsap.utils.toArray('.sr').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:1,scrollTrigger:{trigger:el,start:'top 85%'}}));
+    gsap.utils.toArray('.sr-l').forEach(el=>gsap.to(el,{opacity:1,x:0,duration:1,scrollTrigger:{trigger:el,start:'top 85%'}}));
+    gsap.utils.toArray('.sr-r').forEach(el=>gsap.to(el,{opacity:1,x:0,duration:1,scrollTrigger:{trigger:el,start:'top 85%'}}));
+    document.querySelectorAll('[data-target]').forEach(el=>{
+        const t=parseInt(el.dataset.target);
+        ScrollTrigger.create({trigger:el,start:'top 87%',once:true,onEnter:()=>{
+            gsap.to({v:0},{v:t,duration:2.5,ease:'power3.out',onUpdate:function(){el.textContent=Math.round(this.targets()[0].v)}})
+        }});
     });
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-        setTimeout(() => { gsap.fromTo('.hero-a', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: 'power3.out' }); }, 7000); 
-        gsap.utils.toArray('.sr').forEach(el => { gsap.to(el, { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: el, start: 'top 85%' } }); });
+}
+
+/* IX. Tabs */
+document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    if(typeof ScrollTrigger!=='undefined')ScrollTrigger.refresh();
+})});
+
+/* X. FAQ acordeón */
+document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{
+    const item=btn.parentElement,io=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false')});
+    if(!io){item.classList.add('open');btn.setAttribute('aria-expanded','true')}
+    if(typeof ScrollTrigger!=='undefined')setTimeout(()=>ScrollTrigger.refresh(),450);
+})});
+
+/* XI. 3D Tilt en cards */
+if(innerWidth>1024){document.querySelectorAll('[data-tilt]').forEach(card=>{
+    card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(800px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`});
+    card.addEventListener('mouseleave',()=>{card.style.transform='perspective(800px) rotateY(0) rotateX(0) translateY(0)'});
+})}
+
+/* XII. Formulario — Web3Forms */
+const fe=document.getElementById('formulario-afsc');
+if(fe){fe.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const bt=document.getElementById('btn-text'),bs=document.getElementById('btn-spin'),bsb=document.getElementById('btn-submit'),eb=document.getElementById('errBox'),su=document.getElementById('gracias');
+    bt.style.opacity='0';bs.classList.remove('hidden');bsb.disabled=true;eb.style.display='none';
+    try{
+        const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(fe)});
+        const j=await r.json();
+        if(j.success){fe.style.display='none';su.style.display='block';su.scrollIntoView({behavior:'smooth',block:'center'})}
+        else throw new Error(j.message||'Error');
+    }catch(err){
+        eb.style.display='block';
+        eb.innerHTML='⚠ Error de conexión. Contáctenos directamente: <a href="https://wa.me/5219671721870" class="underline font-bold">WhatsApp</a>';
+        bt.style.opacity='1';bs.classList.add('hidden');bsb.disabled=false;
     }
-    const formEl = document.getElementById('formulario-afsc');
-    if (formEl) {
-        formEl.addEventListener('submit', async (e) => {
-            e.preventDefault(); const btnText = document.getElementById('btn-text'); const btnSpin = document.getElementById('btn-spin'); const btnSubmit = document.getElementById('btn-submit'); const errBox = document.getElementById('errBox'); const successMsg = document.getElementById('gracias');
-            if(btnText) btnText.style.opacity = '0'; if(btnSpin) btnSpin.classList.remove('hidden'); if(btnSubmit) btnSubmit.disabled = true; if(errBox) errBox.style.display = 'none';
-            try { const response = await fetch('http://127.0.0.1:8000/submit', { method: 'POST', body: new FormData(formEl) }); const json = await response.json(); if (json.success) { formEl.style.display = 'none'; if(successMsg) successMsg.style.display = 'block'; } else { throw new Error(); } } catch (err) { if(errBox) { errBox.style.display = 'block'; errBox.innerHTML = '⚠ Error de conexión. Verifique que el motor Python esté activo.'; } if(btnText) btnText.style.opacity = '1'; if(btnSpin) btnSpin.classList.add('hidden'); if(btnSubmit) btnSubmit.disabled = false; }
-        });
-    }
+})}
+
 });
 </script>
-
 </body>
 </html>
