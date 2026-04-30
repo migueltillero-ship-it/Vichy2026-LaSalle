@@ -99,15 +99,29 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;
 .bars-paused span{animation:none!important;height:4px!important}
 .cavilam-card{background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(0,35,149,.04));border:1px solid rgba(201,168,76,.2);border-radius:1.5rem;padding:2rem;transition:all .4s}
 .cavilam-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+#wa-float{position:fixed;bottom:2.5rem;right:5.5rem;z-index:80;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.35);opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1);cursor:none}
+#wa-float.show{opacity:1;pointer-events:auto}
+#wa-float:hover{background:#128C7E;transform:scale(1.12) translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.5)}
+.gallery-img{position:relative;overflow:hidden;border-radius:1.5rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);cursor:zoom-in;transition:border-color .4s}
+.gallery-img:hover{border-color:rgba(201,168,76,.3)}
+.gallery-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1);display:block}
+.gallery-img:hover img{transform:scale(1.07)}
+.gallery-img .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(7,7,10,.9),transparent);padding:1.25rem 1rem .75rem;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(201,168,76,.8);opacity:0;transition:opacity .3s}
+.gallery-img:hover .cap{opacity:1}
+.cd-box{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.2);border-radius:1.5rem;padding:1.5rem 1rem;min-width:80px;text-align:center;transition:border-color .4s}
+.cd-box:hover{border-color:rgba(201,168,76,.5)}
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">Ir al contenido principal</a>
 <div id="cursor"></div><div id="cursor-dot"></div>
 <canvas id="webgl-bg"></canvas>
-<audio id="bg-music" src="Arrival_at_the_Terminal%20(1).mp3" loop preload="auto"></audio>
+<audio id="bg-music" src="French-Classical-Music-Debussy-S.mp3" loop preload="auto"></audio>
 <button id="audio-btn" aria-label="Música de fondo"><div id="audio-bars" class="flex items-end h-4 bars-paused"><span class="audio-bar" style="animation-delay:0s"></span><span class="audio-bar" style="animation-delay:.2s"></span><span class="audio-bar" style="animation-delay:.4s"></span><span class="audio-bar" style="animation-delay:.1s"></span></div></button>
 <div id="scroll-bar"></div>
+<a id="wa-float" href="https://wa.me/5219671721870" target="_blank" rel="noopener" aria-label="WhatsApp Dirección">
+  <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+</a>
 <button id="btt" aria-label="Volver arriba"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg></button>
 
 <header>
@@ -164,7 +178,7 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
         <div class="sr-l">
             <div class="convenio-img-frame">
-                <img src="IMG-20260224-WA0062.jpg" alt="Firma oficial del convenio La Salle – Alliance Française" loading="lazy" onerror="this.onerror=null;this.src='convenio_lasalle_af.png';">
+                <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Directores de La Salle y Alliance Française firman el convenio con CAVILAM" loading="lazy" onerror="this.onerror=null;this.src='IMG-20260224-WA0062.jpg';">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
             </div>
         </div>
@@ -208,8 +222,46 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;
     </div>
 </section>
 
+<!-- ═══════════ GALERÍA ═══════════ -->
+<section id="galeria" class="py-24 bg-ink-mid border-t border-white/[0.04]">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="sr text-center mb-14">
+            <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">En Imágenes</p>
+            <h2 class="lux text-5xl text-white">Galería <em class="text-gold italic">Oficial</em></h2>
+            <div class="gold-line-c mt-8"></div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[220px] md:auto-rows-[260px]">
+            <div class="gallery-img sr row-span-2">
+                <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Directores firmando el convenio" loading="lazy" onerror="this.src='IMG-20260224-WA0062.jpg'">
+                <span class="cap">Firma del Convenio Oficial · 2026</span>
+            </div>
+            <div class="gallery-img sr">
+                <img src="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg" alt="Campus CAVILAM Vichy" loading="lazy" onerror="this.src='cavilam-campus.jpg'">
+                <span class="cap">Campus CAVILAM · Vichy</span>
+            </div>
+            <div class="gallery-img sr">
+                <img src="paris-illustration.jpg" alt="París" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#002395,#ED2939)'">
+                <span class="cap">París · Grand Final</span>
+            </div>
+            <div class="gallery-img sr">
+                <img src="CAVILAM_Viaje_linguistico.jpg" alt="Viaje lingüístico CAVILAM" loading="lazy" onerror="this.src='cavilam.jpg'">
+                <span class="cap">Inmersión Lingüística · CAVILAM</span>
+            </div>
+            <div class="gallery-img sr row-span-2">
+                <img src="cavilam_firma_de_acuerdo.jpg" alt="Acuerdo de cooperación" loading="lazy" onerror="this.src='CAvilam_firma.jpg'">
+                <span class="cap">Acuerdo de Cooperación · La Salle × AFSC × CAVILAM</span>
+            </div>
+            <div class="gallery-img sr">
+                <img src="cavilam-campus.jpg" alt="Vichy, Auvernia" loading="lazy" onerror="this.src='cavilam.jpg'">
+                <span class="cap">Vichy · Auvernia · France</span>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ═══════════ CAVILAM ═══════════ -->
-<section id="cavilam" class="py-28 bg-ink-mid border-t border-white/[0.04]">
+<section id="cavilam" class="py-28 bg-ink-mid border-t border-white/[0.04] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background:url('CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg') center/cover no-repeat"></div>
     <div class="max-w-7xl mx-auto px-6">
         <div class="sr text-center mb-16">
             <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">La Institución · Nuestro Socio Académico</p>
@@ -250,10 +302,31 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;
     </div>
 </section>
 
+<!-- ═══════════ COUNTDOWN ═══════════ -->
+<section class="py-20 bg-ink border-t border-white/[0.04] text-center">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="sr mb-10">
+            <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-3">El Tiempo Corre</p>
+            <h2 class="lux text-4xl md:text-5xl text-white">La Misión despega en</h2>
+        </div>
+        <div id="cd-wrap" class="sr flex justify-center gap-4 md:gap-6 flex-wrap mb-8">
+            <div class="cd-box"><p id="cd-d" class="lux text-5xl md:text-6xl font-semibold text-gold">--</p><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold mt-2">Días</p></div>
+            <div class="flex items-center pb-8"><p class="lux text-4xl text-gold/40 font-light">:</p></div>
+            <div class="cd-box"><p id="cd-h" class="lux text-5xl md:text-6xl font-semibold text-gold">--</p><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold mt-2">Horas</p></div>
+            <div class="flex items-center pb-8"><p class="lux text-4xl text-gold/40 font-light">:</p></div>
+            <div class="cd-box"><p id="cd-m" class="lux text-5xl md:text-6xl font-semibold text-gold">--</p><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold mt-2">Minutos</p></div>
+            <div class="flex items-center pb-8"><p class="lux text-4xl text-gold/40 font-light">:</p></div>
+            <div class="cd-box"><p id="cd-s" class="lux text-5xl md:text-6xl font-semibold text-gold">--</p><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold mt-2">Segundos</p></div>
+        </div>
+        <p class="sr text-white/30 text-[10px] uppercase tracking-[.3em] font-bold">Fecha estimada · 1 Julio 2026 · Sujeta a confirmación oficial</p>
+        <div class="sr mt-8"><a href="#registro" class="inline-flex items-center gap-2 px-10 py-4 bg-gold text-ink rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white transition-all cursor-none shadow-[0_0_30px_rgba(201,168,76,.2)]">Asegurar mi Lugar →</a></div>
+    </div>
+</section>
+
 <!-- ═══════════ PROGRAMA TABS ═══════════ -->
 <section id="programa" class="py-28 bg-ink border-t border-white/[0.04]">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="sr text-center mb-16">
+        <div class="sr text-center mb-16 relative">
             <p class="text-gold text-[11px] uppercase tracking-[.4em] font-bold mb-4">Itinerario Oficial · Misión 2026</p>
             <h2 class="lux text-5xl text-white">Una suma de <em class="text-gold italic">experiencias únicas</em></h2>
             <div class="gold-line-c mt-8"></div>
@@ -357,7 +430,7 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;
             <h2 class="lux text-5xl font-light text-white">Voz de las familias: <em class="text-gold italic">un hogar en Francia</em></h2>
             <div class="w-20 h-px bg-gold/50 mx-auto mt-8"></div>
         </div>
-        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-20">
             <div class="sr glass-card p-5 flex flex-col items-center">
                 <h3 class="text-[9px] text-gold uppercase tracking-[.25em] font-bold mb-5 mt-2">La Douceur de Vivre</h3>
                 <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black/50 shadow-2xl border border-white/5">
@@ -380,7 +453,15 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;
                     <video controls playsinline preload="metadata" class="w-full h-full object-cover custom-video" poster="logos_banner.png"><source src="video_regina.mp4" type="video/mp4"></video>
                     <div class="play-overlay"><div class="play-btn"><svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                 </div>
-                <div class="text-center mt-6 mb-2"><h4 class="lux text-2xl text-white mb-1">Regina</h4><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Alumna La Salle</p></div>
+                <div class="text-center mt-6 mb-2"><h4 class="lux text-2xl text-white mb-1">Regina</h4><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Alumna La Salle · México</p></div>
+            </div>
+            <div class="sr glass-card p-5 flex flex-col items-center">
+                <h3 class="text-[9px] text-gold uppercase tracking-[.25em] font-bold mb-5 mt-2">Famille d'Accueil</h3>
+                <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black/50 shadow-2xl border border-white/5">
+                    <video controls playsinline preload="metadata" class="w-full h-full object-cover custom-video" poster="logos_banner.png"><source src="video_famille_3.mp4" type="video/mp4"></video>
+                    <div class="play-overlay"><div class="play-btn"><svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+                </div>
+                <div class="text-center mt-6 mb-2"><h4 class="lux text-2xl text-white mb-1">Gwendoline & Romaric</h4><p class="text-[9px] uppercase tracking-[.2em] text-white/40 font-bold">Hospitalité & Passion</p></div>
             </div>
         </div>
         <div class="grid lg:grid-cols-3 gap-6 mb-16">
@@ -443,13 +524,13 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;
         <div class="text-center mb-20 sr"><h2 class="lux text-5xl">Directorio <em class="text-gold italic">Institucional</em></h2><p class="text-white/40 text-[10px] mt-4 uppercase tracking-[.3em] font-bold">Los 3 Pilares de la Misión 2026</p></div>
         <div class="grid md:grid-cols-3 gap-8">
             <article class="qr-card group sr" data-tilt>
-                <div class="qr-box"><img src="qr.jpg" class="w-full h-full object-contain" alt="QR Miguel Tillero" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5219671721870&color=002395'"></div>
+                <div class="qr-box"><img src="qr_af_director.png" class="w-full h-full object-contain" alt="QR Miguel Tillero" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5219671721870&color=002395'"></div>
                 <h4 class="lux text-2xl font-semibold text-white group-hover:text-gold transition-colors">Miguel Tillero Álvarez</h4>
                 <p class="text-[9px] uppercase font-bold text-white/40 tracking-[.2em] mt-2 mb-4 bg-white/5 px-4 py-1.5 rounded-full">Director General · AFSC</p>
                 <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" class="mt-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-[10px] font-bold cursor-none hover:bg-[#128C7E] transition-colors shadow-lg flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>WhatsApp</a>
             </article>
             <article class="qr-card group sr" data-tilt>
-                <div class="qr-box p-0"><img src="Román_Fuentes-1024.jpeg" class="w-full h-full object-cover" alt="Román Fuentes" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5214731219337&color=002395'"></div>
+                <div class="qr-box"><img src="qr_roman_fuentes.png" class="w-full h-full object-contain" alt="QR Román Fuentes" onerror="this.src='Román_Fuentes-1024.jpeg';this.classList.add('object-cover')"></div>
                 <h4 class="lux text-2xl font-semibold text-white group-hover:text-gold transition-colors">Román Fuentes</h4>
                 <p class="text-[9px] uppercase font-bold text-white/40 tracking-[.2em] mt-2 mb-4 bg-white/5 px-4 py-1.5 rounded-full">Coordinador · La Salle</p>
                 <a href="https://wa.me/5214731219337" target="_blank" rel="noopener" class="mt-2 px-8 py-3 bg-[#25D366] text-white rounded-full text-[10px] font-bold cursor-none hover:bg-[#128C7E] transition-colors shadow-lg flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>WhatsApp</a>
@@ -519,12 +600,27 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:40px;height:40px;
 </section>
 
 <!-- ═══════════ FOOTER ═══════════ -->
-<footer class="py-14 border-t border-white/5 text-center bg-ink">
-    <div class="relative inline-block mb-6"><div class="absolute inset-0 bg-gold/20 blur-2xl opacity-60 rounded-full"></div><img src="logos_banner.png" class="relative z-10 w-64 h-auto drop-shadow-2xl bg-white p-3 rounded-xl" onerror="this.style.display='none'" alt="Logos Institucionales La Salle · Alliance Française · CAVILAM"></div>
-    <div class="tricolor w-24 mx-auto mb-4 mt-6"></div>
-    <p class="text-[9px] uppercase tracking-[.4em] text-white/30 mt-4">Alliance Française de San Cristóbal de Las Casas · Misión 2026</p>
-    <p class="text-[8px] uppercase tracking-[.2em] text-white/15 mt-2">Av. La Almolonga 80, Barrio Santa Lucía · San Cristóbal de Las Casas, Chiapas, México</p>
-    <p class="text-[8px] uppercase tracking-[.2em] text-white/10 mt-3">CAVILAM - Alliance Française · Vichy, Auvernia, Francia · Est. 1964</p>
+<footer class="pt-16 pb-10 border-t border-white/5 text-center bg-ink">
+    <div class="max-w-5xl mx-auto px-6">
+        <!-- Logos -->
+        <div class="flex flex-wrap justify-center items-center gap-8 mb-10">
+            <div class="bg-white rounded-xl p-3 h-14 flex items-center"><img src="logo-lasalle.png" class="h-full w-auto object-contain" alt="Colegio La Salle" onerror="this.src='logo_lasalle.png'"></div>
+            <div class="bg-white rounded-xl p-3 h-14 flex items-center"><img src="logo-af.png" class="h-full w-auto object-contain" alt="Alliance Française" onerror="this.src='logo_af.png'"></div>
+            <div class="bg-white rounded-xl p-3 h-14 flex items-center"><img src="logo-cavilam.png" class="h-full w-auto object-contain" alt="CAVILAM" onerror="this.src='logocavilam2024.png'"></div>
+        </div>
+        <div class="tricolor w-24 mx-auto mb-6"></div>
+        <p class="lux text-xl text-white/50 font-light italic mb-4">"No es solo un viaje, es la construcción de una visión global."</p>
+        <p class="text-[9px] uppercase tracking-[.4em] text-white/30">Alliance Française de San Cristóbal de Las Casas · Misión 2026</p>
+        <p class="text-[8px] uppercase tracking-[.2em] text-white/15 mt-2">Av. La Almolonga 80, Barrio Santa Lucía · San Cristóbal de Las Casas, Chiapas, México</p>
+        <p class="text-[8px] uppercase tracking-[.2em] text-white/10 mt-2">CAVILAM - Alliance Française · Vichy, Auvernia, Francia · Est. 1964</p>
+        <div class="mt-8 flex justify-center gap-6">
+            <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" class="text-white/20 hover:text-gold transition-colors text-[9px] uppercase tracking-widest font-bold cursor-none">WhatsApp</a>
+            <span class="text-white/10">·</span>
+            <a href="#registro" class="text-white/20 hover:text-gold transition-colors text-[9px] uppercase tracking-widest font-bold cursor-none">Registro</a>
+            <span class="text-white/10">·</span>
+            <a href="#faq" class="text-white/20 hover:text-gold transition-colors text-[9px] uppercase tracking-widest font-bold cursor-none">FAQ</a>
+        </div>
+    </div>
 </footer>
 
 </main>
@@ -578,10 +674,22 @@ document.querySelectorAll('.custom-video').forEach(v=>{
     v.addEventListener('error',()=>{if(ov)ov.style.display='none';const fb=document.createElement('div');fb.className='vid-error';fb.innerHTML='<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><p>Video disponible en línea</p>';v.parentElement.appendChild(fb)});
 });
 
-/* VI. Nav + Scroll bar + BTT */
-const nav=document.getElementById('nav'),btt=document.getElementById('btt'),sb=document.getElementById('scroll-bar');
-addEventListener('scroll',()=>{const y=scrollY;if(nav)nav.classList.toggle('scrolled',y>80);if(btt)btt.classList.toggle('show',y>600);const dh=document.documentElement.scrollHeight-innerHeight;if(sb&&dh>0)sb.style.width=(y/dh*100)+'%'},{passive:true});
+/* VI. Nav + Scroll bar + BTT + WhatsApp float */
+const nav=document.getElementById('nav'),btt=document.getElementById('btt'),sb=document.getElementById('scroll-bar'),waf=document.getElementById('wa-float');
+addEventListener('scroll',()=>{const y=scrollY;if(nav)nav.classList.toggle('scrolled',y>80);if(btt)btt.classList.toggle('show',y>600);if(waf)waf.classList.toggle('show',y>400);const dh=document.documentElement.scrollHeight-innerHeight;if(sb&&dh>0)sb.style.width=(y/dh*100)+'%'},{passive:true});
 if(btt)btt.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+/* VI-b. Countdown → 1 Julio 2026 */
+function updateCD(){
+    const diff=new Date('2026-07-01T00:00:00')-new Date();
+    if(diff<=0){const w=document.getElementById('cd-wrap');if(w)w.innerHTML='<p class="lux text-3xl text-gold">¡La Misión ha comenzado! ✈️</p>';return}
+    const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=String(v).padStart(2,'0')};
+    set('cd-d',Math.floor(diff/86400000));
+    set('cd-h',Math.floor((diff%86400000)/3600000));
+    set('cd-m',Math.floor((diff%3600000)/60000));
+    set('cd-s',Math.floor((diff%60000)/1000));
+}
+updateCD();setInterval(updateCD,1000);
 
 /* VII. Mobile Menu */
 const mm=document.getElementById('mmenu'),hb=document.getElementById('ham'),mc=document.getElementById('mclose');
