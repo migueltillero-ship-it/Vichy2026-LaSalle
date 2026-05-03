@@ -241,6 +241,10 @@
             <div class="sr" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
                 <a href="#dossier" class="btn-primary interactive">Explorar Dossier</a>
                 <a href="#registro" class="btn-ghost interactive">Apartar mi lugar</a>
+                <a href="https://wa.me/?text=Mira%20el%20programa%20Vichy%202026%20para%20estudiantes%20de%20La%20Salle%20%F0%9F%87%AB%F0%9F%87%B7%20https%3A%2F%2Fmigueltillero-ship-it.github.io%2FVichy2026-LaSalle%2F" target="_blank" rel="noopener" class="btn-ghost interactive" style="border-color:rgba(37,211,102,.4);color:rgba(37,211,102,.8);">
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" style="margin-right:.5rem"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+                    Compartir
+                </a>
             </div>
         </div>
     </section>
@@ -849,6 +853,15 @@
         <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.4em; color:rgba(255,255,255,.12);">Alliance Française de San Cristóbal de Las Casas · Chiapas, México · 2026</p>
     </footer>
 
+    <!-- Lightbox -->
+    <div id="lightbox" style="position:fixed;inset:0;z-index:99990;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:1.5rem;" role="dialog" aria-modal="true" aria-label="Galería ampliada">
+        <button id="lb-close" aria-label="Cerrar" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:all .3s">✕</button>
+        <button id="lb-prev" aria-label="Anterior" style="position:absolute;left:1.5rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:all .3s">‹</button>
+        <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:88vh;object-fit:contain;border-radius:1rem;box-shadow:0 40px 80px rgba(0,0,0,.8);transition:opacity .3s">
+        <button id="lb-next" aria-label="Siguiente" style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:all .3s">›</button>
+        <p id="lb-cap" style="position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-size:.58rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(201,168,76,.7);white-space:nowrap;font-weight:700;"></p>
+    </div>
+
     <!-- Floating buttons -->
     <a id="wa-float" href="https://wa.me/5219671721870" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:fixed; bottom:2.5rem; right:5.5rem; z-index:8000; width:50px; height:50px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.35); opacity:0; pointer-events:none; transition:all .4s; cursor:none;">
         <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
@@ -1090,7 +1103,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.tagName !== 'BUTTON') launchSite();
     });
 
-    /* ── 12. FORM → Web3Forms ────────────────────────────────── */
+    /* ── 12. GALLERY LIGHTBOX ───────────────────────────────── */
+    const lb      = document.getElementById('lightbox');
+    const lbImg   = document.getElementById('lb-img');
+    const lbCap   = document.getElementById('lb-cap');
+    const lbClose = document.getElementById('lb-close');
+    const lbPrev  = document.getElementById('lb-prev');
+    const lbNext  = document.getElementById('lb-next');
+    const galItems = Array.from(document.querySelectorAll('.gal-item'));
+    let lbIdx = 0;
+
+    function openLb(idx) {
+        lbIdx = (idx + galItems.length) % galItems.length;
+        const img = galItems[lbIdx].querySelector('img');
+        const cap = galItems[lbIdx].querySelector('.gal-cap');
+        lbImg.style.opacity = '0';
+        lb.style.display = 'flex'; document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            lbImg.src = img ? img.src : '';
+            lbImg.alt = img ? img.alt : '';
+            if (lbCap) lbCap.textContent = cap ? cap.textContent : '';
+            lbImg.style.opacity = '1';
+        }, 80);
+    }
+    function closeLb() { lb.style.display = 'none'; document.body.style.overflow = ''; }
+
+    galItems.forEach((item, i) => item.addEventListener('click', () => openLb(i)));
+    if (lbClose) lbClose.addEventListener('click', closeLb);
+    if (lbPrev)  lbPrev.addEventListener('click',  () => openLb(lbIdx - 1));
+    if (lbNext)  lbNext.addEventListener('click',  () => openLb(lbIdx + 1));
+    lb && lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', e => {
+        if (!lb || lb.style.display === 'none') return;
+        if (e.key === 'Escape') closeLb();
+        if (e.key === 'ArrowLeft')  openLb(lbIdx - 1);
+        if (e.key === 'ArrowRight') openLb(lbIdx + 1);
+    });
+
+    /* ── 13. FORM → Web3Forms ────────────────────────────────── */
     const form = document.getElementById('form-registro');
     if (form) form.addEventListener('submit', async e => {
         e.preventDefault();
