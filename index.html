@@ -6,8 +6,21 @@
     <meta name="theme-color" content="#050507">
     <meta name="author" content="Miguel David Tillero Álvarez — Alliance Française de San Cristóbal de Las Casas">
     <title>Vichy 2026 · Un Voyage d'Exception | La Salle & Alliance Française</title>
-    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Certificación CAVILAM. Dirigido a estudiantes del Colegio La Salle.">
+    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Certificación CAVILAM. Dirigido a estudiantes de Secundaria y Preparatoria del Colegio La Salle, San Cristóbal de Las Casas.">
+    <meta name="keywords" content="Vichy 2026, Alliance Française, La Salle, CAVILAM, inmersión lingüística, Francia, francés, San Cristóbal de las Casas, Chiapas, programa cultural, certificación DELF, Vichy Auvernia, familias anfitrionas, intercambio cultural">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Vichy 2026 · Un Voyage d'Exception | La Salle & Alliance Française">
+    <meta property="og:description" content="18 días, 5 ciudades, una vida transformada. Inmersión lingüística CAVILAM para estudiantes La Salle de San Cristóbal.">
+    <meta property="og:image" content="logos_banner.png">
+    <meta property="og:url" content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vichy 2026 · Un Voyage d'Exception">
+    <meta name="twitter:description" content="18 días, 5 ciudades, una vida transformada. Inmersión CAVILAM para estudiantes La Salle.">
+    <meta name="twitter:image" content="logos_banner.png">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇫🇷</text></svg>">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalEvent","name":"Inmersión Lingüística Vichy 2026","startDate":"2026-07-01","endDate":"2026-07-18","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","location":{"@type":"Place","name":"CAVILAM - Alliance Française","address":{"@type":"PostalAddress","addressLocality":"Vichy","addressRegion":"Auvernia","addressCountry":"FR"}},"organizer":{"@type":"EducationalOrganization","name":"Alliance Française de San Cristóbal de Las Casas","url":"https://alianzafrancesa.org.mx/san-cristobal-de-las-casas/"},"offers":{"@type":"Offer","price":"3500","priceCurrency":"EUR","availability":"https://schema.org/LimitedAvailability","validFrom":"2025-01-01"}}</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -148,7 +161,7 @@
 <body>
 
 <audio id="bg-music" loop>
-    <source src="Arrival_at_the_Terminal.mp3" type="audio/mpeg">
+    <source src="French-Classical-Music-Debussy-S.mp3" type="audio/mpeg">
     <source src="musica_clasica.mp3" type="audio/mpeg">
 </audio>
 
@@ -156,8 +169,10 @@
 <div id="cursor"></div>
 <div id="cursor-dot"></div>
 
-<div id="intro-screen">
-    <video id="intro-vid" src="video_tres_logos.mp4" playsinline autoplay muted preload="auto"></video>
+<div id="intro-screen" style="cursor:pointer" title="Clic para continuar">
+    <video id="intro-vid" src="Multimedia.mp4" playsinline autoplay muted preload="auto" onerror="document.getElementById('launchNow').click()"></video>
+    <button id="skip-btn" onclick="document.getElementById('launchNow').click()" style="position:absolute;bottom:2.5rem;right:2.5rem;padding:.6rem 1.6rem;border:1px solid rgba(201,168,76,.4);border-radius:100px;background:rgba(6,6,8,.7);color:rgba(201,168,76,.8);font-size:.6rem;text-transform:uppercase;letter-spacing:.3em;cursor:pointer;backdrop-filter:blur(10px);z-index:10;transition:all .3s">Continuar →</button>
+    <button id="launchNow" style="display:none"></button>
 </div>
 
 <div id="main-content">
@@ -216,8 +231,8 @@
             </div>
             
             <div class="sr" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2rem;">
-                <a href="diapo.%20viaje%20.pptx" download class="btn-ghost interactive" style="font-size:0.65rem; padding: 0.8rem 1.5rem;">Descargar Presentación (PPTX)</a>
-                <a href="jbkjbkjb.pdf" download class="btn-ghost interactive" style="font-size:0.65rem; padding: 0.8rem 1.5rem;">Descargar Documento (PDF)</a>
+                <a href="Vichy_2026_La_Salle.pptx" download class="btn-ghost interactive" style="font-size:0.65rem; padding: 0.8rem 1.5rem;">⬇ Descargar Presentación (PPTX)</a>
+                <a href="Vichy_2026_La_Salle.pptx (1).pdf" download class="btn-ghost interactive" style="font-size:0.65rem; padding: 0.8rem 1.5rem;">⬇ Descargar Dossier (PDF)</a>
             </div>
         </div>
     </section>
@@ -234,15 +249,15 @@
             </div>
 
             <div class="grid-2 sr" style="max-width:64rem; margin:0 auto">
-                <div class="w-full aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 relative group glass">
-                    <img src="firma_convenio_1.jpg" alt="Firma Oficial del Convenio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"></div>
-                    <p class="absolute bottom-4 left-5 text-white/90 text-sm font-semibold tracking-wide">Firma del Acuerdo Institucional</p>
+                <div style="width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:1.5rem; border:1px solid rgba(255,255,255,.08); position:relative; background:#000;">
+                    <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Firma Oficial del Convenio AFSC–CAVILAM" style="width:100%; height:100%; object-fit:cover; transition:transform .7s ease;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'" onerror="this.src='IMG-20260224-WA0062.jpg'">
+                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(6,6,8,.9) 0%, transparent 55%); pointer-events:none;"></div>
+                    <p style="position:absolute; bottom:1.25rem; left:1.5rem; font-size:.72rem; color:rgba(255,255,255,.9); font-weight:500; letter-spacing:.05em;">Firma del Acuerdo Institucional · AFSC × CAVILAM</p>
                 </div>
-                <div class="w-full aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 relative group glass">
-                    <img src="firma_convenio_2.jpg" alt="Gregory Lasne y Mathieu - CAVILAM" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"></div>
-                    <p class="absolute bottom-4 left-5 text-white/90 text-sm font-semibold tracking-wide">Representación CAVILAM Vichy</p>
+                <div style="width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:1.5rem; border:1px solid rgba(255,255,255,.08); position:relative; background:#000;">
+                    <img src="cavilam_firma_de_acuerdo.jpg" alt="Directivos CAVILAM y La Salle" style="width:100%; height:100%; object-fit:cover; transition:transform .7s ease;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'" onerror="this.src='cavilam_firma_de_acuerdo_v1.jpg'">
+                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(6,6,8,.9) 0%, transparent 55%); pointer-events:none;"></div>
+                    <p style="position:absolute; bottom:1.25rem; left:1.5rem; font-size:.72rem; color:rgba(255,255,255,.9); font-weight:500; letter-spacing:.05em;">Representación Institucional · La Salle × Alliance Française</p>
                 </div>
             </div>
         </div>
@@ -259,7 +274,7 @@
                 
                 <article class="glass sr" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem;">
                     <div class="w-full h-56 mb-4 overflow-hidden rounded-2xl border border-white/10 relative group">
-                        <img src="sede_la_salle.jpg" alt="Sede Colegio La Salle" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="la salle.jpeg" alt="Colegio La Salle San Cristóbal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='salle 1.png';this.onerror=function(){this.src='logos_banner.png';this.style.objectFit='contain';this.style.padding='1.5rem'}">
                         <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent"></div>
                     </div>
                     <span style="font-size:.55rem; text-transform:uppercase; letter-spacing:.35em; color:var(--gold); font-weight:600;">Institución Anfitriona</span>
@@ -271,7 +286,7 @@
 
                 <article class="glass sr" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem;">
                     <div class="w-full h-56 mb-4 overflow-hidden rounded-2xl border border-white/10 relative group">
-                        <img src="sede_alianza.jpg" alt="Sede Alliance Française" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="Logo de la Alliance Française en San Cristóbal.png" alt="Alliance Française de San Cristóbal de Las Casas" style="width:100%; height:100%; object-fit:contain; padding:1.5rem; transition:transform .7s ease;" onerror="this.style.padding='0';this.style.objectFit='cover';this.src='logo_af_sc.jpg'">
                         <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent"></div>
                     </div>
                     <span style="font-size:.55rem; text-transform:uppercase; letter-spacing:.35em; color:var(--gold); font-weight:600;">Ente Certificador Oficial</span>
@@ -303,7 +318,7 @@
                 <div class="grid-2">
                     <article class="glass prog-card sr">
                         <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=800" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Llegada a Vichy">
+                            <img src="IMG_20250707_132429.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Llegada a Vichy" onerror="this.src='cavilam-campus.jpg'">
                             <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
                         </div>
                         <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
@@ -319,7 +334,7 @@
                     </article>
                     <article class="glass prog-card sr">
                         <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Clases Alliance Française">
+                            <img src="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Excelencia Académica CAVILAM" onerror="this.src='cavilam.jpg'">
                             <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
                         </div>
                         <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
@@ -340,7 +355,7 @@
                 <div class="grid-2">
                     <article class="glass prog-card sr">
                         <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Auvernia">
+                            <img src="IMG_20250707_125956.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Auvernia · Naturaleza volcánica" onerror="this.src='cavilam_firma_de_acuerdo.jpg'">
                             <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
                         </div>
                         <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
@@ -355,7 +370,7 @@
                     </article>
                     <article class="glass prog-card sr">
                         <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="https://images.unsplash.com/photo-1596201083656-78e81e3a4e98?q=80&w=800" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Lyon">
+                            <img src="IMG_20250708_120356.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Gastronomía francesa" onerror="this.src='CAVILAM_Viaje_linguistico.jpg'">
                             <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
                         </div>
                         <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
@@ -375,7 +390,7 @@
                 <div class="grid-2">
                     <article class="glass prog-card sr">
                         <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=800" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Paris Torre Eiffel">
+                            <img src="eiffel-tower.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Torre Eiffel · París" onerror="this.src='paris-illustration.jpg'">
                             <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
                         </div>
                         <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
@@ -390,7 +405,7 @@
                     </article>
                     <article class="glass prog-card sr">
                         <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="https://images.unsplash.com/photo-1505993597083-3bd19fd75e77?q=80&w=800" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Disneyland Paris">
+                            <img src="IMG-20251119-WA0062.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Clausura y Certificación · Nov 2025" onerror="this.src='cavilam-campus.jpg'">
                             <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
                         </div>
                         <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
@@ -450,6 +465,142 @@
                     </div>
                 </article>
             </div>
+        </div>
+    </section>
+
+    <!-- ═══════ STATS ═══════ -->
+    <section class="section-pad" style="border-top:1px solid rgba(255,255,255,.03)">
+        <div class="container">
+            <div class="grid-3 sr" style="max-width:60rem; margin:0 auto; text-align:center; gap:2rem">
+                <div style="padding:2.5rem 1.5rem; background:rgba(201,168,76,.04); border:1px solid rgba(201,168,76,.12); border-radius:1.5rem;">
+                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,8vw,5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="18">0</div>
+                    <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Días en Francia</p>
+                </div>
+                <div style="padding:2.5rem 1.5rem; background:rgba(0,35,149,.06); border:1px solid rgba(0,35,149,.2); border-radius:1.5rem;">
+                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,8vw,5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="60">0</div>
+                    <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Horas de Francés</p>
+                </div>
+                <div style="padding:2.5rem 1.5rem; background:rgba(201,168,76,.04); border:1px solid rgba(201,168,76,.12); border-radius:1.5rem;">
+                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,8vw,5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="5">0</div>
+                    <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Ciudades Visitadas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ GALERÍA ═══════ -->
+    <section id="galeria" class="section-pad" style="background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.03)">
+        <div class="container">
+            <div class="section-header sr">
+                <p class="eyebrow" style="margin-bottom:1rem">En Imágenes Reales</p>
+                <h2 class="section-title">Galería <em style="color:var(--gold);font-style:italic">Oficial</em></h2>
+                <p style="margin-top:1rem; font-size:.8rem; color:rgba(255,255,255,.35); font-weight:300;">Imágenes de la visita exploratoria a Vichy y de las actividades institucionales 2025</p>
+                <div class="divider"></div>
+            </div>
+            <style>
+            .gal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+            .gal-item { position:relative; overflow:hidden; border-radius:1.25rem; border:1px solid rgba(255,255,255,.05); background:#111; cursor:zoom-in; aspect-ratio:4/3; }
+            .gal-item.tall { aspect-ratio:3/4; }
+            .gal-item img { width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.22,1,.36,1); display:block; }
+            .gal-item:hover img { transform:scale(1.08); }
+            .gal-cap { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(6,6,8,.9),transparent); padding:1.25rem .9rem .7rem; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(201,168,76,.8); font-weight:700; opacity:0; transition:opacity .35s; }
+            .gal-item:hover .gal-cap { opacity:1; }
+            @media(max-width:700px){ .gal-grid { grid-template-columns:repeat(2,1fr); } }
+            </style>
+            <div class="gal-grid">
+                <div class="gal-item sr tall" style="grid-row:span 2">
+                    <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Firma del Convenio" loading="lazy" onerror="this.src='IMG-20260224-WA0062.jpg'">
+                    <span class="gal-cap">Firma del Convenio Oficial · 2026</span>
+                </div>
+                <div class="gal-item sr">
+                    <img src="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg" alt="Campus CAVILAM" loading="lazy" onerror="this.src='cavilam-campus.jpg'">
+                    <span class="gal-cap">Campus CAVILAM · Vichy</span>
+                </div>
+                <div class="gal-item sr">
+                    <img src="eiffel-tower.jpg" alt="Torre Eiffel París" loading="lazy" onerror="this.src='paris-illustration.jpg'">
+                    <span class="gal-cap">Torre Eiffel · París</span>
+                </div>
+                <div class="gal-item sr">
+                    <img src="IMG_20250707_125950.jpg" alt="Vichy julio 2025" loading="lazy" onerror="this.src='cavilam.jpg'">
+                    <span class="gal-cap">Vichy · Visita Jul 2025</span>
+                </div>
+                <div class="gal-item sr">
+                    <img src="IMG_20250707_132444.jpg" alt="CAVILAM 2025" loading="lazy" onerror="this.src='CAVILAM_Viaje_linguistico.jpg'">
+                    <span class="gal-cap">CAVILAM · Jul 2025</span>
+                </div>
+                <div class="gal-item sr tall" style="grid-row:span 2">
+                    <img src="cavilam_firma_de_acuerdo.jpg" alt="Acuerdo institucional" loading="lazy" onerror="this.src='CAvilam_firma.jpg'">
+                    <span class="gal-cap">Acuerdo · La Salle × AFSC × CAVILAM</span>
+                </div>
+                <div class="gal-item sr">
+                    <img src="IMG-20251119-WA0065.jpg" alt="Presentación La Salle noviembre 2025" loading="lazy" onerror="this.src='IMG-20251119-WA0062.jpg'">
+                    <span class="gal-cap">Presentación · La Salle · Nov 2025</span>
+                </div>
+                <div class="gal-item sr">
+                    <img src="Con_la_Directora_de_la_Salle.jpg" alt="Con la Directora de La Salle" loading="lazy" onerror="this.src='salle 1.png'">
+                    <span class="gal-cap">Directora La Salle · San Cristóbal</span>
+                </div>
+                <div class="gal-item sr">
+                    <img src="IMG_20250708_120356.jpg" alt="Auvernia 2025" loading="lazy" onerror="this.src='CAVILAM_Viaje_linguistico_v1.jpg'">
+                    <span class="gal-cap">Auvernia · Día 2 · Jul 2025</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ DIRECTOR QUOTE ═══════ -->
+    <section class="section-pad" style="border-top:1px solid rgba(255,255,255,.03)">
+        <div class="container">
+            <div class="glass glass-gold sr" style="max-width:52rem; margin:0 auto; padding:4rem 3.5rem; text-align:center; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; width:100%; height:3px; background:linear-gradient(90deg,var(--blue) 33%,#fff 33%,#fff 66%,#ED2939 66%); border-radius:2px 2px 0 0;"></div>
+                <div style="position:absolute; top:-80px; right:-80px; width:300px; height:300px; background:radial-gradient(ellipse,rgba(201,168,76,.07) 0%,transparent 70%); pointer-events:none;"></div>
+                <svg style="width:3rem; height:3rem; color:rgba(201,168,76,.2); margin:0 auto 1.5rem;" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+                <blockquote style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,3vw,2.2rem); font-weight:300; font-style:italic; color:rgba(255,255,255,.9); line-height:1.5; margin-bottom:2.5rem; position:relative; z-index:1;">
+                    "Nuestra prioridad es la excelencia académica y la seguridad total de cada alumno de La Salle. Este programa representa lo mejor que podemos ofrecerles: el mundo."
+                </blockquote>
+                <div style="width:50px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 2rem;"></div>
+                <div style="display:flex; align-items:center; justify-content:center; gap:1rem; position:relative; z-index:1;">
+                    <div style="width:52px; height:52px; border-radius:50%; overflow:hidden; border:2px solid rgba(201,168,76,.3); flex-shrink:0;">
+                        <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Miguel Tillero Álvarez" style="width:100%; height:100%; object-fit:cover; object-position:top;" onerror="this.src='qr_af_director.png'">
+                    </div>
+                    <div style="text-align:left;">
+                        <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:#fff; font-weight:600;">Miguel Tillero Álvarez</p>
+                        <p style="font-size:.58rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.2rem; font-weight:600;">Director General · Alliance Française San Cristóbal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ COUNTDOWN ═══════ -->
+    <section class="section-pad" style="background:rgba(0,0,0,.2);border-top:1px solid rgba(255,255,255,.03); text-align:center;">
+        <div class="container">
+            <div class="sr" style="margin-bottom:2.5rem">
+                <p class="eyebrow" style="margin-bottom:1rem">El tiempo corre</p>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.8rem); font-weight:300; color:#fff;">La Misión despega en</h2>
+            </div>
+            <div id="cd-wrap" class="sr" style="display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+                <div style="min-width:90px; padding:1.5rem 1rem; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.2); border-radius:1.25rem; text-align:center;">
+                    <p id="cd-d" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:600; color:var(--gold); line-height:1;">--</p>
+                    <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.4rem; font-weight:600;">Días</p>
+                </div>
+                <span style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:rgba(201,168,76,.25); line-height:1; margin-bottom:1.5rem;">:</span>
+                <div style="min-width:90px; padding:1.5rem 1rem; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.2); border-radius:1.25rem; text-align:center;">
+                    <p id="cd-h" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:600; color:var(--gold); line-height:1;">--</p>
+                    <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.4rem; font-weight:600;">Horas</p>
+                </div>
+                <span style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:rgba(201,168,76,.25); line-height:1; margin-bottom:1.5rem;">:</span>
+                <div style="min-width:90px; padding:1.5rem 1rem; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.2); border-radius:1.25rem; text-align:center;">
+                    <p id="cd-m" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:600; color:var(--gold); line-height:1;">--</p>
+                    <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.4rem; font-weight:600;">Min</p>
+                </div>
+                <span style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:rgba(201,168,76,.25); line-height:1; margin-bottom:1.5rem;">:</span>
+                <div style="min-width:90px; padding:1.5rem 1rem; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.2); border-radius:1.25rem; text-align:center;">
+                    <p id="cd-s" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:600; color:var(--gold); line-height:1;">--</p>
+                    <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.4rem; font-weight:600;">Seg</p>
+                </div>
+            </div>
+            <div class="sr"><a href="#registro" class="btn-primary interactive">Asegurar mi lugar →</a></div>
         </div>
     </section>
 
@@ -552,15 +703,12 @@
 
                 <div id="errBox" style="display:none; padding:1.25rem 1.5rem; background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.25); border-radius:1rem; font-size:.82rem; color:rgba(255,150,150,.8);"></div>
 
-                <form id="form-registro"
-                      action="https://formsubmit.co/direccion@afchiapas.com"
-                      method="POST"
-                      class="space-y-6">
-
-                    <input type="hidden" name="_subject" value="Nueva inscripción · Vichy 2026">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="about:blank">
-                    <input type="hidden" name="_template" value="table">
+                <form id="form-registro" class="space-y-6">
+                    <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
+                    <input type="hidden" name="subject" value="🇫🇷 NUEVO EXPEDIENTE: Misión Vichy 2026">
+                    <input type="hidden" name="from_name" value="Portal Vichy 2026">
+                    <input type="hidden" name="redirect" value="false">
+                    <input type="checkbox" name="botcheck" style="display:none">
 
                     <div class="grid-2" style="gap:1.25rem; display:grid; grid-template-columns:repeat(2,1fr);">
                         <div>
@@ -591,10 +739,35 @@
         </div>
     </section>
 
-    <footer style="position:relative; z-index:2; padding:4rem 1.5rem 3rem; border-top:1px solid rgba(255,255,255,.04); text-align:center; background:rgba(0,0,0,.2);">
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold); margin-bottom:.5rem; text-shadow:0 0 20px rgba(201,168,76,.3);">Vichy 2026</div>
-        <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.4em; color:rgba(255,255,255,.2); margin-top:2rem;">Alliance Française de San Cristóbal de Las Casas · 2026<br>Miguel David Tillero Álvarez</p>
+    <footer style="position:relative; z-index:2; padding:4rem 1.5rem 3rem; border-top:1px solid rgba(255,255,255,.04); text-align:center; background:rgba(0,0,0,.25);">
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:1.5rem; margin-bottom:2.5rem;">
+            <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-lasalle.png" style="height:100%; width:auto; object-fit:contain;" alt="La Salle" onerror="this.src='logo_lasalle.png'"></div>
+            <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-af.png" style="height:100%; width:auto; object-fit:contain;" alt="Alliance Française" onerror="this.src='logo_af.png'"></div>
+            <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-cavilam.png" style="height:100%; width:auto; object-fit:contain;" alt="CAVILAM" onerror="this.src='logocavilam2024.png'"></div>
+        </div>
+        <div style="width:60px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 1.5rem;"></div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold); margin-bottom:.75rem; text-shadow:0 0 20px rgba(201,168,76,.3);">Vichy 2026</div>
+        <p style="font-size:.75rem; font-style:italic; color:rgba(255,255,255,.3); font-family:'Cormorant Garamond',serif; margin-bottom:1.5rem;">"No es solo un viaje, es la construcción de una visión global."</p>
+        <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2rem;">
+            <a href="https://wa.me/5219671721870" target="_blank" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">WhatsApp</a>
+            <span style="color:rgba(255,255,255,.1)">·</span>
+            <a href="#registro" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">Registro</a>
+            <span style="color:rgba(255,255,255,.1)">·</span>
+            <a href="#faq" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">FAQ</a>
+        </div>
+        <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.4em; color:rgba(255,255,255,.12);">Alliance Française de San Cristóbal de Las Casas · Chiapas, México · 2026</p>
     </footer>
+
+    <!-- Floating buttons -->
+    <a id="wa-float" href="https://wa.me/5219671721870" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:fixed; bottom:2.5rem; right:5.5rem; z-index:8000; width:50px; height:50px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.35); opacity:0; pointer-events:none; transition:all .4s; cursor:none;">
+        <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+    </a>
+    <button id="btt" aria-label="Volver arriba" style="position:fixed; bottom:2.5rem; right:2.5rem; z-index:8000; width:46px; height:46px; border-radius:50%; background:rgba(6,6,8,.85); border:1px solid rgba(201,168,76,.25); color:var(--gold); display:flex; align-items:center; justify-content:center; backdrop-filter:blur(16px); opacity:0; pointer-events:none; transition:all .4s; cursor:none;">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+    </button>
+    <button id="audio-btn" aria-label="Música" style="position:fixed; bottom:2.5rem; left:2.5rem; z-index:8000; width:46px; height:46px; border-radius:50%; background:rgba(6,6,8,.85); border:1px solid rgba(201,168,76,.25); color:var(--gold); display:flex; align-items:center; justify-content:center; backdrop-filter:blur(16px); opacity:0; pointer-events:none; transition:all .4s; cursor:none;">
+        <span id="audio-icon">♫</span>
+    </button>
 </div><script>
 /* ================================================================
    VICHY 2026 · v4.1 · JavaScript Engine (Auto-Music & Intro Logic)
@@ -739,7 +912,120 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         animate();
     }
-}); 
+
+    /* ── 7. SCROLL: nav + progress bar + floating btns ──────── */
+    const navEl = document.getElementById('main-nav');
+    const btt = document.getElementById('btt');
+    const waf = document.getElementById('wa-float');
+    const pb  = document.getElementById('progress-bar');
+    const audioBtn = document.getElementById('audio-btn');
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (navEl) navEl.classList.toggle('scrolled', y > 80);
+        if (btt)  { btt.style.opacity  = y > 600 ? '1' : '0'; btt.style.pointerEvents  = y > 600 ? 'auto' : 'none'; }
+        if (waf)  { waf.style.opacity  = y > 400 ? '1' : '0'; waf.style.pointerEvents  = y > 400 ? 'auto' : 'none'; }
+        if (audioBtn) { audioBtn.style.opacity = y > 200 ? '1' : '0'; audioBtn.style.pointerEvents = y > 200 ? 'auto' : 'none'; }
+        const dh = document.documentElement.scrollHeight - window.innerHeight;
+        if (pb && dh > 0) pb.style.width = (y / dh * 100) + '%';
+    }, { passive: true });
+    if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ── 8. AUDIO TOGGLE ────────────────────────────────────── */
+    const music = document.getElementById('bg-music');
+    let audioPlaying = false;
+    const startAudio = () => {
+        if (music && music.paused) {
+            music.volume = 0.35;
+            music.play().then(() => { audioPlaying = true; }).catch(() => {});
+        }
+        ['mousemove','scroll','touchstart','click','keydown'].forEach(e => document.removeEventListener(e, startAudio));
+    };
+    ['mousemove','scroll','touchstart','click','keydown'].forEach(e => document.addEventListener(e, startAudio, { once: true }));
+    if (audioBtn && music) audioBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (audioPlaying) { music.pause(); audioBtn.querySelector('#audio-icon').textContent = '♩'; audioPlaying = false; }
+        else { music.play().catch(() => {}); audioBtn.querySelector('#audio-icon').textContent = '♫'; audioPlaying = true; }
+    });
+    document.querySelectorAll('video').forEach(v => {
+        if (v.id !== 'intro-vid' && v.id !== 'hero-video') {
+            v.addEventListener('play',  () => { if (music) music.pause(); });
+            v.addEventListener('pause', () => { if (music && audioPlaying) music.play(); });
+        }
+    });
+
+    /* ── 9. COUNTDOWN → 1 July 2026 ─────────────────────────── */
+    function updateCD() {
+        const diff = new Date('2026-07-01T00:00:00') - new Date();
+        if (diff <= 0) {
+            const w = document.getElementById('cd-wrap');
+            if (w) w.innerHTML = '<p style="font-family:\'Cormorant Garamond\',serif; font-size:2.5rem; color:var(--gold);">¡La Misión ha comenzado! ✈️</p>';
+            return;
+        }
+        const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = String(v).padStart(2, '0'); };
+        set('cd-d', Math.floor(diff / 86400000));
+        set('cd-h', Math.floor((diff % 86400000) / 3600000));
+        set('cd-m', Math.floor((diff % 3600000) / 60000));
+        set('cd-s', Math.floor((diff % 60000) / 1000));
+    }
+    updateCD(); setInterval(updateCD, 1000);
+
+    /* ── 10. ANIMATED COUNTERS ───────────────────────────────── */
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            const target = parseInt(el.dataset.counter);
+            if (!target) return;
+            counterObserver.unobserve(el);
+            let start = 0; const dur = 2000; const step = 16;
+            const timer = setInterval(() => {
+                start += step;
+                el.textContent = Math.round(Math.min(start / dur * target, target));
+                if (start >= dur) { el.textContent = target; clearInterval(timer); }
+            }, step);
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
+
+    /* ── 11. INTRO: skip button & launchNow ─────────────────── */
+    const launchNow = document.getElementById('launchNow');
+    if (launchNow) {
+        launchNow.addEventListener('click', () => {
+            const introScreen = document.getElementById('intro-screen');
+            if (introScreen) { introScreen.style.opacity = '0'; setTimeout(() => { introScreen.style.display = 'none'; }, 800); }
+        });
+    }
+    // Also allow clicking anywhere on intro screen
+    const introScreen2 = document.getElementById('intro-screen');
+    if (introScreen2) introScreen2.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'BUTTON') launchNow && launchNow.click();
+    });
+
+    /* ── 12. FORM → Web3Forms ────────────────────────────────── */
+    const form = document.getElementById('form-registro');
+    if (form) form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = document.getElementById('btn-submit');
+        const txt = document.getElementById('btn-text');
+        const gracias = document.getElementById('gracias');
+        const errBox = document.getElementById('errBox');
+        if (txt) { txt.textContent = 'Enviando...'; }
+        if (btn) btn.disabled = true;
+        try {
+            const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+            const j = await r.json();
+            if (j.success) {
+                form.style.display = 'none';
+                if (gracias) { gracias.style.display = 'block'; gracias.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+            } else throw new Error(j.message || 'Error');
+        } catch (err) {
+            if (errBox) { errBox.style.display = 'block'; errBox.innerHTML = '⚠ Error de conexión. Contáctenos por <a href="https://wa.me/5219671721870" style="color:var(--gold);font-weight:700">WhatsApp</a>'; }
+            if (txt) txt.textContent = 'Enviar Expediente Oficial';
+            if (btn) btn.disabled = false;
+        }
+    });
+
+});
 </script>
 </body>
 </html>
