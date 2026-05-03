@@ -156,6 +156,18 @@
     .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
     @media(max-width:900px) { .grid-2 { grid-template-columns:1fr; } .grid-3 { grid-template-columns:repeat(2,1fr); } }
     @media(max-width:600px) { .grid-3 { grid-template-columns:1fr; } }
+
+    /* Mobile Nav */
+    #hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:.5rem; z-index:9001; }
+    #hamburger span { display:block; width:24px; height:1.5px; background:rgba(255,255,255,.7); transition:all .35s var(--ease-out); border-radius:2px; }
+    #hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    #hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    #hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    #mobile-nav { position:fixed; inset:0; z-index:9000; background:rgba(6,6,8,.97); backdrop-filter:blur(24px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; opacity:0; pointer-events:none; transition:opacity .4s var(--ease-out); }
+    #mobile-nav.open { opacity:1; pointer-events:auto; }
+    #mobile-nav a { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:300; color:rgba(255,255,255,.7); text-decoration:none; transition:color .3s; letter-spacing:.05em; }
+    #mobile-nav a:hover { color:var(--gold); }
+    @media(max-width:768px) { #hamburger { display:flex; } .nav-links { display:none !important; } }
     </style>
 </head>
 <body>
@@ -192,7 +204,21 @@
             <a href="#testimonios" class="interactive">Testimonios</a>
             <a href="#registro" class="btn-primary interactive">Inscripción</a>
         </div>
+        <button id="hamburger" aria-label="Menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <!-- Mobile overlay nav -->
+    <div id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+        <a href="#dossier">Dossier</a>
+        <a href="#convenio">Convenio</a>
+        <a href="#programa">Programa</a>
+        <a href="#galeria">Galería</a>
+        <a href="#precio">Costos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#registro" style="color:var(--gold); font-weight:600;">Inscripción →</a>
+    </div>
 
     <section id="hero" style="position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
         <video id="hero-video" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.35; z-index:1;" playsinline autoplay muted loop>
@@ -660,27 +686,79 @@
                 <div class="divider"></div>
             </div>
             <div id="faq-list" class="sr">
-                <div style="border-bottom: 1px solid rgba(255,255,255,.05);" class="faq-item">
-                    <button class="faq-q interactive" style="width: 100%; background: none; border: none; padding: 1.6rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left;">
-                        <span style="font-size: .9rem; color: rgba(255,255,255,.8); font-weight: 400; font-family:'DM Sans',sans-serif;">¿Cuándo son las fechas exactas del viaje?</span>
-                        <span class="faq-icon" style="width:28px; height:28px; border:1px solid rgba(255,255,255,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.7rem; color:rgba(255,255,255,.4); transition:all .4s var(--ease-out);">+</span>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿Cuándo son las fechas exactas del viaje?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
                     </button>
-                    <div class="faq-a" style="max-height: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; opacity:0;"><p style="font-size: .85rem; color: rgba(255,255,255,.45); font-weight:300; line-height:1.75; padding-bottom: 1.5rem;">Las fechas definitivas se confirmarán con los grupos inscritos. El programa tiene una duración de <strong>18 días</strong> y está planeado para el verano 2026. Al registrar su interés, recibirá la comunicación oficial con el calendario completo.</p></div>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">Las fechas definitivas se confirmarán con los grupos inscritos. El programa tiene una duración de <strong>18 días</strong> y está planeado para el verano 2026. Al registrar su interés recibirá la comunicación oficial con el calendario completo.</p></div>
                 </div>
-                <div style="border-bottom: 1px solid rgba(255,255,255,.05);" class="faq-item">
-                    <button class="faq-q interactive" style="width: 100%; background: none; border: none; padding: 1.6rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left;">
-                        <span style="font-size: .9rem; color: rgba(255,255,255,.8); font-weight: 400; font-family:'DM Sans',sans-serif;">¿Qué incluye la certificación CAVILAM?</span>
-                        <span class="faq-icon" style="width:28px; height:28px; border:1px solid rgba(255,255,255,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.7rem; color:rgba(255,255,255,.4); transition:all .4s var(--ease-out);">+</span>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿Qué incluye la certificación CAVILAM?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
                     </button>
-                    <div class="faq-a" style="max-height: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; opacity:0;"><p style="font-size: .85rem; color: rgba(255,255,255,.45); font-weight:300; line-height:1.75; padding-bottom: 1.5rem;">CAVILAM es un instituto reconocido internacionalmente, acreditado por el Ministerio de Educación francés. La certificación avala el nivel lingüístico alcanzado y tiene validez académica internacional.</p></div>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">CAVILAM es un centro de referencia mundial acreditado por el Ministerio de Educación francés. La certificación avala el nivel lingüístico alcanzado y tiene validez académica internacional, incluyendo reconocimiento para portfolios universitarios.</p></div>
                 </div>
-                <div style="border-bottom: 1px solid rgba(255,255,255,.05);" class="faq-item">
-                    <button class="faq-q interactive" style="width: 100%; background: none; border: none; padding: 1.6rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left;">
-                        <span style="font-size: .9rem; color: rgba(255,255,255,.8); font-weight: 400; font-family:'DM Sans',sans-serif;">¿Cómo se maneja el costo del avión?</span>
-                        <span class="faq-icon" style="width:28px; height:28px; border:1px solid rgba(255,255,255,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.7rem; color:rgba(255,255,255,.4); transition:all .4s var(--ease-out);">+</span>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿Cómo se garantiza la seguridad de los estudiantes?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
                     </button>
-                    <div class="faq-a" style="max-height: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; opacity:0;"><p style="font-size: .85rem; color: rgba(255,255,255,.45); font-weight:300; line-height:1.75; padding-bottom: 1.5rem;">Los boletos aéreos se gestionan de forma independiente al costo del programa. La institución orientará a las familias, pero el costo no está incluido en los ~€3,500.</p></div>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">Los estudiantes viajan acompañados en todo momento por un responsable pedagógico designado por La Salle. El alojamiento (familias anfitrionas o residencias) es verificado y certificado por CAVILAM. Contamos con protocolo de emergencia, seguro de viaje y comunicación diaria con los tutores.</p></div>
                 </div>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿Cuáles son los requisitos para participar?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
+                    </button>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">Ser alumno inscrito en el Colegio La Salle de San Cristóbal de Las Casas, contar con pasaporte vigente, tener entre 12 y 18 años y presentar autorización firmada por tutor. No se requiere nivel previo de francés — el programa adapta el grupo por nivel.</p></div>
+                </div>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿Se necesita visa para viajar a Francia?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
+                    </button>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">Sí. Los ciudadanos mexicanos requieren visa Schengen para ingresar a Francia. La Alliance Française orienta a las familias en el proceso de solicitud, que debe iniciarse con mínimo 3 meses de anticipación. El programa incluye carta de invitación oficial de CAVILAM para facilitar el trámite.</p></div>
+                </div>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿Cómo se maneja el costo del avión?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
+                    </button>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">Los boletos aéreos México – Francia – México se gestionan de manera independiente al costo del programa. La institución orienta a las familias en la compra grupal para obtener mejores tarifas, pero no está incluido en los ~€3,500 del programa.</p></div>
+                </div>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿Cuántos lugares hay disponibles?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
+                    </button>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">El programa tiene cupo <strong>limitado a 18 estudiantes</strong> para garantizar la atención personalizada en CAVILAM y la disponibilidad de alojamiento en familia anfitriona. Los lugares se asignan en orden de registro y perfil académico.</p></div>
+                </div>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿Hay plan de pagos o mensualidades?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
+                    </button>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">Sí. La dirección del programa trabaja con un plan de pagos flexible para las familias inscritas. Al registrar su interés se le compartirán los esquemas de apartado, parcialidades y fechas límite de pago. Contáctenos por WhatsApp para más detalles.</p></div>
+                </div>
+
+                <div style="border-bottom:1px solid rgba(255,255,255,.05)" class="faq-item">
+                    <button class="faq-q interactive" style="width:100%;background:none;border:none;padding:1.6rem 0;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;text-align:left;">
+                        <span style="font-size:.9rem;color:rgba(255,255,255,.8);font-weight:400;font-family:'DM Sans',sans-serif;">¿En qué idioma se imparten las clases en CAVILAM?</span>
+                        <span class="faq-icon" style="width:28px;height:28px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;color:rgba(255,255,255,.4);transition:all .4s var(--ease-out)">+</span>
+                    </button>
+                    <div class="faq-a" style="max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s;opacity:0"><p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;padding-bottom:1.5rem">Las clases se imparten íntegramente en francés por docentes nativos certificados. La metodología CAVILAM está diseñada para lograr inmersión total incluso con estudiantes de nivel básico. Los profesores conocen la dinámica con grupos latinoamericanos y garantizan una progresión acelerada.</p></div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -731,6 +809,19 @@
                         </div>
                     </div>
 
+                    <div style="margin-top:1.5rem">
+                        <label style="display:block;font-size:.58rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.35);margin-bottom:.6rem;margin-left:.3rem;font-weight:600;" for="grado">Grado o nivel del estudiante *</label>
+                        <select id="grado" name="Grado_Nivel" required style="width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.07);border-radius:1rem;padding:1.1rem 1.4rem;color:#fff;font-family:'DM Sans',sans-serif;font-size:.87rem;appearance:none;-webkit-appearance:none;cursor:pointer;" class="interactive">
+                            <option value="" disabled selected style="color:rgba(255,255,255,.2)">Seleccionar nivel...</option>
+                            <option value="1ro Secundaria" style="background:#111">1° Secundaria</option>
+                            <option value="2do Secundaria" style="background:#111">2° Secundaria</option>
+                            <option value="3ro Secundaria" style="background:#111">3° Secundaria</option>
+                            <option value="1ro Preparatoria" style="background:#111">1° Preparatoria</option>
+                            <option value="2do Preparatoria" style="background:#111">2° Preparatoria</option>
+                            <option value="3ro Preparatoria" style="background:#111">3° Preparatoria</option>
+                        </select>
+                    </div>
+
                     <button type="submit" id="btn-submit" class="interactive" style="width:100%; padding:1.3rem; font-size:.7rem; border-radius:1.1rem; background:linear-gradient(135deg, var(--gold-lt), var(--gold-dk)); color:var(--ink); font-weight:600; text-transform:uppercase; letter-spacing:.25em; border:none; cursor:pointer; margin-top: 1.5rem;">
                         <span id="btn-text">Enviar Expediente Oficial</span>
                     </button>
@@ -774,6 +865,8 @@
 ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
+    let audioPlaying = false; // shared audio state
+
     /* ── 1. INTRO / VIDEO ──────────────────────────────────────── */
     const introVid    = document.getElementById('intro-vid');
     const introScreen = document.getElementById('intro-screen');
@@ -804,29 +897,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const music = document.getElementById('bg-music');
     if (music) {
         music.volume = 0.35;
-        
-        // El truco de inyección: en cuanto el usuario haga algo, la música suena.
         const startAudio = () => {
             if (music.paused) {
-                music.play().catch(e => console.log("Esperando..."));
+                music.play().then(() => { audioPlaying = true; }).catch(() => {});
             }
-            // Limpiamos los listeners para que no sigan intentando iniciar la música
             ['mousemove', 'scroll', 'touchstart', 'click', 'keydown'].forEach(evt => {
                 document.removeEventListener(evt, startAudio);
             });
         };
-
-        // Escuchadores fantasmas
         ['mousemove', 'scroll', 'touchstart', 'click', 'keydown'].forEach(evt => {
             document.addEventListener(evt, startAudio, { once: true });
-        });
-
-        // Auto-Pausa cuando se ven los testimonios
-        document.querySelectorAll('video').forEach(v => {
-            if(v.id !== 'intro-vid' && v.id !== 'hero-video') {
-                v.addEventListener('play', () => { if(music) music.pause(); });
-                v.addEventListener('pause', () => { if(music) music.play(); });
-            }
         });
     }
 
@@ -841,6 +921,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { threshold: 0.12 });
         document.querySelectorAll('.sr').forEach(el => io.observe(el));
+    }
+
+    /* ── 4A. HAMBURGER MOBILE NAV ───────────────────────────── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+        mobileNav.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
     }
 
     /* ── 4. TABS ─────────────────────────────────────────────── */
@@ -930,22 +1030,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
     if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    /* ── 8. AUDIO TOGGLE ────────────────────────────────────── */
-    const music = document.getElementById('bg-music');
-    let audioPlaying = false;
-    const startAudio = () => {
-        if (music && music.paused) {
-            music.volume = 0.35;
-            music.play().then(() => { audioPlaying = true; }).catch(() => {});
-        }
-        ['mousemove','scroll','touchstart','click','keydown'].forEach(e => document.removeEventListener(e, startAudio));
-    };
-    ['mousemove','scroll','touchstart','click','keydown'].forEach(e => document.addEventListener(e, startAudio, { once: true }));
-    if (audioBtn && music) audioBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        if (audioPlaying) { music.pause(); audioBtn.querySelector('#audio-icon').textContent = '♩'; audioPlaying = false; }
-        else { music.play().catch(() => {}); audioBtn.querySelector('#audio-icon').textContent = '♫'; audioPlaying = true; }
-    });
+    /* ── 8. AUDIO TOGGLE BUTTON ─────────────────────────────── */
+    const audioIcon = document.getElementById('audio-icon');
+    if (audioBtn && music) {
+        audioBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            if (audioPlaying) {
+                music.pause(); if (audioIcon) audioIcon.textContent = '♩'; audioPlaying = false;
+            } else {
+                music.play().catch(() => {}); if (audioIcon) audioIcon.textContent = '♫'; audioPlaying = true;
+            }
+        });
+    }
     document.querySelectorAll('video').forEach(v => {
         if (v.id !== 'intro-vid' && v.id !== 'hero-video') {
             v.addEventListener('play',  () => { if (music) music.pause(); });
@@ -987,18 +1083,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
 
-    /* ── 11. INTRO: skip button & launchNow ─────────────────── */
+    /* ── 11. INTRO: skip button & click-to-skip ─────────────── */
     const launchNow = document.getElementById('launchNow');
-    if (launchNow) {
-        launchNow.addEventListener('click', () => {
-            const introScreen = document.getElementById('intro-screen');
-            if (introScreen) { introScreen.style.opacity = '0'; setTimeout(() => { introScreen.style.display = 'none'; }, 800); }
-        });
-    }
-    // Also allow clicking anywhere on intro screen
-    const introScreen2 = document.getElementById('intro-screen');
-    if (introScreen2) introScreen2.addEventListener('click', (e) => {
-        if (e.target.tagName !== 'BUTTON') launchNow && launchNow.click();
+    if (launchNow) launchNow.addEventListener('click', launchSite);
+    if (introScreen) introScreen.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'BUTTON') launchSite();
     });
 
     /* ── 12. FORM → Web3Forms ────────────────────────────────── */
