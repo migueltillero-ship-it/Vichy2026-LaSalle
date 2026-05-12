@@ -168,6 +168,79 @@
     #mobile-nav a { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:300; color:rgba(255,255,255,.7); text-decoration:none; transition:color .3s; letter-spacing:.05em; }
     #mobile-nav a:hover { color:var(--gold); }
     @media(max-width:768px) { #hamburger { display:flex; } .nav-links { display:none !important; } }
+
+    /* ============================
+       SCROLLBAR & SELECTION
+    ============================ */
+    ::selection { background: var(--gold); color: #000; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    /* ============================
+       URGENCY MARQUEE BAR
+    ============================ */
+    .urgency-bar { background: linear-gradient(90deg, rgba(201,168,76,.04), rgba(201,168,76,.14), rgba(201,168,76,.04)); border-top: 1px solid rgba(201,168,76,.22); border-bottom: 1px solid rgba(201,168,76,.22); padding: .75rem 0; overflow: hidden; position: relative; z-index: 2; }
+    .urgency-scroll { display: inline-flex; gap: 5rem; white-space: nowrap; animation: marquee-x 38s linear infinite; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .25em; color: var(--gold); }
+    @keyframes marquee-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ============================
+       EDITORIAL QUOTE
+    ============================ */
+    .editorial-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 4vw, 3rem); font-weight: 300; font-style: italic; line-height: 1.45; color: rgba(255,255,255,.88); }
+    .tricolor-bar { height: 2.5px; background: linear-gradient(90deg, #002395 33.33%, #fff 33.33% 66.66%, #ED2939 66.66%); border-radius: 2px; width: 60px; }
+
+    /* ============================
+       CITY TAGS
+    ============================ */
+    .city-tag { display: inline-flex; align-items: center; gap: 5px; padding: 5px 14px; border-radius: 100px; background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.22); font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--gold); }
+
+    /* ============================
+       QR CARDS (white, light bg)
+    ============================ */
+    .qr-card { background: #fff; border-radius: 2rem; padding: 2.5rem; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,.1); border: 1px solid #f1f5f9; display: flex; flex-direction: column; align-items: center; gap: .75rem; transition: transform .4s var(--ease-out); }
+    .qr-card:hover { transform: translateY(-8px); }
+    .qr-box { width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 1.25rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(0,0,0,.07); overflow: hidden; margin-bottom: 1rem; transition: transform .4s ease; }
+    .qr-card:hover .qr-box { transform: scale(1.05); border-color: var(--gold); }
+    .qr-box img { width: 130px; height: 130px; object-fit: contain; }
+
+    /* ============================
+       BIENESTAR FEATURE CARDS
+    ============================ */
+    .feat-card { background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.07); backdrop-filter: blur(12px); border-radius: 1.75rem; padding: 2.5rem; text-align: center; transition: all .4s var(--ease-out); }
+    .feat-card:hover { background: rgba(255,255,255,.05); transform: translateY(-6px); }
+
+    /* ============================
+       CTA SECTION
+    ============================ */
+    .cta-section { padding: 7rem 0; text-align: center; background: rgba(0,0,0,.08); border-top: 1px solid rgba(255,255,255,.03); position: relative; z-index: 2; }
+
+    /* ============================
+       REGINA TESTIMONIO
+    ============================ */
+    @media(max-width:768px) {
+        .regina-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* ============================
+       FORM (cream / light bg)
+    ============================ */
+    .bg-cream { background: #FAF8F3; color: #060608; }
+
+    /* Mobile responsive extras */
+    @media(max-width:700px) {
+        .dir-grid { grid-template-columns: 1fr !important; }
+        .stats-4-grid { grid-template-columns: repeat(2,1fr) !important; }
+        .form-grid-2 { grid-template-columns: 1fr !important; }
+    }
+
+    .ff-light { width: 100%; background: #fff !important; color: #1a1a1a !important; border: 1.5px solid #e2e8f0 !important; border-radius: 1rem; padding: 1.15rem 1.4rem; font-family: 'DM Sans', sans-serif; font-size: .9rem; transition: all .3s ease; }
+    .ff-light:focus { outline: none; border-color: var(--gold) !important; box-shadow: 0 0 0 4px rgba(201,168,76,.12); transform: translateY(-1px); }
+    .ff-light::placeholder { color: #94a3b8; }
+    .form-label-light { display: block; font-size: .58rem; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; color: #64748b; margin-bottom: .55rem; margin-left: .2rem; }
+    .fieldset-box { background: #f8fafc; padding: 2rem; border-radius: 1.5rem; border: 1px solid #e9eef5; margin-bottom: 1.75rem; }
+    .fieldset-legend { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .3em; color: #002395; background: #e8edf8; padding: .4rem 1rem; border-radius: 100px; display: inline-block; margin-bottom: 1.5rem; }
     </style>
 </head>
 <body>
@@ -250,6 +323,24 @@
             </div>
         </div>
     </section>
+
+    <!-- ═══ URGENCY MARQUEE ═══ -->
+    <div class="urgency-bar" aria-hidden="true">
+        <span class="urgency-scroll">
+            <span>✦ Cupos Limitados</span>
+            <span>✦ Inmersión Total en Francia</span>
+            <span>✦ Certificación CAVILAM Internacional</span>
+            <span>✦ Disneyland® París Incluido</span>
+            <span>✦ Fechas por Confirmar</span>
+            <span>✦ 18 Días · 5 Ciudades · 60 Horas de Academia</span>
+            <span>✦ Cupos Limitados</span>
+            <span>✦ Inmersión Total en Francia</span>
+            <span>✦ Certificación CAVILAM Internacional</span>
+            <span>✦ Disneyland® París Incluido</span>
+            <span>✦ Fechas por Confirmar</span>
+            <span>✦ 18 Días · 5 Ciudades · 60 Horas de Academia</span>
+        </span>
+    </div>
 
     <section id="dossier" class="section-pad">
         <div class="container">
@@ -347,6 +438,17 @@
                 <p class="eyebrow" style="margin-bottom:1rem">Estructura del Programa</p>
                 <h2 class="section-title">El Itinerario <em style="color:var(--gold);font-style:italic">Lingüístico</em></h2>
                 <div class="divider"></div>
+            </div>
+
+            <!-- City Tags -->
+            <div class="sr" style="display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; margin-bottom:2.5rem;">
+                <span class="city-tag">✦ Vichy</span>
+                <span class="city-tag">✦ París</span>
+                <span class="city-tag">✦ Lyon</span>
+                <span class="city-tag">✦ Puy de Dôme</span>
+                <span class="city-tag">✦ Clermont-Ferrand</span>
+                <span class="city-tag">✦ Charroux</span>
+                <span class="city-tag">✦ Disneyland® Paris</span>
             </div>
 
             <div class="tab-nav sr">
@@ -506,25 +608,97 @@
                     </div>
                 </article>
             </div>
+
+            <!-- Bienestar Feature Cards -->
+            <div class="grid-3 sr" style="max-width:60rem; margin:3rem auto 0; gap:1.5rem;">
+                <div class="feat-card">
+                    <div style="width:64px; height:64px; margin:0 auto 1.25rem; background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.25); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏡</div>
+                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.6rem;">Alojamiento Premium</h4>
+                    <p style="font-size:.82rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.65;">Habitación privada en familia certificada. Media pensión con comidas tradicionales incluidas.</p>
+                </div>
+                <div class="feat-card">
+                    <div style="width:64px; height:64px; margin:0 auto 1.25rem; background:rgba(0,35,149,.1); border:1px solid rgba(0,35,149,.3); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🚌</div>
+                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.6rem;">Logística & Traslados</h4>
+                    <p style="font-size:.82rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.65;">Autobuses privados para excursiones, transfers aeropuerto y billetes TGV incluidos.</p>
+                </div>
+                <div class="feat-card">
+                    <div style="width:64px; height:64px; margin:0 auto 1.25rem; background:rgba(237,41,57,.07); border:1px solid rgba(237,41,57,.25); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏥</div>
+                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.6rem;">Seguridad Médica</h4>
+                    <p style="font-size:.82rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.65;">Póliza médica internacional desde el primer día. Acompañamiento institucional 24/7.</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- ═══════ TESTIMONIO REGINA ═══════ -->
+    <section class="section-pad" style="background:rgba(0,0,0,.2); border-top:1px solid rgba(255,255,255,.03); border-bottom:1px solid rgba(255,255,255,.03);">
+        <div class="container">
+            <div class="regina-grid" style="max-width:72rem; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+                <div class="sr" style="position:relative;">
+                    <div style="position:absolute; inset:-2rem; background:rgba(201,168,76,.15); border-radius:50%; filter:blur(80px); pointer-events:none; z-index:0;"></div>
+                    <div style="position:relative; z-index:1; width:100%; aspect-ratio:16/9; background:#000; border-radius:2rem; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.7); border:1px solid rgba(201,168,76,.25);">
+                        <video controls playsinline preload="metadata" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain;">
+                            <source src="video_regina.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="sr">
+                    <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
+                        <div style="width:2.5rem; height:2px; background:var(--gold);"></div>
+                        <span style="font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.35em; color:var(--gold);">Voz de la Experiencia</span>
+                    </div>
+                    <blockquote>
+                        <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:300; color:#fff; line-height:1.2; margin-bottom:1.5rem;">
+                            "Una experiencia invaluable que<br><em style="color:var(--gold); font-style:italic;">transformó mi vida por completo"</em>
+                        </p>
+                        <p style="font-size:.9rem; color:rgba(255,255,255,.55); font-weight:300; line-height:1.75; border-left:3px solid var(--gold); padding-left:1.5rem; margin-bottom:2rem; font-style:italic;">
+                            No solo perfeccioné mi francés a niveles que no imaginaba; regresé siendo una persona completamente distinta, con una visión del mundo más amplia y amigos internacionales de por vida.
+                        </p>
+                        <footer>
+                            <cite style="font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); font-style:normal; display:flex; align-items:center; gap:.75rem;">
+                                <span style="width:32px; height:32px; border-radius:50%; background:rgba(201,168,76,.15); border:1px solid rgba(201,168,76,.4); display:flex; align-items:center; justify-content:center; color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:1rem;">R</span>
+                                Regina · Alumna del Programa CAVILAM
+                            </cite>
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ═══════ STATS ═══════ -->
     <section class="section-pad" style="border-top:1px solid rgba(255,255,255,.03)">
         <div class="container">
-            <div class="grid-3 sr" style="max-width:60rem; margin:0 auto; text-align:center; gap:2rem">
+            <div class="stats-4-grid sr" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; max-width:72rem; margin:0 auto; text-align:center;">
                 <div style="padding:2.5rem 1.5rem; background:rgba(201,168,76,.04); border:1px solid rgba(201,168,76,.12); border-radius:1.5rem;">
-                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,8vw,5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="18">0</div>
+                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="18">0</div>
                     <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Días en Francia</p>
                 </div>
                 <div style="padding:2.5rem 1.5rem; background:rgba(0,35,149,.06); border:1px solid rgba(0,35,149,.2); border-radius:1.5rem;">
-                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,8vw,5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="60">0</div>
+                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="60">0</div>
                     <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Horas de Francés</p>
                 </div>
                 <div style="padding:2.5rem 1.5rem; background:rgba(201,168,76,.04); border:1px solid rgba(201,168,76,.12); border-radius:1.5rem;">
-                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,8vw,5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="5">0</div>
+                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="5">0</div>
                     <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Ciudades Visitadas</p>
                 </div>
+                <div style="padding:2.5rem 1.5rem; background:rgba(0,35,149,.06); border:1px solid rgba(0,35,149,.2); border-radius:1.5rem;">
+                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;">100<span style="font-size:.45em; vertical-align:super;">%</span></div>
+                    <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Inmersión Cultural</p>
+                </div>
+            </div>
+            <style>@media(max-width:700px){.stats-4{grid-template-columns:repeat(2,1fr)!important}}</style>
+        </div>
+    </section>
+
+    <!-- ═══════ EDITORIAL QUOTE ═══════ -->
+    <section class="section-pad" style="border-top:1px solid rgba(255,255,255,.03); text-align:center;">
+        <div class="container">
+            <div class="sr">
+                <div class="tricolor-bar" style="margin:0 auto 3rem;"></div>
+                <p class="editorial-quote" style="max-width:54rem; margin:0 auto 2.5rem;">
+                    "Imagina despertar cada día en el corazón de Francia, estudiar en la institución lingüística más prestigiosa de Europa y explorar París como si siempre fuera tu ciudad."
+                </p>
+                <div class="divider"></div>
             </div>
         </div>
     </section>
@@ -779,144 +953,208 @@
     </section>
 
     <!-- ═══════ DIRECTORIO ═══════ -->
-    <section id="directorio" class="section-pad" style="background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.03)">
+    <section id="directorio" class="section-pad bg-cream" style="position:relative; z-index:2;">
         <div class="container">
             <div class="section-header sr">
-                <p class="eyebrow" style="margin-bottom:1rem">Contacto directo</p>
-                <h2 class="section-title">Equipo <em style="color:var(--gold);font-style:italic">Organizador</em></h2>
-                <div class="divider"></div>
+                <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.45em; color:#002395; font-weight:700; margin-bottom:1rem;">Contacto Directo</p>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,4.5rem); font-weight:300; line-height:1.05; color:#002395;">Directorio <em style="color:var(--gold);font-style:italic">Institucional</em></h2>
+                <p style="margin-top:1rem; font-size:.82rem; color:rgba(7,7,10,.45); font-weight:300;">Para consultas urgentes, comuníquese directamente.</p>
+                <div style="width:60px; height:1.5px; background:linear-gradient(90deg,var(--gold),transparent); margin:1.5rem auto 0;"></div>
             </div>
-            <div class="grid-3 sr" style="max-width:64rem;margin:0 auto;gap:1.5rem">
+            <div class="dir-grid sr" style="display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; max-width:52rem; margin:0 auto;">
 
                 <!-- Miguel Tillero -->
-                <article class="glass glass-gold" style="padding:2.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem">
-                    <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:2px solid rgba(201,168,76,.35);flex-shrink:0">
-                        <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Miguel Tillero" style="width:100%;height:100%;object-fit:cover;object-position:top" onerror="this.src='qr_af_director.png';this.style.objectFit='contain';this.style.padding='.5rem'">
+                <article class="qr-card">
+                    <div class="qr-box">
+                        <img src="Sin título.png" alt="QR WhatsApp Miguel Tillero" onerror="this.src='qr_af_director.png'; this.onerror=function(){this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5219671721870&color=002395&bgcolor=ffffff';}">
                     </div>
-                    <div>
-                        <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;margin-bottom:.2rem">Miguel Tillero Álvarez</p>
-                        <p style="font-size:.55rem;text-transform:uppercase;letter-spacing:.25em;color:var(--gold);font-weight:600">Director General · AFSC</p>
-                    </div>
-                    <img src="qr_af_director.png" alt="QR Miguel Tillero" style="width:110px;height:110px;object-fit:contain;border-radius:.75rem;background:#fff;padding:.4rem" onerror="this.style.display='none'">
-                    <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" style="font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(37,211,102,.85);text-decoration:none;border:1px solid rgba(37,211,102,.3);border-radius:100px;padding:.5rem 1.2rem;transition:all .3s" onmouseover="this.style.background='rgba(37,211,102,.08)'" onmouseout="this.style.background='transparent'">WhatsApp →</a>
+                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:#002395;">Miguel Tillero A.</h4>
+                    <p style="font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.25em; color:#94a3b8; background:#f1f5f9; padding:.3rem .9rem; border-radius:100px;">Director General · AFSC</p>
+                    <a href="tel:+5219671721870" style="font-size:1.15rem; font-weight:700; color:#060608; text-decoration:none; margin-top:.5rem; display:block; transition:color .3s;" onmouseover="this.style.color='#002395'" onmouseout="this.style.color='#060608'">+52 1 967 172 1870</a>
+                    <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:.5rem; margin-top:.75rem; padding:.6rem 1.5rem; background:#25D366; color:#fff; border-radius:100px; font-size:.65rem; font-weight:700; text-decoration:none; transition:background .3s;" onmouseover="this.style.background='#128C7E'" onmouseout="this.style.background='#25D366'">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+                        Mensaje Oficial AFSC
+                    </a>
                 </article>
 
                 <!-- Román Fuentes -->
-                <article class="glass" style="padding:2.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem">
-                    <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.12);flex-shrink:0">
-                        <img src="Román_Fuentes-1024.jpeg" alt="Román Fuentes" style="width:100%;height:100%;object-fit:cover;object-position:top" onerror="this.src='placeholder-user.jpg'">
+                <article class="qr-card">
+                    <div class="qr-box">
+                        <img src="unnamed_002.png" alt="QR WhatsApp Román Fuentes" onerror="this.src='qr_roman_fuentes.png'; this.onerror=function(){this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5214731219337&color=002395&bgcolor=ffffff';}">
                     </div>
-                    <div>
-                        <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;margin-bottom:.2rem">Román Fuentes</p>
-                        <p style="font-size:.55rem;text-transform:uppercase;letter-spacing:.25em;color:var(--gold);font-weight:600">Coordinador Académico · AFSC</p>
-                    </div>
-                    <img src="qr_roman_fuentes.png" alt="QR Román Fuentes" style="width:110px;height:110px;object-fit:contain;border-radius:.75rem;background:#fff;padding:.4rem" onerror="this.src='qr_roman.png';this.onerror=function(){this.style.display='none'}">
-                    <a href="https://wa.me/5219671003340" target="_blank" rel="noopener" style="font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(37,211,102,.85);text-decoration:none;border:1px solid rgba(37,211,102,.3);border-radius:100px;padding:.5rem 1.2rem;transition:all .3s" onmouseover="this.style.background='rgba(37,211,102,.08)'" onmouseout="this.style.background='transparent'">WhatsApp →</a>
-                </article>
-
-                <!-- Colegio La Salle -->
-                <article class="glass" style="padding:2.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem">
-                    <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.12);background:#fff;flex-shrink:0;padding:.5rem">
-                        <img src="logo-lasalle.png" alt="La Salle" style="width:100%;height:100%;object-fit:contain" onerror="this.src='logo_lasalle.png'">
-                    </div>
-                    <div>
-                        <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;margin-bottom:.2rem">Colegio La Salle</p>
-                        <p style="font-size:.55rem;text-transform:uppercase;letter-spacing:.25em;color:var(--gold);font-weight:600">Institución Anfitriona · San Cristóbal</p>
-                    </div>
-                    <div style="width:110px;height:110px;border-radius:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center">
-                        <img src="logo_centro_LaSalle_x10.png" alt="La Salle" style="width:90%;height:90%;object-fit:contain" onerror="this.src='logo_lasalle.png'">
-                    </div>
-                    <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" style="font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(37,211,102,.85);text-decoration:none;border:1px solid rgba(37,211,102,.3);border-radius:100px;padding:.5rem 1.2rem;transition:all .3s" onmouseover="this.style.background='rgba(37,211,102,.08)'" onmouseout="this.style.background='transparent'">Contactar →</a>
+                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:#002395;">Román Fuentes</h4>
+                    <p style="font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.25em; color:#94a3b8; background:#f1f5f9; padding:.3rem .9rem; border-radius:100px;">Responsable · Colegio La Salle</p>
+                    <a href="tel:+5214731219337" style="font-size:1.15rem; font-weight:700; color:#060608; text-decoration:none; margin-top:.5rem; display:block; transition:color .3s;" onmouseover="this.style.color='#002395'" onmouseout="this.style.color='#060608'">+52 1 473 121 9337</a>
+                    <a href="https://wa.me/5214731219337" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:.5rem; margin-top:.75rem; padding:.6rem 1.5rem; background:#25D366; color:#fff; border-radius:100px; font-size:.65rem; font-weight:700; text-decoration:none; transition:background .3s;" onmouseover="this.style.background='#128C7E'" onmouseout="this.style.background='#25D366'">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+                        Mensaje a La Salle
+                    </a>
                 </article>
 
             </div>
         </div>
     </section>
 
-    <section id="registro" class="section-pad" style="background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.03)">
-        <div class="container" style="max-width:46rem">
+    <!-- ═══════ CTA ═══════ -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="sr">
+                <div class="tricolor-bar" style="margin:0 auto 3rem; opacity:.7;"></div>
+                <p class="lux" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:300; color:rgba(255,255,255,.9); font-style:italic; line-height:1.25; max-width:44rem; margin:0 auto 3rem;">
+                    Las plazas son estrictamente limitadas.<br>
+                    <em style="color:var(--gold);">¿Será este el año que decidas cambiar tu futuro?</em>
+                </p>
+                <a href="#registro" class="btn-primary interactive" style="font-size:.75rem; padding:1.4rem 3.5rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:1.3rem; letter-spacing:.05em;">
+                    Asegurar mi Lugar Hoy
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="registro" class="section-pad bg-cream" style="position:relative; z-index:2;">
+        <div class="container" style="max-width:52rem">
             <div class="section-header sr">
-                <p class="eyebrow" style="margin-bottom:1rem">Postulación de expediente</p>
-                <h2 class="section-title">Registro de <em style="color:var(--gold);font-style:italic">Interés</em></h2>
-                <p style="margin-top:1.25rem;font-size:.9rem;color:rgba(255,255,255,.4);font-weight:300;line-height:1.75">La dirección evaluará su perfil para la asignación de plazas. Los lugares son limitados.</p>
-                <div class="divider"></div>
+                <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.45em; color:#002395; font-weight:700; margin-bottom:1rem;">Postulación Oficial</p>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,4.5rem); font-weight:300; line-height:1.05; color:#002395;">Registro de <em style="color:var(--gold);font-style:italic">Interés</em></h2>
+                <p style="margin-top:1.25rem;font-size:.9rem;color:rgba(7,7,10,.5);font-weight:300;line-height:1.75; max-width:34rem; margin-left:auto; margin-right:auto;">Complete el formulario con absoluta precisión. La Dirección Académica confirmará la disponibilidad de su plaza a la brevedad.</p>
+                <div style="width:60px; height:1.5px; background:linear-gradient(90deg,var(--gold),transparent); margin:1.5rem auto 0;"></div>
             </div>
 
-            <div class="glass glass-gold sr" style="padding:3rem 2.5rem">
-                <div id="gracias" style="display:none; padding:2.5rem; background:rgba(16,185,129,.06); border:1px solid rgba(16,185,129,.25); border-radius:1.25rem; text-align:center;">
-                    <div style="font-size:2.5rem;margin-bottom:1rem">🎉</div>
-                    <p class="lux" style="font-size:1.8rem;color:#34d399;margin-bottom:.5rem">¡Expediente registrado!</p>
-                    <p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300">Sus datos han sido enviados correctamente. La dirección se pondrá en contacto a la brevedad.</p>
+            <div class="sr" style="background:#fff; padding:2.5rem; border-radius:3rem; border:1px solid #e2e8f0; box-shadow:0 25px 60px rgba(0,0,0,.08); position:relative; overflow:hidden;">
+
+                <div id="gracias" style="display:none; padding:2.5rem; background:#f0fdf4; border:1.5px solid #86efac; border-radius:1.5rem; text-align:center;">
+                    <div style="width:64px; height:64px; background:#dcfce7; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem;">
+                        <svg style="width:32px;height:32px;color:#16a34a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <p style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:#14532d; font-weight:700; margin-bottom:.5rem;">¡Solicitud Recibida!</p>
+                    <p style="font-size:.9rem; color:#166534; font-weight:500;">La Dirección de la Alliance Française ha registrado exitosamente el perfil del estudiante.</p>
+                    <div style="width:64px; height:1px; background:#86efac; margin:1.25rem auto;"></div>
+                    <p style="font-size:.82rem; color:#15803d;">Un coordinador se comunicará a su WhatsApp o correo para continuar con los trámites. Agradecemos su confianza.</p>
                 </div>
 
-                <div id="errBox" style="display:none; padding:1.25rem 1.5rem; background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.25); border-radius:1rem; font-size:.82rem; color:rgba(255,150,150,.8);"></div>
+                <div id="errBox" style="display:none; padding:1.25rem 1.5rem; background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.25); border-radius:1rem; font-size:.82rem; color:rgba(180,50,50,.9); margin-bottom:1.5rem;"></div>
 
-                <form id="form-registro" class="space-y-6">
+                <form id="form-registro">
                     <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
                     <input type="hidden" name="subject" value="🇫🇷 NUEVO EXPEDIENTE: Misión Vichy 2026">
                     <input type="hidden" name="from_name" value="Portal Vichy 2026">
                     <input type="hidden" name="redirect" value="false">
                     <input type="checkbox" name="botcheck" style="display:none">
 
-                    <div class="grid-2" style="gap:1.25rem; display:grid; grid-template-columns:repeat(2,1fr);">
-                        <div>
-                            <label style="display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600;" for="nombre_est">Nombre del estudiante *</label>
-                            <input id="nombre_est" type="text" name="Nombre_Estudiante" required style="width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.07); border-radius:1rem; padding:1.1rem 1.4rem; color:#fff; font-family:'DM Sans', sans-serif; font-size:.87rem;" class="interactive" placeholder="Nombre completo">
+                    <!-- I. Perfil del Estudiante -->
+                    <div class="fieldset-box">
+                        <div class="fieldset-legend">I. Perfil del Estudiante</div>
+                        <div class="form-grid-2" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-bottom:1.25rem;">
+                            <div>
+                                <label class="form-label-light" for="nombre_est">Nombre Completo *</label>
+                                <input id="nombre_est" type="text" name="Nombre_Estudiante" required class="ff-light interactive" placeholder="Ej. Ana Sofía Martínez López" autocomplete="name">
+                            </div>
+                            <div>
+                                <label class="form-label-light" for="grado">Nivel Académico *</label>
+                                <select id="grado" name="Grado_Nivel" required class="ff-light interactive" style="cursor:pointer; background:#fff;">
+                                    <option value="" disabled selected>Seleccione el Grado en La Salle</option>
+                                    <option value="1ro Secundaria">1° Secundaria</option>
+                                    <option value="2do Secundaria">2° Secundaria</option>
+                                    <option value="3ro Secundaria">3° Secundaria</option>
+                                    <option value="1ro Preparatoria">1° Preparatoria</option>
+                                    <option value="2do Preparatoria">2° Preparatoria</option>
+                                    <option value="3ro Preparatoria">3° Preparatoria</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-grid-2" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-bottom:1.25rem;">
+                            <div>
+                                <label class="form-label-light" for="nivel_fr">Nivel de Francés *</label>
+                                <select id="nivel_fr" name="Nivel_Frances" required class="ff-light interactive" style="cursor:pointer; background:#fff;">
+                                    <option value="" disabled selected>Nivel actual de Francés</option>
+                                    <option value="A1">A1 – Principiante</option>
+                                    <option value="A2">A2 – Elemental</option>
+                                    <option value="B1/B2">B1/B2 – Intermedio/Avanzado</option>
+                                    <option value="Ninguno">Sin conocimientos previos</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label-light" for="pasaporte">Pasaporte *</label>
+                                <select id="pasaporte" name="Estatus_Pasaporte" required class="ff-light interactive" style="cursor:pointer; background:#fff;">
+                                    <option value="" disabled selected>¿Cuenta con Pasaporte Vigente?</option>
+                                    <option value="Si_Vigente">Sí, vigente para 2026</option>
+                                    <option value="Tramite">En trámite</option>
+                                    <option value="No">No / Requiere renovación</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-bottom:1.25rem;">
+                            <label class="form-label-light" for="salud">Condiciones Médicas / Alergias</label>
+                            <textarea id="salud" name="Restricciones_Salud" placeholder="Alergias alimentarias, medicamentos, condiciones. Escriba 'Ninguna' si no aplica." rows="2" class="ff-light" style="resize:vertical;"></textarea>
                         </div>
                         <div>
-                            <label style="display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600;" for="nombre_tut">Padre / Tutor *</label>
-                            <input id="nombre_tut" type="text" name="Nombre_Tutor" required style="width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.07); border-radius:1rem; padding:1.1rem 1.4rem; color:#fff; font-family:'DM Sans', sans-serif; font-size:.87rem;" class="interactive" placeholder="Nombre del tutor">
-                        </div>
-                    </div>
-                    <div class="grid-2" style="gap:1.25rem; display:grid; grid-template-columns:repeat(2,1fr); margin-top: 1.5rem;">
-                        <div>
-                            <label style="display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600;" for="wapp">WhatsApp de contacto *</label>
-                            <input id="wapp" type="tel" name="WhatsApp" required style="width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.07); border-radius:1rem; padding:1.1rem 1.4rem; color:#fff; font-family:'DM Sans', sans-serif; font-size:.87rem;" class="interactive" placeholder="+52 961 000 0000">
-                        </div>
-                        <div>
-                            <label style="display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600;" for="correo">Correo electrónico *</label>
-                            <input id="correo" type="email" name="email" required style="width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.07); border-radius:1rem; padding:1.1rem 1.4rem; color:#fff; font-family:'DM Sans', sans-serif; font-size:.87rem;" class="interactive" placeholder="correo@ejemplo.com">
+                            <label class="form-label-light" for="motivo">Motivación Breve *</label>
+                            <textarea id="motivo" name="Motivacion_Viaje" placeholder="¿Por qué desea participar en este programa?" required rows="3" class="ff-light" style="resize:vertical;"></textarea>
                         </div>
                     </div>
 
-                    <div style="margin-top:1.5rem">
-                        <label style="display:block;font-size:.58rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.35);margin-bottom:.6rem;margin-left:.3rem;font-weight:600;" for="grado">Grado o nivel del estudiante *</label>
-                        <select id="grado" name="Grado_Nivel" required style="width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.07);border-radius:1rem;padding:1.1rem 1.4rem;color:#fff;font-family:'DM Sans',sans-serif;font-size:.87rem;appearance:none;-webkit-appearance:none;cursor:pointer;" class="interactive">
-                            <option value="" disabled selected style="color:rgba(255,255,255,.2)">Seleccionar nivel...</option>
-                            <option value="1ro Secundaria" style="background:#111">1° Secundaria</option>
-                            <option value="2do Secundaria" style="background:#111">2° Secundaria</option>
-                            <option value="3ro Secundaria" style="background:#111">3° Secundaria</option>
-                            <option value="1ro Preparatoria" style="background:#111">1° Preparatoria</option>
-                            <option value="2do Preparatoria" style="background:#111">2° Preparatoria</option>
-                            <option value="3ro Preparatoria" style="background:#111">3° Preparatoria</option>
-                        </select>
+                    <!-- II. Responsable Legal -->
+                    <div class="fieldset-box">
+                        <div class="fieldset-legend">II. Responsable Legal</div>
+                        <div class="form-grid-2" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-bottom:1.25rem;">
+                            <div>
+                                <label class="form-label-light" for="nombre_tut">Nombre del Padre / Tutor *</label>
+                                <input id="nombre_tut" type="text" name="Nombre_Tutor" required class="ff-light interactive" placeholder="Ej. Roberto Martínez Gómez" autocomplete="name">
+                            </div>
+                            <div>
+                                <label class="form-label-light" for="wapp">WhatsApp de Contacto *</label>
+                                <input id="wapp" type="tel" name="WhatsApp_Contacto" required class="ff-light interactive" placeholder="+52 967 123 4567" autocomplete="tel" style="font-family:monospace;">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label-light" for="correo">Correo Electrónico</label>
+                            <input id="correo" type="email" name="email" class="ff-light interactive" placeholder="correo@ejemplo.com" autocomplete="email">
+                        </div>
                     </div>
 
-                    <button type="submit" id="btn-submit" class="interactive" style="width:100%; padding:1.3rem; font-size:.7rem; border-radius:1.1rem; background:linear-gradient(135deg, var(--gold-lt), var(--gold-dk)); color:var(--ink); font-weight:600; text-transform:uppercase; letter-spacing:.25em; border:none; cursor:pointer; margin-top: 1.5rem;">
-                        <span id="btn-text">Enviar Expediente Oficial</span>
+                    <button type="submit" id="btn-submit" class="interactive" style="width:100%; padding:1.3rem; font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; font-weight:600; border-radius:1rem; background:#002395; color:#fff; letter-spacing:.05em; border:none; cursor:pointer; margin-top:.5rem; transition:all .4s; position:relative; overflow:hidden;">
+                        <span id="btn-text">Enviar Expediente a Dirección</span>
                     </button>
+                    <p style="text-align:center; font-size:.65rem; color:#94a3b8; margin-top:.75rem; display:flex; align-items:center; justify-content:center; gap:.4rem;">
+                        <svg style="width:14px;height:14px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        Datos protegidos bajo las normativas de privacidad de la Alliance Française.
+                    </p>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer style="position:relative; z-index:2; padding:4rem 1.5rem 3rem; border-top:1px solid rgba(255,255,255,.04); text-align:center; background:rgba(0,0,0,.25);">
-        <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:1.5rem; margin-bottom:2.5rem;">
-            <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-lasalle.png" style="height:100%; width:auto; object-fit:contain;" alt="La Salle" onerror="this.src='logo_lasalle.png'"></div>
-            <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-af.png" style="height:100%; width:auto; object-fit:contain;" alt="Alliance Française" onerror="this.src='logo_af.png'"></div>
-            <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-cavilam.png" style="height:100%; width:auto; object-fit:contain;" alt="CAVILAM" onerror="this.src='logocavilam2024.png'"></div>
+    <footer style="position:relative; z-index:2; padding:4rem 1.5rem 3rem; border-top:1px solid rgba(255,255,255,.04); text-align:center; background:rgba(0,0,0,.28);">
+        <div style="max-width:64rem; margin:0 auto;">
+            <!-- Logos -->
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:1.25rem; margin-bottom:2.5rem;">
+                <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-lasalle.png" style="height:100%; width:auto; object-fit:contain;" alt="La Salle" onerror="this.src='logo_lasalle.png'"></div>
+                <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-af.png" style="height:100%; width:auto; object-fit:contain;" alt="Alliance Française" onerror="this.src='logo_af.png'"></div>
+                <div style="background:#fff; border-radius:.75rem; padding:.5rem .75rem; height:3rem; display:flex; align-items:center;"><img src="logo-cavilam.png" style="height:100%; width:auto; object-fit:contain;" alt="CAVILAM" onerror="this.src='logocavilam2024.png'"></div>
+            </div>
+            <div style="width:60px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 1.5rem;"></div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold); margin-bottom:.65rem; text-shadow:0 0 20px rgba(201,168,76,.3); font-weight:600;">Vichy 2026</div>
+            <p style="font-size:.78rem; font-style:italic; color:rgba(255,255,255,.28); font-family:'Cormorant Garamond',serif; margin-bottom:2rem;">"No es solo un viaje, es la construcción de una visión global."</p>
+
+            <!-- Nav links -->
+            <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:1.75rem;">
+                <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">WhatsApp</a>
+                <span style="color:rgba(255,255,255,.1)">·</span>
+                <a href="#registro" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">Registro</a>
+                <span style="color:rgba(255,255,255,.1)">·</span>
+                <a href="#faq" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">FAQ</a>
+                <span style="color:rgba(255,255,255,.1)">·</span>
+                <a href="#directorio" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">Directorio</a>
+            </div>
+
+            <!-- Divider -->
+            <div style="width:100%; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent); margin-bottom:1.75rem;"></div>
+
+            <!-- Address + Copyright -->
+            <p style="font-size:.62rem; color:rgba(255,255,255,.2); margin-bottom:.5rem; font-weight:500; letter-spacing:.12em;">Av. La Almolonga 80, Barrio Santa Lucía · San Cristóbal de Las Casas, Chiapas</p>
+            <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.35em; color:rgba(255,255,255,.1); margin-bottom:.6rem;">© 2026 Alliance Française de San Cristóbal de Las Casas. Todos los derechos reservados.</p>
+            <a href="https://alianzafrancesa.org.mx/san-cristobal-de-las-casas/" target="_blank" rel="noopener" style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(201,168,76,.4); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(201,168,76,.4)'">Sitio Web Oficial ↗</a>
         </div>
-        <div style="width:60px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 1.5rem;"></div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold); margin-bottom:.75rem; text-shadow:0 0 20px rgba(201,168,76,.3);">Vichy 2026</div>
-        <p style="font-size:.75rem; font-style:italic; color:rgba(255,255,255,.3); font-family:'Cormorant Garamond',serif; margin-bottom:1.5rem;">"No es solo un viaje, es la construcción de una visión global."</p>
-        <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2rem;">
-            <a href="https://wa.me/5219671721870" target="_blank" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">WhatsApp</a>
-            <span style="color:rgba(255,255,255,.1)">·</span>
-            <a href="#registro" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">Registro</a>
-            <span style="color:rgba(255,255,255,.1)">·</span>
-            <a href="#faq" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">FAQ</a>
-        </div>
-        <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.4em; color:rgba(255,255,255,.12);">Alliance Française de San Cristóbal de Las Casas · Chiapas, México · 2026</p>
     </footer>
 
     <!-- Lightbox -->
@@ -935,8 +1173,10 @@
     <button id="btt" aria-label="Volver arriba" style="position:fixed; bottom:2.5rem; right:2.5rem; z-index:8000; width:46px; height:46px; border-radius:50%; background:rgba(6,6,8,.85); border:1px solid rgba(201,168,76,.25); color:var(--gold); display:flex; align-items:center; justify-content:center; backdrop-filter:blur(16px); opacity:0; pointer-events:none; transition:all .4s; cursor:none;">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
     </button>
-    <button id="audio-btn" aria-label="Música" style="position:fixed; bottom:2.5rem; left:2.5rem; z-index:8000; width:46px; height:46px; border-radius:50%; background:rgba(6,6,8,.85); border:1px solid rgba(201,168,76,.25); color:var(--gold); display:flex; align-items:center; justify-content:center; backdrop-filter:blur(16px); opacity:0; pointer-events:none; transition:all .4s; cursor:none;">
-        <span id="audio-icon">♫</span>
+    <button id="audio-btn" aria-label="Reproducir/Pausar Música" title="Reproducir/Pausar Música" style="position:fixed; bottom:2.5rem; left:2.5rem; z-index:8000; width:50px; height:50px; border-radius:50%; background:rgba(6,6,8,.88); border:1px solid var(--gold); color:var(--gold); display:flex; align-items:center; justify-content:center; backdrop-filter:blur(16px); opacity:0; pointer-events:none; transition:all .4s var(--ease-out); cursor:none; box-shadow:0 8px 24px rgba(0,0,0,.4);">
+        <!-- Show pause (music playing) by default; JS toggles -->
+        <svg id="ico-play" style="width:22px;height:22px;display:none;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+        <svg id="ico-pause" style="width:22px;height:22px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
     </button>
 </div><script>
 /* ================================================================
@@ -978,7 +1218,13 @@ document.addEventListener('DOMContentLoaded', () => {
         music.volume = 0.35;
         const startAudio = () => {
             if (music.paused) {
-                music.play().then(() => { audioPlaying = true; }).catch(() => {});
+                music.play().then(() => {
+                    audioPlaying = true;
+                    const icoPlay  = document.getElementById('ico-play');
+                    const icoPause = document.getElementById('ico-pause');
+                    if (icoPlay)  icoPlay.style.display  = 'none';
+                    if (icoPause) icoPause.style.display = '';
+                }).catch(() => {});
             }
             ['mousemove', 'scroll', 'touchstart', 'click', 'keydown'].forEach(evt => {
                 document.removeEventListener(evt, startAudio);
@@ -1110,15 +1356,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     /* ── 8. AUDIO TOGGLE BUTTON ─────────────────────────────── */
-    const audioIcon = document.getElementById('audio-icon');
+    const icoPlay  = document.getElementById('ico-play');
+    const icoPause = document.getElementById('ico-pause');
+    function syncAudioIcons() {
+        if (icoPlay)  icoPlay.style.display  = audioPlaying ? 'none'  : '';
+        if (icoPause) icoPause.style.display = audioPlaying ? ''      : 'none';
+    }
     if (audioBtn && music) {
         audioBtn.addEventListener('click', e => {
             e.stopPropagation();
             if (audioPlaying) {
-                music.pause(); if (audioIcon) audioIcon.textContent = '♩'; audioPlaying = false;
+                music.pause(); audioPlaying = false;
             } else {
-                music.play().catch(() => {}); if (audioIcon) audioIcon.textContent = '♫'; audioPlaying = true;
+                music.play().catch(() => {}); audioPlaying = true;
             }
+            syncAudioIcons();
         });
     }
     document.querySelectorAll('video').forEach(v => {
