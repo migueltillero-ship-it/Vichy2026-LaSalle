@@ -1,26 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es-MX" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#050507">
+    <meta name="theme-color" content="#000000">
     <meta name="author" content="Miguel David Tillero Álvarez — Alliance Française de San Cristóbal de Las Casas">
     <title>Vichy 2026 · Un Voyage d'Exception | La Salle & Alliance Française</title>
-    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Certificación CAVILAM. Dirigido a estudiantes de Secundaria y Preparatoria del Colegio La Salle, San Cristóbal de Las Casas.">
-    <meta name="keywords" content="Vichy 2026, Alliance Française, La Salle, CAVILAM, inmersión lingüística, Francia, francés, San Cristóbal de las Casas, Chiapas, programa cultural, certificación DELF, Vichy Auvernia, familias anfitrionas, intercambio cultural">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Vichy 2026 · Un Voyage d'Exception | La Salle & Alliance Française">
-    <meta property="og:description" content="18 días, 5 ciudades, una vida transformada. Inmersión lingüística CAVILAM para estudiantes La Salle de San Cristóbal.">
-    <meta property="og:image" content="logos_banner.png">
-    <meta property="og:url" content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_MX">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Vichy 2026 · Un Voyage d'Exception">
-    <meta name="twitter:description" content="18 días, 5 ciudades, una vida transformada. Inmersión CAVILAM para estudiantes La Salle.">
-    <meta name="twitter:image" content="logos_banner.png">
+    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Certificación CAVILAM. Dirigido a estudiantes del Colegio La Salle.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇫🇷</text></svg>">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalEvent","name":"Inmersión Lingüística Vichy 2026","startDate":"2026-07-01","endDate":"2026-07-18","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","location":{"@type":"Place","name":"CAVILAM - Alliance Française","address":{"@type":"PostalAddress","addressLocality":"Vichy","addressRegion":"Auvernia","addressCountry":"FR"}},"organizer":{"@type":"EducationalOrganization","name":"Alliance Française de San Cristóbal de Las Casas","url":"https://alianzafrancesa.org.mx/san-cristobal-de-las-casas/"},"offers":{"@type":"Offer","price":"3500","priceCurrency":"EUR","availability":"https://schema.org/LimitedAvailability","validFrom":"2025-01-01"}}</script>
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalEvent","name":"Inmersión Lingüística Vichy 2026","description":"Programa de 18 días de inmersión total en Francia.","startDate":"2026-07-01","endDate":"2026-07-18","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"CAVILAM - Alliance Française","address":{"@type":"PostalAddress","addressLocality":"Vichy","addressCountry":"FR"}},"organizer":{"@type":"EducationalOrganization","name":"Alliance Française de San Cristóbal de Las Casas","url":"https://alianzafrancesa.org.mx/"},"offers":{"@type":"Offer","price":"3500","priceCurrency":"EUR","availability":"https://schema.org/LimitedAvailability"}}</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,62 +20,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
     <style>
-    /* ============================
-       TOKENS & RESET
-    ============================ */
     :root {
         --gold:   #C9A84C;
         --gold-lt:#E8C96A;
         --gold-dk:#A68A3D;
         --blue:   #002395;
         --ink:    #060608;
-        --ink-2:  #0C0C10;
-        --glass:  rgba(255,255,255,0.03);
-        --glass-b:rgba(255,255,255,0.07);
-        --r-xl:   1.75rem;
         --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+        --r-xl:   1.75rem;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; cursor: none; }
     @media(max-width:1024px) { body { cursor: auto; } }
 
-    /* ============================
-       TYPOGRAPHY
-    ============================ */
     .lux { font-family: 'Cormorant Garamond', serif; }
     .text-gold { color: var(--gold); }
-    .text-glow { text-shadow: 0 0 30px rgba(201,168,76,0.45); }
     .eyebrow { font-size: 0.6rem; text-transform: uppercase; letter-spacing: .45em; color: var(--gold); font-weight: 600; }
 
-    /* ============================
-       SCROLL PROGRESS BAR
-    ============================ */
     #progress-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, var(--gold-dk), var(--gold-lt)); z-index: 100000; transition: width 0.1s linear; box-shadow: 0 0 12px rgba(201,168,76,0.6); }
 
     /* ============================
-       INTRO SCREEN (VIDEO + OVERLAY)
+       INTRO SCREEN (AISLAMIENTO TOTAL)
     ============================ */
-    #intro-screen { position: fixed; inset: 0; z-index: 99999; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: opacity 1.4s var(--ease-out); }
-    #intro-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .42; z-index: 0; }
-    #intro-screen::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 55%, rgba(201,168,76,.05) 0%, rgba(6,6,8,.55) 70%); z-index: 1; pointer-events: none; }
-
-    /* Intro animated content */
-    #intro-inner { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 1.4rem; max-width: 62rem; width: 100%; padding: 2rem; text-align: center; opacity: 0; transform: translateY(28px); }
-    .intro-big { font-family: 'Cormorant Garamond', serif; font-size: clamp(5rem, 14vw, 10rem); font-weight: 300; line-height: .88; letter-spacing: -.04em; color: #fff; text-shadow: 0 10px 40px rgba(0,0,0,.6); }
-    .intro-big em { color: var(--gold); font-style: italic; font-weight: 400; text-shadow: 0 0 50px rgba(201,168,76,.3); }
-    .btn-entrer { display: inline-block; padding: 1.1rem 3.2rem; border: 1.5px solid var(--gold); color: var(--gold); border-radius: 100px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; letter-spacing: .1em; cursor: pointer; background: transparent; position: relative; overflow: hidden; transition: color .6s cubic-bezier(.16,1,.3,1), box-shadow .6s; box-shadow: 0 0 30px rgba(201,168,76,.08); }
-    .btn-entrer::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .55s cubic-bezier(.16,1,.3,1); z-index: -1; }
-    .btn-entrer:hover { color: var(--ink); box-shadow: 0 0 60px rgba(201,168,76,.2); }
-    .btn-entrer:hover::before { transform: scaleX(1); }
-    .h-deco { position: absolute; height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(201,168,76,.14), transparent); opacity: 0; transform: scaleX(.15); pointer-events: none; z-index: 2; }
-    #ptcl { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 2; }
-    .ptcl { position: absolute; border-radius: 50%; background: var(--gold); opacity: 0; animation: floatUp var(--d, 10s) ease-in-out infinite var(--dl, 0s); }
-    @keyframes floatUp { 0% { opacity: 0; transform: translateY(0) scale(0); } 15% { opacity: .45; transform: translateY(-18px) scale(1); } 85% { opacity: .12; transform: translateY(calc(-1 * var(--t, 250px))) scale(.35); } 100% { opacity: 0; transform: translateY(calc(-1.2 * var(--t, 250px))) scale(0); } }
+    #intro-screen { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 999999; background: #000; display: flex; justify-content: center; align-items: center; transition: opacity 1.2s var(--ease-out); }
+    #intro-vid { width: 100vw; height: 100vh; object-fit: cover; opacity: 1; pointer-events: none; }
     
     #main-content { display: none; opacity: 0; transition: opacity 1.6s ease; }
 
-    /* Fondos 3D y Aurora */
     #aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .aurora-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0; animation: orb-float 20s ease-in-out infinite; }
     .o1 { width:700px; height:400px; background: radial-gradient(ellipse, rgba(0,35,149,0.18) 0%, transparent 70%); top:10%; left:-10%; animation-delay:0s; }
@@ -97,7 +58,6 @@
     #grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 200px; }
     #webgl-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-    /* Nav */
     nav { position: fixed; top: 0; width: 100%; z-index: 9000; padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; transition: all .5s ease; border-bottom: 1px solid transparent; }
     nav.scrolled { background: rgba(6,6,8,0.8); backdrop-filter: blur(24px); border-color: rgba(255,255,255,0.04); padding: 1rem 2.5rem; }
     .nav-logo span:first-child { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold); text-shadow: 0 0 20px rgba(201,168,76,.4); display:block; }
@@ -106,14 +66,23 @@
     .nav-links a { font-size: .65rem; text-transform: uppercase; letter-spacing: .25em; color: rgba(255,255,255,.45); transition: color .3s; text-decoration: none; }
     .nav-links a:hover { color: var(--gold); }
 
-    /* Cursor */
+    #hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: .5rem; background: none; border: none; }
+    #hamburger span { width: 22px; height: 1.5px; background: rgba(255,255,255,.7); transition: all .4s var(--ease-out); transform-origin: center; }
+    #hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    #hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    #mobile-menu { position: fixed; inset: 0; z-index: 8999; background: rgba(6,6,8,.97); backdrop-filter: blur(30px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transform: translateX(100%); transition: transform .6s var(--ease-out); }
+    #mobile-menu.open { transform: translateX(0); }
+    #mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: rgba(255,255,255,.6); text-decoration: none; transition: color .3s; }
+    #mobile-menu a:hover { color: var(--gold); }
+    @media(max-width:1024px) { #hamburger { display: flex; } .nav-links { display: none; } nav { padding: 1.2rem 1.5rem; } }
+
     #cursor { position:fixed; width:28px; height:28px; border:1px solid rgba(201,168,76,.5); border-radius:50%; pointer-events:none; z-index:99998; transition:transform .35s var(--ease-out), background .3s, opacity .3s; transform:translate(-50%,-50%); mix-blend-mode:difference; will-change:transform; }
     #cursor-dot { position:fixed; width:4px; height:4px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:99999; transform:translate(-50%,-50%); transition:opacity .3s; }
     #cursor.hover { transform:translate(-50%,-50%) scale(2.2); background:rgba(255,255,255,.08); border-color:transparent; }
     #cursor-dot.hover { opacity:0; }
     @media(max-width:1024px) { #cursor, #cursor-dot { display:none; } }
 
-    /* Glass Cards & Elements */
     .glass { background: linear-gradient(135deg, rgba(255,255,255,.045) 0%, rgba(255,255,255,.01) 100%); border: 1px solid rgba(255,255,255,.03); border-top-color: rgba(255,255,255,.09); border-left-color: rgba(255,255,255,.06); backdrop-filter: blur(20px); border-radius: var(--r-xl); position: relative; overflow: hidden; transition: transform .5s var(--ease-out), border-color .4s, box-shadow .4s; }
     .glass::before { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.04), transparent); transform: skewX(-20deg); transition: .9s var(--ease-out); pointer-events:none; z-index:5; }
     .glass:hover::before { left:180%; }
@@ -125,7 +94,6 @@
     .btn-ghost { border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.7); padding: 1.1rem 2.8rem; border-radius: 100px; font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .25em; text-decoration: none; display: inline-flex; transition: all .4s var(--ease-out); }
     .btn-ghost:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,.05); }
 
-    /* Utils */
     .section-pad { padding: 7rem 0; position: relative; z-index: 2; }
     .container { max-width: 78rem; margin: 0 auto; padding: 0 1.5rem; }
     .section-header { text-align: center; margin-bottom: 4rem; }
@@ -135,7 +103,6 @@
     .sr { opacity:0; transform:translateY(32px); transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); }
     .sr.visible { opacity:1; transform:translateY(0); }
 
-    /* Tabs */
     .tab-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-bottom: 3rem; }
     .tab-btn { padding: .8rem 2rem; border: 1px solid rgba(255,255,255,.07); border-radius: 100px; background: transparent; color: rgba(255,255,255,.4); font-family: 'DM Sans', sans-serif; font-size: .6rem; font-weight: 600; text-transform: uppercase; letter-spacing: .25em; cursor: pointer; transition: all .35s var(--ease-out); }
     .tab-btn:hover { border-color: rgba(201,168,76,.4); color: var(--gold); }
@@ -144,162 +111,38 @@
     .tab-panel.active { display: block; animation: fade-up .5s var(--ease-out) forwards; }
     @keyframes fade-up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
     
-    /* Prog Card */
-    .prog-card { padding: 0; overflow: hidden; }
-    .prog-img-container { height: 180px; position: relative; width: 100%; }
-    .prog-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.6s ease; }
-    .prog-card:hover .prog-img-container img { transform: scale(1.05); }
-    .prog-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,12,16,1) 0%, transparent 100%); }
-    .prog-content { padding: 0 2rem 2.5rem 2rem; position: relative; }
-    .prog-num { position: absolute; right: 1.5rem; top: -55px; font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 300; color: rgba(255,255,255,.15); line-height: 1; transition: all .5s var(--ease-out); pointer-events: none; z-index: 5; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-    .glass:hover .prog-num { color: rgba(201,168,76,.3); transform: scale(1.1) translate(-5px, -5px); }
-    .prog-card h3 { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:600; margin-bottom:.5rem; }
-    .prog-card .tag { font-size:.55rem; text-transform:uppercase; letter-spacing:.3em; color:var(--gold); font-weight:600; margin-bottom:1.5rem; display:block; }
-    .prog-card ul { list-style:none; display:flex; flex-direction:column; gap:.9rem; }
-    .prog-card li { display:flex; align-items:flex-start; gap:.85rem; font-size:.85rem; color:rgba(255,255,255,.6); font-weight:300; line-height:1.6; }
-    .prog-card li span { color: var(--gold); font-size: .7rem; margin-top: .25rem; }
+    /* Prog Card: Limpieza Visual */
+    .prog-card { padding: 4rem 3rem; overflow: hidden; display: flex; flex-direction: column; justify-content: center; position: relative; }
+    .prog-num { position: absolute; right: 2.5rem; top: 2.5rem; font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: rgba(255,255,255,.05); line-height: 1; transition: all .5s var(--ease-out); pointer-events: none; z-index: 5; }
+    .glass:hover .prog-num { color: rgba(201,168,76,.15); transform: scale(1.1) translate(-10px, 10px); }
+    .prog-card h3 { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:600; margin-bottom:.5rem; position:relative; z-index:10; }
+    .prog-card .tag { font-size:.65rem; text-transform:uppercase; letter-spacing:.3em; color:var(--gold); font-weight:600; margin-bottom:2rem; display:block; position:relative; z-index:10; }
+    .prog-card ul { list-style:none; display:flex; flex-direction:column; gap:1.2rem; position:relative; z-index:10; }
+    .prog-card li { display:flex; align-items:flex-start; gap:.85rem; font-size:.9rem; color:rgba(255,255,255,.6); font-weight:300; line-height:1.6; }
+    .prog-card li span { color: var(--gold); font-size: .75rem; margin-top: .25rem; }
 
-    /* Form */
     .ff { width: 100%; background: rgba(0,0,0,.4) !important; border: 1px solid rgba(255,255,255,.07) !important; border-top-color: rgba(255,255,255,.12) !important; border-radius: 1rem; padding: 1.1rem 1.4rem; color: #fff !important; font-family: 'DM Sans', sans-serif; font-size: .87rem; font-weight: 300; transition: all .35s ease; backdrop-filter: blur(10px); }
     .ff:focus { outline:none; border-color:var(--gold) !important; box-shadow:0 0 0 4px rgba(201,168,76,.1); background:rgba(201,168,76,.04) !important; }
     .ff::placeholder { color: rgba(255,255,255,.2); }
     .form-label { display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600; }
     
-    /* Grids */
+    #btt { position: fixed; bottom: 2.5rem; left: 50%; transform: translateX(-50%) translateY(100px); z-index: 8000; width: 46px; height: 46px; border-radius: 50%; background: rgba(7,7,10,0.85); border: 1px solid rgba(201,168,76,0.3); backdrop-filter: blur(16px); color: var(--gold); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; pointer-events: none; transition: all 0.5s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+    #btt.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    #btt:hover { background: var(--gold); color: var(--ink); transform: translateX(-50%) translateY(-5px) scale(1.1); }
+    .ff.valid { border-color: #10b981 !important; box-shadow: 0 0 0 2px rgba(16,185,129,0.1) !important; }
+    .ff.invalid { border-color: #ef4444 !important; box-shadow: 0 0 0 2px rgba(239,68,68,0.1) !important; }
+    @keyframes floatUpPtcl { 0% { opacity:0; transform:translateY(0) scale(0); } 20% { opacity:0.6; transform:translateY(-20px) scale(1); } 80% { opacity:0.2; transform:translateY(-150px) scale(0.5); } 100% { opacity:0; transform:translateY(-200px) scale(0); } }
+
     .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
     .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
     @media(max-width:900px) { .grid-2 { grid-template-columns:1fr; } .grid-3 { grid-template-columns:repeat(2,1fr); } }
     @media(max-width:600px) { .grid-3 { grid-template-columns:1fr; } }
-
-    /* Mobile Nav */
-    #hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:.5rem; z-index:9001; }
-    #hamburger span { display:block; width:24px; height:1.5px; background:rgba(255,255,255,.7); transition:all .35s var(--ease-out); border-radius:2px; }
-    #hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
-    #hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
-    #hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
-    #mobile-nav { position:fixed; inset:0; z-index:9000; background:rgba(6,6,8,.97); backdrop-filter:blur(24px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; opacity:0; pointer-events:none; transition:opacity .4s var(--ease-out); }
-    #mobile-nav.open { opacity:1; pointer-events:auto; }
-    #mobile-nav a { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:300; color:rgba(255,255,255,.7); text-decoration:none; transition:color .3s; letter-spacing:.05em; }
-    #mobile-nav a:hover { color:var(--gold); }
-    @media(max-width:768px) { #hamburger { display:flex; } .nav-links { display:none !important; } }
-
-    /* ============================
-       SCROLLBAR & SELECTION
-    ============================ */
-    ::selection { background: var(--gold); color: #000; }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--ink); }
-    ::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
-
-    /* ============================
-       URGENCY MARQUEE BAR
-    ============================ */
-    .urgency-bar { background: linear-gradient(90deg, rgba(201,168,76,.04), rgba(201,168,76,.14), rgba(201,168,76,.04)); border-top: 1px solid rgba(201,168,76,.22); border-bottom: 1px solid rgba(201,168,76,.22); padding: .75rem 0; overflow: hidden; position: relative; z-index: 2; }
-    .urgency-scroll { display: inline-flex; gap: 5rem; white-space: nowrap; animation: marquee-x 38s linear infinite; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .25em; color: var(--gold); }
-    @keyframes marquee-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* ============================
-       EDITORIAL QUOTE
-    ============================ */
-    .editorial-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 4vw, 3rem); font-weight: 300; font-style: italic; line-height: 1.45; color: rgba(255,255,255,.88); }
-    .tricolor-bar { height: 2.5px; background: linear-gradient(90deg, #002395 33.33%, #fff 33.33% 66.66%, #ED2939 66.66%); border-radius: 2px; width: 60px; }
-
-    /* ============================
-       CITY TAGS
-    ============================ */
-    .city-tag { display: inline-flex; align-items: center; gap: 5px; padding: 5px 14px; border-radius: 100px; background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.22); font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--gold); }
-
-    /* ============================
-       QR CARDS (white, light bg)
-    ============================ */
-    .qr-card { background: #fff; border-radius: 2rem; padding: 2.5rem; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,.1); border: 1px solid #f1f5f9; display: flex; flex-direction: column; align-items: center; gap: .75rem; transition: transform .4s var(--ease-out); }
-    .qr-card:hover { transform: translateY(-8px); }
-    .qr-box { width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 1.25rem; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(0,0,0,.07); overflow: hidden; margin-bottom: 1rem; transition: transform .4s ease; }
-    .qr-card:hover .qr-box { transform: scale(1.05); border-color: var(--gold); }
-    .qr-box img { width: 130px; height: 130px; object-fit: contain; }
-
-    /* ============================
-       BIENESTAR FEATURE CARDS
-    ============================ */
-    .feat-card { background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.07); backdrop-filter: blur(12px); border-radius: 1.75rem; padding: 2.5rem; text-align: center; transition: all .4s var(--ease-out); }
-    .feat-card:hover { background: rgba(255,255,255,.05); transform: translateY(-6px); }
-
-    /* ============================
-       CTA SECTION
-    ============================ */
-    .cta-section { padding: 7rem 0; text-align: center; background: rgba(0,0,0,.08); border-top: 1px solid rgba(255,255,255,.03); position: relative; z-index: 2; }
-
-    /* ============================
-       REGINA TESTIMONIO
-    ============================ */
-    @media(max-width:768px) {
-        .regina-grid { grid-template-columns: 1fr !important; }
-    }
-
-    /* ============================
-       FORM (cream / light bg)
-    ============================ */
-    .bg-cream { background: #FAF8F3; color: #060608; }
-
-    /* Mobile responsive extras */
-    @media(max-width:700px) {
-        .dir-grid { grid-template-columns: 1fr !important; }
-        .stats-4-grid { grid-template-columns: repeat(2,1fr) !important; }
-        .form-grid-2 { grid-template-columns: 1fr !important; }
-    }
-
-    .ff-light { width: 100%; background: #fff !important; color: #1a1a1a !important; border: 1.5px solid #e2e8f0 !important; border-radius: 1rem; padding: 1.15rem 1.4rem; font-family: 'DM Sans', sans-serif; font-size: .9rem; transition: all .3s ease; }
-    .ff-light:focus { outline: none; border-color: var(--gold) !important; box-shadow: 0 0 0 4px rgba(201,168,76,.12); transform: translateY(-1px); }
-    .ff-light::placeholder { color: #94a3b8; }
-    .form-label-light { display: block; font-size: .58rem; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; color: #64748b; margin-bottom: .55rem; margin-left: .2rem; }
-    .fieldset-box { background: #f8fafc; padding: 2rem; border-radius: 1.5rem; border: 1px solid #e9eef5; margin-bottom: 1.75rem; }
-    .fieldset-legend { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .3em; color: #002395; background: #e8edf8; padding: .4rem 1rem; border-radius: 100px; display: inline-block; margin-bottom: 1.5rem; }
-
-    /* ============================
-       SKIP LINK (ACCESSIBILITY)
-    ============================ */
-    .skip-link { position: absolute; top: -100%; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--ink); padding: .75rem 2rem; border-radius: 0 0 12px 12px; font-weight: 700; z-index: 99999; text-decoration: none; font-size: .8rem; transition: top .3s; }
-    .skip-link:focus { top: 0; }
-
-    /* ============================
-       AUDIO EQUALIZER BARS
-    ============================ */
-    .audio-bar { display: inline-block; width: 2.5px; background: currentColor; border-radius: 2px; margin: 0 1.5px; animation: abar .7s ease-in-out infinite alternate; }
-    .audio-bar:nth-child(1) { height: 8px;  animation-delay: 0s; }
-    .audio-bar:nth-child(2) { height: 14px; animation-delay: .12s; }
-    .audio-bar:nth-child(3) { height: 10px; animation-delay: .24s; }
-    .audio-bar:nth-child(4) { height: 16px; animation-delay: .36s; }
-    .audio-bar:nth-child(5) { height: 6px;  animation-delay: .08s; }
-    @keyframes abar { 0% { transform: scaleY(.3); opacity: .4; } 100% { transform: scaleY(1); opacity: 1; } }
-    .bars-paused .audio-bar { animation: none; transform: scaleY(.25); opacity: .25; }
-
-    /* ============================
-       FAQ CHEVRON CARD STYLE
-    ============================ */
-    .faq-item { border: 1px solid rgba(255,255,255,.06); border-radius: 1.25rem; overflow: hidden; transition: border-color .3s; margin-bottom: .75rem; }
-    .faq-item:hover, .faq-item.open { border-color: rgba(201,168,76,.25); }
-    .faq-q-inner { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 1.75rem; background: transparent; border: none; cursor: pointer; color: #fff; font-family: 'DM Sans', sans-serif; font-size: .92rem; font-weight: 500; text-align: left; line-height: 1.4; transition: color .3s; }
-    .faq-q-inner:hover { color: var(--gold); }
-    .faq-chv { flex-shrink: 0; width: 20px; height: 20px; color: var(--gold); transition: transform .35s cubic-bezier(.22,1,.36,1); margin-left: 1rem; }
-    .faq-item.open .faq-chv { transform: rotate(180deg); }
-    .faq-a-panel { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.22,1,.36,1); }
-    .faq-item.open .faq-a-panel { max-height: 500px; }
-    .faq-a-inner { padding: 0 1.75rem 1.5rem; color: rgba(255,255,255,.5); font-size: .88rem; line-height: 1.75; }
-
-    /* ============================
-       FORM: VALIDATION STATES
-    ============================ */
-    .ff-light.valid   { border-color: #10b981 !important; }
-    .ff-light.invalid { border-color: #ef4444 !important; }
     </style>
 </head>
-<body>
+<body style="overflow: hidden;">
 
-<a href="#main-content" class="skip-link">Ir al contenido principal</a>
 <audio id="bg-music" loop>
     <source src="Arrival_at_the_Terminal.mp3" type="audio/mpeg">
-    <source src="French-Classical-Music-Debussy-S.mp3" type="audio/mpeg">
     <source src="musica_clasica.mp3" type="audio/mpeg">
 </audio>
 
@@ -308,34 +151,10 @@
 <div id="cursor-dot"></div>
 
 <div id="intro-screen">
-    <!-- Video background -->
-    <video id="intro-vid" src="intro_vichy2026.mp4" playsinline autoplay muted preload="auto" onerror="this.style.display='none'"></video>
-    <!-- Floating particles -->
-    <div id="ptcl" aria-hidden="true"></div>
-    <!-- Horizontal line decorations -->
-    <div class="h-deco" id="h-top" style="top:20%"></div>
-    <div class="h-deco" id="h-bottom" style="top:80%"></div>
-    <!-- Main overlay content -->
-    <div id="intro-inner">
-        <div style="background:transparent;display:inline-flex;align-items:center;justify-content:center;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.7);">
-            <img src="banner_logos.jpg" alt="Alliance Française · La Salle · CAVILAM" style="max-width:440px;width:82vw;height:auto;border-radius:12px;object-fit:contain;" onerror="this.style.display='none'">
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:.3rem;">
-            <p style="font-size:.62rem;text-transform:uppercase;letter-spacing:.55em;color:rgba(255,255,255,.22);font-weight:600;">Inmersión Lingüística · Vichy & París · Francia</p>
-            <h1 class="intro-big">Vichy&nbsp;<em>2026</em></h1>
-            <p style="font-family:'Cormorant Garamond',serif;color:rgba(201,168,76,.65);font-size:1.4rem;font-weight:300;font-style:italic;letter-spacing:.08em;margin-top:.4rem;">Un Voyage d'Exception</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem 2.5rem;font-size:.6rem;text-transform:uppercase;letter-spacing:.25em;font-weight:600;color:rgba(255,255,255,.25);">
-            <span>18 Días en Francia</span><span style="color:rgba(201,168,76,.3)">·</span><span>5 Ciudades</span><span style="color:rgba(201,168,76,.3)">·</span><span>60 Horas de Academia</span>
-        </div>
-        <button id="start-btn" class="btn-entrer" style="opacity:0;margin-top:.5rem;">Vivir la Experiencia</button>
-        <p id="intro-note" style="opacity:0;font-size:.58rem;text-transform:uppercase;letter-spacing:.4em;color:rgba(255,255,255,.12);font-weight:400;">Programa Exclusivo · Inscripciones Abiertas · <strong style="color:rgba(201,168,76,.3);">Cupos Limitados</strong></p>
-    </div>
-    <!-- Skip button -->
-    <button id="skip-btn" style="position:absolute;bottom:2.5rem;right:2.5rem;padding:.55rem 1.5rem;border:1px solid rgba(201,168,76,.35);border-radius:100px;background:rgba(6,6,8,.65);color:rgba(201,168,76,.7);font-size:.58rem;text-transform:uppercase;letter-spacing:.3em;cursor:pointer;backdrop-filter:blur(12px);z-index:10;transition:all .3s;">Continuar →</button>
+    <video id="intro-vid" src="Video_Generation_Complete (1).mp4" playsinline autoplay muted preload="auto"></video>
 </div>
 
-<div id="main-content">
+<div id="main-content" style="display:none;">
     <canvas id="webgl-bg"></canvas>
     <div id="aurora"><div class="aurora-orb o1"></div><div class="aurora-orb o2"></div><div class="aurora-orb o3"></div></div>
     <div id="grain"></div>
@@ -350,7 +169,6 @@
             <a href="#convenio" class="interactive">Convenio Oficial</a>
             <a href="#programa" class="interactive">Programa</a>
             <a href="#testimonios" class="interactive">Testimonios</a>
-            <a href="#directorio" class="interactive">Directorio</a>
             <a href="#registro" class="btn-primary interactive">Inscripción</a>
         </div>
         <button id="hamburger" aria-label="Menú" aria-expanded="false">
@@ -358,16 +176,14 @@
         </button>
     </nav>
 
-    <!-- Mobile overlay nav -->
-    <div id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menú de navegación">
-        <a href="#dossier">Dossier</a>
-        <a href="#convenio">Convenio</a>
-        <a href="#programa">Programa</a>
-        <a href="#galeria">Galería</a>
-        <a href="#precio">Costos</a>
-        <a href="#faq">FAQ</a>
-        <a href="#directorio">Directorio</a>
-        <a href="#registro" style="color:var(--gold); font-weight:600;">Inscripción →</a>
+    <div id="mobile-menu" role="dialog" aria-modal="true">
+        <a href="#dossier" class="mobile-link">Dossier</a>
+        <a href="#convenio" class="mobile-link">Convenio Oficial</a>
+        <a href="#programa" class="mobile-link">Programa</a>
+        <a href="#testimonios" class="mobile-link">Testimonios</a>
+        <a href="#precio" class="mobile-link">Inversión</a>
+        <a href="#faq" class="mobile-link">FAQ</a>
+        <a href="#registro" class="mobile-link" style="color:var(--gold)">Inscripción</a>
     </div>
 
     <section id="hero" style="position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
@@ -375,8 +191,9 @@
             <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
         </video>
         <div style="position:absolute; inset:0; z-index:2; background:linear-gradient(to bottom, rgba(6,6,8,.7) 0%, rgba(6,6,8,.1) 40%, rgba(6,6,8,.9) 100%);"></div>
+        <div id="ptcl" style="position:absolute; inset:0; pointer-events:none; z-index:2;"></div>
 
-        <div style="position:relative; z-index:3; text-align:center; padding:1.5rem; max-width:70rem; margin-top:6rem;">
+        <div style="position:relative; z-index:3; text-align:center; padding:1.5rem; max-width:70rem; margin-top:2rem;">
             <div class="sr" style="display:inline-flex; align-items:center; gap:.75rem; padding:.65rem 1.4rem; border:1px solid rgba(201,168,76,.3); border-radius:100px; backdrop-filter:blur(10px); background:rgba(201,168,76,.05); margin-bottom:2rem;">
                 <div style="width:6px; height:6px; border-radius:50%; background:var(--gold);"></div>
                 <span style="font-size:.6rem; text-transform:uppercase; letter-spacing:.4em; color:var(--gold); font-weight:600;">Misión Académica · Francia 2026</span>
@@ -388,34 +205,16 @@
             <p class="sr" style="font-size:clamp(.85rem,2vw,1.1rem); color:rgba(255,255,255,.5); max-width:38rem; margin:0 auto 2.5rem; line-height:1.8; font-weight:300;">
                 Inmersión lingüística exclusiva para estudiantes de La Salle con certificación oficial <strong style="color:rgba(255,255,255,.75); font-weight:500;">CAVILAM</strong> en Vichy y París.
             </p>
-            <div class="sr" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+            <div class="sr" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:1rem;">
                 <a href="#dossier" class="btn-primary interactive">Explorar Dossier</a>
                 <a href="#registro" class="btn-ghost interactive">Apartar mi lugar</a>
-                <a href="https://wa.me/?text=Mira%20el%20programa%20Vichy%202026%20para%20estudiantes%20de%20La%20Salle%20%F0%9F%87%AB%F0%9F%87%B7%20https%3A%2F%2Fmigueltillero-ship-it.github.io%2FVichy2026-LaSalle%2F" target="_blank" rel="noopener" class="btn-ghost interactive" style="border-color:rgba(37,211,102,.4);color:rgba(37,211,102,.8);">
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" style="margin-right:.5rem"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
-                    Compartir
-                </a>
             </div>
         </div>
+        <div class="scroll-ind">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
     </section>
-
-    <!-- ═══ URGENCY MARQUEE ═══ -->
-    <div class="urgency-bar" aria-hidden="true">
-        <span class="urgency-scroll">
-            <span>✦ Cupos Limitados</span>
-            <span>✦ Inmersión Total en Francia</span>
-            <span>✦ Certificación CAVILAM Internacional</span>
-            <span>✦ Disneyland® París Incluido</span>
-            <span>✦ Fechas por Confirmar</span>
-            <span>✦ 18 Días · 5 Ciudades · 60 Horas de Academia</span>
-            <span>✦ Cupos Limitados</span>
-            <span>✦ Inmersión Total en Francia</span>
-            <span>✦ Certificación CAVILAM Internacional</span>
-            <span>✦ Disneyland® París Incluido</span>
-            <span>✦ Fechas por Confirmar</span>
-            <span>✦ 18 Días · 5 Ciudades · 60 Horas de Academia</span>
-        </span>
-    </div>
 
     <section id="dossier" class="section-pad">
         <div class="container">
@@ -427,10 +226,9 @@
             <div class="sr" style="border-radius:2rem; overflow:hidden; border:1px solid rgba(255,255,255,.06); box-shadow:0 40px 80px rgba(0,0,0,.7); background:rgba(0,0,0,.3); padding:.5rem;">
                 <iframe loading="lazy" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" title="Dossier Académico Vichy 2026" allowfullscreen style="width:100%; aspect-ratio:16/9; border:none; border-radius:1.5rem; display:block;"></iframe>
             </div>
-            
             <div class="sr" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2rem;">
-                <a href="Vichy_2026_La_Salle.pptx" download class="btn-ghost interactive" style="font-size:0.65rem; padding: 0.8rem 1.5rem;">⬇ Descargar Presentación (PPTX)</a>
-                <a href="Vichy_2026_La_Salle.pptx (1).pdf" download class="btn-ghost interactive" style="font-size:0.65rem; padding: 0.8rem 1.5rem;">⬇ Descargar Dossier (PDF)</a>
+                <a href="diapo.%20viaje%20.pptx" download class="btn-ghost interactive" style="font-size:0.65rem; padding: 0.8rem 1.5rem;">Descargar Presentación (PPTX)</a>
+                <a href="jbkjbkjb.pdf" download class="btn-ghost interactive" style="font-size:0.65rem; padding: 0.8rem 1.5rem;">Descargar Documento (PDF)</a>
             </div>
         </div>
     </section>
@@ -447,24 +245,15 @@
             </div>
 
             <div class="grid-2 sr" style="max-width:64rem; margin:0 auto">
-                <div style="width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:1.5rem; border:1px solid rgba(255,255,255,.08); position:relative; background:#000;">
-                    <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Firma Oficial del Convenio AFSC–CAVILAM" style="width:100%; height:100%; object-fit:cover; transition:transform .7s ease;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'" onerror="this.src='IMG-20260224-WA0062.jpg'">
-                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(6,6,8,.9) 0%, transparent 55%); pointer-events:none;"></div>
-                    <p style="position:absolute; bottom:1.25rem; left:1.5rem; font-size:.72rem; color:rgba(255,255,255,.9); font-weight:500; letter-spacing:.05em;">Firma del Acuerdo Institucional · AFSC × CAVILAM</p>
+                <div class="w-full aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 relative group glass" data-tilt="true">
+                    <img src="firma_convenio_1.jpg" alt="Firma Oficial del Convenio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"></div>
+                    <p class="absolute bottom-4 left-5 text-white/90 text-sm font-semibold tracking-wide">Firma del Acuerdo Institucional</p>
                 </div>
-                <div style="width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:1.5rem; border:1px solid rgba(255,255,255,.08); position:relative; background:#000;">
-                    <img src="cavilam_firma_de_acuerdo.jpg" alt="Directivos CAVILAM y La Salle" style="width:100%; height:100%; object-fit:cover; transition:transform .7s ease;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'" onerror="this.src='cavilam_firma_de_acuerdo_v1.jpg'">
-                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(6,6,8,.9) 0%, transparent 55%); pointer-events:none;"></div>
-                    <p style="position:absolute; bottom:1.25rem; left:1.5rem; font-size:.72rem; color:rgba(255,255,255,.9); font-weight:500; letter-spacing:.05em;">Representación Institucional · La Salle × Alliance Française</p>
-                </div>
-            </div>
-
-            <!-- Foto Director + Rectora La Salle -->
-            <div class="sr" style="max-width:64rem; margin:1.5rem auto 0;">
-                <div style="width:100%; aspect-ratio:16/7; overflow:hidden; border-radius:1.5rem; border:1px solid rgba(255,255,255,.08); position:relative; background:#000;">
-                    <img src="profesores de la salle con la masestra maura carpio rectora de la salle y miguel tillero director.jpg" alt="Rectora de La Salle y Director Alliance Française" style="width:100%; height:100%; object-fit:cover; object-position:center 30%; transition:transform .7s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" onerror="this.parentElement.style.display='none'">
-                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(6,6,8,.92) 0%, transparent 50%); pointer-events:none;"></div>
-                    <p style="position:absolute; bottom:1.25rem; left:1.5rem; font-size:.72rem; color:rgba(255,255,255,.9); font-weight:500; letter-spacing:.05em;">Mtra. Maura Carpio, Rectora La Salle · Miguel Tillero, Director AFSC · Cuerpo Docente</p>
+                <div class="w-full aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 relative group glass" data-tilt="true">
+                    <img src="firma_convenio_2.jpg" alt="Gregory Lasne y Mathieu - CAVILAM" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"></div>
+                    <p class="absolute bottom-4 left-5 text-white/90 text-sm font-semibold tracking-wide">Representación CAVILAM Vichy</p>
                 </div>
             </div>
         </div>
@@ -478,31 +267,17 @@
                 <div class="divider"></div>
             </div>
             <div class="grid-2" style="max-width:64rem; margin:0 auto">
-                
-                <article class="glass sr" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem;">
-                    <div class="w-full h-56 mb-4 overflow-hidden rounded-2xl border border-white/10 relative group">
-                        <img src="la salle.jpeg" alt="Colegio La Salle San Cristóbal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='salle 1.png';this.onerror=function(){this.src='logos_banner.png';this.style.objectFit='contain';this.style.padding='1.5rem'}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent"></div>
-                    </div>
+                <article class="glass sr" style="padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; gap: 1rem;" data-tilt="true">
                     <span style="font-size:.55rem; text-transform:uppercase; letter-spacing:.35em; color:var(--gold); font-weight:600;">Institución Anfitriona</span>
-                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:600;">Colegio La Salle</h3>
-                    <p style="font-size:.85rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.75;">
-                        Conectando a sus estudiantes con oportunidades de proyección internacional, guiados por sólidos valores formativos lasallistas.
-                    </p>
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:600;">Colegio La Salle</h3>
+                    <p style="font-size:.95rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.75;">Conectando a sus estudiantes con oportunidades de proyección internacional, guiados por sólidos valores formativos lasallistas.</p>
                 </article>
 
-                <article class="glass sr" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem;">
-                    <div class="w-full h-56 mb-4 overflow-hidden rounded-2xl border border-white/10 relative group">
-                        <img src="Logo de la Alliance Française en San Cristóbal.png" alt="Alliance Française de San Cristóbal de Las Casas" style="width:100%; height:100%; object-fit:contain; padding:1.5rem; transition:transform .7s ease;" onerror="this.style.padding='0';this.style.objectFit='cover';this.src='logo_af_sc.jpg'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent"></div>
-                    </div>
+                <article class="glass sr" style="padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; gap: 1rem;" data-tilt="true">
                     <span style="font-size:.55rem; text-transform:uppercase; letter-spacing:.35em; color:var(--gold); font-weight:600;">Ente Certificador Oficial</span>
-                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:600;">Alliance Française</h3>
-                    <p style="font-size:.85rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.75;">
-                        El único centro cultural y de examinación avalado por la Fondation des Alliances Françaises de París.
-                    </p>
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:600;">Alliance Française</h3>
+                    <p style="font-size:.95rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.75;">El único centro cultural y de examinación avalado por la Fondation des Alliances Françaises de París.</p>
                 </article>
-
             </div>
         </div>
     </section>
@@ -515,17 +290,6 @@
                 <div class="divider"></div>
             </div>
 
-            <!-- City Tags -->
-            <div class="sr" style="display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; margin-bottom:2.5rem;">
-                <span class="city-tag">✦ Vichy</span>
-                <span class="city-tag">✦ París</span>
-                <span class="city-tag">✦ Lyon</span>
-                <span class="city-tag">✦ Puy de Dôme</span>
-                <span class="city-tag">✦ Clermont-Ferrand</span>
-                <span class="city-tag">✦ Charroux</span>
-                <span class="city-tag">✦ Disneyland® Paris</span>
-            </div>
-
             <div class="tab-nav sr">
                 <button class="tab-btn active interactive" data-tab="semana1">🏛 Llegada a Vichy</button>
                 <button class="tab-btn interactive" data-tab="inmersion">🌋 Auvernia</button>
@@ -534,29 +298,21 @@
 
             <div class="tab-panel active" id="tab-semana1">
                 <div class="grid-2">
-                    <article class="glass prog-card sr">
-                        <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="cavilam-campus.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Llegada a Vichy" onerror="this.src='IMG_20250707_125950.jpg'">
-                            <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
-                        </div>
-                        <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
-                            <span class="prog-num" style="top:-60px;">01</span>
+                    <article class="glass prog-card sr" data-tilt="true">
+                        <div class="prog-content">
+                            <span class="prog-num">01</span>
                             <h3>Llegada a Vichy</h3>
                             <span class="tag">Inmersión inmediata</span>
                             <ul>
                                 <li><span>✦</span> Recepción institucional y presentación con familias anfitrionas.</li>
                                 <li><span>✦</span> Instalación en la residencia y encuentro internacional.</li>
-                                <li><span>✦</span> Tour de orientation por el centro histórico y termal.</li>
+                                <li><span>✦</span> Tour de orientación por el centro histórico y termal.</li>
                             </ul>
                         </div>
                     </article>
-                    <article class="glass prog-card sr">
-                        <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Excelencia Académica CAVILAM" onerror="this.src='cavilam.jpg'">
-                            <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
-                        </div>
-                        <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
-                            <span class="prog-num" style="top:-60px;">02</span>
+                    <article class="glass prog-card sr" data-tilt="true">
+                        <div class="prog-content">
+                            <span class="prog-num">02</span>
                             <h3>Excelencia Académica</h3>
                             <span class="tag">Alliance Française</span>
                             <ul>
@@ -571,13 +327,9 @@
 
             <div class="tab-panel" id="tab-inmersion">
                 <div class="grid-2">
-                    <article class="glass prog-card sr">
-                        <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="IMG_20250707_125956.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Auvernia · Naturaleza volcánica" onerror="this.src='cavilam_firma_de_acuerdo.jpg'">
-                            <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
-                        </div>
-                        <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
-                            <span class="prog-num" style="top:-60px;">03</span>
+                    <article class="glass prog-card sr" data-tilt="true">
+                        <div class="prog-content">
+                            <span class="prog-num">03</span>
                             <h3>Patrimonio & Naturaleza</h3>
                             <span class="tag">Auvernia · UNESCO</span>
                             <ul>
@@ -586,13 +338,9 @@
                             </ul>
                         </div>
                     </article>
-                    <article class="glass prog-card sr">
-                        <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="IMG_20250708_120356.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Gastronomía francesa" onerror="this.src='CAVILAM_Viaje_linguistico.jpg'">
-                            <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
-                        </div>
-                        <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
-                            <span class="prog-num" style="top:-60px;">04</span>
+                    <article class="glass prog-card sr" data-tilt="true">
+                        <div class="prog-content">
+                            <span class="prog-num">04</span>
                             <h3>Gastronomía & Cultura</h3>
                             <span class="tag">Lyon · Capital culinaria</span>
                             <ul>
@@ -606,13 +354,9 @@
 
             <div class="tab-panel" id="tab-paris">
                 <div class="grid-2">
-                    <article class="glass prog-card sr">
-                        <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="eiffel-tower.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Torre Eiffel · París" onerror="this.src='paris-illustration.jpg'">
-                            <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
-                        </div>
-                        <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
-                            <span class="prog-num" style="top:-60px;">05</span>
+                    <article class="glass prog-card sr" data-tilt="true">
+                        <div class="prog-content">
+                            <span class="prog-num">05</span>
                             <h3>La Magie de Paris</h3>
                             <span class="tag">La capital · TGV</span>
                             <ul>
@@ -621,13 +365,9 @@
                             </ul>
                         </div>
                     </article>
-                    <article class="glass prog-card sr">
-                        <div class="prog-img-container" style="height:180px; position:relative;">
-                            <img src="IMG-20251119-WA0062.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.85;" alt="Clausura y Certificación · Nov 2025" onerror="this.src='cavilam-campus.jpg'">
-                            <div style="position:absolute; inset:0; background:linear-gradient(to top, var(--ink), transparent);"></div>
-                        </div>
-                        <div class="prog-content" style="padding: 0 2rem 2.5rem 2rem; position:relative;">
-                            <span class="prog-num" style="top:-60px;">06</span>
+                    <article class="glass prog-card sr" data-tilt="true">
+                        <div class="prog-content">
+                            <span class="prog-num">06</span>
                             <h3>Disneyland® & Clausura</h3>
                             <span class="tag">Final de la misión</span>
                             <ul>
@@ -649,7 +389,7 @@
                 <div class="divider"></div>
             </div>
             <div class="grid-3">
-                <article class="glass sr" style="padding:0; overflow:hidden;">
+                <article class="glass sr" style="padding:0; overflow:hidden;" data-tilt="true">
                     <div style="aspect-ratio:16/9; background:#000; position:relative;">
                         <video controls playsinline preload="metadata" style="width:100%; height:100%; object-fit:cover;">
                             <source src="video_famille_1.mp4" type="video/mp4">
@@ -660,7 +400,7 @@
                         <p style="font-size:.7rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.5);">Anfitriones CAVILAM</p>
                     </div>
                 </article>
-                <article class="glass sr" style="padding:0; overflow:hidden; transition-delay: 0.15s;">
+                <article class="glass sr" style="padding:0; overflow:hidden; transition-delay: 0.15s;" data-tilt="true">
                     <div style="aspect-ratio:16/9; background:#000; position:relative;">
                         <video controls playsinline preload="metadata" style="width:100%; height:100%; object-fit:cover;">
                             <source src="video_famille_2.mp4" type="video/mp4">
@@ -671,7 +411,7 @@
                         <p style="font-size:.7rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.5);">Entorno Seguro</p>
                     </div>
                 </article>
-                <article class="glass sr" style="padding:0; overflow:hidden; transition-delay: 0.3s;">
+                <article class="glass sr" style="padding:0; overflow:hidden; transition-delay: 0.3s;" data-tilt="true">
                     <div style="aspect-ratio:16/9; background:#000; position:relative;">
                         <video controls playsinline preload="metadata" style="width:100%; height:100%; object-fit:cover;">
                             <source src="video_regina.mp4" type="video/mp4">
@@ -683,233 +423,6 @@
                     </div>
                 </article>
             </div>
-
-            <!-- Quote Cards from families -->
-            <div class="grid-3 sr" style="margin:2.5rem 0;">
-                <div class="feat-card" style="text-align:left; padding:2rem;">
-                    <svg style="width:36px;height:36px;color:rgba(201,168,76,.18);margin-bottom:1.25rem;" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                    <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:1.25rem;">"Es un honor recibir a estudiantes de La Salle y compartir con ellos la riqueza de nuestra gastronomía y la douceur de vivre de Vichy."</p>
-                    <p style="font-size:.58rem;text-transform:uppercase;letter-spacing:.2em;font-weight:700;color:rgba(255,255,255,.28);">Sylvie Bertrand · Famille d'Accueil Certifiée</p>
-                </div>
-                <div class="feat-card" style="text-align:left; padding:2rem;">
-                    <svg style="width:36px;height:36px;color:rgba(201,168,76,.18);margin-bottom:1.25rem;" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                    <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:1.25rem;">"Nuestro compromiso es total con la seguridad y el bienestar emocional de los jóvenes. Queremos que se sientan en su propio hogar."</p>
-                    <p style="font-size:.58rem;text-transform:uppercase;letter-spacing:.2em;font-weight:700;color:rgba(255,255,255,.28);">Nadine et Philippe · Environnement Sûr</p>
-                </div>
-                <div class="feat-card" style="text-align:left; padding:2rem;">
-                    <svg style="width:36px;height:36px;color:rgba(201,168,76,.18);margin-bottom:1.25rem;" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                    <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:1.25rem;">"Es maravilloso ver cómo su francés florece día con día gracias a la inmersión constante en nuestras conversaciones familiares."</p>
-                    <p style="font-size:.58rem;text-transform:uppercase;letter-spacing:.2em;font-weight:700;color:rgba(255,255,255,.28);">Gwendoline Laurent · Hospitalité Totale</p>
-                </div>
-            </div>
-
-            <!-- Bienestar Feature Cards -->
-            <div class="grid-3 sr" style="max-width:60rem; margin:3rem auto 0; gap:1.5rem;">
-                <div class="feat-card">
-                    <div style="width:64px; height:64px; margin:0 auto 1.25rem; background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.25); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏡</div>
-                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.6rem;">Alojamiento Premium</h4>
-                    <p style="font-size:.82rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.65;">Habitación privada en familia certificada. Media pensión con comidas tradicionales incluidas.</p>
-                </div>
-                <div class="feat-card">
-                    <div style="width:64px; height:64px; margin:0 auto 1.25rem; background:rgba(0,35,149,.1); border:1px solid rgba(0,35,149,.3); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🚌</div>
-                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.6rem;">Logística & Traslados</h4>
-                    <p style="font-size:.82rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.65;">Autobuses privados para excursiones, transfers aeropuerto y billetes TGV incluidos.</p>
-                </div>
-                <div class="feat-card">
-                    <div style="width:64px; height:64px; margin:0 auto 1.25rem; background:rgba(237,41,57,.07); border:1px solid rgba(237,41,57,.25); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem;">🏥</div>
-                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:#fff; margin-bottom:.6rem;">Seguridad Médica</h4>
-                    <p style="font-size:.82rem; color:rgba(255,255,255,.45); font-weight:300; line-height:1.65;">Póliza médica internacional desde el primer día. Acompañamiento institucional 24/7.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════ TESTIMONIO REGINA ═══════ -->
-    <section class="section-pad" style="background:rgba(0,0,0,.2); border-top:1px solid rgba(255,255,255,.03); border-bottom:1px solid rgba(255,255,255,.03);">
-        <div class="container">
-            <div class="regina-grid" style="max-width:72rem; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
-                <div class="sr" style="position:relative;">
-                    <div style="position:absolute; inset:-2rem; background:rgba(201,168,76,.15); border-radius:50%; filter:blur(80px); pointer-events:none; z-index:0;"></div>
-                    <div style="position:relative; z-index:1; width:100%; aspect-ratio:16/9; background:#000; border-radius:2rem; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.7); border:1px solid rgba(201,168,76,.25);">
-                        <video controls playsinline preload="metadata" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain;">
-                            <source src="video_regina.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="sr">
-                    <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
-                        <div style="width:2.5rem; height:2px; background:var(--gold);"></div>
-                        <span style="font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.35em; color:var(--gold);">Voz de la Experiencia</span>
-                    </div>
-                    <blockquote>
-                        <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:300; color:#fff; line-height:1.2; margin-bottom:1.5rem;">
-                            "Una experiencia invaluable que<br><em style="color:var(--gold); font-style:italic;">transformó mi vida por completo"</em>
-                        </p>
-                        <p style="font-size:.9rem; color:rgba(255,255,255,.55); font-weight:300; line-height:1.75; border-left:3px solid var(--gold); padding-left:1.5rem; margin-bottom:2rem; font-style:italic;">
-                            No solo perfeccioné mi francés a niveles que no imaginaba; regresé siendo una persona completamente distinta, con una visión del mundo más amplia y amigos internacionales de por vida.
-                        </p>
-                        <footer>
-                            <cite style="font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); font-style:normal; display:flex; align-items:center; gap:.75rem;">
-                                <span style="width:32px; height:32px; border-radius:50%; background:rgba(201,168,76,.15); border:1px solid rgba(201,168,76,.4); display:flex; align-items:center; justify-content:center; color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:1rem;">R</span>
-                                Regina · Alumna del Programa CAVILAM
-                            </cite>
-                        </footer>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ═══════ STATS ═══════ -->
-    <section class="section-pad" style="border-top:1px solid rgba(255,255,255,.03)">
-        <div class="container">
-            <div class="stats-4-grid sr" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; max-width:72rem; margin:0 auto; text-align:center;">
-                <div style="padding:2.5rem 1.5rem; background:rgba(201,168,76,.04); border:1px solid rgba(201,168,76,.12); border-radius:1.5rem;">
-                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="18">0</div>
-                    <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Días en Francia</p>
-                </div>
-                <div style="padding:2.5rem 1.5rem; background:rgba(0,35,149,.06); border:1px solid rgba(0,35,149,.2); border-radius:1.5rem;">
-                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="60">0</div>
-                    <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Horas de Francés</p>
-                </div>
-                <div style="padding:2.5rem 1.5rem; background:rgba(201,168,76,.04); border:1px solid rgba(201,168,76,.12); border-radius:1.5rem;">
-                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;" data-counter="5">0</div>
-                    <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Ciudades Visitadas</p>
-                </div>
-                <div style="padding:2.5rem 1.5rem; background:rgba(0,35,149,.06); border:1px solid rgba(0,35,149,.2); border-radius:1.5rem;">
-                    <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:600; color:var(--gold); line-height:.9; margin-bottom:.75rem;">100<span style="font-size:.45em; vertical-align:super;">%</span></div>
-                    <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.3em; color:rgba(255,255,255,.4); font-weight:600;">Inmersión Cultural</p>
-                </div>
-            </div>
-            <style>@media(max-width:700px){.stats-4{grid-template-columns:repeat(2,1fr)!important}}</style>
-        </div>
-    </section>
-
-    <!-- ═══════ EDITORIAL QUOTE ═══════ -->
-    <section class="section-pad" style="border-top:1px solid rgba(255,255,255,.03); text-align:center;">
-        <div class="container">
-            <div class="sr">
-                <div class="tricolor-bar" style="margin:0 auto 3rem;"></div>
-                <p class="editorial-quote" style="max-width:54rem; margin:0 auto 2.5rem;">
-                    "Imagina despertar cada día en el corazón de Francia, estudiar en la institución lingüística más prestigiosa de Europa y explorar París como si siempre fuera tu ciudad."
-                </p>
-                <div class="divider"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════ GALERÍA ═══════ -->
-    <section id="galeria" class="section-pad" style="background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.03)">
-        <div class="container">
-            <div class="section-header sr">
-                <p class="eyebrow" style="margin-bottom:1rem">En Imágenes Reales</p>
-                <h2 class="section-title">Galería <em style="color:var(--gold);font-style:italic">Oficial</em></h2>
-                <p style="margin-top:1rem; font-size:.8rem; color:rgba(255,255,255,.35); font-weight:300;">Imágenes de la visita exploratoria a Vichy y de las actividades institucionales 2025</p>
-                <div class="divider"></div>
-            </div>
-            <style>
-            .gal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-            .gal-item { position:relative; overflow:hidden; border-radius:1.25rem; border:1px solid rgba(255,255,255,.05); background:#111; cursor:zoom-in; aspect-ratio:4/3; }
-            .gal-item.tall { aspect-ratio:3/4; }
-            .gal-item img { width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.22,1,.36,1); display:block; }
-            .gal-item:hover img { transform:scale(1.08); }
-            .gal-cap { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(6,6,8,.9),transparent); padding:1.25rem .9rem .7rem; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(201,168,76,.8); font-weight:700; opacity:0; transition:opacity .35s; }
-            .gal-item:hover .gal-cap { opacity:1; }
-            @media(max-width:700px){ .gal-grid { grid-template-columns:repeat(2,1fr); } }
-            </style>
-            <div class="gal-grid">
-                <div class="gal-item sr tall" style="grid-row:span 2">
-                    <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Firma del Convenio" loading="lazy" onerror="this.src='IMG-20260224-WA0062.jpg'">
-                    <span class="gal-cap">Firma del Convenio Oficial · 2026</span>
-                </div>
-                <div class="gal-item sr">
-                    <img src="CAVILAM-AF-SITE-ACCUEIL-Cavilam-Center-of-excellence.jpg" alt="Campus CAVILAM" loading="lazy" onerror="this.src='cavilam-campus.jpg'">
-                    <span class="gal-cap">Campus CAVILAM · Vichy</span>
-                </div>
-                <div class="gal-item sr">
-                    <img src="eiffel-tower.jpg" alt="Torre Eiffel París" loading="lazy" onerror="this.src='paris-illustration.jpg'">
-                    <span class="gal-cap">Torre Eiffel · París</span>
-                </div>
-                <div class="gal-item sr">
-                    <img src="IMG_20250707_125950.jpg" alt="Vichy julio 2025" loading="lazy" onerror="this.src='cavilam.jpg'">
-                    <span class="gal-cap">Vichy · Visita Jul 2025</span>
-                </div>
-                <div class="gal-item sr">
-                    <img src="IMG_20250707_132444.jpg" alt="CAVILAM 2025" loading="lazy" onerror="this.src='CAVILAM_Viaje_linguistico.jpg'">
-                    <span class="gal-cap">CAVILAM · Jul 2025</span>
-                </div>
-                <div class="gal-item sr tall" style="grid-row:span 2">
-                    <img src="cavilam_firma_de_acuerdo.jpg" alt="Acuerdo institucional" loading="lazy" onerror="this.src='CAvilam_firma.jpg'">
-                    <span class="gal-cap">Acuerdo · La Salle × AFSC × CAVILAM</span>
-                </div>
-                <div class="gal-item sr">
-                    <img src="IMG-20251119-WA0065.jpg" alt="Presentación La Salle noviembre 2025" loading="lazy" onerror="this.src='IMG-20251119-WA0062.jpg'">
-                    <span class="gal-cap">Presentación · La Salle · Nov 2025</span>
-                </div>
-                <div class="gal-item sr">
-                    <img src="Con_la_Directora_de_la_Salle.jpg" alt="Con la Directora de La Salle" loading="lazy" onerror="this.src='salle 1.png'">
-                    <span class="gal-cap">Directora La Salle · San Cristóbal</span>
-                </div>
-                <div class="gal-item sr">
-                    <img src="IMG_20250708_120356.jpg" alt="Auvernia 2025" loading="lazy" onerror="this.src='CAVILAM_Viaje_linguistico_v1.jpg'">
-                    <span class="gal-cap">Auvernia · Día 2 · Jul 2025</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════ DIRECTOR QUOTE ═══════ -->
-    <section class="section-pad" style="border-top:1px solid rgba(255,255,255,.03)">
-        <div class="container">
-            <div class="glass glass-gold sr" style="max-width:52rem; margin:0 auto; padding:4rem 3.5rem; text-align:center; position:relative; overflow:hidden;">
-                <div style="position:absolute; top:0; left:0; width:100%; height:3px; background:linear-gradient(90deg,var(--blue) 33%,#fff 33%,#fff 66%,#ED2939 66%); border-radius:2px 2px 0 0;"></div>
-                <div style="position:absolute; top:-80px; right:-80px; width:300px; height:300px; background:radial-gradient(ellipse,rgba(201,168,76,.07) 0%,transparent 70%); pointer-events:none;"></div>
-                <svg style="width:3rem; height:3rem; color:rgba(201,168,76,.2); margin:0 auto 1.5rem;" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                <blockquote style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,3vw,2.2rem); font-weight:300; font-style:italic; color:rgba(255,255,255,.9); line-height:1.5; margin-bottom:2.5rem; position:relative; z-index:1;">
-                    "Nuestra prioridad es la excelencia académica y la seguridad total de cada alumno de La Salle. Este programa representa lo mejor que podemos ofrecerles: el mundo."
-                </blockquote>
-                <div style="width:50px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 2rem;"></div>
-                <div style="display:flex; align-items:center; justify-content:center; gap:1rem; position:relative; z-index:1;">
-                    <div style="width:52px; height:52px; border-radius:50%; overflow:hidden; border:2px solid rgba(201,168,76,.3); flex-shrink:0;">
-                        <img src="Director_san_cristobal_con_director_Cavilam.jpg" alt="Miguel Tillero Álvarez" style="width:100%; height:100%; object-fit:cover; object-position:top;" onerror="this.src='qr_af_director.png'">
-                    </div>
-                    <div style="text-align:left;">
-                        <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:#fff; font-weight:600;">Miguel Tillero Álvarez</p>
-                        <p style="font-size:.58rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.2rem; font-weight:600;">Director General · Alliance Française San Cristóbal</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════ COUNTDOWN ═══════ -->
-    <section class="section-pad" style="background:rgba(0,0,0,.2);border-top:1px solid rgba(255,255,255,.03); text-align:center;">
-        <div class="container">
-            <div class="sr" style="margin-bottom:2.5rem">
-                <p class="eyebrow" style="margin-bottom:1rem">El tiempo corre</p>
-                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.8rem); font-weight:300; color:#fff;">La Misión despega en</h2>
-            </div>
-            <div id="cd-wrap" class="sr" style="display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem;">
-                <div style="min-width:90px; padding:1.5rem 1rem; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.2); border-radius:1.25rem; text-align:center;">
-                    <p id="cd-d" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:600; color:var(--gold); line-height:1;">--</p>
-                    <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.4rem; font-weight:600;">Días</p>
-                </div>
-                <span style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:rgba(201,168,76,.25); line-height:1; margin-bottom:1.5rem;">:</span>
-                <div style="min-width:90px; padding:1.5rem 1rem; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.2); border-radius:1.25rem; text-align:center;">
-                    <p id="cd-h" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:600; color:var(--gold); line-height:1;">--</p>
-                    <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.4rem; font-weight:600;">Horas</p>
-                </div>
-                <span style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:rgba(201,168,76,.25); line-height:1; margin-bottom:1.5rem;">:</span>
-                <div style="min-width:90px; padding:1.5rem 1rem; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.2); border-radius:1.25rem; text-align:center;">
-                    <p id="cd-m" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:600; color:var(--gold); line-height:1;">--</p>
-                    <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.4rem; font-weight:600;">Min</p>
-                </div>
-                <span style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:rgba(201,168,76,.25); line-height:1; margin-bottom:1.5rem;">:</span>
-                <div style="min-width:90px; padding:1.5rem 1rem; background:rgba(201,168,76,.05); border:1px solid rgba(201,168,76,.2); border-radius:1.25rem; text-align:center;">
-                    <p id="cd-s" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:600; color:var(--gold); line-height:1;">--</p>
-                    <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(255,255,255,.35); margin-top:.4rem; font-weight:600;">Seg</p>
-                </div>
-            </div>
-            <div class="sr"><a href="#registro" class="btn-primary interactive">Asegurar mi lugar →</a></div>
         </div>
     </section>
 
@@ -969,438 +482,136 @@
                 <div class="divider"></div>
             </div>
             <div id="faq-list" class="sr">
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿Es necesario que mi hijo(a) hable francés para participar?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <div style="border-bottom: 1px solid rgba(255,255,255,.05);" class="faq-item">
+                    <button class="faq-q interactive" style="width: 100%; background: none; border: none; padding: 1.6rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left;">
+                        <span style="font-size: .9rem; color: rgba(255,255,255,.8); font-weight: 400; font-family:'DM Sans',sans-serif;">¿Cuándo son las fechas exactas del viaje?</span>
+                        <span class="faq-icon" style="width:28px; height:28px; border:1px solid rgba(255,255,255,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.7rem; color:rgba(255,255,255,.4); transition:all .4s var(--ease-out);">+</span>
                     </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">No. CAVILAM recibe estudiantes de todos los niveles, incluidos principiantes absolutos. Se realiza una evaluación al inicio y se asignan grupos homogéneos. La inmersión total acelera el aprendizaje de manera extraordinaria.</div></div>
+                    <div class="faq-a" style="max-height: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; opacity:0;"><p style="font-size: .85rem; color: rgba(255,255,255,.45); font-weight:300; line-height:1.75; padding-bottom: 1.5rem;">Las fechas definitivas se confirmarán con los grupos inscritos. El programa tiene una duración de <strong>18 días</strong> y está planeado para el verano 2026. Al registrar su interés, recibirá la comunicación oficial con el calendario completo.</p></div>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿Cuándo son las fechas exactas del viaje?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <div style="border-bottom: 1px solid rgba(255,255,255,.05);" class="faq-item">
+                    <button class="faq-q interactive" style="width: 100%; background: none; border: none; padding: 1.6rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left;">
+                        <span style="font-size: .9rem; color: rgba(255,255,255,.8); font-weight: 400; font-family:'DM Sans',sans-serif;">¿Qué incluye la certificación CAVILAM?</span>
+                        <span class="faq-icon" style="width:28px; height:28px; border:1px solid rgba(255,255,255,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.7rem; color:rgba(255,255,255,.4); transition:all .4s var(--ease-out);">+</span>
                     </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">Las fechas definitivas se confirmarán con los grupos inscritos. El programa tiene una duración de <strong>18 días</strong> y está planeado para el verano 2026. Al registrar su interés recibirá la comunicación oficial con el calendario completo.</div></div>
+                    <div class="faq-a" style="max-height: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; opacity:0;"><p style="font-size: .85rem; color: rgba(255,255,255,.45); font-weight:300; line-height:1.75; padding-bottom: 1.5rem;">CAVILAM es un instituto reconocido internacionalmente, acreditado por el Ministerio de Educación francés. La certificación avala el nivel lingüístico alcanzado y tiene validez académica internacional.</p></div>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿Cómo se seleccionan las familias anfitrionas?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <div style="border-bottom: 1px solid rgba(255,255,255,.05);" class="faq-item">
+                    <button class="faq-q interactive" style="width: 100%; background: none; border: none; padding: 1.6rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left;">
+                        <span style="font-size: .9rem; color: rgba(255,255,255,.8); font-weight: 400; font-family:'DM Sans',sans-serif;">¿El programa tiene supervisión durante todo el viaje?</span>
+                        <span class="faq-icon" style="width:28px; height:28px; border:1px solid rgba(255,255,255,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.7rem; color:rgba(255,255,255,.4); transition:all .4s var(--ease-out);">+</span>
                     </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">Todas las familias son seleccionadas, evaluadas y certificadas por CAVILAM-Alliance française de Vichy. El proceso incluye visitas domiciliarias, verificación de antecedentes y formación específica para la acogida de estudiantes internacionales menores de edad.</div></div>
+                    <div class="faq-a" style="max-height: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; opacity:0;"><p style="font-size: .85rem; color: rgba(255,255,255,.45); font-weight:300; line-height:1.75; padding-bottom: 1.5rem;">Sí. El grupo estará acompañado en todo momento por coordinadores de La Salle y personal de Alliance Française, garantizando seguridad, comunicación y atención a los estudiantes durante los 18 días del programa.</p></div>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿Qué incluye la certificación CAVILAM?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <div style="border-bottom: 1px solid rgba(255,255,255,.05);" class="faq-item">
+                    <button class="faq-q interactive" style="width: 100%; background: none; border: none; padding: 1.6rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left;">
+                        <span style="font-size: .9rem; color: rgba(255,255,255,.8); font-weight: 400; font-family:'DM Sans',sans-serif;">¿Cómo se maneja el costo del avión?</span>
+                        <span class="faq-icon" style="width:28px; height:28px; border:1px solid rgba(255,255,255,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.7rem; color:rgba(255,255,255,.4); transition:all .4s var(--ease-out);">+</span>
                     </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">CAVILAM es un centro de referencia mundial acreditado por el Ministerio de Educación francés. La certificación avala el nivel lingüístico alcanzado y tiene validez académica internacional, incluyendo reconocimiento para portfolios universitarios.</div></div>
+                    <div class="faq-a" style="max-height: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; opacity:0;"><p style="font-size: .85rem; color: rgba(255,255,255,.45); font-weight:300; line-height:1.75; padding-bottom: 1.5rem;">Los boletos aéreos se gestionan de forma independiente al costo del programa. La institución orientará a las familias, pero el costo no está incluido en los ~€3,500.</p></div>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿Cómo se garantiza la seguridad de los estudiantes?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">Los estudiantes viajan acompañados en todo momento por un responsable pedagógico designado por La Salle. El alojamiento (familias anfitrionas o residencias) es verificado y certificado por CAVILAM. Contamos con protocolo de emergencia, seguro de viaje y comunicación diaria con los tutores.</div></div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿Se necesita visa para viajar a Francia?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">Sí. Los ciudadanos mexicanos requieren visa Schengen para ingresar a Francia. La Alliance Française orienta a las familias en el proceso de solicitud, que debe iniciarse con mínimo 3 meses de anticipación. El programa incluye carta de invitación oficial de CAVILAM para facilitar el trámite.</div></div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿El precio incluye el vuelo internacional?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">No. El costo de ~€3,500 cubre todo el programa en Francia (academia, alojamiento, comidas, traslados, excursiones, Disneyland® y seguro). Los boletos aéreos México–Francia–México se gestionan de manera independiente para ofrecer flexibilidad a las familias.</div></div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿Cuántos lugares hay disponibles?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">El programa tiene cupo <strong>limitado a 18 estudiantes</strong> para garantizar la atención personalizada en CAVILAM y la disponibilidad de alojamiento en familia anfitriona. Los lugares se asignan en orden de registro y perfil académico.</div></div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿Hay plan de pagos o mensualidades?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">Sí. La dirección del programa trabaja con un plan de pagos flexible para las familias inscritas. Al registrar su interés se le compartirán los esquemas de apartado, parcialidades y fechas límite de pago. Contáctenos por WhatsApp para más detalles.</div></div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-q-inner interactive" aria-expanded="false">
-                        <span>¿En qué idioma se imparten las clases en CAVILAM?</span>
-                        <svg class="faq-chv" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="faq-a-panel"><div class="faq-a-inner">Las clases se imparten íntegramente en francés por docentes nativos certificados. La metodología CAVILAM está diseñada para lograr inmersión total incluso con estudiantes de nivel básico. Los profesores conocen la dinámica con grupos latinoamericanos y garantizan una progresión acelerada.</div></div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ═══════ DIRECTORIO ═══════ -->
-    <section id="directorio" class="section-pad bg-cream" style="position:relative; z-index:2;">
-        <div class="container">
+    <section id="registro" class="section-pad" style="background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.03)">
+        <div class="container" style="max-width:46rem">
             <div class="section-header sr">
-                <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.45em; color:#002395; font-weight:700; margin-bottom:1rem;">Contacto Directo</p>
-                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,4.5rem); font-weight:300; line-height:1.05; color:#002395;">Directorio <em style="color:var(--gold);font-style:italic">Institucional</em></h2>
-                <p style="margin-top:1rem; font-size:.82rem; color:rgba(7,7,10,.45); font-weight:300;">Para consultas urgentes, comuníquese directamente.</p>
-                <div style="width:60px; height:1.5px; background:linear-gradient(90deg,var(--gold),transparent); margin:1.5rem auto 0;"></div>
-            </div>
-            <div class="dir-grid sr" style="display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; max-width:52rem; margin:0 auto;">
-
-                <!-- Miguel Tillero -->
-                <article class="qr-card">
-                    <div class="qr-box">
-                        <img src="qr_miguel_tillero.png" alt="QR WhatsApp Miguel Tillero" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5219671721870&color=002395&bgcolor=ffffff'">
-                    </div>
-                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:#002395;">Miguel Tillero A.</h4>
-                    <p style="font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.25em; color:#94a3b8; background:#f1f5f9; padding:.3rem .9rem; border-radius:100px;">Director General · AFSC</p>
-                    <a href="tel:+5219671721870" style="font-size:1.15rem; font-weight:700; color:#060608; text-decoration:none; margin-top:.5rem; display:block; transition:color .3s;" onmouseover="this.style.color='#002395'" onmouseout="this.style.color='#060608'">+52 1 967 172 1870</a>
-                    <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:.5rem; margin-top:.75rem; padding:.6rem 1.5rem; background:#25D366; color:#fff; border-radius:100px; font-size:.65rem; font-weight:700; text-decoration:none; transition:background .3s;" onmouseover="this.style.background='#128C7E'" onmouseout="this.style.background='#25D366'">
-                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
-                        Mensaje Oficial AFSC
-                    </a>
-                </article>
-
-                <!-- Román Fuentes -->
-                <article class="qr-card">
-                    <div class="qr-box">
-                        <img src="qr_roman_fuentes.png" alt="QR WhatsApp Román Fuentes" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5214731219337&color=002395&bgcolor=ffffff'">
-                    </div>
-                    <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700; color:#002395;">Román Fuentes</h4>
-                    <p style="font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.25em; color:#94a3b8; background:#f1f5f9; padding:.3rem .9rem; border-radius:100px;">Responsable · Colegio La Salle</p>
-                    <a href="tel:+5214731219337" style="font-size:1.15rem; font-weight:700; color:#060608; text-decoration:none; margin-top:.5rem; display:block; transition:color .3s;" onmouseover="this.style.color='#002395'" onmouseout="this.style.color='#060608'">+52 1 473 121 9337</a>
-                    <a href="https://api.whatsapp.com/send/?phone=5214731219337&text&type=phone_number&app_absent=0" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:.5rem; margin-top:.75rem; padding:.6rem 1.5rem; background:#25D366; color:#fff; border-radius:100px; font-size:.65rem; font-weight:700; text-decoration:none; transition:background .3s;" onmouseover="this.style.background='#128C7E'" onmouseout="this.style.background='#25D366'">
-                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
-                        Mensaje a La Salle
-                    </a>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════ CTA ═══════ -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="sr">
-                <div class="tricolor-bar" style="margin:0 auto 3rem; opacity:.7;"></div>
-                <p class="lux" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:300; color:rgba(255,255,255,.9); font-style:italic; line-height:1.25; max-width:44rem; margin:0 auto 3rem;">
-                    Las plazas son estrictamente limitadas.<br>
-                    <em style="color:var(--gold);">¿Será este el año que decidas cambiar tu futuro?</em>
-                </p>
-                <a href="#registro" class="btn-primary interactive" style="font-size:.75rem; padding:1.4rem 3.5rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:1.3rem; letter-spacing:.05em;">
-                    Asegurar mi Lugar Hoy
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="registro" class="section-pad bg-cream" style="position:relative; z-index:2;">
-        <div class="container" style="max-width:52rem">
-            <div class="section-header sr">
-                <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.45em; color:#002395; font-weight:700; margin-bottom:1rem;">Postulación Oficial</p>
-                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,4.5rem); font-weight:300; line-height:1.05; color:#002395;">Registro de <em style="color:var(--gold);font-style:italic">Interés</em></h2>
-                <p style="margin-top:1.25rem;font-size:.9rem;color:rgba(7,7,10,.5);font-weight:300;line-height:1.75; max-width:34rem; margin-left:auto; margin-right:auto;">Complete el formulario con absoluta precisión. La Dirección Académica confirmará la disponibilidad de su plaza a la brevedad.</p>
-                <div style="width:60px; height:1.5px; background:linear-gradient(90deg,var(--gold),transparent); margin:1.5rem auto 0;"></div>
+                <p class="eyebrow" style="margin-bottom:1rem">Postulación de expediente</p>
+                <h2 class="section-title">Registro de <em style="color:var(--gold);font-style:italic">Interés</em></h2>
+                <p style="margin-top:1.25rem;font-size:.9rem;color:rgba(255,255,255,.4);font-weight:300;line-height:1.75">La dirección evaluará su perfil para la asignación de plazas. Los lugares son limitados.</p>
+                <div class="divider"></div>
             </div>
 
-            <div class="sr" style="background:#fff; padding:2.5rem; border-radius:3rem; border:1px solid #e2e8f0; box-shadow:0 25px 60px rgba(0,0,0,.08); position:relative; overflow:hidden;">
-
-                <div id="gracias" style="display:none; padding:2.5rem; background:#f0fdf4; border:1.5px solid #86efac; border-radius:1.5rem; text-align:center;">
-                    <div style="width:64px; height:64px; background:#dcfce7; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem;">
-                        <svg style="width:32px;height:32px;color:#16a34a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    </div>
-                    <p style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:#14532d; font-weight:700; margin-bottom:.5rem;">¡Solicitud Recibida!</p>
-                    <p style="font-size:.9rem; color:#166534; font-weight:500;">La Dirección de la Alliance Française ha registrado exitosamente el perfil del estudiante.</p>
-                    <div style="width:64px; height:1px; background:#86efac; margin:1.25rem auto;"></div>
-                    <p style="font-size:.82rem; color:#15803d;">Un coordinador se comunicará a su WhatsApp o correo para continuar con los trámites. Agradecemos su confianza.</p>
+            <div class="glass glass-gold sr" style="padding:3rem 2.5rem">
+                <div id="gracias" style="display:none; padding:2.5rem; background:rgba(16,185,129,.06); border:1px solid rgba(16,185,129,.25); border-radius:1.25rem; text-align:center;">
+                    <div style="font-size:2.5rem;margin-bottom:1rem">🎉</div>
+                    <p class="lux" style="font-size:1.8rem;color:#34d399;margin-bottom:.5rem">¡Expediente registrado!</p>
+                    <p style="font-size:.85rem;color:rgba(255,255,255,.45);font-weight:300">Sus datos han sido enviados correctamente. La dirección se pondrá en contacto a la brevedad.</p>
                 </div>
 
-                <div id="errBox" style="display:none; padding:1.25rem 1.5rem; background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.25); border-radius:1rem; font-size:.82rem; color:rgba(180,50,50,.9); margin-bottom:1.5rem;"></div>
+                <div id="errBox" style="display:none; padding:1.25rem 1.5rem; background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.25); border-radius:1rem; font-size:.82rem; color:rgba(255,150,150,.8);"></div>
 
-                <form id="formulario-afsc">
-                    <input type="hidden" name="access_key" value="205de288-1f78-4a3c-97d4-ae2950da7e82">
-                    <input type="hidden" name="subject" value="🇫🇷 NUEVO EXPEDIENTE: Misión Vichy 2026">
-                    <input type="hidden" name="from_name" value="Portal Vichy 2026">
-                    <input type="hidden" name="redirect" value="false">
-                    <input type="checkbox" name="botcheck" style="display:none">
+                <form id="form-registro" action="https://formsubmit.co/direccion@afchiapas.com" method="POST" class="space-y-6">
+                    <input type="hidden" name="_subject" value="Nueva inscripción · Vichy 2026">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="about:blank">
+                    <input type="hidden" name="_template" value="table">
 
-                    <!-- I. Perfil del Estudiante -->
-                    <div class="fieldset-box">
-                        <div class="fieldset-legend">I. Perfil del Estudiante</div>
-                        <div class="form-grid-2" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-bottom:1.25rem;">
-                            <div>
-                                <label class="form-label-light" for="nombre_est">Nombre Completo *</label>
-                                <input id="nombre_est" type="text" name="Nombre_Estudiante" required class="ff-light interactive" placeholder="Ej. Ana Sofía Martínez López" autocomplete="name">
-                            </div>
-                            <div>
-                                <label class="form-label-light" for="grado">Nivel Académico *</label>
-                                <select id="grado" name="Grado_Nivel" required class="ff-light interactive" style="cursor:pointer; background:#fff;">
-                                    <option value="" disabled selected>Seleccione el Grado en La Salle</option>
-                                    <option value="1ro Secundaria">1° Secundaria</option>
-                                    <option value="2do Secundaria">2° Secundaria</option>
-                                    <option value="3ro Secundaria">3° Secundaria</option>
-                                    <option value="1ro Preparatoria">1° Preparatoria</option>
-                                    <option value="2do Preparatoria">2° Preparatoria</option>
-                                    <option value="3ro Preparatoria">3° Preparatoria</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-grid-2" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-bottom:1.25rem;">
-                            <div>
-                                <label class="form-label-light" for="nivel_fr">Nivel de Francés *</label>
-                                <select id="nivel_fr" name="Nivel_Frances" required class="ff-light interactive" style="cursor:pointer; background:#fff;">
-                                    <option value="" disabled selected>Nivel actual de Francés</option>
-                                    <option value="A1">A1 – Principiante</option>
-                                    <option value="A2">A2 – Elemental</option>
-                                    <option value="B1/B2">B1/B2 – Intermedio/Avanzado</option>
-                                    <option value="Ninguno">Sin conocimientos previos</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="form-label-light" for="pasaporte">Pasaporte *</label>
-                                <select id="pasaporte" name="Estatus_Pasaporte" required class="ff-light interactive" style="cursor:pointer; background:#fff;">
-                                    <option value="" disabled selected>¿Cuenta con Pasaporte Vigente?</option>
-                                    <option value="Si_Vigente">Sí, vigente para 2026</option>
-                                    <option value="Tramite">En trámite</option>
-                                    <option value="No">No / Requiere renovación</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div style="margin-bottom:1.25rem;">
-                            <label class="form-label-light" for="salud">Condiciones Médicas / Alergias</label>
-                            <textarea id="salud" name="Restricciones_Salud" placeholder="Alergias alimentarias, medicamentos, condiciones. Escriba 'Ninguna' si no aplica." rows="2" class="ff-light" style="resize:vertical;"></textarea>
+                    <div class="grid-2" style="gap:1.25rem; display:grid; grid-template-columns:repeat(2,1fr);">
+                        <div>
+                            <label style="display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600;" for="nombre_est">Nombre del estudiante *</label>
+                            <input id="nombre_est" type="text" name="Nombre_Estudiante" required style="width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.07); border-radius:1rem; padding:1.1rem 1.4rem; color:#fff; font-family:'DM Sans', sans-serif; font-size:.87rem;" class="ff interactive" placeholder="Nombre completo">
                         </div>
                         <div>
-                            <label class="form-label-light" for="motivo">Motivación Breve *</label>
-                            <textarea id="motivo" name="Motivacion_Viaje" placeholder="¿Por qué desea participar en este programa?" required rows="3" class="ff-light" style="resize:vertical;"></textarea>
+                            <label style="display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600;" for="nombre_tut">Padre / Tutor *</label>
+                            <input id="nombre_tut" type="text" name="Nombre_Tutor" required style="width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.07); border-radius:1rem; padding:1.1rem 1.4rem; color:#fff; font-family:'DM Sans', sans-serif; font-size:.87rem;" class="ff interactive" placeholder="Nombre del tutor">
                         </div>
                     </div>
-
-                    <!-- II. Responsable Legal -->
-                    <div class="fieldset-box">
-                        <div class="fieldset-legend">II. Responsable Legal</div>
-                        <div class="form-grid-2" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; margin-bottom:1.25rem;">
-                            <div>
-                                <label class="form-label-light" for="nombre_tut">Nombre del Padre / Tutor *</label>
-                                <input id="nombre_tut" type="text" name="Nombre_Tutor" required class="ff-light interactive" placeholder="Ej. Roberto Martínez Gómez" autocomplete="name">
-                            </div>
-                            <div>
-                                <label class="form-label-light" for="wapp">WhatsApp de Contacto *</label>
-                                <input id="wapp" type="tel" name="WhatsApp_Contacto" required class="ff-light interactive" placeholder="+52 967 123 4567" autocomplete="tel" style="font-family:monospace;">
-                            </div>
+                    <div class="grid-2" style="gap:1.25rem; display:grid; grid-template-columns:repeat(2,1fr); margin-top: 1.5rem;">
+                        <div>
+                            <label style="display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600;" for="wapp">WhatsApp de contacto *</label>
+                            <input id="wapp" type="tel" name="WhatsApp" required style="width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.07); border-radius:1rem; padding:1.1rem 1.4rem; color:#fff; font-family:'DM Sans', sans-serif; font-size:.87rem;" class="ff interactive" placeholder="+52 961 000 0000">
                         </div>
                         <div>
-                            <label class="form-label-light" for="correo">Correo Electrónico</label>
-                            <input id="correo" type="email" name="email" class="ff-light interactive" placeholder="correo@ejemplo.com" autocomplete="email">
+                            <label style="display:block; font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:.6rem; margin-left:.3rem; font-weight:600;" for="correo">Correo electrónico *</label>
+                            <input id="correo" type="email" name="email" required style="width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.07); border-radius:1rem; padding:1.1rem 1.4rem; color:#fff; font-family:'DM Sans', sans-serif; font-size:.87rem;" class="ff interactive" placeholder="correo@ejemplo.com">
                         </div>
                     </div>
 
-                    <button type="submit" id="btn-submit" class="interactive" style="width:100%; padding:1.3rem; font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; font-weight:600; border-radius:1rem; background:#002395; color:#fff; letter-spacing:.05em; border:none; cursor:pointer; margin-top:.5rem; transition:all .4s; position:relative; overflow:hidden;">
-                        <span id="btn-text" style="transition:opacity .3s;">Enviar Expediente a Dirección</span>
-                        <svg id="btn-spin" style="display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);animation:spin .9s linear infinite;width:28px;height:28px;" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,.3)" stroke-width="4"/><path d="M4 12a8 8 0 018-8" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+                    <button type="submit" id="btn-submit" class="interactive" style="width:100%; padding:1.3rem; font-size:.7rem; border-radius:1.1rem; background:linear-gradient(135deg, var(--gold-lt), var(--gold-dk)); color:var(--ink); font-weight:600; text-transform:uppercase; letter-spacing:.25em; border:none; cursor:pointer; margin-top: 1.5rem;">
+                        <span id="btn-text">Enviar Expediente Oficial</span>
                     </button>
-                    <style>@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}</style>
-                    <p style="text-align:center; font-size:.65rem; color:#94a3b8; margin-top:.75rem; display:flex; align-items:center; justify-content:center; gap:.4rem;">
-                        <svg style="width:14px;height:14px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                        Datos protegidos bajo las normativas de privacidad de la Alliance Française.
-                    </p>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer style="position:relative; z-index:2; padding:4rem 1.5rem 3rem; border-top:1px solid rgba(255,255,255,.04); text-align:center; background:rgba(0,0,0,.28);">
-        <div style="max-width:64rem; margin:0 auto;">
-            <!-- Logos banner -->
-            <div style="margin-bottom:2.5rem; display:inline-block;">
-                <div style="background:#fff; border-radius:1rem; padding:.6rem 1.5rem; display:inline-flex; align-items:center; box-shadow:0 8px 30px rgba(0,0,0,.35);">
-                    <img src="banner_logos.jpg" loading="lazy" style="width:280px;height:auto;object-fit:contain;border-radius:6px;" onerror="this.style.display='none'" alt="La Salle · Alliance Française · CAVILAM">
-                </div>
-            </div>
-            <div style="width:60px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 1.5rem;"></div>
-            <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold); margin-bottom:.65rem; text-shadow:0 0 20px rgba(201,168,76,.3); font-weight:600;">Vichy 2026</div>
-            <p style="font-size:.78rem; font-style:italic; color:rgba(255,255,255,.28); font-family:'Cormorant Garamond',serif; margin-bottom:2rem;">"No es solo un viaje, es la construcción de una visión global."</p>
-
-            <!-- Nav links -->
-            <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:1.75rem;">
-                <a href="https://wa.me/5219671721870" target="_blank" rel="noopener" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">WhatsApp</a>
-                <span style="color:rgba(255,255,255,.1)">·</span>
-                <a href="#registro" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">Registro</a>
-                <span style="color:rgba(255,255,255,.1)">·</span>
-                <a href="#faq" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">FAQ</a>
-                <span style="color:rgba(255,255,255,.1)">·</span>
-                <a href="#directorio" style="font-size:.58rem; text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.25); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.25)'">Directorio</a>
-            </div>
-
-            <!-- Divider -->
-            <div style="width:100%; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent); margin-bottom:1.75rem;"></div>
-
-            <!-- Address + Copyright -->
-            <p style="font-size:.62rem; color:rgba(255,255,255,.2); margin-bottom:.5rem; font-weight:500; letter-spacing:.12em;">Av. La Almolonga 80, Barrio Santa Lucía · San Cristóbal de Las Casas, Chiapas</p>
-            <p style="font-size:.55rem; text-transform:uppercase; letter-spacing:.35em; color:rgba(255,255,255,.1); margin-bottom:.6rem;">© 2026 Alliance Française de San Cristóbal de Las Casas. Todos los derechos reservados.</p>
-            <a href="https://alianzafrancesa.org.mx/san-cristobal-de-las-casas/" target="_blank" rel="noopener" style="font-size:.55rem; text-transform:uppercase; letter-spacing:.25em; color:rgba(201,168,76,.4); text-decoration:none; transition:color .3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(201,168,76,.4)'">Sitio Web Oficial ↗</a>
-        </div>
+    <footer style="position:relative; z-index:2; padding:4rem 1.5rem 3rem; border-top:1px solid rgba(255,255,255,.04); text-align:center; background:rgba(0,0,0,.2);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold); margin-bottom:.5rem; text-shadow:0 0 20px rgba(201,168,76,.3);">Vichy 2026</div>
+        <p style="font-size:.6rem; text-transform:uppercase; letter-spacing:.4em; color:rgba(255,255,255,.2); margin-top:2rem;">Alliance Française de San Cristóbal de Las Casas · 2026<br>Miguel David Tillero Álvarez</p>
     </footer>
 
-    <!-- Lightbox -->
-    <div id="lightbox" style="position:fixed;inset:0;z-index:99990;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:1.5rem;" role="dialog" aria-modal="true" aria-label="Galería ampliada">
-        <button id="lb-close" aria-label="Cerrar" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:all .3s">✕</button>
-        <button id="lb-prev" aria-label="Anterior" style="position:absolute;left:1.5rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:all .3s">‹</button>
-        <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:88vh;object-fit:contain;border-radius:1rem;box-shadow:0 40px 80px rgba(0,0,0,.8);transition:opacity .3s">
-        <button id="lb-next" aria-label="Siguiente" style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:all .3s">›</button>
-        <p id="lb-cap" style="position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-size:.58rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(201,168,76,.7);white-space:nowrap;font-weight:700;"></p>
-    </div>
+    <button id="btt" aria-label="Volver arriba" class="interactive">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+</div>
 
-    <!-- Floating buttons -->
-    <a id="wa-float" href="https://wa.me/5219671721870" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:fixed; bottom:2.5rem; right:5.5rem; z-index:8000; width:50px; height:50px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.35); opacity:0; pointer-events:none; transition:all .4s; cursor:none;">
-        <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.843L.057 23.743l5.91-1.551A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.357-.213-3.715.974.991-3.617-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
-    </a>
-    <button id="btt" aria-label="Volver arriba" style="position:fixed; bottom:2.5rem; right:2.5rem; z-index:8000; width:46px; height:46px; border-radius:50%; background:rgba(6,6,8,.85); border:1px solid rgba(201,168,76,.25); color:var(--gold); display:flex; align-items:center; justify-content:center; backdrop-filter:blur(16px); opacity:0; pointer-events:none; transition:all .4s; cursor:none;">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
-    </button>
-    <button id="audio-btn" aria-label="Controlar música" title="Música" style="position:fixed; bottom:2.5rem; left:2.5rem; z-index:8000; width:50px; height:50px; border-radius:50%; background:rgba(6,6,8,.88); border:1px solid var(--gold); color:var(--gold); display:flex; align-items:center; justify-content:center; backdrop-filter:blur(16px); opacity:0; pointer-events:none; transition:all .4s var(--ease-out); cursor:none; box-shadow:0 8px 24px rgba(0,0,0,.4);">
-        <div id="audio-bars" class="bars-paused" style="display:flex;align-items:center;height:20px;">
-            <span class="audio-bar"></span>
-            <span class="audio-bar"></span>
-            <span class="audio-bar"></span>
-            <span class="audio-bar"></span>
-            <span class="audio-bar"></span>
-        </div>
-    </button>
-</div><script>
-/* ================================================================
-   VICHY 2026 · v4.1 · JavaScript Engine (Auto-Music & Intro Logic)
-================================================================ */
+<script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    let audioPlaying = false; // shared audio state
-
-    /* ── 1. INTRO SCREEN (video + animated overlay) ────────────── */
-    const introScreen = document.getElementById('intro-screen');
     const introVid    = document.getElementById('intro-vid');
+    const introScreen = document.getElementById('intro-screen');
     const mainContent = document.getElementById('main-content');
 
+    document.body.style.overflow = 'hidden';
+
     function launchSite() {
-        if (!introScreen || introScreen.dataset.launched) return;
-        introScreen.dataset.launched = '1';
-        if (typeof gsap !== 'undefined') {
-            gsap.to(introScreen, { opacity: 0, scale: 1.03, duration: 1.1, ease: 'power3.inOut', onComplete: () => {
-                introScreen.style.display = 'none';
+        if(introScreen) introScreen.style.opacity = '0';
+        setTimeout(() => {
+            if(introScreen) introScreen.style.display = 'none';
+            if(mainContent) {
                 mainContent.style.display = 'block';
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = 'auto'; 
                 requestAnimationFrame(() => {
                     mainContent.style.opacity = '1';
                     initScrollReveal();
                     init3D();
                 });
-            }});
-        } else {
-            introScreen.style.opacity = '0';
-            setTimeout(() => {
-                introScreen.style.display = 'none';
-                mainContent.style.display = 'block';
-                document.body.style.overflow = 'auto';
-                requestAnimationFrame(() => { mainContent.style.opacity = '1'; initScrollReveal(); init3D(); });
-            }, 800);
-        }
+            }
+        }, 1200); 
     }
 
-    /* Generate floating particles */
-    const ptclC = document.getElementById('ptcl');
-    if (ptclC) {
-        const n = innerWidth < 768 ? 22 : 55;
-        for (let i = 0; i < n; i++) {
-            const p = document.createElement('div');
-            p.className = 'ptcl';
-            const s = .5 + Math.random() * 2;
-            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}vw;top:${10+Math.random()*90}vh`;
-            p.style.setProperty('--d', `${6+Math.random()*14}s`);
-            p.style.setProperty('--dl', `${Math.random()*10}s`);
-            p.style.setProperty('--t', `${80+Math.random()*420}px`);
-            if (Math.random() > .65) { p.style.background = '#fff'; p.style.boxShadow = '0 0 6px rgba(255,255,255,.35)'; }
-            else { p.style.boxShadow = '0 0 10px rgba(201,168,76,.55)'; }
-            ptclC.appendChild(p);
-        }
-    }
+    if (introVid) {
+        introVid.addEventListener('ended', launchSite);
+        setTimeout(launchSite, 8000);
+    } else { launchSite(); }
 
-    /* Animate intro overlay with GSAP or fallback */
-    function animateIntro() {
-        const inner = document.getElementById('intro-inner');
-        const hTop  = document.getElementById('h-top');
-        const hBot  = document.getElementById('h-bottom');
-        const startBtn  = document.getElementById('start-btn');
-        const introNote = document.getElementById('intro-note');
-        if (typeof gsap !== 'undefined') {
-            gsap.to(inner, { opacity: 1, y: 0, duration: 1.4, ease: 'expo.out', delay: .4 });
-            gsap.to(hTop,  { opacity: 1, scaleX: 1, duration: 1.8, ease: 'power3.out', delay: .8 });
-            gsap.to(hBot,  { opacity: 1, scaleX: 1, duration: 1.8, ease: 'power3.out', delay: 1.0 });
-            gsap.to(startBtn,  { opacity: 1, duration: 1.1, ease: 'power2.out', delay: 1.5 });
-            gsap.to(introNote, { opacity: 1, duration: 1.1, ease: 'power2.out', delay: 2.1 });
-        } else {
-            if (inner)     { inner.style.opacity = '1'; inner.style.transform = 'none'; }
-            if (startBtn)  startBtn.style.opacity = '1';
-            if (introNote) introNote.style.opacity = '1';
-            if (hTop)  { hTop.style.opacity  = '1'; hTop.style.transform  = 'scaleX(1)'; }
-            if (hBot)  { hBot.style.opacity  = '1'; hBot.style.transform  = 'scaleX(1)'; }
-        }
-    }
-    if (typeof gsap !== 'undefined') animateIntro();
-    else window.addEventListener('load', animateIntro, { once: true });
-
-    /* Start button and skip button */
-    const startBtn = document.getElementById('start-btn');
-    const skipBtn  = document.getElementById('skip-btn');
-    if (startBtn) startBtn.addEventListener('click', launchSite);
-    if (skipBtn)  skipBtn.addEventListener('click',  launchSite);
-    if (introScreen) introScreen.addEventListener('click', e => {
-        if (e.target === introScreen || e.target === introVid) launchSite();
-    });
-
-    /* Fallback: auto-launch when video ends or after 12 s */
-    if (introVid) introVid.addEventListener('ended', launchSite);
-    setTimeout(launchSite, 12000);
-
-    /* ── 2. MÚSICA AUTOMÁTICA & MANEJO DE EVENTOS ──────────────── */
     const music = document.getElementById('bg-music');
-    const audioBars = document.getElementById('audio-bars');
-    function syncAudioBars() {
-        if (!audioBars) return;
-        if (audioPlaying) { audioBars.classList.remove('bars-paused'); }
-        else              { audioBars.classList.add('bars-paused'); }
-    }
     if (music) {
         music.volume = 0.35;
         const startAudio = () => {
-            if (music.paused) {
-                music.play().then(() => {
-                    audioPlaying = true;
-                    syncAudioBars();
-                    const ab = document.getElementById('audio-btn');
-                    if (ab) { ab.style.opacity = '1'; ab.style.pointerEvents = 'auto'; }
-                }).catch(() => {
-                    const ab = document.getElementById('audio-btn');
-                    if (ab) { ab.style.opacity = '1'; ab.style.pointerEvents = 'auto'; }
-                });
-            }
+            if (music.paused) music.play().catch(e => console.log("Esperando..."));
             ['mousemove', 'scroll', 'touchstart', 'click', 'keydown'].forEach(evt => {
                 document.removeEventListener(evt, startAudio);
             });
@@ -1408,9 +619,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ['mousemove', 'scroll', 'touchstart', 'click', 'keydown'].forEach(evt => {
             document.addEventListener(evt, startAudio, { once: true });
         });
+
+        document.querySelectorAll('video').forEach(v => {
+            if(v.id !== 'intro-vid' && v.id !== 'hero-video') {
+                v.addEventListener('play', () => { if(music) music.pause(); });
+                v.addEventListener('pause', () => { if(music) music.play(); });
+            }
+        });
     }
 
-    /* ── 3. SCROLL REVEAL (IntersectionObserver) ──────────────── */
     function initScrollReveal() {
         const io = new IntersectionObserver((entries) => {
             entries.forEach(e => {
@@ -1423,27 +640,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.sr').forEach(el => io.observe(el));
     }
 
-    /* ── 4A. HAMBURGER MOBILE NAV ───────────────────────────── */
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    if (hamburger && mobileNav) {
-        hamburger.addEventListener('click', () => {
-            const isOpen = mobileNav.classList.toggle('open');
-            hamburger.classList.toggle('open', isOpen);
-            hamburger.setAttribute('aria-expanded', String(isOpen));
-            document.body.style.overflow = isOpen ? 'hidden' : '';
-        });
-        mobileNav.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                mobileNav.classList.remove('open');
-                hamburger.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            });
-        });
-    }
-
-    /* ── 4. TABS ─────────────────────────────────────────────── */
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1460,23 +656,88 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ── 5. FAQ ACCORDION (chevron) ──────────────────────────── */
-    document.querySelectorAll('.faq-q-inner').forEach(btn => {
+    document.querySelectorAll('.faq-q').forEach(btn => {
         btn.addEventListener('click', () => {
             const item = btn.parentElement;
             const wasOpen = item.classList.contains('open');
-            document.querySelectorAll('.faq-item.open').forEach(i => {
+            document.querySelectorAll('.faq-item').forEach(i => {
                 i.classList.remove('open');
-                i.querySelector('.faq-q-inner').setAttribute('aria-expanded', 'false');
+                i.querySelector('.faq-a').style.maxHeight = '0';
+                i.querySelector('.faq-a').style.opacity = '0';
+                i.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                i.querySelector('.faq-icon').style.borderColor = 'rgba(255,255,255,.1)';
+                i.querySelector('.faq-icon').style.color = 'rgba(255,255,255,.4)';
             });
             if (!wasOpen) {
                 item.classList.add('open');
-                btn.setAttribute('aria-expanded', 'true');
+                item.querySelector('.faq-a').style.maxHeight = '300px';
+                item.querySelector('.faq-a').style.opacity = '1';
+                item.querySelector('.faq-icon').style.transform = 'rotate(45deg)';
+                item.querySelector('.faq-icon').style.borderColor = 'var(--gold)';
+                item.querySelector('.faq-icon').style.color = 'var(--gold)';
             }
         });
     });
 
-    /* ── 6. THREE.JS STARFIELD ───────────────────────────────── */
+    if (window.innerWidth > 1024) {
+        document.querySelectorAll('[data-tilt="true"]').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                card.style.transform = perspective(1000px) rotateY(deg) rotateX(deg) translateY(-5px);
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateY(0)';
+            });
+        });
+    }
+
+    const ptclC = document.getElementById('ptcl');
+    if(ptclC) {
+        const n = window.innerWidth < 768 ? 15 : 35;
+        for(let i=0; i<n; i++) {
+            const p = document.createElement('div');
+            const size = 1 + Math.random() * 2.5;
+            p.style.cssText = position:absolute; width:px; height:px; border-radius:50%; background:var(--gold); left:vw; top:vh; opacity:0; animation:floatUpPtcl s ease-in-out infinite s; box-shadow:0 0 10px rgba(201,168,76,0.8);;
+            ptclC.appendChild(p);
+        }
+    }
+
+    const btt = document.getElementById('btt');
+    if(btt) {
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 500) btt.classList.add('show');
+            else btt.classList.remove('show');
+        });
+        btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+    }
+
+    document.querySelectorAll('.ff[required]').forEach(f => {
+        f.addEventListener('blur', () => {
+            if(f.value.trim() && f.checkValidity()) { f.classList.remove('invalid'); f.classList.add('valid'); }
+            else if(f.value.trim() || !f.checkValidity()) { f.classList.remove('valid'); f.classList.add('invalid'); }
+            else { f.classList.remove('valid','invalid'); }
+        });
+    });
+
+    const formEl = document.getElementById('form-registro');
+    if (formEl) {
+        formEl.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const bt = document.getElementById('btn-text'), eb = document.getElementById('errBox'), su = document.getElementById('gracias');
+            eb.style.display = 'none'; bt.textContent = 'Enviando...'; formEl.querySelector('button').disabled = true;
+            try {
+                const res = await fetch(formEl.action, { method: 'POST', body: new FormData(formEl), headers: { 'Accept': 'application/json' } });
+                if (res.ok) { formEl.style.display = 'none'; su.style.display = 'block'; }
+                else { throw new Error('Error'); }
+            } catch (err) {
+                eb.innerHTML = '⚠ No se pudo enviar. Verifique su conexión o intente por WhatsApp.';
+                eb.style.display = 'block'; bt.textContent = 'Enviar Expediente Oficial'; formEl.querySelector('button').disabled = false;
+            }
+        });
+    }
+
     function init3D() {
         if (typeof THREE === 'undefined') return;
         const canvas = document.getElementById('webgl-bg');
@@ -1504,163 +765,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         animate();
     }
-
-    /* ── 7. SCROLL: nav + progress bar + floating btns ──────── */
-    const navEl = document.getElementById('main-nav');
-    const btt = document.getElementById('btt');
-    const waf = document.getElementById('wa-float');
-    const pb  = document.getElementById('progress-bar');
-    const audioBtn = document.getElementById('audio-btn');
-    window.addEventListener('scroll', () => {
-        const y = window.scrollY;
-        if (navEl) navEl.classList.toggle('scrolled', y > 80);
-        if (btt)  { btt.style.opacity  = y > 600 ? '1' : '0'; btt.style.pointerEvents  = y > 600 ? 'auto' : 'none'; }
-        if (waf)  { waf.style.opacity  = y > 400 ? '1' : '0'; waf.style.pointerEvents  = y > 400 ? 'auto' : 'none'; }
-        if (audioBtn) { audioBtn.style.opacity = y > 200 ? '1' : '0'; audioBtn.style.pointerEvents = y > 200 ? 'auto' : 'none'; }
-        const dh = document.documentElement.scrollHeight - window.innerHeight;
-        if (pb && dh > 0) pb.style.width = (y / dh * 100) + '%';
-    }, { passive: true });
-    if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    /* ── 8. AUDIO TOGGLE BUTTON (bars) ─────────────────────── */
-    if (audioBtn && music) {
-        audioBtn.addEventListener('click', e => {
-            e.stopPropagation();
-            if (audioPlaying) {
-                music.pause(); audioPlaying = false;
-            } else {
-                music.play().catch(() => {}); audioPlaying = true;
-            }
-            syncAudioBars();
-        });
-    }
-    /* ── 8b. VIDEO ↔ MUSIC SYNC ────────────────────────────── */
-    document.querySelectorAll('video').forEach(v => {
-        if (v.id === 'intro-vid' || v.id === 'hero-video') return;
-        v.addEventListener('play',  () => { if (music && audioPlaying) music.pause(); });
-        v.addEventListener('pause', () => { if (music && audioPlaying) music.play().catch(() => {}); });
-        v.addEventListener('ended', () => { if (music && audioPlaying) music.play().catch(() => {}); });
-    });
-
-    /* ── 8c. FORM: BLUR VALIDATION + SUBMIT ─────────────────── */
-    const regForm = document.getElementById('formulario-afsc');
-    if (regForm) {
-        regForm.querySelectorAll('.ff-light[required], .ff-light[type="email"]').forEach(f => {
-            f.addEventListener('blur', () => {
-                if (f.value.trim() && f.checkValidity()) {
-                    f.classList.remove('invalid'); f.classList.add('valid');
-                } else if (f.value.trim()) {
-                    f.classList.remove('valid'); f.classList.add('invalid');
-                } else {
-                    f.classList.remove('valid', 'invalid');
-                }
-            });
-        });
-        const btnText = document.getElementById('btn-text');
-        const btnSpin = document.getElementById('btn-spin');
-        const btnSub  = document.getElementById('btn-submit');
-        const errBox  = document.getElementById('errBox');
-        const gracias = document.getElementById('gracias');
-        regForm.addEventListener('submit', async e => {
-            e.preventDefault();
-            if (btnText) btnText.style.opacity = '0';
-            if (btnSpin) btnSpin.style.display = 'block';
-            if (btnSub)  { btnSub.disabled = true; btnSub.style.opacity = '.8'; }
-            if (errBox)  errBox.style.display = 'none';
-            try {
-                const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(regForm) });
-                const j = await r.json();
-                if (j.success) {
-                    regForm.style.display = 'none';
-                    if (gracias) { gracias.style.display = 'block'; setTimeout(() => gracias.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100); }
-                } else { throw new Error(j.message || 'Error'); }
-            } catch(err) {
-                if (errBox) { errBox.style.display = 'block'; errBox.innerHTML = '⚠ <strong>No se pudo enviar.</strong> Verifique su conexión o contáctenos: <a href="tel:+5219671721870" style="font-weight:bold;text-decoration:underline">+52 1 967 172 1870</a>'; setTimeout(() => errBox.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100); }
-                if (btnText) btnText.style.opacity = '1';
-                if (btnSpin) btnSpin.style.display = 'none';
-                if (btnSub)  { btnSub.disabled = false; btnSub.style.opacity = '1'; }
-            }
-        });
-    }
-
-    /* ── 9. COUNTDOWN → 1 July 2026 ─────────────────────────── */
-    function updateCD() {
-        const diff = new Date('2026-07-01T00:00:00') - new Date();
-        if (diff <= 0) {
-            const w = document.getElementById('cd-wrap');
-            if (w) w.innerHTML = '<p style="font-family:\'Cormorant Garamond\',serif; font-size:2.5rem; color:var(--gold);">¡La Misión ha comenzado! ✈️</p>';
-            return;
-        }
-        const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = String(v).padStart(2, '0'); };
-        set('cd-d', Math.floor(diff / 86400000));
-        set('cd-h', Math.floor((diff % 86400000) / 3600000));
-        set('cd-m', Math.floor((diff % 3600000) / 60000));
-        set('cd-s', Math.floor((diff % 60000) / 1000));
-    }
-    updateCD(); setInterval(updateCD, 1000);
-
-    /* ── 10. ANIMATED COUNTERS ───────────────────────────────── */
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (!e.isIntersecting) return;
-            const el = e.target;
-            const target = parseInt(el.dataset.counter);
-            if (!target) return;
-            counterObserver.unobserve(el);
-            let start = 0; const dur = 2000; const step = 16;
-            const timer = setInterval(() => {
-                start += step;
-                el.textContent = Math.round(Math.min(start / dur * target, target));
-                if (start >= dur) { el.textContent = target; clearInterval(timer); }
-            }, step);
-        });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
-
-
-    /* ── 12. GALLERY: hide broken slots, then lightbox ─────── */
-    document.querySelectorAll('.gal-item img').forEach(img => {
-        const hide = () => { img.closest('.gal-item').style.display = 'none'; };
-        if (!img.complete || img.naturalWidth === 0) img.addEventListener('error', hide);
-        else if (img.naturalWidth === 0) hide();
-    });
-    const lb      = document.getElementById('lightbox');
-    const lbImg   = document.getElementById('lb-img');
-    const lbCap   = document.getElementById('lb-cap');
-    const lbClose = document.getElementById('lb-close');
-    const lbPrev  = document.getElementById('lb-prev');
-    const lbNext  = document.getElementById('lb-next');
-    const galItems = Array.from(document.querySelectorAll('.gal-item'));
-    let lbIdx = 0;
-
-    function openLb(idx) {
-        lbIdx = (idx + galItems.length) % galItems.length;
-        const img = galItems[lbIdx].querySelector('img');
-        const cap = galItems[lbIdx].querySelector('.gal-cap');
-        lbImg.style.opacity = '0';
-        lb.style.display = 'flex'; document.body.style.overflow = 'hidden';
-        setTimeout(() => {
-            lbImg.src = img ? img.src : '';
-            lbImg.alt = img ? img.alt : '';
-            if (lbCap) lbCap.textContent = cap ? cap.textContent : '';
-            lbImg.style.opacity = '1';
-        }, 80);
-    }
-    function closeLb() { lb.style.display = 'none'; document.body.style.overflow = ''; }
-
-    galItems.forEach((item, i) => item.addEventListener('click', () => openLb(i)));
-    if (lbClose) lbClose.addEventListener('click', closeLb);
-    if (lbPrev)  lbPrev.addEventListener('click',  () => openLb(lbIdx - 1));
-    if (lbNext)  lbNext.addEventListener('click',  () => openLb(lbIdx + 1));
-    lb && lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-    document.addEventListener('keydown', e => {
-        if (!lb || lb.style.display === 'none') return;
-        if (e.key === 'Escape') closeLb();
-        if (e.key === 'ArrowLeft')  openLb(lbIdx - 1);
-        if (e.key === 'ArrowRight') openLb(lbIdx + 1);
-    });
-
-
 });
 </script>
 </body>
